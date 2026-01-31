@@ -8,11 +8,12 @@ on:
 
 jobs:
   build-and-deploy:
+    environment: production
     runs-on: ubuntu-latest
     name: Build and Deploy to Azure Static Web Apps
     permissions:
       contents: read
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,8 +21,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -30,23 +31,41 @@ jobs:
         run: npm test
 
       - name: Build application
-        run: npm run build
+        run: npm run build:prod
 
       - name: Deploy to Azure Static Web Apps
-        # TODO: Configure this action with your Azure Static Web Apps details
-        # Uncomment and fill in the details when ready to deploy
-        # uses: Azure/static-web-apps-deploy@v1
-        # with:
-        #   azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-        #   repo_token: ${{ secrets.GITHUB_TOKEN }}
-        #   action: "upload"
-        #   app_location: "/dist"
-        #   api_location: ""
-        #   output_location: ""
-        run: |
-          echo "Build completed successfully"
-          echo "To enable Azure deployment:"
-          echo "1. Create an Azure Static Web App (Free tier)"
-          echo "2. Add AZURE_STATIC_WEB_APPS_API_TOKEN to repository secrets"
-          echo "3. Uncomment the Azure deployment step in this workflow"
-          echo "4. Update app_location to point to your build output (dist)"
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          action: "upload"
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          app_location: "/dist"
+          skip_app_build: true
+          skip_api_build: true
+
+  release:
+    environment: production
+    if: success()
+    name: Create Tag and Release
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        if: steps.tag_version.outputs.new_tag
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}

@@ -2,6 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,6 +52,15 @@ export default (env, argv) => {
           minifyURLs: true,
         } : false,
       }),
+      new CopyPlugin({
+      patterns: [
+        { 
+          from: path.resolve(__dirname, 'public/robots.txt'), 
+          to: path.resolve(__dirname, 'dist/robots.txt') 
+        },
+        // Add other static files here if needed
+      ],
+    }),
     ],
     optimization: {
       minimize: isProduction,
