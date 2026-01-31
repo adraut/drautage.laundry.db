@@ -10,6 +10,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     name: Build and Deploy to Azure Static Web Apps
+    permissions:
+      contents: read
     
     steps:
       - name: Checkout code
