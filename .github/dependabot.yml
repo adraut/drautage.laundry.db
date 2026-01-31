@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "friday"
-      time: "16:00"
+      time: "22:00"
     groups:
       all-actions:
         patterns: [ "*" ]
@@ -15,7 +15,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "friday"
-      time: "16:00"
+      time: "22:00"
     groups:
       npm-dependencies:
         patterns:
