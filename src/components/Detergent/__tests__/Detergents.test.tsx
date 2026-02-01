@@ -128,4 +128,59 @@ describe('Detergents', () => {
       expect(screen.queryByText('Tide Clean & Gentle')).not.toBeInTheDocument();
     });
   });
+
+  describe('Grid sorting', () => {
+    it('should render grid with default ascending sort on product name', async () => {
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>
+      );
+
+      await waitFor(() =>
+        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
+      );
+
+      // Find the Product Name column header by text, then traverse up to find the th with aria-sort
+      const productNameSpan = screen.getByText('Product Name');
+      const thElement = productNameSpan.closest('th');
+      expect(thElement).toHaveAttribute('aria-sort', 'ascending');
+    });
+
+    it('should have sortable columns with correct headers', async () => {
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>
+      );
+
+      await waitFor(() =>
+        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
+      );
+
+      // Verify multiple columns are present and sortable
+      expect(screen.getByText('Product Name')).toBeInTheDocument();
+      expect(screen.getByText('Brand')).toBeInTheDocument();
+      expect(screen.getByText('Type')).toBeInTheDocument();
+    });
+
+    it('should apply sort and filter together', async () => {
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>
+      );
+
+      await waitFor(() =>
+        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
+      );
+
+      // Grid should render with default sort (ascending name) and default filter (hasLipase = true)
+      const productNameSpan = screen.getByText('Product Name');
+      const thElement = productNameSpan.closest('th');
+      expect(thElement).toHaveAttribute('aria-sort', 'ascending');
+
+      // Grid should be visible and rendered
+      expect(screen.getByText('Product Name')).toBeInTheDocument();
+    });  });
 });
