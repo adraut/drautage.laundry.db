@@ -22,8 +22,7 @@ const ingredients: Ingredient[] = [
 ];
 
 const WholeFoods365SportFresh: DetergentProfile = new DetergentProfile(
-    "365 Sport Fresh Scent", "Whole Foods", DetergentType.Liquid, ingredients);
+    "365 Sport Fresh Scent", "Whole Foods", DetergentType.Liquid, ingredients, new Date("2026-01-31"));
 WholeFoods365SportFresh.countryOfOrigin = "USA";
 WholeFoods365SportFresh.countriesAvailable = ["USA"];
-WholeFoods365SportFresh.isHardWaterTolerant = true;
 export default WholeFoods365SportFresh;

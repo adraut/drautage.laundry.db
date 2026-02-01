@@ -2,13 +2,13 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Grid, GridColumn as Column, GridFilterChangeEvent, GridSortChangeEvent } from '@progress/kendo-react-grid';
 import { CompositeFilterDescriptor, filterBy, orderBy, SortDescriptor } from '@progress/kendo-data-query';
 import '@progress/kendo-theme-default/dist/all.css';
-import { IDetergentProfile } from './types/DetergentProfile';
+import { DetergentProfile } from './types/DetergentProfile';
 import { loadDetergents } from './data/detergents-data';
 import { useGridFilterSync } from './hooks/useGridFilterSync';
 import { getDefaultFilter } from './utils/gridFilterUtils';
 
 function Detergents() {
-  const [detergents, setDetergents] = useState<Map<string, IDetergentProfile>>(new Map());
+  const [detergents, setDetergents] = useState<Map<string, DetergentProfile>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState<CompositeFilterDescriptor | null>(null);
   const [sort, setSort] = useState<SortDescriptor[]>([{ field: 'name', dir: 'asc' }]);
@@ -126,6 +126,7 @@ function Detergents() {
             <Column field="isBiodegradable" title="Biodegradable" filter='boolean' sortable filterable />
             <Column field="isSepticSafe" title="Septic Safe" filter='boolean' sortable filterable />
             <Column field="countriesAvailable" title="Countries Available" sortable filterable />
+            <Column field="lastUpdatedFormatted" title="Last Updated" filter='date' columnType='data' sortable filterable />
           </Grid>
         </div>
       )}

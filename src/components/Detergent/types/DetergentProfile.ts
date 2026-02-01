@@ -12,47 +12,16 @@ import { NonionicSurfactants } from "../../common/types/NonionicSurfactants";
 import { AnionicSurfactants } from "../../common/types/AnionicSurfactants";
 import { OxygenBleaches } from '../../common/types/OxygenBleaches';
 
-export interface IDetergentProfile {
+export class DetergentProfile {
     name: string;
     brand: string;
     type: DetergentType;
+    lastUpdated: Date;
     ingredients: Ingredient[];
     countryOfOrigin?: Alpha3Code;
     countriesAvailable?: Alpha3Code[];
-    pricePerLoadAdvertised?: number;
-    pricePerLoadActual?: number;
-    isHardWaterTolerant?: boolean;
-    readonly hasAmylase?: boolean;
-    readonly hasCellulase?: boolean;
-    readonly hasDNase?: boolean;
-    readonly hasDyes?: boolean;
-    readonly hasEnzymes?: boolean;
-    readonly hasLipase?: boolean;
-    readonly hasMannanase?: boolean;
-    readonly hasOpticalBrighteners?: boolean;
-    readonly hasOxygenBleach?: boolean;
-    readonly hasPectinase?: boolean;
-    readonly hasProtease?: boolean;
-    readonly hasScents?: boolean;
-    readonly hasSoaps?: boolean;
-    readonly hasAnionicSurfactants?: boolean;
-    readonly hasNonionicSurfactants?: boolean;
-    readonly isBiodegradable?: boolean;
-    readonly isSepticSafe?: boolean;
-}
 
-export class DetergentProfile implements IDetergentProfile {
-    name: string;
-    brand: string;
-    type: DetergentType;
-    countryOfOrigin?: Alpha3Code;
-    countriesAvailable?: Alpha3Code[];
-    pricePerLoadAdvertised?: number;
-    pricePerLoadActual?: number;
-    hasSulfates?: boolean;
-    isHardWaterTolerant?: boolean;
-    ingredients: Ingredient[];
-
+    readonly lastUpdatedFormatted: string;
     readonly hasAmylase: boolean;
     readonly hasCellulase: boolean;
     readonly hasDNase: boolean;
@@ -71,11 +40,13 @@ export class DetergentProfile implements IDetergentProfile {
     readonly isBiodegradable: boolean;
     readonly isSepticSafe: boolean;
 
-    constructor(name: string, brand: string, type: DetergentType, ingredients: Ingredient[]) {
+    constructor(name: string, brand: string, type: DetergentType, ingredients: Ingredient[], lastUpdated: Date) {
         this.name = name;
         this.brand = brand;
         this.type = type;
         this.ingredients = ingredients;
+        this.lastUpdated = lastUpdated;
+        this.lastUpdatedFormatted = this.lastUpdated.toISOString().split('T')[0];
 
         // Compute all derived properties once during construction
         this.hasAmylase = ingredients.includes(Ingredient.Amylase);

@@ -14,8 +14,7 @@ const ingredients : Ingredient[] = [
 ];
 
 const RockinGreenPlatinumActiveWear: DetergentProfile = new DetergentProfile(
-    "Platinum Active Wear", "Rockin' Green", DetergentType.Powder, ingredients);
+    "Platinum Active Wear", "Rockin' Green", DetergentType.Powder, ingredients, new Date("2026-02-01"));
 RockinGreenPlatinumActiveWear.countryOfOrigin = "USA";
 RockinGreenPlatinumActiveWear.countriesAvailable = ["USA"];
-RockinGreenPlatinumActiveWear.isHardWaterTolerant = true;
 export default RockinGreenPlatinumActiveWear;
