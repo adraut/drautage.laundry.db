@@ -219,7 +219,17 @@ describe('DetergentProfile', () => {
         expect(profile.hasOxygenBleach).toBe(true);
       });
 
-      it('should not detect hasOxygenBleach when SodiumCarbonatePeroxide is absent', () => {
+      it('should detect hasOxygenBleach when SodiumPercarbonate is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          [Ingredient.SodiumPercarbonate]
+        );
+        expect(profile.hasOxygenBleach).toBe(true);
+      });
+
+      it('should not detect hasOxygenBleach when Oxygen Bleaches are absent', () => {
         const profile = new DetergentProfile(
           'Test',
           'Brand',
