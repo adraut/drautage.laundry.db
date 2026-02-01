@@ -1,5 +1,10 @@
 name: Dependabot auto-merge
-on: pull_request
+on:
+  pull_request:
+    types:
+      - opened
+      - labeled
+      - synchronize
 
 permissions:
   contents: write
@@ -8,15 +13,17 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    if: github.actor == 'dependabot[bot]'
     steps:
-      - name: Approve a PR
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Verify Dependabot
+        run: |
+          if [[ "${{ github.event.sender.type }}" != "Bot" || "${{ github.event.sender.login }}" != "dependabot[bot]" ]]; then
+            echo "This PR is not from Dependabot."
+            exit 1
+          fi
+
       - name: Enable auto-merge for Dependabot PRs
-        run: gh pr merge --auto --merge "$PR_URL"
+        run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
