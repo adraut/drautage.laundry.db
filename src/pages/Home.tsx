@@ -14,7 +14,7 @@ function Home() {
         <div className="product-card">
           <h3>Detergents</h3>
           <p>
-            Explore our collection of laundry detergents. Find the right formula for 
+            Explore laundry detergents to find the right formula for 
             your fabrics and cleaning needs.
           </p>
           <Link to="/detergents">
@@ -22,7 +22,7 @@ function Home() {
           </Link>
         </div>
 
-        <div className="product-card">
+        {/* <div className="product-card">
           <h3>Boosters</h3>
           <p>
             Discover laundry boosters that enhance your wash and provide extra cleaning 
@@ -53,21 +53,7 @@ function Home() {
             <button style={{ marginTop: '1rem' }}>View Glossary</button>
           </Link>
         </div>
-      </div>
-
-      <div style={{ marginTop: '3rem' }}>
-        <h2>Compare Products</h2>
-        <div className="product-grid">
-          <Link to="/compare/detergents">
-            <button>Compare Detergents</button>
-          </Link>
-          <Link to="/compare/boosters">
-            <button>Compare Boosters</button>
-          </Link>
-          <Link to="/compare/pretreaters">
-            <button>Compare Pretreaters</button>
-          </Link>
-        </div>
+      </div> */}      
       </div>
     </div>
   );
