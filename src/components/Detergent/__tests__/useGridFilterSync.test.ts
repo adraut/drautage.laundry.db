@@ -36,8 +36,8 @@ describe('useGridFilterSync', () => {
       const testFilter: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [
-          { field: 'hasProtease', operator: 'contains', value: true },
-          { field: 'isBiodegradable', operator: 'contains', value: true },
+            { field: 'hasProtease', operator: 'eq', value: true },
+            { field: 'isBiodegradable', operator: 'eq', value: true },
         ],
       };
 
@@ -80,7 +80,7 @@ describe('useGridFilterSync', () => {
 
       const newFilter: CompositeFilterDescriptor = {
         logic: 'or',
-        filters: [{ field: 'hasAmylase', operator: 'contains', value: true }],
+          filters: [{ field: 'hasAmylase', operator: 'eq', value: true }],
       };
 
       act(() => {
@@ -115,12 +115,12 @@ describe('useGridFilterSync', () => {
 
       const filter1: CompositeFilterDescriptor = {
         logic: 'and',
-        filters: [{ field: 'hasProtease', operator: 'contains', value: true }],
+          filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
       };
 
       const filter2: CompositeFilterDescriptor = {
         logic: 'and',
-        filters: [{ field: 'hasLipase', operator: 'contains', value: true }],
+          filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
       };
 
       // Call updateFilterInUrl twice
@@ -192,7 +192,7 @@ describe('useGridFilterSync', () => {
 
       const newFilter: CompositeFilterDescriptor = {
         logic: 'and',
-        filters: [{ field: 'hasMannanase', operator: 'contains', value: true }],
+        filters: [{ field: 'hasMannanase', operator: 'eq', value: true }],
       };
 
       act(() => {
@@ -219,9 +219,9 @@ describe('useGridFilterSync', () => {
         logic: 'and',
         filters: [
           { field: 'brand', operator: 'contains', value: 'Tide' },
-          { field: 'hasProtease', operator: 'contains', value: true },
+            { field: 'hasProtease', operator: 'eq', value: true },
           { field: 'type', operator: 'eq', value: 'liquid' },
-          { field: 'isBiodegradable', operator: 'contains', value: false },
+            { field: 'isBiodegradable', operator: 'eq', value: false },
         ],
       };
 
@@ -234,12 +234,12 @@ describe('useGridFilterSync', () => {
     it('should produce different encoded strings for different filters', () => {
       const filter1: CompositeFilterDescriptor = {
         logic: 'and',
-        filters: [{ field: 'hasLipase', operator: 'contains', value: true }],
+        filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
       };
 
       const filter2: CompositeFilterDescriptor = {
         logic: 'and',
-        filters: [{ field: 'hasProtease', operator: 'contains', value: true }],
+          filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
       };
 
       const encoded1 = encodeFilter(filter1);
@@ -251,7 +251,7 @@ describe('useGridFilterSync', () => {
     it('should produce URL-safe encoded strings', () => {
       const filter: CompositeFilterDescriptor = {
         logic: 'and',
-        filters: [{ field: 'hasLipase', operator: 'contains', value: true }],
+          filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
       };
 
       const encoded = encodeFilter(filter);
