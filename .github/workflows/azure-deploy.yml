@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'public/**'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'webpack.config.js'
   workflow_dispatch:
 
 jobs:
