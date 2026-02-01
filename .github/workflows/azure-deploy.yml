@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'public/**'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'webpack.config.js'
   workflow_dispatch:
 
 jobs:
@@ -44,7 +50,6 @@ jobs:
           skip_api_build: true
 
   release:
-    environment: production
     if: success()
     name: Create Tag and Release
     needs: build-and-deploy
