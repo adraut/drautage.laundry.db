@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Grid, GridColumn as Column, GridFilterChangeEvent } from '@progress/kendo-react-grid';
-import { CompositeFilterDescriptor, filterBy } from '@progress/kendo-data-query';
+import { Grid, GridColumn as Column, GridFilterChangeEvent, GridSortChangeEvent } from '@progress/kendo-react-grid';
+import { CompositeFilterDescriptor, filterBy, orderBy, SortDescriptor } from '@progress/kendo-data-query';
 import '@progress/kendo-theme-default/dist/all.css';
 import { IDetergentProfile } from './types/DetergentProfile';
 import { loadDetergents } from './data/detergents-data';
@@ -11,6 +11,7 @@ function Detergents() {
   const [detergents, setDetergents] = useState<Map<string, IDetergentProfile>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState<CompositeFilterDescriptor | null>(null);
+  const [sort, setSort] = useState<SortDescriptor[]>([{ field: 'name', dir: 'asc' }]);
   const { filter: urlFilter, updateFilterInUrl } = useGridFilterSync();
 
   useEffect(() => {
@@ -45,6 +46,11 @@ function Detergents() {
     [updateFilterInUrl]
   );
 
+  // Handle sort changes from Grid
+  const handleSortChange = useCallback((e: GridSortChangeEvent) => {
+    setSort(e.sort);
+  }, []);
+
   const resetFilter = useCallback(() => {
     const defaultFilter = getDefaultFilter();
     setFilter(defaultFilter);
@@ -60,6 +66,10 @@ function Detergents() {
   const filteredData = useMemo(
     () => (filter ? filterBy(detergentArray, filter) : detergentArray),
     [detergentArray, filter]
+  );
+  const sortedAndFilteredData = useMemo(
+    () => (sort && sort.length > 0 ? orderBy(filteredData, sort) : filteredData),
+    [filteredData, sort]
   );
 
   return (
@@ -81,7 +91,7 @@ function Detergents() {
             </button>
           </div>
           <Grid
-            data={filteredData}
+            data={sortedAndFilteredData}
             style={{ minHeight: '75vh', minWidth: '95vw' }}
             selectable={{ enabled: true, mode: 'single' }}
             filterable={true}
@@ -92,6 +102,8 @@ function Detergents() {
             scrollable='none'
             filter={filter || undefined}
             onFilterChange={handleFilterChange}
+            sort={sort}
+            onSortChange={handleSortChange}
           >
             <Column field="name" title="Product Name" sortable filterable />
             <Column field="brand" title="Brand" sortable filterable />
