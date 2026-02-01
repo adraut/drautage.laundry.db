@@ -88,12 +88,12 @@ function Detergents() {
             editable={false}
             reorderable={true}
             sortable={{ allowUnsort: true, mode: 'single' }}
-            resizable={false}
+            resizable={true}
             scrollable='none'
             filter={filter || undefined}
             onFilterChange={handleFilterChange}
           >
-            <Column field="name" title="Name" sortable filterable />
+            <Column field="name" title="Product Name" sortable filterable />
             <Column field="brand" title="Brand" sortable filterable />
             <Column field="type" title="Type" sortable filterable />
             <Column field="hasOxygenBleach" title="Oxygen Bleach" filter='boolean' sortable filterable />
@@ -113,6 +113,7 @@ function Detergents() {
             <Column field="hasNonionicSurfactants" title="Nonionic Surfactants" filter='boolean' sortable filterable />
             <Column field="isBiodegradable" title="Biodegradable" filter='boolean' sortable filterable />
             <Column field="isSepticSafe" title="Septic Safe" filter='boolean' sortable filterable />
+            <Column field="countriesAvailable" title="Countries Available" sortable filterable />
           </Grid>
         </div>
       )}
