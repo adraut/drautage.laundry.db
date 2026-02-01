@@ -39,6 +39,7 @@ export default (env, argv) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './public/index.html',
+        favicon: './public/favicon.ico',
         minify: isProduction ? {
           removeComments: true,
           collapseWhitespace: true,
@@ -58,7 +59,10 @@ export default (env, argv) => {
             from: path.resolve(__dirname, 'public/robots.txt'),
             to: path.resolve(__dirname, 'dist/robots.txt')
           },
-          // Add other static files here if needed
+          {
+            from: path.resolve(__dirname, 'azure/staticwebapp.config.json'),
+            to: path.resolve(__dirname, 'dist/staticwebapp.config.json')
+          },
         ],
       }),
     ],
