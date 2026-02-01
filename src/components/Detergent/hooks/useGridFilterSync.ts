@@ -1,6 +1,7 @@
 import { useEffect, useRef, useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { GridFilter, encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
+import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
+import { encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
 
 const FILTER_PARAM_NAME = 'filter';
 const DEBOUNCE_DELAY = 500;
@@ -20,7 +21,7 @@ export function useGridFilterSync() {
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Memoize the filter from URL to prevent unnecessary re-renders
-  const filter = useMemo((): GridFilter => {
+  const filter = useMemo((): CompositeFilterDescriptor => {
     const encoded = searchParams.get(FILTER_PARAM_NAME);
     if (encoded) {
       const decoded = decodeFilter(encoded);
@@ -33,7 +34,7 @@ export function useGridFilterSync() {
 
   // Debounced function to update filter in URL
   const updateFilterInUrl = useCallback(
-    (newFilter: GridFilter) => {
+    (newFilter: CompositeFilterDescriptor) => {
       // Clear existing timer
       if (debounceTimerRef.current) {
         clearTimeout(debounceTimerRef.current);

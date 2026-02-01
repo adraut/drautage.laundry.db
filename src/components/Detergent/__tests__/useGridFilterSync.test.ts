@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useGridFilterSync } from '../hooks/useGridFilterSync';
 import { encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
-import { GridFilter } from '../utils/gridFilterUtils';
+import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
 
 beforeEach(() => {
   // Reset URL and mocks before each test
@@ -17,7 +17,7 @@ afterEach(() => {
 });
 
 // Helper to render hook with Router context
-const renderHookWithRouter = (callback: () => any) => {
+const renderHookWithRouter = (callback: () => ReturnType<typeof useGridFilterSync>) => {
   return renderHook(() => callback(), {
     wrapper: ({ children }: { children: React.ReactNode }) =>
       React.createElement(BrowserRouter, {}, children),
@@ -33,7 +33,7 @@ describe('useGridFilterSync', () => {
     });
 
     it('should load filter from URL param on mount', () => {
-      const testFilter: GridFilter = {
+      const testFilter: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [
           { field: 'hasProtease', operator: 'contains', value: true },
@@ -44,7 +44,8 @@ describe('useGridFilterSync', () => {
       const encoded = encodeFilter(testFilter);
 
       // Create a new URL with the filter param
-      const testUrl = `http://localhost/?filter=${encoded}`;
+      const params = new URLSearchParams({ filter: encoded });
+      const testUrl = `http://localhost/?${params.toString()}`;
       window.history.pushState({}, '', testUrl);
 
       const { result } = renderHookWithRouter(() => useGridFilterSync());
@@ -77,7 +78,7 @@ describe('useGridFilterSync', () => {
 
       const { result } = renderHookWithRouter(() => useGridFilterSync());
 
-      const newFilter: GridFilter = {
+      const newFilter: CompositeFilterDescriptor = {
         logic: 'or',
         filters: [{ field: 'hasAmylase', operator: 'contains', value: true }],
       };
@@ -112,12 +113,12 @@ describe('useGridFilterSync', () => {
 
       const { result } = renderHookWithRouter(() => useGridFilterSync());
 
-      const filter1: GridFilter = {
+      const filter1: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [{ field: 'hasProtease', operator: 'contains', value: true }],
       };
 
-      const filter2: GridFilter = {
+      const filter2: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [{ field: 'hasLipase', operator: 'contains', value: true }],
       };
@@ -156,7 +157,7 @@ describe('useGridFilterSync', () => {
 
       const { result } = renderHookWithRouter(() => useGridFilterSync());
 
-      const invalidFilter: GridFilter = {
+      const invalidFilter: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [],
       };
@@ -189,7 +190,7 @@ describe('useGridFilterSync', () => {
 
       const { unmount, result } = renderHookWithRouter(() => useGridFilterSync());
 
-      const newFilter: GridFilter = {
+      const newFilter: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [{ field: 'hasMannanase', operator: 'contains', value: true }],
       };
@@ -214,7 +215,7 @@ describe('useGridFilterSync', () => {
 
   describe('roundtrip encoding/decoding', () => {
     it('should correctly encode and decode complex filters', () => {
-      const complexFilter: GridFilter = {
+      const complexFilter: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [
           { field: 'brand', operator: 'contains', value: 'Tide' },
@@ -231,12 +232,12 @@ describe('useGridFilterSync', () => {
     });
 
     it('should produce different encoded strings for different filters', () => {
-      const filter1: GridFilter = {
+      const filter1: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [{ field: 'hasLipase', operator: 'contains', value: true }],
       };
 
-      const filter2: GridFilter = {
+      const filter2: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [{ field: 'hasProtease', operator: 'contains', value: true }],
       };
@@ -248,7 +249,7 @@ describe('useGridFilterSync', () => {
     });
 
     it('should produce URL-safe encoded strings', () => {
-      const filter: GridFilter = {
+      const filter: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [{ field: 'hasLipase', operator: 'contains', value: true }],
       };

@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Detergents from '../Detergents';
 import { encodeFilter } from '../utils/gridFilterUtils';
-import { GridFilter } from '../utils/gridFilterUtils';
+import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
 
 describe('Detergents', () => {
   beforeEach(() => {
@@ -46,7 +46,7 @@ describe('Detergents', () => {
     });
 
     it('should load and apply filter from URL param on mount', async () => {
-      const testFilter: GridFilter = {
+      const testFilter: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [
           { field: 'hasProtease', operator: 'contains', value: true },

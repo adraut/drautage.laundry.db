@@ -8,8 +8,8 @@
     "start": "webpack serve --mode development",
     "build:prod": "webpack --mode production",
     "build": "webpack --mode development",
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
+    "lint": "npx eslint src/ --ext .ts,.tsx",
+    "lint:fix": "npx eslint src/ --ext .ts,.tsx --fix",
     "type-check": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -19,6 +19,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@progress/kendo-react-grid": "^13.3.0",
+    "@progress/kendo-theme-default": "^12.3.0",
+    "i18n-iso-countries": "^7.14.0",
+    "lz-string": "^1.5.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.0"

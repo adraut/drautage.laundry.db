@@ -113,6 +113,16 @@ h2 {
   margin-left: 0;
 }
 
+.k-column-title{
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.k-table-td {
+  color: #555;
+  font-size: medium;
+}
+
 button {
   background-color: #3498db;
   color: white;

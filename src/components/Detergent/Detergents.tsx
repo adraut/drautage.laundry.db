@@ -1,15 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
+import { Grid, GridColumn as Column, GridFilterChangeEvent } from '@progress/kendo-react-grid';
+import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
 import '@progress/kendo-theme-default/dist/all.css';
 import { IDetergentProfile } from './types/DetergentProfile';
 import { loadDetergents } from './data/detergents-data';
 import { useGridFilterSync } from './hooks/useGridFilterSync';
-import { GridFilter } from './utils/gridFilterUtils';
 
 function Detergents() {
   const [detergents, setDetergents] = useState<Map<string, IDetergentProfile>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
-  const [filter, setFilter] = useState<GridFilter | null>(null);
+  const [filter, setFilter] = useState<CompositeFilterDescriptor | null>(null);
   const { filter: urlFilter, updateFilterInUrl } = useGridFilterSync();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function Detergents() {
 
   // Handle filter changes from Grid and update URL
   const handleFilterChange = useCallback(
-    (e: any) => {
+    (e: GridFilterChangeEvent) => {
       const newFilter = e.filter;
       setFilter(newFilter);
       updateFilterInUrl(newFilter);

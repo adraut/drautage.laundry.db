@@ -15,7 +15,7 @@ function Navigation() {
           <li>
             <Link to="/detergents">Detergents</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/boosters">Boosters</Link>
           </li>
           <li>
@@ -23,7 +23,7 @@ function Navigation() {
           </li>
           <li>
             <Link to="/glossary">Glossary</Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>
