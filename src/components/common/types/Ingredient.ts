@@ -26,4 +26,6 @@ export enum Ingredient {
     SodiumSulfate = "Sodium Sulfate",
     Subtilisin = "Subtilisin",
     Water = "Water",
+    Laureth_7 = "Laureth-7",
+    SodiumMetasilicate = "Sodium Metasilicate",
 }
