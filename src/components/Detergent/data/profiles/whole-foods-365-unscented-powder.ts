@@ -16,8 +16,7 @@ const ingredients: Ingredient[] = [
 ];
 
 const WholeFoods365UnscentedPowder: DetergentProfile = new DetergentProfile(
-    "365 Unscented Powder", "Whole Foods", DetergentType.Powder, ingredients);
+    "365 Unscented Powder", "Whole Foods", DetergentType.Powder, ingredients, new Date("2026-01-31"));
 WholeFoods365UnscentedPowder.countryOfOrigin = "USA";
 WholeFoods365UnscentedPowder.countriesAvailable = ["USA"];
-WholeFoods365UnscentedPowder.isHardWaterTolerant = true;
 export default WholeFoods365UnscentedPowder;

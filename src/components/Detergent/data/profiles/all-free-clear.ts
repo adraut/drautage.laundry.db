@@ -16,8 +16,7 @@ const ingredients: Ingredient[] = [
 ];
 
 const AllFreeClear: DetergentProfile = new DetergentProfile(
-    "Free Clear", "All", DetergentType.Liquid, ingredients);
+    "Free Clear", "All", DetergentType.Liquid, ingredients, new Date("2026-01-31"));
 AllFreeClear.countryOfOrigin = "USA";
 AllFreeClear.countriesAvailable = ["USA"];
-AllFreeClear.isHardWaterTolerant = false;
 export default AllFreeClear;

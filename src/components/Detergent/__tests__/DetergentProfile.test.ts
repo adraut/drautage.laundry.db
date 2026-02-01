@@ -10,7 +10,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Amylase]
+          [Ingredient.Amylase],
+          new Date()
         );
         expect(profile.hasAmylase).toBe(true);
       });
@@ -20,7 +21,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasAmylase).toBe(false);
       });
@@ -30,7 +32,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Cellulase]
+          [Ingredient.Cellulase],
+          new Date()
         );
         expect(profile.hasCellulase).toBe(true);
       });
@@ -40,7 +43,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasCellulase).toBe(false);
       });
@@ -50,7 +54,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.DNase]
+          [Ingredient.DNase],
+          new Date()
         );
         expect(profile.hasDNase).toBe(true);
       });
@@ -60,7 +65,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasDNase).toBe(false);
       });
@@ -70,7 +76,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Lipase]
+          [Ingredient.Lipase],
+          new Date()
         );
         expect(profile.hasLipase).toBe(true);
       });
@@ -80,7 +87,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasLipase).toBe(false);
       });
@@ -90,7 +98,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Mannanase]
+          [Ingredient.Mannanase],
+          new Date()
         );
         expect(profile.hasMannanase).toBe(true);
       });
@@ -100,7 +109,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasMannanase).toBe(false);
       });
@@ -110,7 +120,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Pectinase]
+          [Ingredient.Pectinase],
+          new Date()
         );
         expect(profile.hasPectinase).toBe(true);
       });
@@ -120,7 +131,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasPectinase).toBe(false);
       });
@@ -130,7 +142,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Protease]
+          [Ingredient.Protease],
+          new Date()
         );
         expect(profile.hasProtease).toBe(true);
       });
@@ -140,7 +153,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasProtease).toBe(false);
       });
@@ -152,7 +166,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Subtilisin]
+          [Ingredient.Subtilisin],
+          new Date()
         );
         expect(profile.hasProtease).toBe(true);
       });
@@ -162,7 +177,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasProtease).toBe(false);
       });
@@ -172,7 +188,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Protease, Ingredient.Lipase]
+          [Ingredient.Protease, Ingredient.Lipase],
+          new Date()
         );
         expect(profile.hasEnzymes).toBe(true);
       });
@@ -182,7 +199,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasEnzymes).toBe(false);
       });
@@ -194,7 +212,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.FluorescentBrightener71]
+          [Ingredient.FluorescentBrightener71],
+          new Date()
         );
         expect(profile.hasOpticalBrighteners).toBe(true);
       });
@@ -204,7 +223,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasOpticalBrighteners).toBe(false);
       });
@@ -214,7 +234,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.SodiumCarbonatePeroxide]
+          [Ingredient.SodiumCarbonatePeroxide],
+          new Date()
         );
         expect(profile.hasOxygenBleach).toBe(true);
       });
@@ -224,7 +245,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.SodiumPercarbonate]
+          [Ingredient.SodiumPercarbonate],
+          new Date()
         );
         expect(profile.hasOxygenBleach).toBe(true);
       });
@@ -234,7 +256,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasOxygenBleach).toBe(false);
       });
@@ -244,7 +267,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         // Note: Dyes set is currently empty, so hasDyes will always be false
         expect(profile.hasDyes).toBe(false);
@@ -275,7 +299,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         // Note: Soaps set is currently empty, so hasSoaps will always be false
         expect(profile.hasSoaps).toBe(false);
@@ -288,7 +313,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.SodiumC10_16Alkylbenzenesulfonate]
+          [Ingredient.SodiumC10_16Alkylbenzenesulfonate],
+          new Date()
         );
         expect(profile.hasAnionicSurfactants).toBe(true);
       });
@@ -298,7 +324,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasAnionicSurfactants).toBe(false);
       });
@@ -308,7 +335,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.C10_16Alketh]
+          [Ingredient.C10_16Alketh],
+          new Date()
         );
         expect(profile.hasNonionicSurfactants).toBe(true);
       });
@@ -318,7 +346,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water]
+          [Ingredient.Water],
+          new Date()
         );
         expect(profile.hasNonionicSurfactants).toBe(false);
       });
@@ -330,7 +359,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Water, Ingredient.SodiumCarbonate]
+          [Ingredient.Water, Ingredient.SodiumCarbonate],
+          new Date()
         );
         expect(profile.isBiodegradable).toBe(true);
       });
@@ -340,7 +370,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.FluorescentBrightener71]
+          [Ingredient.FluorescentBrightener71],
+          new Date()
         );
         expect(profile.isBiodegradable).toBe(false);
       });
@@ -380,7 +411,8 @@ describe('DetergentProfile', () => {
             Ingredient.FluorescentBrightener71,
             Ingredient.SodiumCarbonatePeroxide,
             Ingredient.SimethiconeDimethicone,
-          ]
+          ],
+          new Date()
         );
 
         // Enzymes
@@ -411,7 +443,8 @@ describe('DetergentProfile', () => {
           [
             Ingredient.FluorescentBrightener71,
             Ingredient.SodiumC10_16Alkylbenzenesulfonate,
-          ]
+          ],
+          new Date()
         );
 
         expect(profile.isBiodegradable).toBe(false);
@@ -426,7 +459,8 @@ describe('DetergentProfile', () => {
           [
             Ingredient.Water,
             Ingredient.SodiumCarbonate,
-          ]
+          ],
+          new Date()
         );
 
         expect(profile.isBiodegradable).toBe(true);
@@ -448,7 +482,8 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.Protease]
+          [Ingredient.Protease],
+          new Date()
         );
 
         // All readonly properties should be initialized during construction
@@ -465,16 +500,15 @@ describe('DetergentProfile', () => {
         'Original',
         'Brand',
         DetergentType.Liquid,
-        []
+        [],
+        new Date()
       );
 
       profile.name = 'Modified';
       profile.brand = 'NewBrand';
-      profile.pricePerLoadActual = 0.5;
 
       expect(profile.name).toBe('Modified');
       expect(profile.brand).toBe('NewBrand');
-      expect(profile.pricePerLoadActual).toBe(0.5);
     });
   });
 });

@@ -24,9 +24,8 @@ const ingredients : Ingredient[] = [
 ];
 
 const TideCleanGentle: DetergentProfile = new DetergentProfile(
-    "Clean & Gentle", "Tide", DetergentType.Powder, ingredients);
+    "Clean & Gentle", "Tide", DetergentType.Powder, ingredients, new Date("2026-01-31"));
 TideCleanGentle.countryOfOrigin = "USA";
 TideCleanGentle.countriesAvailable = ["USA"];
-TideCleanGentle.isHardWaterTolerant = true;
 
 export default TideCleanGentle;

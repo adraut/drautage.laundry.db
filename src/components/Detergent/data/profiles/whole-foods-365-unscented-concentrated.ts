@@ -21,8 +21,7 @@ const ingredients: Ingredient[] = [
 ];
 
 const WholeFoods365UnscentedConcentrated: DetergentProfile = new DetergentProfile(
-    "365 Unscented Concentrated", "Whole Foods", DetergentType.Liquid, ingredients);
+    "365 Unscented Concentrated", "Whole Foods", DetergentType.Liquid, ingredients, new Date("2026-01-31"));
 WholeFoods365UnscentedConcentrated.countryOfOrigin = "USA";
 WholeFoods365UnscentedConcentrated.countriesAvailable = ["USA"];
-WholeFoods365UnscentedConcentrated.isHardWaterTolerant = true;
 export default WholeFoods365UnscentedConcentrated;
