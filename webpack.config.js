@@ -53,14 +53,14 @@ export default (env, argv) => {
         } : false,
       }),
       new CopyPlugin({
-      patterns: [
-        { 
-          from: path.resolve(__dirname, 'public/robots.txt'), 
-          to: path.resolve(__dirname, 'dist/robots.txt') 
-        },
-        // Add other static files here if needed
-      ],
-    }),
+        patterns: [
+          {
+            from: path.resolve(__dirname, 'public/robots.txt'),
+            to: path.resolve(__dirname, 'dist/robots.txt')
+          },
+          // Add other static files here if needed
+        ],
+      }),
     ],
     optimization: {
       minimize: isProduction,
@@ -76,6 +76,7 @@ export default (env, argv) => {
       splitChunks: {
         chunks: 'all',
       },
+      usedExports: isProduction
     },
     devServer: {
       static: {
