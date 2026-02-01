@@ -105,8 +105,8 @@ function Detergents() {
             sort={sort}
             onSortChange={handleSortChange}
           >
-            <Column field="name" title="Product Name" sortable filterable />
             <Column field="brand" title="Brand" sortable filterable />
+            <Column field="name" title="Product Name" sortable filterable />
             <Column field="type" title="Type" sortable filterable />
             <Column field="hasOxygenBleach" title="Oxygen Bleach" filter='boolean' sortable filterable />
             <Column field="hasOpticalBrighteners" title="Optical Brighteners" filter='boolean' sortable filterable />
