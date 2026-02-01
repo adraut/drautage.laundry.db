@@ -10,6 +10,7 @@ import { Dyes } from "../../common/types/Dyes";
 import { NonBiodegradable } from "../../common/types/NonBiodegradable";
 import { NonionicSurfactants } from "../../common/types/NonionicSurfactants";
 import { AnionicSurfactants } from "../../common/types/AnionicSurfactants";
+import { OxygenBleaches } from '../../common/types/OxygenBleaches';
 
 export interface IDetergentProfile {
     name: string;
@@ -51,7 +52,7 @@ export class DetergentProfile implements IDetergentProfile {
     hasSulfates?: boolean;
     isHardWaterTolerant?: boolean;
     ingredients: Ingredient[];
-    
+
     readonly hasAmylase: boolean;
     readonly hasCellulase: boolean;
     readonly hasDNase: boolean;
@@ -75,7 +76,7 @@ export class DetergentProfile implements IDetergentProfile {
         this.brand = brand;
         this.type = type;
         this.ingredients = ingredients;
-        
+
         // Compute all derived properties once during construction
         this.hasAmylase = ingredients.includes(Ingredient.Amylase);
         this.hasCellulase = ingredients.includes(Ingredient.Cellulase);
@@ -85,12 +86,12 @@ export class DetergentProfile implements IDetergentProfile {
         this.hasPectinase = ingredients.includes(Ingredient.Pectinase);
         this.hasProtease = ingredients.some(ing => Proteases.has(ing));
         this.hasOpticalBrighteners = ingredients.some(ing => OpticalBrighteners.has(ing));
-        this.hasOxygenBleach = ingredients.includes(Ingredient.SodiumCarbonatePeroxide);
+        this.hasOxygenBleach = ingredients.some(ing => OxygenBleaches.has(ing));
         this.hasEnzymes = ingredients.some(ing => Enzymes.has(ing));
         this.hasAnionicSurfactants = ingredients.some(ing => AnionicSurfactants.has(ing));
         this.hasNonionicSurfactants = ingredients.some(ing => NonionicSurfactants.has(ing));
         this.hasDyes = ingredients.some(ing => Dyes.has(ing));
-        this.hasScents = ingredients.some(ing=> Scents.has(ing));
+        this.hasScents = ingredients.some(ing => Scents.has(ing));
         this.hasSoaps = ingredients.some(ing => Soaps.has(ing));
         this.isBiodegradable = !ingredients.some(ing => NonBiodegradable.has(ing));
         this.isSepticSafe = !ingredients.some(ing => SepticUnfriendly.has(ing));
