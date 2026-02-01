@@ -49,8 +49,8 @@ describe('Detergents', () => {
       const testFilter: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [
-          { field: 'hasProtease', operator: 'contains', value: true },
-          { field: 'isBiodegradable', operator: 'contains', value: true },
+          { field: 'hasProtease', operator: 'eq', value: true },
+          { field: 'isBiodegradable', operator: 'eq', value: true },
         ],
       };
 
@@ -102,6 +102,30 @@ describe('Detergents', () => {
 
       // Verify Grid renders (it will have the loading state or data)
       expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
+    });
+
+    it('should filter out detergents without cellulase', async () => {
+      const testFilter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'hasCellulase', operator: 'eq', value: true }],
+      };
+
+      const encoded = encodeFilter(testFilter);
+      const params = new URLSearchParams({ filter: encoded });
+      const testUrl = `http://localhost/?${params.toString()}`;
+      window.history.pushState({}, '', testUrl);
+
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>
+      );
+
+      await waitFor(() =>
+        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
+      );
+
+      expect(screen.queryByText('Tide Clean & Gentle')).not.toBeInTheDocument();
     });
   });
 });

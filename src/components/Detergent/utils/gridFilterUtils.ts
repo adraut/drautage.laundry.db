@@ -3,7 +3,7 @@ import { CompositeFilterDescriptor, FilterDescriptor } from '@progress/kendo-dat
 
 const DEFAULT_FILTER: CompositeFilterDescriptor = {
   logic: 'and',
-  filters: [{ field: 'hasLipase', operator: 'contains', value: true }],
+  filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
 };
 
 /**

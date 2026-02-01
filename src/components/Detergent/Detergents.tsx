@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Grid, GridColumn as Column, GridFilterChangeEvent } from '@progress/kendo-react-grid';
-import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
+import { CompositeFilterDescriptor, filterBy } from '@progress/kendo-data-query';
 import '@progress/kendo-theme-default/dist/all.css';
 import { IDetergentProfile } from './types/DetergentProfile';
 import { loadDetergents } from './data/detergents-data';
@@ -44,6 +44,12 @@ function Detergents() {
     [updateFilterInUrl]
   );
 
+  const detergentArray = useMemo(() => Array.from(detergents.values()), [detergents]);
+  const filteredData = useMemo(
+    () => (filter ? filterBy(detergentArray, filter) : detergentArray),
+    [detergentArray, filter]
+  );
+
   return (
     <div>
       <h1>Detergents</h1>
@@ -54,7 +60,7 @@ function Detergents() {
         </div>
       ) : (
         <Grid
-          data={Array.from(detergents.values())}
+          data={filteredData}
           style={{ minHeight: '75vh', minWidth: '95vw' }}
           selectable={ {enabled: true, mode: 'single' }}
           filterable={true}
