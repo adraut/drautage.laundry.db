@@ -44,7 +44,6 @@ jobs:
           skip_api_build: true
 
   release:
-    environment: production
     if: success()
     name: Create Tag and Release
     needs: build-and-deploy
