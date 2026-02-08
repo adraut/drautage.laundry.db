@@ -23,6 +23,12 @@ assignees: ''
 - Date accessed:
 - Region:
 
+## Ingredient list (optional)
+If you have direct access to the ingredient list and sources are not accessible, provide it here (assumed authoritative):
+```
+[Paste ingredients here, one per line]
+```
+
 ## Notes
 - Any known ambiguities or unknowns
 - Link to packaging image or official documentation (optional)

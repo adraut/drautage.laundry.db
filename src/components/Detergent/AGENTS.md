@@ -8,10 +8,13 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 ## Required inputs from issue
 - Product name
 - Brand name
+- Ingredient source(s): URL, date accessed, region
+  - If sources are inaccessible (network restrictions), use the ingredient list provided in the issue
 
-## Sources (required)
-- Use a single authoritative source when possible: manufacturer product page, documentation page, SmartLabel page, SDS sheet, or packaging image.
+## Sources (required or optional ingredient list fallback)
+- Preferred: Use a single authoritative source when possible: manufacturer product page, documentation page, SmartLabel page, SDS sheet, or packaging image.
 - Blog/social sources require cross‑reference with at least one authoritative source.
+- If unable to access sources due to network restrictions, use the ingredient list provided in the GitHub issue (treat as authoritative).
 - Record: source URL, date accessed, and region (if provided).
 
 ## Add a new detergent profile
@@ -43,6 +46,6 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 - Open a **draft PR**.
 - Use the PR template and fill in:
   - `Closes #<issue_number>` to link and auto-close the issue.
-  - Source link(s) with date accessed and region.
+  - Source link(s) with date accessed and region, or note if using ingredient list from issue.
   - List of unknown/ambiguous ingredients.
   - Note if enzymes are TBD.
