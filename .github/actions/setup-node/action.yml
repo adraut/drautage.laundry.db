@@ -1,0 +1,11 @@
+name: 'Setup Node.js'
+description: 'Setup Node.js with the version specified in package.json engines'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: '24.x'
+        cache: 'npm'
