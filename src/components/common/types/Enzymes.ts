@@ -8,6 +8,7 @@ Enzymes.add(Ingredient.DNase);
 Enzymes.add(Ingredient.Lipase);
 Enzymes.add(Ingredient.Mannanase);
 Enzymes.add(Ingredient.Pectinase);
+Enzymes.add(Ingredient.PectateLyase);
 Enzymes.add(Ingredient.Protease);
 Enzymes.add(Ingredient.Subtilisin);
 
@@ -19,3 +20,10 @@ Proteases.add(Ingredient.Protease);
 Proteases.add(Ingredient.Subtilisin);
 
 export { Proteases };
+
+const Pectinases: Set<Ingredient> = new Set();
+
+Pectinases.add(Ingredient.Pectinase);
+Pectinases.add(Ingredient.PectateLyase);
+
+export { Pectinases };
