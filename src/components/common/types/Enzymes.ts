@@ -8,6 +8,7 @@ Enzymes.add(Ingredient.DNase);
 Enzymes.add(Ingredient.Lipase);
 Enzymes.add(Ingredient.Mannanase);
 Enzymes.add(Ingredient.Pectinase);
+Enzymes.add(Ingredient.PectateLyase);
 Enzymes.add(Ingredient.Protease);
 Enzymes.add(Ingredient.Subtilisin);
 
