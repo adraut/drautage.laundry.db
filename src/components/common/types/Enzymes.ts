@@ -20,3 +20,10 @@ Proteases.add(Ingredient.Protease);
 Proteases.add(Ingredient.Subtilisin);
 
 export { Proteases };
+
+const Pectinases: Set<Ingredient> = new Set();
+
+Pectinases.add(Ingredient.Pectinase);
+Pectinases.add(Ingredient.PectateLyase);
+
+export { Pectinases };

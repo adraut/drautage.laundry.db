@@ -5,7 +5,7 @@ import { Soaps } from "../../common/types/Soaps";
 import { SepticUnfriendly } from "../../common/types/SepticUnfriendly";
 import { Scents } from "../../common/types/Scents";
 import { OpticalBrighteners } from "../../common/types/OpticalBrighteners";
-import { Enzymes, Proteases } from "../../common/types/Enzymes";
+import { Enzymes, Proteases, Pectinases } from "../../common/types/Enzymes";
 import { Dyes } from "../../common/types/Dyes";
 import { NonBiodegradable } from "../../common/types/NonBiodegradable";
 import { NonionicSurfactants } from "../../common/types/NonionicSurfactants";
@@ -54,7 +54,7 @@ export class DetergentProfile {
         this.hasDNase = ingredients.includes(Ingredient.DNase);
         this.hasLipase = ingredients.includes(Ingredient.Lipase);
         this.hasMannanase = ingredients.includes(Ingredient.Mannanase);
-        this.hasPectinase = ingredients.includes(Ingredient.Pectinase);
+        this.hasPectinase = ingredients.some(ing => Pectinases.has(ing));
         this.hasProtease = ingredients.some(ing => Proteases.has(ing));
         this.hasOpticalBrighteners = ingredients.some(ing => OpticalBrighteners.has(ing));
         this.hasOxygenBleach = ingredients.some(ing => OxygenBleaches.has(ing));
