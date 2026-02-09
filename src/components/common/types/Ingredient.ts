@@ -33,7 +33,7 @@ export enum Ingredient {
     PigmentRed5 = "Pigment Red 5",
     PolyethyleneimineAlkoxylated = "Polyethyleneimine Alkoxylated",
     PolyoxyalkyleneSubstitutedChromophoreBlue = "Polyoxyalkylene Substituted Chromophore (Blue)",
-    PolyoxyalkyleneSubstitutedChromophoreViolet = "Polyoxyalkylene Substituted Chromophore (violet)",
+    PolyoxyalkyleneSubstitutedChromophoreViolet = "Polyoxyalkylene Substituted Chromophore (Violet)",
     PropyleneGlycol = "Propylene Glycol",
     Protease = "Protease",
     SaltCake = "Salt Cake",
