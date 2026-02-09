@@ -7,5 +7,6 @@ WaterConditioners.add(Ingredient.SodiumCarbonate);
 WaterConditioners.add(Ingredient.SodiumCitrate);
 WaterConditioners.add(Ingredient.SodiumCumenesulfonate);
 WaterConditioners.add(Ingredient.SodiumSilicate);
+WaterConditioners.add(Ingredient.TetrasodiumGlutamateDiacetate);
 
 export { WaterConditioners };
