@@ -24,3 +24,6 @@ Before submitting:
   - Source link(s) with date accessed and region
   - List of unknown/ambiguous ingredients
   - Note if enzymes are TBD
+
+Before requesting review:
+- [ ] Attempt to resolve all merge conflicts.  Do not use high effort.
