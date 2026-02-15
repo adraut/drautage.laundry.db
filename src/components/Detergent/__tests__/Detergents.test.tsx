@@ -141,9 +141,11 @@ describe('Detergents', () => {
         expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
       );
 
-      // Find the Product Name column header by text, then traverse up to find the th with aria-sort
-      const productNameSpan = screen.getByText('Product Name');
-      const thElement = productNameSpan.closest('th');
+      // Find the Product Name column header in the grid (inside a th element)
+      const productNameColumns = screen.getAllByText('Product Name');
+      const productNameInGrid = productNameColumns.find(el => el.closest('th'));
+      expect(productNameInGrid).toBeDefined();
+      const thElement = productNameInGrid?.closest('th');
       expect(thElement).toHaveAttribute('aria-sort', 'ascending');
     });
 
@@ -158,10 +160,13 @@ describe('Detergents', () => {
         expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
       );
 
-      // Verify multiple columns are present and sortable
-      expect(screen.getByText('Product Name')).toBeInTheDocument();
-      expect(screen.getByText('Brand')).toBeInTheDocument();
-      expect(screen.getByText('Type')).toBeInTheDocument();
+      // Verify multiple columns are present in the grid (they appear in both drawer and grid)
+      const productNameElements = screen.getAllByText('Product Name');
+      expect(productNameElements.length).toBeGreaterThan(0);
+      const brandElements = screen.getAllByText('Brand');
+      expect(brandElements.length).toBeGreaterThan(0);
+      const typeElements = screen.getAllByText('Type');
+      expect(typeElements.length).toBeGreaterThan(0);
     });
 
     it('should apply sort and filter together', async () => {
@@ -176,11 +181,13 @@ describe('Detergents', () => {
       );
 
       // Grid should render with default sort (ascending name) and default filter (hasLipase = true)
-      const productNameSpan = screen.getByText('Product Name');
-      const thElement = productNameSpan.closest('th');
+      const productNameColumns = screen.getAllByText('Product Name');
+      const productNameInGrid = productNameColumns.find(el => el.closest('th'));
+      expect(productNameInGrid).toBeDefined();
+      const thElement = productNameInGrid?.closest('th');
       expect(thElement).toHaveAttribute('aria-sort', 'ascending');
 
       // Grid should be visible and rendered
-      expect(screen.getByText('Product Name')).toBeInTheDocument();
+      expect(productNameColumns.length).toBeGreaterThan(0);
     });  });
 });

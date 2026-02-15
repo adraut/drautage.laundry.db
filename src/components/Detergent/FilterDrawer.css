@@ -1,0 +1,90 @@
+/* Filter drawer container */
+.filter-drawer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Search box for filters */
+.filter-search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-search label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.filter-search-input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.filter-search-input:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.1);
+}
+
+/* Grid of filter fields */
+.filter-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Two columns on wider viewports */
+@media (min-width: 800px) {
+  .filter-fields-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Individual filter field */
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #333;
+}
+
+.filter-input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.1);
+}
+
+.filter-text {
+  width: 100%;
+}
+
+.filter-select {
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Empty state message */
+.no-filters-message {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
