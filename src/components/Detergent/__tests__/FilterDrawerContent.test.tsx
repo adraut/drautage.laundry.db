@@ -58,8 +58,8 @@ describe('FilterDrawerContent', () => {
     const proteaseSelect = screen.getByLabelText('Protease');
     expect(proteaseSelect.tagName).toBe('SELECT');
     
-    // Check for Yes/No/Unknown options (multiple boolean fields exist, so use getAllByRole)
-    expect(screen.getAllByRole('option', { name: 'Unknown' }).length).toBeGreaterThan(0);
+    // Check for Yes/No/All options (multiple boolean fields exist, so use getAllByRole)
+    expect(screen.getAllByRole('option', { name: 'All' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('option', { name: 'Yes' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('option', { name: 'No' }).length).toBeGreaterThan(0);
   });
