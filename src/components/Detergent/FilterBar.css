@@ -1,0 +1,43 @@
+/* Vertical filter bar on the left side */
+.filter-bar {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  background-color: #0078d4;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+  gap: 0.5rem;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  z-index: 998;
+  transition: background-color 0.2s ease;
+}
+
+.filter-bar:hover {
+  background-color: #106ebe;
+}
+
+.filter-bar:focus {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.filter-bar-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.filter-bar-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
