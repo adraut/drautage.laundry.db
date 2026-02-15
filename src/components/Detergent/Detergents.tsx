@@ -69,6 +69,7 @@ function Detergents() {
       setFilter(urlFilter);
       // Store the initial filter from URL for reset functionality
       if (initialFilterRef.current === null) {
+        // Deep clone the filter to avoid reference issues
         initialFilterRef.current = JSON.parse(JSON.stringify(urlFilter));
       }
     }
