@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Detergents from '../Detergents';
 import { encodeFilter } from '../utils/gridFilterUtils';
@@ -190,4 +191,151 @@ describe('Detergents', () => {
       // Grid should be visible and rendered
       expect(productNameColumns.length).toBeGreaterThan(0);
     });  });
+
+  describe('Filter Bar and Drawer', () => {
+    it('should show filter bar when drawer is closed', async () => {
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>
+      );
+
+      await waitFor(() =>
+        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
+      );
+
+      // Filter bar should be visible when drawer is closed
+      const filterBar = screen.getByRole('button', { name: 'Open filters' });
+      expect(filterBar).toBeInTheDocument();
+      expect(filterBar).toBeVisible();
+    });
+
+    it('should hide filter bar when drawer is open', async () => {
+      const user = userEvent.setup();
+      
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>
+      );
+
+      await waitFor(() =>
+        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
+      );
+
+      // Click the filter bar to open the drawer
+      const filterBar = screen.getByRole('button', { name: 'Open filters' });
+      await user.click(filterBar);
+
+      // Wait for drawer to have the open class
+      await waitFor(() => {
+        const drawer = screen.getByRole('dialog');
+        expect(drawer).toHaveClass('drawer-open');
+      });
+
+      // Filter bar should not be in the document when drawer is open
+      expect(screen.queryByRole('button', { name: 'Open filters' })).not.toBeInTheDocument();
+    });
+
+    it('should show drawer when filter bar is clicked', async () => {
+      const user = userEvent.setup();
+      
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>
+      );
+
+      await waitFor(() =>
+        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
+      );
+
+      // Drawer should exist but not be open initially
+      const drawer = screen.getByRole('dialog');
+      expect(drawer).not.toHaveClass('drawer-open');
+
+      // Click the filter bar
+      const filterBar = screen.getByRole('button', { name: 'Open filters' });
+      await user.click(filterBar);
+
+      // Drawer should now have the open class
+      await waitFor(() => {
+        expect(drawer).toHaveClass('drawer-open');
+      });
+
+      // Verify drawer content is visible
+      expect(screen.getByText('Reset Filters')).toBeInTheDocument();
+      expect(screen.getByText('Clear Filters')).toBeInTheDocument();
+      expect(screen.getByLabelText('Search Filters:')).toBeInTheDocument();
+    });
+
+    it('should show filter bar again when drawer is closed', async () => {
+      const user = userEvent.setup();
+      
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>
+      );
+
+      await waitFor(() =>
+        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
+      );
+
+      // Open the drawer
+      const filterBar = screen.getByRole('button', { name: 'Open filters' });
+      await user.click(filterBar);
+
+      const drawer = screen.getByRole('dialog');
+      await waitFor(() => {
+        expect(drawer).toHaveClass('drawer-open');
+      });
+
+      // Close the drawer using the close button
+      const closeButton = screen.getByRole('button', { name: 'Close drawer' });
+      await user.click(closeButton);
+
+      // Wait for drawer to close
+      await waitFor(() => {
+        expect(drawer).not.toHaveClass('drawer-open');
+      });
+
+      // Filter bar should be visible again
+      expect(screen.getByRole('button', { name: 'Open filters' })).toBeInTheDocument();
+    });
+
+    it('should close drawer when ESC key is pressed', async () => {
+      const user = userEvent.setup();
+      
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>
+      );
+
+      await waitFor(() =>
+        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
+      );
+
+      // Open the drawer
+      const filterBar = screen.getByRole('button', { name: 'Open filters' });
+      await user.click(filterBar);
+
+      const drawer = screen.getByRole('dialog');
+      await waitFor(() => {
+        expect(drawer).toHaveClass('drawer-open');
+      });
+
+      // Press ESC key
+      await user.keyboard('{Escape}');
+
+      // Drawer should close
+      await waitFor(() => {
+        expect(drawer).not.toHaveClass('drawer-open');
+      });
+
+      // Filter bar should be visible again
+      expect(screen.getByRole('button', { name: 'Open filters' })).toBeInTheDocument();
+    });
+  });
 });
