@@ -138,7 +138,7 @@ export function FilterDrawerContent({ fields, filter, onFilterChange, onReset, o
                 onChange={handleBooleanChange(fieldDef.field)}
                 className="filter-input filter-select"
               >
-                <option value="">Unknown</option>
+                <option value="">All</option>
                 <option value="true">Yes</option>
                 <option value="false">No</option>
               </select>
