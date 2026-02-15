@@ -296,4 +296,103 @@ describe('FilterDrawerContent', () => {
     const lastCall = onFilterChange.mock.calls[onFilterChange.mock.calls.length - 1][0];
     expect(lastCall.logic).toBe('and');
   });
+
+  it('should render select dropdown for enum fields', () => {
+    const enumFields = [
+      { 
+        field: 'type', 
+        title: 'Type', 
+        type: 'enum' as const,
+        options: ['Liquid', 'Powder', 'Pod']
+      },
+    ];
+
+    render(
+      <FilterDrawerContent 
+        fields={enumFields} 
+        filter={null} 
+        onFilterChange={() => {}}
+        onReset={() => {}}
+        onClear={() => {}}
+      />
+    );
+
+    const typeSelect = screen.getByLabelText('Type');
+    expect(typeSelect.tagName).toBe('SELECT');
+    
+    // Should have "All" option plus all enum options
+    expect(screen.getByRole('option', { name: 'All' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'Liquid' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'Powder' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'Pod' })).toBeInTheDocument();
+  });
+
+  it('should filter by enum field selection', async () => {
+    const user = userEvent.setup();
+    const onFilterChange = jest.fn();
+    const enumFields = [
+      { 
+        field: 'type', 
+        title: 'Type', 
+        type: 'enum' as const,
+        options: ['Liquid', 'Powder', 'Pod']
+      },
+    ];
+
+    render(
+      <FilterDrawerContent 
+        fields={enumFields} 
+        filter={null} 
+        onFilterChange={onFilterChange}
+        onReset={() => {}}
+        onClear={() => {}}
+      />
+    );
+
+    const typeSelect = screen.getByLabelText('Type');
+    await user.selectOptions(typeSelect, 'Powder');
+
+    expect(onFilterChange).toHaveBeenCalled();
+    const lastCall = onFilterChange.mock.calls[onFilterChange.mock.calls.length - 1][0];
+    expect(lastCall.filters).toContainEqual({
+      field: 'type',
+      operator: 'eq',
+      value: 'Powder',
+    });
+  });
+
+  it('should clear enum filter when "All" is selected', async () => {
+    const user = userEvent.setup();
+    const onFilterChange = jest.fn();
+    const enumFields = [
+      { 
+        field: 'type', 
+        title: 'Type', 
+        type: 'enum' as const,
+        options: ['Liquid', 'Powder', 'Pod']
+      },
+    ];
+
+    const initialFilter: CompositeFilterDescriptor = {
+      logic: 'and',
+      filters: [{ field: 'type', operator: 'eq', value: 'Liquid' }],
+    };
+
+    render(
+      <FilterDrawerContent 
+        fields={enumFields} 
+        filter={initialFilter} 
+        onFilterChange={onFilterChange}
+        onReset={() => {}}
+        onClear={() => {}}
+      />
+    );
+
+    const typeSelect = screen.getByLabelText('Type');
+    await user.selectOptions(typeSelect, '');
+
+    expect(onFilterChange).toHaveBeenCalled();
+    const lastCall = onFilterChange.mock.calls[onFilterChange.mock.calls.length - 1][0];
+    expect(lastCall.filters.length).toBe(0);
+  });
 });

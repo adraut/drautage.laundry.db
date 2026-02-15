@@ -7,7 +7,8 @@ interface FilterField {
   title: string;
   // Note: 'date' type uses text input for filtering formatted date strings (e.g., "2026-01-31")
   // since the grid displays pre-formatted date strings, not Date objects
-  type: 'text' | 'boolean' | 'date';
+  type: 'text' | 'boolean' | 'date' | 'enum';
+  options?: string[]; // Available options for enum type fields
 }
 
 interface FilterDrawerContentProps {
@@ -93,6 +94,10 @@ export function FilterDrawerContent({ fields, filter, onFilterChange, onReset, o
     updateFilter(field, e.target.value, 'eq');
   };
 
+  const handleEnumChange = (field: string) => (e: ChangeEvent<HTMLSelectElement>) => {
+    updateFilter(field, e.target.value, 'eq');
+  };
+
   return (
     <div className="filter-drawer-container">
       {/* Filter action buttons */}
@@ -136,6 +141,20 @@ export function FilterDrawerContent({ fields, filter, onFilterChange, onReset, o
                 <option value="">Unknown</option>
                 <option value="true">Yes</option>
                 <option value="false">No</option>
+              </select>
+            ) : fieldDef.type === 'enum' ? (
+              <select
+                id={`filter-${fieldDef.field}`}
+                value={getFilterValue(fieldDef.field)}
+                onChange={handleEnumChange(fieldDef.field)}
+                className="filter-input filter-select"
+              >
+                <option value="">All</option>
+                {fieldDef.options?.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
               </select>
             ) : (
               <input

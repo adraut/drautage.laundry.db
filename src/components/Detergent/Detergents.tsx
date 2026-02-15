@@ -3,6 +3,7 @@ import { Grid, GridColumn as Column, GridSortChangeEvent } from '@progress/kendo
 import { CompositeFilterDescriptor, filterBy, orderBy, SortDescriptor } from '@progress/kendo-data-query';
 import '@progress/kendo-theme-default/dist/all.css';
 import { DetergentProfile } from './types/DetergentProfile';
+import { DetergentType } from './types/DetergentType';
 import { loadDetergents } from './data/detergents-data';
 import { useGridFilterSync } from './hooks/useGridFilterSync';
 import { Drawer } from '../common/Drawer';
@@ -15,7 +16,12 @@ import './FilterBar.css';
 const FILTER_FIELDS = [
   { field: 'brand', title: 'Brand', type: 'text' as const },
   { field: 'name', title: 'Product Name', type: 'text' as const },
-  { field: 'type', title: 'Type', type: 'text' as const },
+  { 
+    field: 'type', 
+    title: 'Type', 
+    type: 'enum' as const,
+    options: Object.values(DetergentType)
+  },
   { field: 'hasOxygenBleach', title: 'Oxygen Bleach', type: 'boolean' as const },
   { field: 'hasOpticalBrighteners', title: 'Optical Brighteners', type: 'boolean' as const },
   { field: 'hasAmylase', title: 'Amylase', type: 'boolean' as const },
