@@ -5,6 +5,8 @@ import './FilterDrawer.css';
 interface FilterField {
   field: string;
   title: string;
+  // Note: 'date' type uses text input for filtering formatted date strings (e.g., "2026-01-31")
+  // since the grid displays pre-formatted date strings, not Date objects
   type: 'text' | 'boolean' | 'date';
 }
 
