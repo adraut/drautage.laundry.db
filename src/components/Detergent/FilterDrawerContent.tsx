@@ -14,6 +14,8 @@ interface FilterDrawerContentProps {
   fields: FilterField[];
   filter: CompositeFilterDescriptor | null;
   onFilterChange: (filter: CompositeFilterDescriptor) => void;
+  onReset: () => void;
+  onClear: () => void;
 }
 
 type BooleanFilterValue = 'true' | 'false' | '';
@@ -22,7 +24,7 @@ type BooleanFilterValue = 'true' | 'false' | '';
  * Content component for the filter drawer
  * Provides filter inputs for all grid columns with search functionality
  */
-export function FilterDrawerContent({ fields, filter, onFilterChange }: FilterDrawerContentProps) {
+export function FilterDrawerContent({ fields, filter, onFilterChange, onReset, onClear }: FilterDrawerContentProps) {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Filter the fields based on search term
@@ -93,6 +95,16 @@ export function FilterDrawerContent({ fields, filter, onFilterChange }: FilterDr
 
   return (
     <div className="filter-drawer-container">
+      {/* Filter action buttons */}
+      <div className="filter-actions">
+        <button onClick={onReset} className="filter-action-btn">
+          Reset Filters
+        </button>
+        <button onClick={onClear} className="filter-action-btn">
+          Clear Filters
+        </button>
+      </div>
+
       {/* Search box to filter the filters */}
       <div className="filter-search">
         <label htmlFor="filter-search-input">Search Filters:</label>

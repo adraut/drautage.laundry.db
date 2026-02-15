@@ -17,6 +17,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={null} 
         onFilterChange={() => {}}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -32,6 +34,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={null} 
         onFilterChange={() => {}}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -46,6 +50,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={null} 
         onFilterChange={() => {}}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -71,6 +77,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={filter} 
         onFilterChange={() => {}}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -91,6 +99,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={filter} 
         onFilterChange={() => {}}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -107,6 +117,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={null} 
         onFilterChange={onFilterChange}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -131,6 +143,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={null} 
         onFilterChange={onFilterChange}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -154,6 +168,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={null} 
         onFilterChange={() => {}}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -176,6 +192,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={null} 
         onFilterChange={() => {}}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -202,6 +220,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={filter} 
         onFilterChange={onFilterChange}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -236,6 +256,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={filter} 
         onFilterChange={onFilterChange}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 
@@ -262,6 +284,8 @@ describe('FilterDrawerContent', () => {
         fields={mockFields} 
         filter={null} 
         onFilterChange={onFilterChange}
+        onReset={() => {}}
+        onClear={() => {}}
       />
     );
 

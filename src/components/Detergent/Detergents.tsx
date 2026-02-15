@@ -1,14 +1,15 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Grid, GridColumn as Column, GridSortChangeEvent } from '@progress/kendo-react-grid';
 import { CompositeFilterDescriptor, filterBy, orderBy, SortDescriptor } from '@progress/kendo-data-query';
 import '@progress/kendo-theme-default/dist/all.css';
 import { DetergentProfile } from './types/DetergentProfile';
 import { loadDetergents } from './data/detergents-data';
 import { useGridFilterSync } from './hooks/useGridFilterSync';
-import { getDefaultFilter } from './utils/gridFilterUtils';
 import { Drawer } from '../common/Drawer';
 import { FilterDrawerContent } from './FilterDrawerContent';
+import { FilterBar } from './FilterBar';
 import './FilterDrawer.css';
+import './FilterBar.css';
 
 // Define filter fields in the same order as grid columns
 const FILTER_FIELDS = [
@@ -43,6 +44,9 @@ function Detergents() {
   const [sort, setSort] = useState<SortDescriptor[]>([{ field: 'name', dir: 'asc' }]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { filter: urlFilter, updateFilterInUrl } = useGridFilterSync();
+  
+  // Store the initial filter from URL for reset functionality
+  const initialFilterRef = useRef<CompositeFilterDescriptor | null>(null);
 
   useEffect(() => {
     const fetchDetergents = async () => {
@@ -59,10 +63,14 @@ function Detergents() {
     fetchDetergents();
   }, []);
 
-  // Initialize filter from URL on mount
+  // Initialize filter from URL on mount and store as initial filter
   useEffect(() => {
     if (urlFilter) {
       setFilter(urlFilter);
+      // Store the initial filter from URL for reset functionality
+      if (initialFilterRef.current === null) {
+        initialFilterRef.current = JSON.parse(JSON.stringify(urlFilter));
+      }
     }
   }, [urlFilter]);
 
@@ -81,14 +89,17 @@ function Detergents() {
   }, []);
 
   const resetFilter = useCallback(() => {
-    const defaultFilter = getDefaultFilter();
-    setFilter(defaultFilter);
-    updateFilterInUrl(defaultFilter);
+    // Reset to the initial filter from URL
+    const resetToFilter = initialFilterRef.current || { logic: 'and' as const, filters: [] };
+    setFilter(resetToFilter);
+    updateFilterInUrl(resetToFilter);
   }, [updateFilterInUrl]);
 
   const clearFilter = useCallback(() => {
-    setFilter(null);
-    updateFilterInUrl({ logic: 'and', filters: [] });
+    // Always clear all filters
+    const emptyFilter = { logic: 'and' as const, filters: [] };
+    setFilter(emptyFilter);
+    updateFilterInUrl(emptyFilter);
   }, [updateFilterInUrl]);
 
   const detergentArray = useMemo(() => Array.from(detergents.values()), [detergents]);
@@ -111,17 +122,11 @@ function Detergents() {
         </div>
       ) : (
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-            <button onClick={() => setIsDrawerOpen(true)}>
-              Open Filters
-            </button>
-            <button onClick={resetFilter}>
-              Reset Filters
-            </button>
-            <button onClick={clearFilter}>
-              Clear Filters
-            </button>
-          </div>
+          {/* Vertical Filter Bar */}
+          <FilterBar 
+            onClick={() => setIsDrawerOpen(true)}
+            isVisible={!isDrawerOpen}
+          />
           
           {/* Filter Drawer */}
           <Drawer 
@@ -133,6 +138,8 @@ function Detergents() {
               fields={FILTER_FIELDS}
               filter={filter}
               onFilterChange={handleFilterChange}
+              onReset={resetFilter}
+              onClear={clearFilter}
             />
           </Drawer>
 
