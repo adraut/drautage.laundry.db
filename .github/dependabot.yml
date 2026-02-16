@@ -1,18 +1,18 @@
 # From https://github.com/dependabot/dependabot-core/blob/main/.github/dependabot.yml
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
-      day: "friday"
-      time: "22:00"
-  - package-ecosystem: "npm"
-    directory: "/"
+      interval: 'weekly'
+      day: 'friday'
+      time: '22:00'
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "weekly"
-      day: "friday"
-      time: "22:00"
+      interval: 'weekly'
+      day: 'friday'
+      time: '22:00'
     groups:
       dev-dependencies-major:
         dependency-type: "development"

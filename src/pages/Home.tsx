@@ -5,18 +5,14 @@ function Home() {
     <div>
       <h1>Welcome to the Laundry Product Database</h1>
       <p>
-        Your comprehensive resource for information about laundry detergents, boosters, 
-        pretreaters, and more. Browse our database to find the perfect products for your 
-        laundry needs.
+        Your comprehensive resource for information about laundry detergents, boosters, pretreaters, and more. Browse
+        our database to find the perfect products for your laundry needs.
       </p>
-      
+
       <div className="product-grid">
         <div className="product-card">
           <h3>Detergents</h3>
-          <p>
-            Explore laundry detergents to find the right formula for 
-            your fabrics and cleaning needs.
-          </p>
+          <p>Explore laundry detergents to find the right formula for your fabrics and cleaning needs.</p>
           <Link to="/detergents">
             <button style={{ marginTop: '1rem' }}>View Detergents</button>
           </Link>
@@ -53,7 +49,7 @@ function Home() {
             <button style={{ marginTop: '1rem' }}>View Glossary</button>
           </Link>
         </div>
-      </div> */}      
+      </div> */}
       </div>
     </div>
   );

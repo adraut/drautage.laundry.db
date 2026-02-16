@@ -35,11 +35,21 @@ function ComparePretreaters() {
         {pretreaters.map((pretreater, index) => (
           <div key={index} className="comparison-item">
             <h3>{pretreater.name}</h3>
-            <p><strong>Type:</strong> {pretreater.type}</p>
-            <p><strong>Stain Types:</strong> {pretreater.stainTypes}</p>
-            <p><strong>Application:</strong> {pretreater.application}</p>
-            <p><strong>Wait Time:</strong> {pretreater.waitTime}</p>
-            <p><strong>Price Range:</strong> {pretreater.price}</p>
+            <p>
+              <strong>Type:</strong> {pretreater.type}
+            </p>
+            <p>
+              <strong>Stain Types:</strong> {pretreater.stainTypes}
+            </p>
+            <p>
+              <strong>Application:</strong> {pretreater.application}
+            </p>
+            <p>
+              <strong>Wait Time:</strong> {pretreater.waitTime}
+            </p>
+            <p>
+              <strong>Price Range:</strong> {pretreater.price}
+            </p>
           </div>
         ))}
       </div>

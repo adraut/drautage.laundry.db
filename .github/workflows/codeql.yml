@@ -1,9 +1,9 @@
 # https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning
-name: "CodeQL Advanced"
+name: 'CodeQL Advanced'
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
   schedule:
     - cron: '0 22 * * 5'
 

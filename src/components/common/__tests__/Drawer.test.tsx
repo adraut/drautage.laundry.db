@@ -5,9 +5,9 @@ import { Drawer } from '../Drawer';
 describe('Drawer', () => {
   it('should not be visible when isOpen is false', () => {
     render(
-      <Drawer isOpen={false} onClose={() => { }}>
+      <Drawer isOpen={false} onClose={() => {}}>
         <div>Drawer content</div>
-      </Drawer>
+      </Drawer>,
     );
 
     const drawer = screen.getByRole('dialog');
@@ -17,9 +17,9 @@ describe('Drawer', () => {
 
   it('should be visible when isOpen is true', () => {
     render(
-      <Drawer isOpen={true} onClose={() => { }}>
+      <Drawer isOpen={true} onClose={() => {}}>
         <div>Drawer content</div>
-      </Drawer>
+      </Drawer>,
     );
 
     const drawer = screen.getByRole('dialog');
@@ -29,9 +29,9 @@ describe('Drawer', () => {
 
   it('should display the title when provided', () => {
     render(
-      <Drawer isOpen={true} onClose={() => { }} title="Test Title">
+      <Drawer isOpen={true} onClose={() => {}} title="Test Title">
         <div>Drawer content</div>
-      </Drawer>
+      </Drawer>,
     );
 
     expect(screen.getByText('Test Title')).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('Drawer', () => {
     render(
       <Drawer isOpen={true} onClose={onClose}>
         <div>Drawer content</div>
-      </Drawer>
+      </Drawer>,
     );
 
     const closeButton = screen.getByLabelText('Close drawer');
@@ -60,7 +60,7 @@ describe('Drawer', () => {
     render(
       <Drawer isOpen={true} onClose={onClose}>
         <div>Drawer content</div>
-      </Drawer>
+      </Drawer>,
     );
 
     const backdrop = document.querySelector('.drawer-backdrop') as Element;
@@ -72,9 +72,9 @@ describe('Drawer', () => {
 
   it('should not render backdrop when drawer is closed', () => {
     render(
-      <Drawer isOpen={false} onClose={() => { }}>
+      <Drawer isOpen={false} onClose={() => {}}>
         <div>Drawer content</div>
-      </Drawer>
+      </Drawer>,
     );
 
     const backdrop = document.querySelector('.drawer-backdrop');
@@ -88,7 +88,7 @@ describe('Drawer', () => {
     render(
       <Drawer isOpen={true} onClose={onClose}>
         <div>Drawer content</div>
-      </Drawer>
+      </Drawer>,
     );
 
     await user.keyboard('{Escape}');
@@ -102,7 +102,7 @@ describe('Drawer', () => {
     render(
       <Drawer isOpen={false} onClose={onClose}>
         <div>Drawer content</div>
-      </Drawer>
+      </Drawer>,
     );
 
     await user.keyboard('{Escape}');

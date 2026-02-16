@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navigation from "./components/Navigation/Navigation";
-import Home from "./pages/Home";
-import Detergents from "./components/Detergent/Detergents";
-import Boosters from "./components/Booster/Boosters";
-import Pretreaters from "./components/Pretreater/Pretreaters";
-import Glossary from "./components/Glossary/Glossary";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation/Navigation';
+import Home from './pages/Home';
+import Detergents from './components/Detergent/Detergents';
+import Boosters from './components/Booster/Boosters';
+import Pretreaters from './components/Pretreater/Pretreaters';
+import Glossary from './components/Glossary/Glossary';
+import './App.css';
 
 function App() {
   return (

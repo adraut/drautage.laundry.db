@@ -68,12 +68,7 @@ function isCompositeFilterDescriptor(obj: any): obj is CompositeFilterDescriptor
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 function isFilterDescriptor(obj: any): obj is FilterDescriptor {
-  return (
-    obj &&
-    typeof obj === 'object' &&
-    typeof obj.field === 'string' &&
-    typeof obj.operator === 'string'
-  );
+  return obj && typeof obj === 'object' && typeof obj.field === 'string' && typeof obj.operator === 'string';
 }
 
 /**

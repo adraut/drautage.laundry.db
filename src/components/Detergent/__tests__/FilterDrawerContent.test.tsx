@@ -13,13 +13,13 @@ const mockFields = [
 describe('FilterDrawerContent', () => {
   it('should render all filter fields', () => {
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={null}
         onFilterChange={() => {}}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     expect(screen.getByLabelText('Product Name')).toBeInTheDocument();
@@ -30,13 +30,13 @@ describe('FilterDrawerContent', () => {
 
   it('should render text inputs for text fields', () => {
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={null}
         onFilterChange={() => {}}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const nameInput = screen.getByLabelText('Product Name');
@@ -46,18 +46,18 @@ describe('FilterDrawerContent', () => {
 
   it('should render select dropdowns for boolean fields', () => {
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={null}
         onFilterChange={() => {}}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const proteaseSelect = screen.getByLabelText('Protease');
     expect(proteaseSelect.tagName).toBe('SELECT');
-    
+
     // Check for Yes/No/All options (multiple boolean fields exist, so use getAllByRole)
     expect(screen.getAllByRole('option', { name: 'All' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('option', { name: 'Yes' }).length).toBeGreaterThan(0);
@@ -67,19 +67,17 @@ describe('FilterDrawerContent', () => {
   it('should display current filter values for text fields', () => {
     const filter: CompositeFilterDescriptor = {
       logic: 'and',
-      filters: [
-        { field: 'name', operator: 'contains', value: 'Tide' },
-      ],
+      filters: [{ field: 'name', operator: 'contains', value: 'Tide' }],
     };
 
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={filter} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={filter}
         onFilterChange={() => {}}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const nameInput = screen.getByLabelText('Product Name') as HTMLInputElement;
@@ -89,19 +87,17 @@ describe('FilterDrawerContent', () => {
   it('should display current filter values for boolean fields', () => {
     const filter: CompositeFilterDescriptor = {
       logic: 'and',
-      filters: [
-        { field: 'hasProtease', operator: 'eq', value: true },
-      ],
+      filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
     };
 
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={filter} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={filter}
         onFilterChange={() => {}}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const proteaseSelect = screen.getByLabelText('Protease') as HTMLSelectElement;
@@ -113,13 +109,13 @@ describe('FilterDrawerContent', () => {
     const onFilterChange = jest.fn();
 
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={null}
         onFilterChange={onFilterChange}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const nameInput = screen.getByLabelText('Product Name');
@@ -139,13 +135,13 @@ describe('FilterDrawerContent', () => {
     const onFilterChange = jest.fn();
 
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={null}
         onFilterChange={onFilterChange}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const proteaseSelect = screen.getByLabelText('Protease');
@@ -164,13 +160,13 @@ describe('FilterDrawerContent', () => {
     const user = userEvent.setup();
 
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={null}
         onFilterChange={() => {}}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const searchInput = screen.getByLabelText('Search Filters:');
@@ -178,7 +174,7 @@ describe('FilterDrawerContent', () => {
 
     // Protease should be visible
     expect(screen.getByLabelText('Protease')).toBeInTheDocument();
-    
+
     // Other fields should not be visible
     expect(screen.queryByLabelText('Amylase')).not.toBeInTheDocument();
     expect(screen.queryByLabelText('Brand')).not.toBeInTheDocument();
@@ -188,13 +184,13 @@ describe('FilterDrawerContent', () => {
     const user = userEvent.setup();
 
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={null}
         onFilterChange={() => {}}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const searchInput = screen.getByLabelText('Search Filters:');
@@ -206,7 +202,7 @@ describe('FilterDrawerContent', () => {
   it('should remove filter when text input is cleared', async () => {
     const user = userEvent.setup();
     const onFilterChange = jest.fn();
-    
+
     const filter: CompositeFilterDescriptor = {
       logic: 'and',
       filters: [
@@ -216,13 +212,13 @@ describe('FilterDrawerContent', () => {
     };
 
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={filter} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={filter}
         onFilterChange={onFilterChange}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const nameInput = screen.getByLabelText('Product Name');
@@ -242,7 +238,7 @@ describe('FilterDrawerContent', () => {
   it('should remove filter when boolean select is set to Unknown', async () => {
     const user = userEvent.setup();
     const onFilterChange = jest.fn();
-    
+
     const filter: CompositeFilterDescriptor = {
       logic: 'and',
       filters: [
@@ -252,13 +248,13 @@ describe('FilterDrawerContent', () => {
     };
 
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={filter} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={filter}
         onFilterChange={onFilterChange}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const proteaseSelect = screen.getByLabelText('Protease');
@@ -280,13 +276,13 @@ describe('FilterDrawerContent', () => {
     const onFilterChange = jest.fn();
 
     render(
-      <FilterDrawerContent 
-        fields={mockFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={mockFields}
+        filter={null}
         onFilterChange={onFilterChange}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const nameInput = screen.getByLabelText('Product Name');
@@ -299,27 +295,27 @@ describe('FilterDrawerContent', () => {
 
   it('should render select dropdown for enum fields', () => {
     const enumFields = [
-      { 
-        field: 'type', 
-        title: 'Type', 
+      {
+        field: 'type',
+        title: 'Type',
         type: 'enum' as const,
-        options: ['Liquid', 'Powder', 'Pod']
+        options: ['Liquid', 'Powder', 'Pod'],
       },
     ];
 
     render(
-      <FilterDrawerContent 
-        fields={enumFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={enumFields}
+        filter={null}
         onFilterChange={() => {}}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const typeSelect = screen.getByLabelText('Type');
     expect(typeSelect.tagName).toBe('SELECT');
-    
+
     // Should have "All" option plus all enum options
     expect(screen.getByRole('option', { name: 'All' })).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'Liquid' })).toBeInTheDocument();
@@ -331,22 +327,22 @@ describe('FilterDrawerContent', () => {
     const user = userEvent.setup();
     const onFilterChange = jest.fn();
     const enumFields = [
-      { 
-        field: 'type', 
-        title: 'Type', 
+      {
+        field: 'type',
+        title: 'Type',
         type: 'enum' as const,
-        options: ['Liquid', 'Powder', 'Pod']
+        options: ['Liquid', 'Powder', 'Pod'],
       },
     ];
 
     render(
-      <FilterDrawerContent 
-        fields={enumFields} 
-        filter={null} 
+      <FilterDrawerContent
+        fields={enumFields}
+        filter={null}
         onFilterChange={onFilterChange}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const typeSelect = screen.getByLabelText('Type');
@@ -365,11 +361,11 @@ describe('FilterDrawerContent', () => {
     const user = userEvent.setup();
     const onFilterChange = jest.fn();
     const enumFields = [
-      { 
-        field: 'type', 
-        title: 'Type', 
+      {
+        field: 'type',
+        title: 'Type',
         type: 'enum' as const,
-        options: ['Liquid', 'Powder', 'Pod']
+        options: ['Liquid', 'Powder', 'Pod'],
       },
     ];
 
@@ -379,13 +375,13 @@ describe('FilterDrawerContent', () => {
     };
 
     render(
-      <FilterDrawerContent 
-        fields={enumFields} 
-        filter={initialFilter} 
+      <FilterDrawerContent
+        fields={enumFields}
+        filter={initialFilter}
         onFilterChange={onFilterChange}
         onReset={() => {}}
         onClear={() => {}}
-      />
+      />,
     );
 
     const typeSelect = screen.getByLabelText('Type');

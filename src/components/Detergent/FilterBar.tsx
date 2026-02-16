@@ -21,11 +21,11 @@ export function FilterBar({ onClick, isVisible }: FilterBarProps) {
   };
 
   return (
-    <div 
-      className="filter-bar" 
-      onClick={onClick} 
+    <div
+      className="filter-bar"
+      onClick={onClick}
       onKeyDown={handleKeyDown}
-      role="button" 
+      role="button"
       tabIndex={0}
       aria-label="Open filters"
     >

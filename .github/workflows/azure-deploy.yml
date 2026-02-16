@@ -39,10 +39,10 @@ jobs:
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
-          action: "upload"
+          action: upload
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          app_location: "/dist"
+          app_location: '/dist'
           skip_app_build: true
           skip_api_build: true
 
@@ -72,4 +72,3 @@ jobs:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           generateReleaseNotes: true
           generateReleaseNotesPreviousTag: ${{ steps.tag_version.outputs.previous_tag }}
-
