@@ -54,8 +54,8 @@ For detailed instructions on adding new detergent products, see:
 - **React 19** - UI library
 - **TypeScript 5** - Type-safe development
 - **React Router 7** - Client-side routing with BrowserRouter
-- **Webpack 5** - Module bundler with production minification
-- **ESLint** - Code linting and quality checks
+- **rspack** - Module bundler with production minification
+- **oxlint** - Code linting and quality checks
 - **Jest** - Testing framework
 - **React Testing Library** - Component testing
 
