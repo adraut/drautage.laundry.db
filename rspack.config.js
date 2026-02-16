@@ -72,6 +72,15 @@ export default (env, argv) => {
       ],
       splitChunks: {
         chunks: 'all',
+          cacheGroups: {
+            // Separate vendor libraries
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: "vendor",
+              priority: 10,
+              reuseExistingChunk: true,
+            },
+          },
       },
       usedExports: isProduction,
     },

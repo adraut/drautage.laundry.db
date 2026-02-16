@@ -8,10 +8,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "rspack serve --mode=development",
-    "start:prod": "rspack serve --mode=production",
-    "build:prod": "rspack --mode=production",
-    "build": "rspack --mode=development",
+    "start": "rsbuild start --mode=development",
+    "start:prod": "rsbuild start --mode=production",
+    "build:prod": "rsbuild build --mode=production",
+    "build": "rsbuild build --mode=development",
     "format": "npx oxfmt --check",
     "format:fix": "npx oxfmt",
     "lint": "npx oxlint",
@@ -31,8 +31,8 @@
     "react-router-dom": "^7.13.0"
   },
   "devDependencies": {
-    "@rspack/cli": "^1.7.6",
-    "@rspack/core": "^1.7.6",
+    "@rsbuild/core": "^1.7.1",
+    "@rsbuild/plugin-react": "^1.4.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
