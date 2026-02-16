@@ -50,7 +50,7 @@ jobs:
     if: success()
     name: Create Tag and Release
     needs: build-and-deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     permissions:
       contents: write
 
