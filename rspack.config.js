@@ -1,8 +1,5 @@
-import path from 'path';
+import { rspack } from '@rspack/core'; import path from 'path';
 import { fileURLToPath } from 'url';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,7 +15,6 @@ export default (env, argv) => {
       clean: true,
       publicPath: '/',
     },
-    mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? 'source-map' : 'eval-source-map',
     module: {
       rules: [
@@ -37,23 +33,12 @@ export default (env, argv) => {
       extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: [
-      new HtmlWebpackPlugin({
+      new rspack.HtmlRspackPlugin({
         template: './public/index.html',
         favicon: './public/favicon.ico',
-        minify: isProduction ? {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          keepClosingSlash: true,
-          minifyJS: true,
-          minifyCSS: true,
-          minifyURLs: true,
-        } : false,
+        minify: isProduction,
       }),
-      new CopyPlugin({
+      new rspack.CopyRspackPlugin({
         patterns: [
           {
             from: path.resolve(__dirname, 'public/robots.txt'),
@@ -69,11 +54,18 @@ export default (env, argv) => {
     optimization: {
       minimize: isProduction,
       minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            compress: {
-              drop_console: false,
+        new rspack.SwcJsMinimizerRspackPlugin({
+          extractComments: false,
+          minimizerOptions: {
+            format: {
+              comments: false,
             },
+            minify: isProduction,
+          },
+        }),
+        new rspack.LightningCssMinimizerRspackPlugin({
+          minimizerOptions: {
+            errorRecovery: false,
           },
         }),
       ],
