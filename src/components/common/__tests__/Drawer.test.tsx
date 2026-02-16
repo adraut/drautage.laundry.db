@@ -5,7 +5,7 @@ import { Drawer } from '../Drawer';
 describe('Drawer', () => {
   it('should not be visible when isOpen is false', () => {
     render(
-      <Drawer isOpen={false} onClose={() => {}}>
+      <Drawer isOpen={false} onClose={() => { }}>
         <div>Drawer content</div>
       </Drawer>
     );
@@ -17,7 +17,7 @@ describe('Drawer', () => {
 
   it('should be visible when isOpen is true', () => {
     render(
-      <Drawer isOpen={true} onClose={() => {}}>
+      <Drawer isOpen={true} onClose={() => { }}>
         <div>Drawer content</div>
       </Drawer>
     );
@@ -29,7 +29,7 @@ describe('Drawer', () => {
 
   it('should display the title when provided', () => {
     render(
-      <Drawer isOpen={true} onClose={() => {}} title="Test Title">
+      <Drawer isOpen={true} onClose={() => { }} title="Test Title">
         <div>Drawer content</div>
       </Drawer>
     );
@@ -63,18 +63,16 @@ describe('Drawer', () => {
       </Drawer>
     );
 
-    const backdrop = document.querySelector('.drawer-backdrop');
+    const backdrop = document.querySelector('.drawer-backdrop') as Element;
     expect(backdrop).toBeInTheDocument();
-    
-    if (backdrop) {
-      await user.click(backdrop);
-      expect(onClose).toHaveBeenCalledTimes(1);
-    }
+
+    await user.click(backdrop);
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('should not render backdrop when drawer is closed', () => {
     render(
-      <Drawer isOpen={false} onClose={() => {}}>
+      <Drawer isOpen={false} onClose={() => { }}>
         <div>Drawer content</div>
       </Drawer>
     );

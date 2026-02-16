@@ -9,7 +9,7 @@ beforeEach(() => {
   // Reset URL and mocks before each test
   window.history.pushState({}, '', 'http://localhost/');
   jest.clearAllMocks();
-  jest.spyOn(console, 'warn').mockImplementation(() => {});
+  jest.spyOn(console, 'warn').mockImplementation(() => { });
 });
 
 afterEach(() => {
@@ -36,8 +36,8 @@ describe('useGridFilterSync', () => {
       const testFilter: CompositeFilterDescriptor = {
         logic: 'and',
         filters: [
-            { field: 'hasProtease', operator: 'eq', value: true },
-            { field: 'isBiodegradable', operator: 'eq', value: true },
+          { field: 'hasProtease', operator: 'eq', value: true },
+          { field: 'isBiodegradable', operator: 'eq', value: true },
         ],
       };
 
@@ -80,7 +80,7 @@ describe('useGridFilterSync', () => {
 
       const newFilter: CompositeFilterDescriptor = {
         logic: 'or',
-          filters: [{ field: 'hasAmylase', operator: 'eq', value: true }],
+        filters: [{ field: 'hasAmylase', operator: 'eq', value: true }],
       };
 
       act(() => {
@@ -115,12 +115,12 @@ describe('useGridFilterSync', () => {
 
       const filter1: CompositeFilterDescriptor = {
         logic: 'and',
-          filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
+        filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
       };
 
       const filter2: CompositeFilterDescriptor = {
         logic: 'and',
-          filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
+        filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
       };
 
       // Call updateFilterInUrl twice
@@ -173,11 +173,9 @@ describe('useGridFilterSync', () => {
       // Should still update URL even with empty filters
       await waitFor(() => {
         const url = new URL(window.location.href);
-        const filterParam = url.searchParams.get('filter');
-        if (filterParam) {
-          const decodedFilter = decodeFilter(filterParam);
-          expect(decodedFilter).toEqual(invalidFilter);
-        }
+        const filterParam = url.searchParams.get('filter') as string;
+        const decodedFilter = decodeFilter(filterParam);
+        expect(decodedFilter).toEqual(invalidFilter);
       });
 
       jest.useRealTimers();
@@ -219,9 +217,9 @@ describe('useGridFilterSync', () => {
         logic: 'and',
         filters: [
           { field: 'brand', operator: 'contains', value: 'Tide' },
-            { field: 'hasProtease', operator: 'eq', value: true },
+          { field: 'hasProtease', operator: 'eq', value: true },
           { field: 'type', operator: 'eq', value: 'liquid' },
-            { field: 'isBiodegradable', operator: 'eq', value: false },
+          { field: 'isBiodegradable', operator: 'eq', value: false },
         ],
       };
 
@@ -239,7 +237,7 @@ describe('useGridFilterSync', () => {
 
       const filter2: CompositeFilterDescriptor = {
         logic: 'and',
-          filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
+        filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
       };
 
       const encoded1 = encodeFilter(filter1);
@@ -251,7 +249,7 @@ describe('useGridFilterSync', () => {
     it('should produce URL-safe encoded strings', () => {
       const filter: CompositeFilterDescriptor = {
         logic: 'and',
-          filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
+        filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
       };
 
       const encoded = encodeFilter(filter);
