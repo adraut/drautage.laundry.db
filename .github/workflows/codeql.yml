@@ -23,7 +23,7 @@ jobs:
     
     - name: Has Actions changes
       id: action-changes
-      uses: ./.github/get-changed-files
+      uses: ./.github/actions/get-changed-files
       with:
         file-grep: '\.github/.*'
 
