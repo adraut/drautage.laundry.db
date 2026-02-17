@@ -14,7 +14,21 @@ updates:
       day: "friday"
       time: "22:00"
     groups:
-      dev-dependencies:
+      dev-dependencies-major:
         dependency-type: "development"
-      prod-dependencies:
+        update-types:
+          - major
+      prod-dependencies-major:
         dependency-type: "production"
+        update-types:
+          - major
+      dev-dependencies-minor:
+        dependency-type: "development"
+        update-types:
+          - minor
+          - patch
+      prod-dependencies-minor:
+        dependency-type: "production"
+        update-types:
+          - minor
+          - patch
