@@ -32,7 +32,7 @@ jobs:
       id: js-ts-changes
       uses: ./.github/actions/get-changed-files
       with:
-        file-grep: '\.(ts|tsx|js|jsx|json)$'
+        file-grep: '\.(ts|tsx|js|jsx|json|npmrc)$'
 
   analyze-actions:
     name: 'Analyze: Actions'
