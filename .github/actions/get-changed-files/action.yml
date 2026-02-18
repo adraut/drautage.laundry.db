@@ -33,8 +33,11 @@ runs:
         git fetch origin ${{ github.event.pull_request.base.ref }}
 
         all_files=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }} HEAD)
+        grepped_files=""
         if [ "${{ inputs.file-grep }}" != "" ]; then
           grepped_files=$(printf "%s\n" "$all_files" | grep -E "${{ inputs.file-grep }}" || true)
+        else
+          grepped_files="$all_files"
         fi
 
         if [ "${{ inputs.list-all-files }}" == "true" ]; then
@@ -43,8 +46,12 @@ runs:
           echo "EOF" >> $GITHUB_OUTPUT
         fi
 
-        if [ "${{ inputs.list-all-files }}" == "false" ] && [ -n "$grepped_files" ]; then
-          echo "files-changed=true" >> $GITHUB_OUTPUT
+        if [ "${{ inputs.list-all-files }}" == "false" ]; then
+          if [ -n "$grepped_files" ]; then
+            echo "files-changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "files-changed=false" >> $GITHUB_OUTPUT
+          fi
         fi
 
         if [ "${{ runner.debug }}" == "1" ]; then
