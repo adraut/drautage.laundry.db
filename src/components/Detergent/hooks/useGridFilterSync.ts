@@ -49,7 +49,7 @@ export function useGridFilterSync() {
         debounceTimerRef.current = null;
       }, DEBOUNCE_DELAY);
     },
-    [setSearchParams]
+    [setSearchParams],
   );
 
   // Cleanup timer on unmount

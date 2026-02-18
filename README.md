@@ -1,10 +1,13 @@
 # drautage.laundry.db
+
 A database of laundry products
 
 ## Overview
+
 A React TypeScript single-page application for browsing and comparing laundry products including detergents, boosters, and pretreaters.
 
 ## Features
+
 - Browse products by category (Detergents, Boosters, Pretreaters)
 - Side-by-side product comparisons
 - Glossary of laundry terms
@@ -12,6 +15,7 @@ A React TypeScript single-page application for browsing and comparing laundry pr
 - Production-ready build with minification
 
 ## Tech Stack
+
 - **React** - UI library
 - **TypeScript** - Type-safe development
 - **React Router** - Client-side routing with BrowserRouter
@@ -21,15 +25,18 @@ A React TypeScript single-page application for browsing and comparing laundry pr
 ## Development
 
 ### Prerequisites
+
 - Node.js 24 or higher
 - npm 11 or higher
 
 ### Installation
+
 ```bash
 npm install
 ```
 
 ### Available Scripts
+
 - `npm start` - Start development server on http://localhost:3000
 - `npm run build` - Build production bundle (minified)
 - `npm run build:dev` - Build development bundle
@@ -40,15 +47,19 @@ npm install
 ## CI/CD
 
 ### Pull Request Checks
+
 All pull requests must pass the following checks:
+
 - Lint validation
 - TypeScript type checking
 - Successful production build
 
 ### Deployment
+
 The application includes a GitHub Actions workflow for deploying to Azure Static Web Apps (Free tier).
 
 ## Project Structure
+
 ```
 ├── .github/
 │   └── workflows/         # GitHub Actions CI/CD workflows
@@ -77,5 +88,5 @@ The application includes a GitHub Actions workflow for deploying to Azure Static
 ```
 
 ## License
-ISC
 
+ISC

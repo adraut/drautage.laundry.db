@@ -35,11 +35,21 @@ function CompareBoosters() {
         {boosters.map((booster, index) => (
           <div key={index} className="comparison-item">
             <h3>{booster.name}</h3>
-            <p><strong>Type:</strong> {booster.type}</p>
-            <p><strong>Active Ingredient:</strong> {booster.activeIngredient}</p>
-            <p><strong>Color Safe:</strong> {booster.colorSafe}</p>
-            <p><strong>Uses Per Container:</strong> {booster.usesPerContainer}</p>
-            <p><strong>Price Range:</strong> {booster.price}</p>
+            <p>
+              <strong>Type:</strong> {booster.type}
+            </p>
+            <p>
+              <strong>Active Ingredient:</strong> {booster.activeIngredient}
+            </p>
+            <p>
+              <strong>Color Safe:</strong> {booster.colorSafe}
+            </p>
+            <p>
+              <strong>Uses Per Container:</strong> {booster.usesPerContainer}
+            </p>
+            <p>
+              <strong>Price Range:</strong> {booster.price}
+            </p>
           </div>
         ))}
       </div>

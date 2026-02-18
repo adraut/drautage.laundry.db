@@ -7,7 +7,7 @@ describe('Home', () => {
     render(
       <BrowserRouter>
         <Home />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(screen.getByRole('heading', { name: 'Welcome to the Laundry Product Database' })).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe('Home', () => {
     render(
       <BrowserRouter>
         <Home />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe('Home', () => {
     render(
       <BrowserRouter>
         <Home />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(screen.getByRole('button', { name: 'View Detergents' })).toBeInTheDocument();

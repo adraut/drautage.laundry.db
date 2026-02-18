@@ -9,7 +9,7 @@ beforeEach(() => {
   // Reset URL and mocks before each test
   window.history.pushState({}, '', 'http://localhost/');
   jest.clearAllMocks();
-  jest.spyOn(console, 'warn').mockImplementation(() => { });
+  jest.spyOn(console, 'warn').mockImplementation(() => {});
 });
 
 afterEach(() => {
@@ -19,8 +19,7 @@ afterEach(() => {
 // Helper to render hook with Router context
 const renderHookWithRouter = (callback: () => ReturnType<typeof useGridFilterSync>) => {
   return renderHook(() => callback(), {
-    wrapper: ({ children }: { children: React.ReactNode }) =>
-      React.createElement(BrowserRouter, {}, children),
+    wrapper: ({ children }: { children: React.ReactNode }) => React.createElement(BrowserRouter, {}, children),
   });
 };
 

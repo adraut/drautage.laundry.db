@@ -6,15 +6,18 @@ function Glossary() {
     },
     {
       term: 'Surfactants',
-      definition: 'Surface-active agents that reduce surface tension, allowing water to better penetrate fabrics and remove dirt.',
+      definition:
+        'Surface-active agents that reduce surface tension, allowing water to better penetrate fabrics and remove dirt.',
     },
     {
       term: 'Optical Brighteners',
-      definition: 'Fluorescent compounds that absorb UV light and emit blue light, making fabrics appear whiter and brighter.',
+      definition:
+        'Fluorescent compounds that absorb UV light and emit blue light, making fabrics appear whiter and brighter.',
     },
     {
       term: 'pH Level',
-      definition: 'Measure of acidity or alkalinity. Most laundry detergents are slightly alkaline (pH 8-10) for better cleaning.',
+      definition:
+        'Measure of acidity or alkalinity. Most laundry detergents are slightly alkaline (pH 8-10) for better cleaning.',
     },
     {
       term: 'Hard Water',
@@ -22,7 +25,8 @@ function Glossary() {
     },
     {
       term: 'HE (High Efficiency)',
-      definition: 'Detergents formulated for high-efficiency washing machines that use less water and require low-sudsing formulas.',
+      definition:
+        'Detergents formulated for high-efficiency washing machines that use less water and require low-sudsing formulas.',
     },
   ];
 
@@ -30,8 +34,8 @@ function Glossary() {
     <div>
       <h1>Glossary</h1>
       <p>
-        Learn about common laundry terms, ingredients, and concepts. Understanding these 
-        terms will help you make better decisions about your laundry care.
+        Learn about common laundry terms, ingredients, and concepts. Understanding these terms will help you make better
+        decisions about your laundry care.
       </p>
 
       <div className="glossary-list">

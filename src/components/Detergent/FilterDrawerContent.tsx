@@ -32,19 +32,17 @@ export function FilterDrawerContent({ fields, filter, onFilterChange, onReset, o
   const filteredFields = useMemo(() => {
     if (!searchTerm) return fields;
     const term = searchTerm.toLowerCase();
-    return fields.filter(field => field.title.toLowerCase().includes(term));
+    return fields.filter((field) => field.title.toLowerCase().includes(term));
   }, [fields, searchTerm]);
 
   // Extract current filter values from the filter descriptor
   const getFilterValue = (field: string): string | BooleanFilterValue => {
     if (!filter || !filter.filters) return '';
-    
-    const filterDescriptor = filter.filters.find(
-      (f): f is FilterDescriptor => 'field' in f && f.field === field
-    );
-    
+
+    const filterDescriptor = filter.filters.find((f): f is FilterDescriptor => 'field' in f && f.field === field);
+
     if (!filterDescriptor) return '';
-    
+
     const value = filterDescriptor.value;
     if (typeof value === 'boolean') {
       return value.toString() as BooleanFilterValue;
@@ -55,11 +53,9 @@ export function FilterDrawerContent({ fields, filter, onFilterChange, onReset, o
   // Update a specific filter field
   const updateFilter = (field: string, value: string, operator: string = 'contains') => {
     const currentFilters = filter?.filters || [];
-    
+
     // Remove existing filter for this field
-    const otherFilters = currentFilters.filter(
-      (f): f is FilterDescriptor => 'field' in f && f.field !== field
-    );
+    const otherFilters = currentFilters.filter((f): f is FilterDescriptor => 'field' in f && f.field !== field);
 
     // Add new filter if value is not empty
     const newFilters: FilterDescriptor[] = [...otherFilters];
@@ -130,7 +126,7 @@ export function FilterDrawerContent({ fields, filter, onFilterChange, onReset, o
             <label htmlFor={`filter-${fieldDef.field}`} className="filter-label">
               {fieldDef.title}
             </label>
-            
+
             {fieldDef.type === 'boolean' ? (
               <select
                 id={`filter-${fieldDef.field}`}
@@ -171,9 +167,7 @@ export function FilterDrawerContent({ fields, filter, onFilterChange, onReset, o
       </div>
 
       {filteredFields.length === 0 && (
-        <div className="no-filters-message">
-          No filters match &quot;{searchTerm}&quot;
-        </div>
+        <div className="no-filters-message">No filters match &quot;{searchTerm}&quot;</div>
       )}
     </div>
   );

@@ -1,9 +1,9 @@
 # https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning
-name: "CodeQL Advanced"
+name: 'CodeQL Advanced'
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
   schedule:
     - cron: '0 22 * * 5'
 
@@ -16,23 +16,23 @@ jobs:
       actions-files-changed: ${{ steps.action-changes.outputs.files-changed }}
       js-ts-files-changed: ${{ steps.js-ts-changes.outputs.files-changed }}
 
-    steps:      
-    - name: Checkout repository
-      uses: actions/checkout@v6
-      with:
-        fetch-depth: 0
-    
-    - name: Has Actions changes
-      id: action-changes
-      uses: ./.github/actions/get-changed-files
-      with:
-        file-grep: '\.github/.*'
-    
-    - name: Has JS/TS changes
-      id: js-ts-changes
-      uses: ./.github/actions/get-changed-files
-      with:
-        file-grep: '\.(ts|tsx|js|jsx|json|npmrc)$'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Has Actions changes
+        id: action-changes
+        uses: ./.github/actions/get-changed-files
+        with:
+          file-grep: '\.github/.*'
+
+      - name: Has JS/TS changes
+        id: js-ts-changes
+        uses: ./.github/actions/get-changed-files
+        with:
+          file-grep: '\.(ts|tsx|js|jsx|json|npmrc)$'
 
   analyze-actions:
     name: 'Analyze: Actions'
@@ -49,21 +49,21 @@ jobs:
       # only required for workflows in private repositories
       actions: read
       contents: read
-    
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v4
-      with:
-        languages: actions
-        build-mode: none
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: actions
+          build-mode: none
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v4
-      with:
-        category: "/language:actions"
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: '/language:actions'
 
   analyze-js-ts:
     name: 'Analyze: JS/TS'
@@ -80,18 +80,18 @@ jobs:
       # only required for workflows in private repositories
       actions: read
       contents: read
-    
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v4
-      with:
-        languages: javascript-typescript
-        build-mode: none
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+          build-mode: none
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v4
-      with:
-        category: "/language:javascript-typescript"
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: '/language:javascript-typescript'

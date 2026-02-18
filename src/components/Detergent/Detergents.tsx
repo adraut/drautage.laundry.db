@@ -16,11 +16,11 @@ import './FilterBar.css';
 const FILTER_FIELDS = [
   { field: 'brand', title: 'Brand', type: 'text' as const },
   { field: 'name', title: 'Product Name', type: 'text' as const },
-  { 
-    field: 'type', 
-    title: 'Type', 
+  {
+    field: 'type',
+    title: 'Type',
     type: 'enum' as const,
-    options: Object.values(DetergentType)
+    options: Object.values(DetergentType),
   },
   { field: 'hasOxygenBleach', title: 'Oxygen Bleach', type: 'boolean' as const },
   { field: 'hasOpticalBrighteners', title: 'Optical Brighteners', type: 'boolean' as const },
@@ -50,7 +50,7 @@ function Detergents() {
   const [sort, setSort] = useState<SortDescriptor[]>([{ field: 'name', dir: 'asc' }]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { filter: urlFilter, updateFilterInUrl } = useGridFilterSync();
-  
+
   // Store the initial filter from URL for reset functionality
   const initialFilterRef = useRef<CompositeFilterDescriptor | null>(null);
 
@@ -87,7 +87,7 @@ function Detergents() {
       setFilter(newFilter);
       updateFilterInUrl(newFilter);
     },
-    [updateFilterInUrl]
+    [updateFilterInUrl],
   );
 
   // Handle sort changes from Grid
@@ -112,11 +112,11 @@ function Detergents() {
   const detergentArray = useMemo(() => Array.from(detergents.values()), [detergents]);
   const filteredData = useMemo(
     () => (filter ? filterBy(detergentArray, filter) : detergentArray),
-    [detergentArray, filter]
+    [detergentArray, filter],
   );
   const sortedAndFilteredData = useMemo(
     () => (sort && sort.length > 0 ? orderBy(filteredData, sort) : filteredData),
-    [filteredData, sort]
+    [filteredData, sort],
   );
 
   return (
@@ -130,18 +130,11 @@ function Detergents() {
       ) : (
         <div>
           {/* Vertical Filter Bar */}
-          <FilterBar 
-            onClick={() => setIsDrawerOpen(true)}
-            isVisible={!isDrawerOpen}
-          />
-          
+          <FilterBar onClick={() => setIsDrawerOpen(true)} isVisible={!isDrawerOpen} />
+
           {/* Filter Drawer */}
-          <Drawer 
-            isOpen={isDrawerOpen} 
-            onClose={() => setIsDrawerOpen(false)}
-            title="Filter Detergents"
-          >
-            <FilterDrawerContent 
+          <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} title="Filter Detergents">
+            <FilterDrawerContent
               fields={FILTER_FIELDS}
               filter={filter}
               onFilterChange={handleFilterChange}
@@ -160,7 +153,7 @@ function Detergents() {
             reorderable={true}
             sortable={{ allowUnsort: true, mode: 'single' }}
             resizable={true}
-            scrollable='none'
+            scrollable="none"
             sort={sort}
             onSortChange={handleSortChange}
           >

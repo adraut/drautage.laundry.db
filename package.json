@@ -2,26 +2,24 @@
   "name": "drautage.laundry.db",
   "version": "1.0.0",
   "description": "A database of laundry products",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "rspack serve --mode=development",
-    "start:prod": "rspack serve --mode=production",
-    "build:prod": "rspack --mode=production",
-    "build": "rspack --mode=development",
-    "lint": "npx oxlint && npx eslint",
-    "lint:fix": "npx oxlint --fix && npx eslint --fix",
+    "start": "rsbuild start --mode=development",
+    "start:prod": "rsbuild start --mode=production",
+    "build:prod": "rsbuild build --mode=production",
+    "build": "rsbuild build --mode=development",
+    "format": "npx oxfmt --check",
+    "format:fix": "npx oxfmt",
+    "lint": "npx oxlint",
+    "lint:fix": "npx oxlint --fix",
     "type-check": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "engines": {
-    "node": ">=24.0.0",
-    "npm": ">=11.0.0"
   },
   "dependencies": {
     "@progress/kendo-react-grid": "^13.3.0",
@@ -33,9 +31,8 @@
     "react-router-dom": "^7.13.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "@rspack/cli": "^1.7.6",
-    "@rspack/core": "^1.7.6",
+    "@rsbuild/core": "^1.7.1",
+    "@rsbuild/plugin-react": "^1.4.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -43,23 +40,20 @@
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "@types/react-router-dom": "^5.3.3",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
     "css-loader": "^7.1.3",
-    "eslint": "^9.39.2",
-    "eslint-plugin-oxlint": "^1.46.0",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.5.0",
     "globals": "^17.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
+    "oxfmt": "^0.33.0",
     "oxlint": "^1.47.0",
     "style-loader": "^4.0.0",
     "ts-jest": "^29.4.6",
     "ts-loader": "^9.5.4",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.54.0"
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=11.0.0"
   }
 }

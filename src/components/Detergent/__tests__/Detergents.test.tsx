@@ -18,12 +18,10 @@ describe('Detergents', () => {
     render(
       <BrowserRouter>
         <Detergents />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
-    await waitFor(() =>
-      expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
     expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
   });
@@ -36,12 +34,10 @@ describe('Detergents', () => {
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
     });
@@ -62,12 +58,10 @@ describe('Detergents', () => {
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
       // Grid should render with filters applied from URL
@@ -80,12 +74,10 @@ describe('Detergents', () => {
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
     });
@@ -94,12 +86,10 @@ describe('Detergents', () => {
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Verify Grid renders (it will have the loading state or data)
       expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
@@ -119,12 +109,10 @@ describe('Detergents', () => {
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       expect(screen.queryByText('Tide Clean & Gentle')).not.toBeInTheDocument();
     });
@@ -135,16 +123,14 @@ describe('Detergents', () => {
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Find the Product Name column header in the grid (inside a th element)
       const productNameColumns = screen.getAllByText('Product Name');
-      const productNameInGrid = productNameColumns.find(el => el.closest('th'));
+      const productNameInGrid = productNameColumns.find((el) => el.closest('th'));
       expect(productNameInGrid).toBeDefined();
       const thElement = productNameInGrid?.closest('th');
       expect(thElement).toHaveAttribute('aria-sort', 'ascending');
@@ -154,12 +140,10 @@ describe('Detergents', () => {
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Verify multiple columns are present in the grid (they appear in both drawer and grid)
       const productNameElements = screen.getAllByText('Product Name');
@@ -174,35 +158,32 @@ describe('Detergents', () => {
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Grid should render with default sort (ascending name) and default filter (hasLipase = true)
       const productNameColumns = screen.getAllByText('Product Name');
-      const productNameInGrid = productNameColumns.find(el => el.closest('th'));
+      const productNameInGrid = productNameColumns.find((el) => el.closest('th'));
       expect(productNameInGrid).toBeDefined();
       const thElement = productNameInGrid?.closest('th');
       expect(thElement).toHaveAttribute('aria-sort', 'ascending');
 
       // Grid should be visible and rendered
       expect(productNameColumns.length).toBeGreaterThan(0);
-    });  });
+    });
+  });
 
   describe('Filter Bar and Drawer', () => {
     it('should show filter bar when drawer is closed', async () => {
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Filter bar should be visible when drawer is closed
       const filterBar = screen.getByRole('button', { name: 'Open filters' });
@@ -212,16 +193,14 @@ describe('Detergents', () => {
 
     it('should hide filter bar when drawer is open', async () => {
       const user = userEvent.setup();
-      
+
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Click the filter bar to open the drawer
       const filterBar = screen.getByRole('button', { name: 'Open filters' });
@@ -239,16 +218,14 @@ describe('Detergents', () => {
 
     it('should show drawer when filter bar is clicked', async () => {
       const user = userEvent.setup();
-      
+
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Drawer should exist but not be open initially
       const drawer = screen.getByRole('dialog');
@@ -271,16 +248,14 @@ describe('Detergents', () => {
 
     it('should show filter bar again when drawer is closed', async () => {
       const user = userEvent.setup();
-      
+
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Open the drawer
       const filterBar = screen.getByRole('button', { name: 'Open filters' });
@@ -306,16 +281,14 @@ describe('Detergents', () => {
 
     it('should close drawer when ESC key is pressed', async () => {
       const user = userEvent.setup();
-      
+
       render(
         <BrowserRouter>
           <Detergents />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
-      await waitFor(() =>
-        expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument()
-      );
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Open the drawer
       const filterBar = screen.getByRole('button', { name: 'Open filters' });

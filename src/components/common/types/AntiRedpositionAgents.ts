@@ -1,4 +1,4 @@
-import { Ingredient } from "./Ingredient";
+import { Ingredient } from './Ingredient';
 
 const AntiRedpositionAgents: Set<Ingredient> = new Set();
 

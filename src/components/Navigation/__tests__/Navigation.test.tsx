@@ -7,9 +7,9 @@ describe('Navigation', () => {
     render(
       <BrowserRouter>
         <Navigation />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
-    
+
     expect(screen.getByText('Laundry Product Database')).toBeInTheDocument();
   });
 
@@ -17,9 +17,9 @@ describe('Navigation', () => {
     render(
       <BrowserRouter>
         <Navigation />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
-    
+
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Detergents' })).toBeInTheDocument();
     // expect(screen.getByRole('link', { name: 'Boosters' })).toBeInTheDocument();
@@ -31,9 +31,9 @@ describe('Navigation', () => {
     render(
       <BrowserRouter>
         <Navigation />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
-    
+
     expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'Detergents' })).toHaveAttribute('href', '/detergents');
     // expect(screen.getByRole('link', { name: 'Boosters' })).toHaveAttribute('href', '/boosters');
