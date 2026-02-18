@@ -14,6 +14,7 @@ jobs:
       contents: read
     outputs:
       actions-files-changed: steps.action-changes.outputs.files-changed
+      js-ts-files-changed: steps.js-ts-changes.outputs.files-changed
 
     steps:      
     - name: Checkout repository
@@ -26,12 +27,18 @@ jobs:
       uses: ./.github/actions/get-changed-files
       with:
         file-grep: '\.github/.*'
+    
+    - name: Has JS/TS changes
+      id: js-ts-changes
+      uses: ./.github/actions/get-changed-files
+      with:
+        file-grep: '\.(ts|tsx|js|jsx|json)$'
 
   analyze-actions:
     name: 'Analyze: Actions'
     runs-on: ubuntu-latest
     needs: has-changes
-    if: needs.has-changes.outputs.actions-files-changed == 'true'
+    if: needs.has-changes.outputs.actions-files-changed == 'true' || github.event_name == 'schedule'
     permissions:
       # required for all workflows
       security-events: write
@@ -62,7 +69,7 @@ jobs:
     name: 'Analyze: JS/TS'
     runs-on: ubuntu-latest
     needs: has-changes
-    if: needs.has-changes.outputs.actions-files-changed != 'true'
+    if: needs.has-changes.outputs.js-ts-files-changed == 'true' || github.event_name == 'schedule'
     permissions:
       # required for all workflows
       security-events: write
