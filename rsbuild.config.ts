@@ -2,59 +2,90 @@ import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import path from 'path';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default defineConfig({
-  entry: './src/index.tsx',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: {
-      js: '[name].[contenthash].js',
+  source: {
+    entry: {
+      index: './src/index.tsx',
     },
-    clean: true,
-    publicPath: '/',
   },
-  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-source-map',
-  plugins: [
-    pluginReact(),
-    // Add HTML and Copy plugins if available for Rsbuild
-  ],
-  module: {
-    rules: [
+  output: {
+    distPath: path.resolve(__dirname, 'dist'),
+    filename: {
+      js: isProduction ? '[name].[contenthash].js' : '[name].js',
+    },
+    cleanDistPath: true,
+    assetPrefix: '/',
+    sourceMap: {
+      js: isProduction ? 'source-map' : 'eval-source-map',
+    },
+    minify: isProduction,
+    copy: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        from: path.resolve(__dirname, 'azure/staticwebapp.config.json'),
+        to: path.resolve(__dirname, 'dist/staticwebapp.config.json'),
       },
     ],
   },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+  html: {
+    template: './public/index.html',
+    favicon: './public/favicon.ico',
   },
-  optimization: {
-    minimize: process.env.NODE_ENV === 'production',
-    splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          priority: 10,
-          reuseExistingChunk: true,
+  plugins: [pluginReact()],
+  performance: {
+    chunkSplit: {
+      strategy: 'custom',
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            chunks: 'all',
+            enforce: true,
+            priority: 50,
+            reuseExistingChunk: true,
+            test: /.*[\\/]src[\\/].*\.(?:css|less|sass|scss|styl)$/,
+          },
+          app: {
+            name: 'app',
+            chunks: 'all',
+            enforce: true,
+            priority: 40,
+            reuseExistingChunk: true,
+            test: /src[\\/]/,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            priority: 10,
+            reuseExistingChunk: true,
+          },
+          react: {
+            test: /node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            chunks: 'all',
+            priority: 30,
+            reuseExistingChunk: true,
+          },
+          kendo: {
+            test: /node_modules[\\/](kendo|@progress)[\\/]/,
+            name: 'kendo',
+            chunks: 'all',
+            priority: 30,
+            reuseExistingChunk: true,
+          },
         },
       },
     },
-    usedExports: process.env.NODE_ENV === 'production',
   },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
+  server: {
+    publicDir: {
+      name: 'public',
+      copyOnBuild: true,
     },
     compress: true,
     port: 3000,
-    hot: true,
     historyApiFallback: true,
   },
 });
