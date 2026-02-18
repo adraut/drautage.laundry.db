@@ -5,11 +5,11 @@ inputs:
   file-grep:
     description: A regex grepping specific files like "\.py$"
     required: false
-    default: ""
+    default: ''
   list-all-files:
     description: Wether to list all file changed or just indicate a matching file changed.
     required: false
-    default: "false"
+    default: 'false'
 
 outputs:
   changed-files:
@@ -22,7 +22,6 @@ outputs:
 runs:
   using: composite
   steps:
-
     - name: Get changed files
       id: changed-files
       shell: bash
@@ -58,7 +57,7 @@ runs:
           echo "$grepped_files"
         fi
 
-    # This step exists purely for inspectability purposes 
+    # This step exists purely for inspectability purposes
     # and to debug your file-grep command
     - name: Print changed files
       if: runner.debug

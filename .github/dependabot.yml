@@ -15,20 +15,20 @@ updates:
       time: '22:00'
     groups:
       dev-dependencies-major:
-        dependency-type: "development"
+        dependency-type: 'development'
         update-types:
           - major
       prod-dependencies-major:
-        dependency-type: "production"
+        dependency-type: 'production'
         update-types:
           - major
       dev-dependencies-minor:
-        dependency-type: "development"
+        dependency-type: 'development'
         update-types:
           - minor
           - patch
       prod-dependencies-minor:
-        dependency-type: "production"
+        dependency-type: 'production'
         update-types:
           - minor
           - patch
