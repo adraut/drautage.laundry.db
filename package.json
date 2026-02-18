@@ -22,8 +22,9 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@progress/kendo-react-grid": "^13.3.0",
-    "@progress/kendo-theme-default": "^12.3.0",
+    "@progress/kendo-file-saver": "^1.1.2",
+    "@progress/kendo-react-grid": "^14.1.1",
+    "@progress/kendo-theme-default": "^13.0.1",
     "i18n-iso-countries": "^7.14.0",
     "lz-string": "^1.5.0",
     "react": "^19.2.4",
