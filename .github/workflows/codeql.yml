@@ -13,8 +13,8 @@ jobs:
     permissions:
       contents: read
     outputs:
-      actions-files-changed: steps.action-changes.outputs.files-changed
-      js-ts-files-changed: steps.js-ts-changes.outputs.files-changed
+      actions-files-changed: ${{ steps.action-changes.outputs.files-changed }}
+      js-ts-files-changed: ${{ steps.js-ts-changes.outputs.files-changed }}
 
     steps:      
     - name: Checkout repository
