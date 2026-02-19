@@ -1,4 +1,4 @@
-import { Ingredient } from "./Ingredient";
+import { Ingredient } from './Ingredient';
 
 const AnionicSurfactants: Set<Ingredient> = new Set();
 

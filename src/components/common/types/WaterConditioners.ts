@@ -1,4 +1,4 @@
-import { Ingredient } from "./Ingredient";
+import { Ingredient } from './Ingredient';
 
 const WaterConditioners: Set<Ingredient> = new Set();
 

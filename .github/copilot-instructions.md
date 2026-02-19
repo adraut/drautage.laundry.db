@@ -5,11 +5,13 @@ This is a React TypeScript single-page application for browsing and comparing la
 ## Code Standards
 
 ### Required Before Each Commit
+
 - Run `npm run lint:fix` before committing to ensure proper code formatting and style
 - Run `npm run type-check` to verify TypeScript types are correct
 - Run `npm test` to ensure all tests pass
 
 ### Development Flow
+
 - **Build**: `npm run build` (development) or `npm run build:prod` (production with minification)
 - **Test**: `npm test` (run all tests), `npm run test:watch` (watch mode), `npm run test:coverage` (with coverage)
 - **Lint**: `npm run lint` (check) or `npm run lint:fix` (auto-fix)
@@ -38,11 +40,13 @@ This is a React TypeScript single-page application for browsing and comparing la
 ## Adding New Detergent Products
 
 For detailed instructions on adding new detergent products, see:
+
 - [AGENTS.md](../AGENTS.md) - Quick start and PR checklist
 - [src/components/Detergent/AGENTS.md](../src/components/Detergent/AGENTS.md) - Detergent profile creation
 - [src/components/common/types/AGENTS.md](../src/components/common/types/AGENTS.md) - Ingredient enum and category management
 
 ### Quick Summary
+
 1. Create profile file in `src/components/Detergent/data/profiles/` with naming format: `brand-product-variant.ts` (lowercase, hyphenated)
 2. Export profile in `src/components/Detergent/data/profiles/index.ts`
 3. Add new ingredients to `src/components/common/types/Ingredient.ts` enum and categorize in appropriate sets
@@ -54,18 +58,20 @@ For detailed instructions on adding new detergent products, see:
 - **React 19** - UI library
 - **TypeScript 5** - Type-safe development
 - **React Router 7** - Client-side routing with BrowserRouter
-- **Webpack 5** - Module bundler with production minification
-- **ESLint** - Code linting and quality checks
+- **rspack** - Module bundler with production minification
+- **oxlint** - Code linting and quality checks
 - **Jest** - Testing framework
 - **React Testing Library** - Component testing
 
 ## Node.js Version
+
 - Requires Node.js 24.x or higher
 - Requires npm 11.x or higher
 
 ## CI/CD
 
 All pull requests are automatically validated for:
+
 - ESLint validation
 - TypeScript type checking
 - Successful production build

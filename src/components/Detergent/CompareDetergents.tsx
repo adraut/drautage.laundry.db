@@ -35,11 +35,21 @@ function CompareDetergents() {
         {detergents.map((detergent, index) => (
           <div key={index} className="comparison-item">
             <h3>{detergent.name}</h3>
-            <p><strong>Type:</strong> {detergent.type}</p>
-            <p><strong>Enzymes:</strong> {detergent.enzymes}</p>
-            <p><strong>Fragrance:</strong> {detergent.fragrance}</p>
-            <p><strong>HE Compatible:</strong> {detergent.heCompatible}</p>
-            <p><strong>Price Range:</strong> {detergent.price}</p>
+            <p>
+              <strong>Type:</strong> {detergent.type}
+            </p>
+            <p>
+              <strong>Enzymes:</strong> {detergent.enzymes}
+            </p>
+            <p>
+              <strong>Fragrance:</strong> {detergent.fragrance}
+            </p>
+            <p>
+              <strong>HE Compatible:</strong> {detergent.heCompatible}
+            </p>
+            <p>
+              <strong>Price Range:</strong> {detergent.price}
+            </p>
           </div>
         ))}
       </div>

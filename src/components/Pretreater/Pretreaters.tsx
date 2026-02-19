@@ -26,21 +26,21 @@ function Pretreaters() {
     <div>
       <h1>Pretreaters</h1>
       <p>
-        Find the best pretreaters for targeting stubborn stains before washing. 
-        These products help ensure your stains come out in the wash.
+        Find the best pretreaters for targeting stubborn stains before washing. These products help ensure your stains
+        come out in the wash.
       </p>
-      
+
       <Link to="/compare/pretreaters">
-        <button style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-          Compare Pretreaters Side by Side
-        </button>
+        <button style={{ marginTop: '1rem', marginBottom: '1rem' }}>Compare Pretreaters Side by Side</button>
       </Link>
 
       <div className="product-grid">
         {pretreaters.map((pretreater) => (
           <div key={pretreater.id} className="product-card">
             <h3>{pretreater.name}</h3>
-            <p><strong>Type:</strong> {pretreater.type}</p>
+            <p>
+              <strong>Type:</strong> {pretreater.type}
+            </p>
             <p>{pretreater.description}</p>
           </div>
         ))}

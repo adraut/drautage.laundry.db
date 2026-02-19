@@ -1,4 +1,5 @@
-import { rspack } from '@rspack/core'; import path from 'path';
+import { rspack } from '@rspack/core';
+import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -42,11 +43,11 @@ export default (env, argv) => {
         patterns: [
           {
             from: path.resolve(__dirname, 'public/robots.txt'),
-            to: path.resolve(__dirname, 'dist/robots.txt')
+            to: path.resolve(__dirname, 'dist/robots.txt'),
           },
           {
             from: path.resolve(__dirname, 'azure/staticwebapp.config.json'),
-            to: path.resolve(__dirname, 'dist/staticwebapp.config.json')
+            to: path.resolve(__dirname, 'dist/staticwebapp.config.json'),
           },
         ],
       }),
@@ -71,8 +72,17 @@ export default (env, argv) => {
       ],
       splitChunks: {
         chunks: 'all',
+        cacheGroups: {
+          // Separate vendor libraries
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            priority: 10,
+            reuseExistingChunk: true,
+          },
+        },
       },
-      usedExports: isProduction
+      usedExports: isProduction,
     },
     devServer: {
       static: {

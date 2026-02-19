@@ -26,21 +26,21 @@ function Boosters() {
     <div>
       <h1>Boosters</h1>
       <p>
-        Discover laundry boosters that enhance your regular detergent's cleaning power. 
-        These products help tackle tough stains and brighten your laundry.
+        Discover laundry boosters that enhance your regular detergent's cleaning power. These products help tackle tough
+        stains and brighten your laundry.
       </p>
-      
+
       <Link to="/compare/boosters">
-        <button style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-          Compare Boosters Side by Side
-        </button>
+        <button style={{ marginTop: '1rem', marginBottom: '1rem' }}>Compare Boosters Side by Side</button>
       </Link>
 
       <div className="product-grid">
         {boosters.map((booster) => (
           <div key={booster.id} className="product-card">
             <h3>{booster.name}</h3>
-            <p><strong>Type:</strong> {booster.type}</p>
+            <p>
+              <strong>Type:</strong> {booster.type}
+            </p>
             <p>{booster.description}</p>
           </div>
         ))}

@@ -1,10 +1,6 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": [
-      "/images/*.{png,jpg,gif,ico,svg}",
-      "/*.{css,scss,js,txt}",
-      "/static/*"
-    ]
+    "exclude": ["/images/*.{png,jpg,gif,ico,svg}", "/*.{css,scss,js,txt}", "/static/*"]
   }
 }

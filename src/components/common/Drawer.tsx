@@ -35,16 +35,10 @@ export function Drawer({ isOpen, onClose, children, title }: DrawerProps) {
   return (
     <>
       {/* Backdrop overlay */}
-      {isOpen && (
-        <div 
-          className="drawer-backdrop" 
-          onClick={onClose}
-          role="presentation"
-        />
-      )}
-      
+      {isOpen && <div className="drawer-backdrop" onClick={onClose} role="presentation" />}
+
       {/* Drawer panel */}
-      <div 
+      <div
         className={`drawer ${isOpen ? 'drawer-open' : ''}`}
         role="dialog"
         aria-modal="true"
@@ -52,17 +46,11 @@ export function Drawer({ isOpen, onClose, children, title }: DrawerProps) {
       >
         <div className="drawer-header">
           {title && <h2 id="drawer-title">{title}</h2>}
-          <button 
-            className="drawer-close-btn" 
-            onClick={onClose}
-            aria-label="Close drawer"
-          >
+          <button className="drawer-close-btn" onClick={onClose} aria-label="Close drawer">
             ✕
           </button>
         </div>
-        <div className="drawer-content">
-          {children}
-        </div>
+        <div className="drawer-content">{children}</div>
       </div>
     </>
   );
