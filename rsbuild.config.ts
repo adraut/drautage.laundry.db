@@ -39,14 +39,6 @@ export default defineConfig({
       splitChunks: {
         chunks: 'all',
         cacheGroups: {
-          styles: {
-            name: 'styles',
-            chunks: 'all',
-            enforce: true,
-            priority: 50,
-            reuseExistingChunk: true,
-            test: /.*[\\/]src[\\/].*\.(?:css|less|sass|scss|styl)$/,
-          },
           app: {
             name: 'app',
             chunks: 'all',
@@ -59,13 +51,6 @@ export default defineConfig({
             test: /[\\/]node_modules[\\/]/,
             name: 'vendor',
             priority: 10,
-            reuseExistingChunk: true,
-          },
-          react: {
-            test: /node_modules[\\/](react|react-dom)[\\/]/,
-            name: 'react',
-            chunks: 'all',
-            priority: 30,
             reuseExistingChunk: true,
           },
           kendo: {
