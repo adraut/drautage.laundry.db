@@ -1,5 +1,5 @@
 # https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning
-name: 'CodeQL Advanced'
+name: 'CodeQL Advanced - JS/TS'
 
 on:
   pull_request:
@@ -17,7 +17,7 @@ on:
 jobs:
   analyze-js-ts:
     name: 'Analyze: JS/TS'
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
     permissions:
       # required for all workflows
       security-events: write

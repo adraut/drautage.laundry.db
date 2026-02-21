@@ -1,5 +1,5 @@
 # https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning
-name: 'CodeQL Advanced'
+name: 'CodeQL Advanced - Actions'
 
 on:
   pull_request:
