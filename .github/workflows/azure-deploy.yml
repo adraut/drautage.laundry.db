@@ -4,12 +4,11 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'public/**'
-      - 'src/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'webpack.config.js'
+    paths-ignore:
+      - '.github/**'
+      - '**/*.md'
+      - '.copilot-setup-steps.yml'
+      - '.gitignore'
   workflow_dispatch:
 
 jobs:
