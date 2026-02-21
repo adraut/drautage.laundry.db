@@ -8,6 +8,7 @@ on:
       - '.github/**'
   schedule:
     - cron: '0 22 * * 5'
+  workflow_dispatch:
 
 jobs:
   analyze-actions:
