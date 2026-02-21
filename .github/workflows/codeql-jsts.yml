@@ -12,7 +12,7 @@ on:
       - '**/*.json'
       - '**/.npmrc'
   schedule:
-    - cron: '0 22 * * 5'
+    - cron: '0 0 * * 5'
   workflow_dispatch:
 
 jobs:
