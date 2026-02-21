@@ -6,5 +6,6 @@ NonBiodegradable.add(Ingredient.FluorescentBrightener71);
 NonBiodegradable.add(Ingredient.HydrophobicallyModifiedAcrylateStyreneCopolymer);
 NonBiodegradable.add(Ingredient.SimethiconeDimethicone);
 NonBiodegradable.add(Ingredient.SodiumPolyacrylate);
+NonBiodegradable.add(Ingredient.StyreneAcrylatesCopolymer);
 
 export { NonBiodegradable };
