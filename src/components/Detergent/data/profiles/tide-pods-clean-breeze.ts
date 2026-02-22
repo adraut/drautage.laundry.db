@@ -3,9 +3,9 @@ import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
 
 const ingredients: Ingredient[] = [
-  Ingredient.MEALAS,
-  Ingredient.MEAC12_15AlkylEtherSulfate,
+  Ingredient.MEAC10_16Alkylbenzenesulfonate,
   Ingredient.PropyleneGlycol,
+  Ingredient.MEALaurethSulfate,
   Ingredient.Water,
   Ingredient.MEAC12_18FattyAcidsSalt,
   Ingredient.Glycerin,
@@ -13,35 +13,32 @@ const ingredients: Ingredient[] = [
   Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.PEG136PolyvinylAlcohol,
   Ingredient.MEACitrate,
-  Ingredient.PentasodiumPentetate,
+  Ingredient.TetrasodiumGlutamateDiacetate,
+  Ingredient.Fragrance,
   Ingredient.SodiumBisulfite,
+  Ingredient.Subtilisin,
   Ingredient.MethylDiTButylHydroxyhydrocinnamate,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
   Ingredient.HydrogenatedCastorOil,
-  Ingredient.CalciumFormate,
-  Ingredient.PhenylpropylEthylMethicone,
-  Ingredient.Simethicone,
-  Ingredient.Trimethylsiloxysilicate,
-  Ingredient.Subtilisin,
-  Ingredient.Amylase,
-  Ingredient.Mannanase,
   Ingredient.StyreneAcrylatesCopolymer,
-  Ingredient.DenatoniumBenzoate,
-  Ingredient.PolyvinylAlcoholPolymer,
+  Ingredient.Amylase,
   Ingredient.PolyoxyalkyleneSubstitutedChromophoreViolet,
+  Ingredient.Mannanase,
   Ingredient.PolyoxyalkyleneSubstitutedChromophoreCyan,
   Ingredient.PolyoxyalkyleneSubstitutedChromophoreYellow,
-  Ingredient.Fragrance,
+  Ingredient.Zeolite,
+  Ingredient.DenatoniumBenzoate,
+  Ingredient.PolyvinylAlcoholPolymer,
 ];
 
-const TideHygienicCleanHeavyDuty10xSpringMeadow: DetergentProfile = new DetergentProfile(
-  'Hygienic Clean Heavy Duty 10X Power PODS Spring Meadow',
+const TidePodsCleanBreeze: DetergentProfile = new DetergentProfile(
+  'PODS Clean Breeze',
   'Tide',
   DetergentType.Pod,
   ingredients,
   new Date('2026-02-22'),
 );
-TideHygienicCleanHeavyDuty10xSpringMeadow.countryOfOrigin = 'USA';
-TideHygienicCleanHeavyDuty10xSpringMeadow.countriesAvailable = ['USA'];
+TidePodsCleanBreeze.countryOfOrigin = 'USA';
+TidePodsCleanBreeze.countriesAvailable = ['USA'];
 
-export default TideHygienicCleanHeavyDuty10xSpringMeadow;
+export default TidePodsCleanBreeze;
