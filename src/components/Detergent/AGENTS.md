@@ -56,7 +56,7 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 
 - Open a **draft PR**.
 - Do **not** modify `package-lock.json` — adding a detergent profile requires no dependency changes.
-- Use the PR template and fill in:
+- Use the .github/PULL_REQUEST_TEMPLATE/detergent.md PR template (no default template) and fill in:
   - `Closes #<issue_number>` to link and auto-close the issue.
   - Source link(s) with date accessed and region, or note if using ingredient list from issue.
   - List of unknown/ambiguous ingredients.
