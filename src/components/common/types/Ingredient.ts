@@ -80,6 +80,7 @@ export enum Ingredient {
   SodiumMEAC12_18FattyAcidsSalt = 'Sodium and MEA Salts of C12-18 Fatty Acids',
   SodiumMEACitrate = 'Sodium and MEA citrate',
   SodiumMEALaurethSulfate = 'Sodium and MEA Laureth Sulfate',
+  SodiumMEALaurylSulfate = 'Sodium and MEA Lauryl Sulfate',
   SodiumMetasilicate = 'Sodium Metasilicate',
   SodiumPercarbonate = 'Sodium Percarbonate',
   SodiumPolyacrylate = 'Sodium Polyacrylate',
