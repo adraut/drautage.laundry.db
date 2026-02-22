@@ -1,6 +1,11 @@
 export enum Ingredient {
   Alcohol = 'Alcohol',
   /**
+   * Alkoxylated Amine Substituted Triaryl Methane is a triarylmethane-based polymeric dye
+   * used as a colorant in laundry detergents.
+   */
+  AlkoxylatedAmineSubstitutedTriarylMethane = 'Alkoxylated Amine Substituted Triaryl Methane',
+  /**
    * Amylase is an enzyme that breaks down starch into simpler sugars, helping to remove starchy stains.
    * Synonyms: Amylase Enzyme
    */
