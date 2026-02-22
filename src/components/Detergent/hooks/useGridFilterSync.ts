@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
 import { encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
 
-const FILTER_PARAM_NAME = 'filter';
+const FILTER_PARAM_NAME = 'f';
 const DEBOUNCE_DELAY = 500;
 
 /**
@@ -11,6 +11,7 @@ const DEBOUNCE_DELAY = 500;
  * - Reads filter from URL on mount, falls back to default if not present
  * - Debounces URL updates when filter changes (500ms)
  * - Enables shareable URLs with filter state
+ * - Uses repeating f parameters: ?f=hasLipase&f=brand:Tide
  *
  * @returns Object containing:
  *   - filter: Current filter state from URL or default
@@ -22,9 +23,9 @@ export function useGridFilterSync() {
 
   // Memoize the filter from URL to prevent unnecessary re-renders
   const filter = useMemo((): CompositeFilterDescriptor => {
-    const encoded = searchParams.get(FILTER_PARAM_NAME);
-    if (encoded) {
-      const decoded = decodeFilter(encoded);
+    const filterParams = searchParams.getAll(FILTER_PARAM_NAME);
+    if (filterParams && filterParams.length > 0) {
+      const decoded = decodeFilter(filterParams);
       if (decoded) {
         return decoded;
       }
@@ -43,8 +44,13 @@ export function useGridFilterSync() {
       // Set new timer
       debounceTimerRef.current = setTimeout(() => {
         const encoded = encodeFilter(newFilter);
-        if (encoded) {
-          setSearchParams({ [FILTER_PARAM_NAME]: encoded }, { replace: false });
+        if (encoded && encoded.length > 0) {
+          // Use URLSearchParams to properly handle repeating parameters
+          const params = new URLSearchParams();
+          encoded.forEach((param) => {
+            params.append(FILTER_PARAM_NAME, param);
+          });
+          setSearchParams(params, { replace: false });
         }
         debounceTimerRef.current = null;
       }, DEBOUNCE_DELAY);

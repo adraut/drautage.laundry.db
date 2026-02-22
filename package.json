@@ -8,25 +8,25 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "rsbuild start --mode=development",
-    "start:prod": "rsbuild start --mode=production",
     "build:prod": "rsbuild build --mode=production",
     "build": "rsbuild build --mode=development",
     "format": "npx oxfmt --check",
     "format:fix": "npx oxfmt",
     "lint": "npx oxlint",
     "lint:fix": "npx oxlint --fix",
+    "start": "rsbuild start --mode=development",
+    "start:prod": "rsbuild start --mode=production",
     "type-check": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "checks": "npm run lint && npm run type-check && npm run test && npm run format"
   },
   "dependencies": {
     "@progress/kendo-file-saver": "^1.1.2",
     "@progress/kendo-react-grid": "^14.2.0",
     "@progress/kendo-theme-default": "^13.0.1",
     "i18n-iso-countries": "^7.14.0",
-    "lz-string": "^1.5.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.0"
