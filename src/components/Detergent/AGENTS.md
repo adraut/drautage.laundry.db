@@ -28,7 +28,7 @@ These instructions apply to detergent profiles under [src/components/Detergent](
    - `name` and `brand` as recognized by consumers.
    - `type` using `DetergentType`.
    - `ingredients` array using `Ingredient` enum values.
-3. Export the profile in [data/profiles/index.ts](data/profiles/index.ts).
+3. Export the profile in [data/profiles/index.ts](data/profiles/index.ts).  Profiles should be exported in alphabetical order.
 4. Populate optional fields when available:
    - `countryOfOrigin`
    - `countriesAvailable`
