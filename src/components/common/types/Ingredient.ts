@@ -57,8 +57,8 @@ export enum Ingredient {
   Mannanase = 'Mannanase',
   MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate',
   /**
-   * MEA C12-15 Alkyl Ether Sulfate is an anionic surfactant used as a primary cleaning agent
-   * in laundry detergents. It is the monoethanolamine salt of a C12-15 alkyl ether sulfate.
+   * MEA C12-15 Alkyl Ether Sulfate is an anionic surfactant used in laundry detergents to
+   * help remove soils and stains by lowering surface tension. It is the monoethanolamine salt of a C12-15 alkyl ether sulfate.
    */
   MEAC12_15AlkylEtherSulfate = 'MEA C12-15 Alkyl Ether Sulfate',
   MEAC12_18FattyAcidsSalt = 'MEA Salts of C12-18 Fatty Acids',
@@ -71,8 +71,9 @@ export enum Ingredient {
   MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate
   MEADedecylbenzenesulfonate = 'MEA-Dodecylbenzenesulfonate',
   /**
-   * MEA-LAS is the monoethanolamine salt of Linear Alkylbenzene Sulfonate (LAS),
-   * a widely used anionic surfactant in laundry detergents.
+   * MEA-LAS (Monoethanolamine Linear Alkylbenzene Sulfonate) is an anionic surfactant used as
+   * the primary cleaning agent in laundry detergents to remove soils and stains.
+   * It is the monoethanolamine salt of Linear Alkylbenzene Sulfonate (LAS)
    */
   MEALAS = 'MEA-LAS',
   MEALaurethSulfate = 'MEA Laureth Sulfate',
