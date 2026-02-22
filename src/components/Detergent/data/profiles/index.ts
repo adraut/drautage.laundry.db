@@ -2,6 +2,7 @@ export { default as AllFreeClear } from './all-free-clear';
 export { default as ArielOriginal } from './ariel-original';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
+export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
 export { default as TideCleanGentle } from './tide-clean-gentle';
 export { default as TideFreeGentle } from './tide-free-gentle';
 export { default as TideFreeGentleOdorRefresh } from './tide-free-gentle-odor-refresh';

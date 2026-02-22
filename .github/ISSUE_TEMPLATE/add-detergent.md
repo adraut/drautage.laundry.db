@@ -26,9 +26,9 @@ assignees: ''
 - Date accessed:
 - Region:
 
-## Ingredient list (optional)
+## Ingredient list (optional but recommended)
 
-If you have direct access to the ingredient list and sources are not accessible, provide it here (assumed authoritative):
+Providing the ingredient list is strongly recommended, especially for SmartLabel URLs (which are JavaScript-rendered and may be inaccessible to automated agents). If you have access to the ingredient list, paste it here (assumed authoritative):
 
 ```
 [Paste ingredients here, one per line]
