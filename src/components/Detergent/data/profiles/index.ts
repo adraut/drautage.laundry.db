@@ -17,6 +17,7 @@ export { default as TideUltraOxiPowerPodsWithOdorEliminators } from './tide-ultr
 export { default as TidePods3in1Original } from './tide-pods-3in1-original';
 export { default as TidePodsCleanBreeze } from './tide-pods-clean-breeze';
 export { default as TidePodsSpringMeadow } from './tide-pods-spring-meadow';
+export { default as TidePodsUltraOxi } from './tide-pods-ultra-oxi';
 export { default as TideSimplyAllInOneBerryBlossom } from './tide-simply-all-in-one-berry-blossom';
 export { default as TideSimplyAllInOneDaybreakFresh } from './tide-simply-all-in-one-daybreak-fresh';
 export { default as TideSimplyAllInOneRefreshingBreeze } from './tide-simply-all-in-one-refreshing-breeze';
