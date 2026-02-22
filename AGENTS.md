@@ -23,6 +23,7 @@ Before submitting:
 - [ ] Profile file created in [src/components/Detergent/data/profiles](src/components/Detergent/data/profiles)
 - [ ] Profile exported in [src/components/Detergent/data/profiles/index.ts](src/components/Detergent/data/profiles/index.ts)
 - [ ] New ingredients added to [src/components/common/types/Ingredient.ts](src/components/common/types/Ingredient.ts) with categorization
+- [ ] `package-lock.json` is **not** modified (no dependency changes should occur)
 - [ ] PR is in **draft** state
 - [ ] PR description includes:
   - `Closes #<issue_number>` to auto-link and close the issue
