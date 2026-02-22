@@ -56,6 +56,11 @@ export enum Ingredient {
    */
   Mannanase = 'Mannanase',
   MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate',
+  /**
+   * MEA C12-15 Alkyl Ether Sulfate is an anionic surfactant used in laundry detergents to
+   * help remove soils and stains by lowering surface tension. It is the monoethanolamine salt of a C12-15 alkyl ether sulfate.
+   */
+  MEAC12_15AlkylEtherSulfate = 'MEA C12-15 Alkyl Ether Sulfate',
   MEAC12_18FattyAcidsSalt = 'MEA Salts of C12-18 Fatty Acids',
   /**
    * MEA-citrate is a common ingredient in laundry detergents that is used as a chelating agent and a pH adjuster.
@@ -65,6 +70,12 @@ export enum Ingredient {
    */
   MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate
   MEADedecylbenzenesulfonate = 'MEA-Dodecylbenzenesulfonate',
+  /**
+   * MEA-LAS (Monoethanolamine Linear Alkylbenzene Sulfonate) is an anionic surfactant used as
+   * the primary cleaning agent in laundry detergents to remove soils and stains.
+   * It is the monoethanolamine salt of Linear Alkylbenzene Sulfonate (LAS)
+   */
+  MEALAS = 'MEA-LAS',
   MEALaurethSulfate = 'MEA Laureth Sulfate',
   /**
    * Methoxypolyoxymethylene Melamine is a polymer used in laundry detergents for fragrance
@@ -94,7 +105,18 @@ export enum Ingredient {
   PolyoxyalkyleneSubstitutedChromophoreCyan = 'Polyoxyalkylene Substituted Chromophore (Cyan)',
   PolyoxyalkyleneSubstitutedChromophoreViolet = 'Polyoxyalkylene Substituted Chromophore (Violet)',
   PolyoxyalkyleneSubstitutedChromophoreYellow = 'Polyoxyalkylene Substituted Chromophore (Yellow)',
+  /**
+   * Polyquaternium-10 is a cationic conditioning polymer used in laundry detergents (particularly
+   * those with fabric softener boosters) to provide antistatic properties and improve fabric feel.
+   */
+  Polyquaternium10 = 'Polyquaternium-10',
   PolyvinylAlcoholPolymer = 'Polyvinyl Alcohol Polymer',
+  /**
+   * PPG (Polypropylene Glycol) is a synthetic polymer used as a solvent and humectant in laundry
+   * detergents. It helps dissolve other ingredients, stabilize the formula, and can function as
+   * a mild defoamer.
+   */
+  PPG = 'PPG',
   PropyleneGlycol = 'Propylene Glycol',
   /**
    * Propoxylated Ethoxylated Amine is a nonionic surfactant used in laundry detergents to

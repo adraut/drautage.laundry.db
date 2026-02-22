@@ -34,14 +34,14 @@ const ingredients: Ingredient[] = [
   Ingredient.Fragrance,
 ];
 
-const TideHygienicCleanHeavyDuty10xSpringMeadow: DetergentProfile = new DetergentProfile(
-  'Hygienic Clean Heavy Duty 10X Power PODS Spring Meadow',
+const TideHygienicCleanHeavyDuty10xPowerPodsOriginal: DetergentProfile = new DetergentProfile(
+  'Hygienic Clean Heavy Duty 10X Power PODS Original',
   'Tide',
   DetergentType.Pod,
   ingredients,
-  new Date('2026-02-22'),
+  new Date('2026-02-26'),
 );
-TideHygienicCleanHeavyDuty10xSpringMeadow.countryOfOrigin = 'USA';
-TideHygienicCleanHeavyDuty10xSpringMeadow.countriesAvailable = ['USA'];
+TideHygienicCleanHeavyDuty10xPowerPodsOriginal.countryOfOrigin = 'USA';
+TideHygienicCleanHeavyDuty10xPowerPodsOriginal.countriesAvailable = ['USA'];
 
-export default TideHygienicCleanHeavyDuty10xSpringMeadow;
+export default TideHygienicCleanHeavyDuty10xPowerPodsOriginal;
