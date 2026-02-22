@@ -8,8 +8,9 @@ When an issue is opened with a product request (brand + product name), agents sh
 
 1. Read the detailed instructions in the relevant folder.
 2. Fetch ingredient information from the authoritative source(s) provided in the issue, or use the ingredient list if sources are inaccessible.
-3. Create a draft PR with all changes. Ingredient and product additions should not change any dependencies. Do not commit package-lock.json changes or any other project configuration file like it.
-4. Include source links, date accessed, region (or note if using issue ingredient list), and list any unknowns/ambiguities.
+3. **Never assume a spelling variation in an ingredient name is a typo.** Treat the name as given; only map to an existing enum entry if it is a confirmed synonym. A **synonym** is an alternate name for the exact same substance — a more specific ingredient that belongs to a broader group is **not** a synonym and must be added as a new ingredient.
+4. Create a draft PR with all changes. Ingredient and product additions should not change any dependencies. Do not commit package-lock.json changes or any other project configuration file like it.
+5. Include source links, date accessed, region (or note if using issue ingredient list), and list any unknowns/ambiguities.
 
 ## Folder-specific instructions
 

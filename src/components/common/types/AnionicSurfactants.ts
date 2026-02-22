@@ -5,6 +5,7 @@ const AnionicSurfactants: Set<Ingredient> = new Set();
 AnionicSurfactants.add(Ingredient.C12_18FattyAcidsSodiumSalt);
 AnionicSurfactants.add(Ingredient.MEAC10_16Alkylbenzenesulfonate);
 AnionicSurfactants.add(Ingredient.MEAC12_18FattyAcidsSalt);
+AnionicSurfactants.add(Ingredient.MEADedecylbenzenesulfonate);
 AnionicSurfactants.add(Ingredient.MEALaurethSulfate);
 AnionicSurfactants.add(Ingredient.SodiumC10_16Alkylbenzenesulfonate);
 AnionicSurfactants.add(Ingredient.SodiumLaurethEtherSulfate);

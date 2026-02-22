@@ -20,12 +20,23 @@ export enum Ingredient {
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
   DenatoniumBenzoate = 'Denatonium Benzoate',
   Diethylenetriamine = 'Diethylenetriamine',
+  /**
+   * Diethylene Glycol is a solvent and humectant used in laundry detergents to help dissolve
+   * other ingredients, improve product stability, and regulate viscosity.
+   */
+  DiethyleneGlycol = 'Diethylene Glycol',
   Dimethicone = 'Dimethicone',
   DisodiumDistyrylbiphenylDisulfonate = 'Disodium Distyrylbiphenyl Disulfonate',
   DNase = 'DNase',
   Ethanol = 'Ethanol',
   Ethanolamine = 'Ethanolamine',
   FluorescentBrightener71 = 'Fluorescent Brightener 71',
+  /**
+  Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.
+  It is often used as a generic term for any ingredient that is added to a product to provide a scent.
+  In some cases, it may be used to refer to a specific fragrance ingredient, but in most cases, it is used as a general term for any fragrance ingredient.
+  Synonyms: Long Lasting Fragrance
+  **/
   Fragrance = 'Fragrance',
   Glycerin = 'Glycerin',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
@@ -37,8 +48,20 @@ export enum Ingredient {
   Mannanase = 'Mannanase',
   MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate',
   MEAC12_18FattyAcidsSalt = 'MEA Salts of C12-18 Fatty Acids',
-  MEACitrate = 'MEA-citrate',
+  /**
+   * MEA-citrate is a common ingredient in laundry detergents that is used as a chelating agent and a pH adjuster.
+   * It is a combination of Monoethanolamine (MEA) and citric acid, which helps to improve the performance of the detergent by binding to metal ions and preventing them from interfering with the cleaning process.
+   * MEA-citrate can also help to soften water and improve the effectiveness of the detergent.
+   * Synonyms: Ethanolamine Citrate
+   */
+  MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate
+  MEADedecylbenzenesulfonate = 'MEA-Dodecylbenzenesulfonate',
   MEALaurethSulfate = 'MEA Laureth Sulfate',
+  /**
+   * Methoxypolyoxymethylene Melamine is a polymer used in laundry detergents for fragrance
+   * encapsulation, helping to release scent slowly during and after washing.
+   */
+  MethoxypolyoxymethyleneMelamine = 'Methoxypolyoxymethylene Melamine',
   MethylDiTButylHydroxyhydrocinnamate = 'Methyl di-t-butyl hydroxyhydrocinnamate',
   OrganosiliconeCopolymer = 'Organosilicone copolymer',
   PectateLyase = 'Pectate Lyase',
@@ -50,12 +73,21 @@ export enum Ingredient {
   PigmentBlue15 = 'Pigment Blue 15',
   PigmentRed5 = 'Pigment Red 5',
   PolyethyleneimineAlkoxylated = 'Polyethyleneimine Alkoxylated',
+  /**
+   * This is a specific type of Polyethyleneimine Alkoxylated.
+   */
+  PolyethlyleneImineEthoxylate = 'Polyethylene Imine Ethoxylate',
   PolyoxyalkyleneSubstitutedChromophoreBlue = 'Polyoxyalkylene Substituted Chromophore (Blue)',
   PolyoxyalkyleneSubstitutedChromophoreCyan = 'Polyoxyalkylene Substituted Chromophore (Cyan)',
   PolyoxyalkyleneSubstitutedChromophoreViolet = 'Polyoxyalkylene Substituted Chromophore (Violet)',
   PolyoxyalkyleneSubstitutedChromophoreYellow = 'Polyoxyalkylene Substituted Chromophore (Yellow)',
   PolyvinylAlcoholPolymer = 'Polyvinyl Alcohol Polymer',
   PropyleneGlycol = 'Propylene Glycol',
+  /**
+   * Propoxylated Ethoxylated Amine is a nonionic surfactant used in laundry detergents to
+   * improve soil removal, enhance cleaning performance on oily stains, and help disperse soils.
+   */
+  PropoxylatedEthoxylatedAmine = 'Propoxylated Ethoxylated Amine',
   Protease = 'Protease',
   SaltCake = 'Salt Cake',
   Silica = 'Silica',
