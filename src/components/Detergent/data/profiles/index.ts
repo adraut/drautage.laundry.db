@@ -4,6 +4,7 @@ export { default as CountrySavePowderLaundryDetergent } from './country-save-pow
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
 export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
 export { default as TideCleanGentle } from './tide-clean-gentle';
+export { default as TideEvoFreeGentle } from './tide-evo-free-gentle';
 export { default as TideFreeGentle } from './tide-free-gentle';
 export { default as TideFreeGentleOdorRefresh } from './tide-free-gentle-odor-refresh';
 export { default as TideHygienicCleanHeavyDuty10x } from './tide-hygienic-clean-heavy-duty-10x';
