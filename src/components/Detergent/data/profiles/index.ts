@@ -16,6 +16,7 @@ export { default as TideOxiBoostPowerPods } from './tide-oxi-boost-power-pods';
 export { default as TideUltraOxiHeavyDutyPowerPods } from './tide-ultra-oxi-heavy-duty-power-pods';
 export { default as TideUltraOxiPowerPodsWithOdorEliminators } from './tide-ultra-oxi-power-pods-with-odor-eliminators';
 export { default as TidePods3in1Original } from './tide-pods-3in1-original';
+export { default as TidePodsFreeAndGentle } from './tide-pods-free-and-gentle';
 export { default as TidePodsFreeAndGentleOdorRefresh } from './tide-pods-free-and-gentle-odor-refresh';
 export { default as TidePods4in1PlusDownyAprilFresh } from './tide-pods-4in1-plus-downy-april-fresh';
 export { default as TidePodsCleanBreeze } from './tide-pods-clean-breeze';
