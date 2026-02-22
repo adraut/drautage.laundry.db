@@ -27,7 +27,7 @@ export enum Ingredient {
   Ethanol = 'Ethanol',
   Ethanolamine = 'Ethanolamine',
   FluorescentBrightener71 = 'Fluorescent Brightener 71',
-  Fragrance = 'Fragrance',
+  Fragrance = 'Fragrance', // also listed as: Long Lasting Fragrance, Long Lasting Frgrance
   Glycerin = 'Glycerin',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
   HydrophobicallyModifiedAcrylateStyreneCopolymer = 'Hydrophobically Modified Acrylate Styrene Copolymer',
@@ -35,11 +35,10 @@ export enum Ingredient {
   LaurylGlucoside = 'Lauryl Glucoside',
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
   Lipase = 'Lipase',
-  LongLastingFragrance = 'Long Lasting Fragrance',
   Mannanase = 'Mannanase',
-  MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate',
+  MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate', // also listed as: Mea-Dodecylbenzenesulfonate
   MEAC12_18FattyAcidsSalt = 'MEA Salts of C12-18 Fatty Acids',
-  MEACitrate = 'MEA-citrate',
+  MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate
   MEALaurethSulfate = 'MEA Laureth Sulfate',
   MethoxypolyoxymethyleneMelamine = 'Methoxypolyoxymethylene Melamine',
   MethylDiTButylHydroxyhydrocinnamate = 'Methyl di-t-butyl hydroxyhydrocinnamate',
@@ -52,7 +51,7 @@ export enum Ingredient {
   PhenylpropylEthylMethicone = 'Phenylpropyl Ethyl Methicone',
   PigmentBlue15 = 'Pigment Blue 15',
   PigmentRed5 = 'Pigment Red 5',
-  PolyethyleneimineAlkoxylated = 'Polyethyleneimine Alkoxylated',
+  PolyethyleneimineAlkoxylated = 'Polyethyleneimine Alkoxylated', // also listed as: Polyethylene Imine Ethoxylate, Polyethlylene Imine Ethoxylate
   PolyoxyalkyleneSubstitutedChromophoreBlue = 'Polyoxyalkylene Substituted Chromophore (Blue)',
   PolyoxyalkyleneSubstitutedChromophoreCyan = 'Polyoxyalkylene Substituted Chromophore (Cyan)',
   PolyoxyalkyleneSubstitutedChromophoreViolet = 'Polyoxyalkylene Substituted Chromophore (Violet)',

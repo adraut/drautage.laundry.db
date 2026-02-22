@@ -18,7 +18,6 @@ const ingredients: Ingredient[] = [
   Ingredient.MEAC10_16Alkylbenzenesulfonate,
   Ingredient.Fragrance,
   Ingredient.SodiumCitrate,
-  Ingredient.LongLastingFragrance,
   Ingredient.PentasodiumPentetate,
   Ingredient.Ethanolamine,
   Ingredient.FluorescentBrightener71,

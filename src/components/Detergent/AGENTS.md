@@ -37,6 +37,9 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 ## Ingredients rules
 
 - Use ingredients exactly as listed in the authoritative source.
+- **Never assume a spelling variation in an ingredient name is a typo.** Treat the name as given; only map it to an existing enum entry if it is a confirmed synonym.
+- If an ingredient from the source has a confirmed synonym in the enum, map it to that enum entry and add or update a comment on the enum entry with the synonym (e.g., `Fragrance = 'Fragrance', // also listed as: Long Lasting Fragrance`).
+- If an ingredient cannot be matched to an existing enum entry by exact name or confirmed synonym, add it as a new ingredient.
 - If an ingredient is missing from the enum, add it in [../common/types/Ingredient.ts](../common/types/Ingredient.ts) and categorize it in the proper set (see [../common/types/AGENTS.md](../common/types/AGENTS.md)).
 - Do **not** invent or infer specific ingredients.
 - Ambiguous surfactants (e.g., “C12‑15 alcohols ethoxylated”): use the generic ingredient enum only.

@@ -10,8 +10,10 @@ These instructions apply to [src/components/common/types](src/components/common/
 
 - Add new ingredients to [Ingredient.ts](Ingredient.ts) only when explicitly listed in authoritative sources.
 - Use a human‑readable enum value string that matches the source text.
+- **Never assume a spelling variation in an ingredient name is a typo.** Only map to an existing enum entry if it is a confirmed synonym.
+- If an ingredient has a confirmed synonym already in the enum, add or update a comment on the enum entry listing the synonym (e.g., `Fragrance = 'Fragrance', // also listed as: Long Lasting Fragrance`).
 - Do **not** add placeholder/unknown ingredients.
-- Do keep ingredients in alphbetical order.
+- Do keep ingredients in alphabetical order.
 
 ## Category sets
 
