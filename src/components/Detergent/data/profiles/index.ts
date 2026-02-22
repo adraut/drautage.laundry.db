@@ -18,6 +18,7 @@ export { default as TideSimplyAllInOneRefreshingBreeze } from './tide-simply-all
 export { default as TideSimplyCleanFreshLiquid } from './tide-simply-clean-fresh-liquid';
 export { default as TideSpringMeadowLiquid } from './tide-spring-meadow-liquid';
 export { default as TideUltraOxiLiquid } from './tide-ultra-oxi-liquid';
+export { default as TideUltraOxiWithOdorEliminatorsLiquid } from './tide-ultra-oxi-with-odor-eliminators-liquid';
 export { default as TideUltraOxiHeavyDutyLiquid } from './tide-ultra-oxi-heavy-duty-liquid';
 export { default as TideUltraOxiBoostHeLiquid } from './tide-ultra-oxi-boost-he-liquid';
 export { default as TidePlusATouchOfDownyLiquid } from './tide-plus-a-touch-of-downy-liquid';
