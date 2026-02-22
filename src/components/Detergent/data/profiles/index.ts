@@ -14,6 +14,7 @@ export { default as TidePods3in1Original } from './tide-pods-3in1-original';
 export { default as TidePodsSpringMeadow } from './tide-pods-spring-meadow';
 export { default as TideSimplyCleanFreshLiquid } from './tide-simply-clean-fresh-liquid';
 export { default as TideUltraOxiLiquid } from './tide-ultra-oxi-liquid';
+export { default as TideUltraOxiHeavyDutyLiquid } from './tide-ultra-oxi-heavy-duty-liquid';
 export { default as TidePlusATouchOfDownyPowder } from './tide-plus-a-touch-of-downy-powder';
 export { default as TidePlusBleachPowder } from './tide-plus-bleach-powder';
 export { default as TideUltraOxiPowder } from './tide-ultra-oxi-powder';
