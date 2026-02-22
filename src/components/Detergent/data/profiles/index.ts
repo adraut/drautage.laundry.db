@@ -26,6 +26,7 @@ export { default as TideUltraOxiLiquid } from './tide-ultra-oxi-liquid';
 export { default as TideUltraOxiWithOdorEliminatorsLiquid } from './tide-ultra-oxi-with-odor-eliminators-liquid';
 export { default as TideUltraOxiHeavyDutyLiquid } from './tide-ultra-oxi-heavy-duty-liquid';
 export { default as TideUltraOxiBoostHeLiquid } from './tide-ultra-oxi-boost-he-liquid';
+export { default as TidePowerPodsFebrezeOdorEliminatorsSpringRenewal } from './tide-power-pods-febreze-odor-eliminators-spring-renewal';
 export { default as TidePlusATouchOfDownyLiquid } from './tide-plus-a-touch-of-downy-liquid';
 export { default as TidePlusATouchOfDownyPowder } from './tide-plus-a-touch-of-downy-powder';
 export { default as TidePlusBleachPowder } from './tide-plus-bleach-powder';
