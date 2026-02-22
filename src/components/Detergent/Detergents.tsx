@@ -23,6 +23,7 @@ const FILTER_FIELDS = [
     options: Object.values(DetergentType),
   },
   { field: 'hasOxygenBleach', title: 'Oxygen Bleach', type: 'boolean' as const },
+  { field: 'hasTAED', title: 'TAED', type: 'boolean' as const },
   { field: 'hasOpticalBrighteners', title: 'Optical Brighteners', type: 'boolean' as const },
   { field: 'hasAmylase', title: 'Amylase', type: 'boolean' as const },
   { field: 'hasCellulase', title: 'Cellulase', type: 'boolean' as const },
@@ -161,6 +162,7 @@ function Detergents() {
             <Column field="name" title="Product Name" sortable />
             <Column field="type" title="Type" sortable />
             <Column field="hasOxygenBleach" title="Oxygen Bleach" sortable />
+            <Column field="hasTAED" title="TAED" sortable />
             <Column field="hasOpticalBrighteners" title="Optical Brighteners" sortable />
             <Column field="hasAmylase" title="Amylase" sortable />
             <Column field="hasCellulase" title="Cellulase" sortable />

@@ -31,6 +31,7 @@ export class DetergentProfile {
   readonly hasProtease: boolean;
   readonly hasOpticalBrighteners: boolean;
   readonly hasOxygenBleach: boolean;
+  readonly hasTAED: boolean;
   readonly hasEnzymes: boolean;
   readonly hasAnionicSurfactants: boolean;
   readonly hasNonionicSurfactants: boolean;
@@ -58,6 +59,7 @@ export class DetergentProfile {
     this.hasProtease = ingredients.some((ing) => Proteases.has(ing));
     this.hasOpticalBrighteners = ingredients.some((ing) => OpticalBrighteners.has(ing));
     this.hasOxygenBleach = ingredients.some((ing) => OxygenBleaches.has(ing));
+    this.hasTAED = ingredients.includes(Ingredient.TAED);
     this.hasEnzymes = ingredients.some((ing) => Enzymes.has(ing));
     this.hasAnionicSurfactants = ingredients.some((ing) => AnionicSurfactants.has(ing));
     this.hasNonionicSurfactants = ingredients.some((ing) => NonionicSurfactants.has(ing));
