@@ -1,6 +1,7 @@
 export { default as AllFreeClear } from './all-free-clear';
 export { default as ArielOriginal } from './ariel-original';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
+export { default as GainAromaBoostOriginal } from './gain-aroma-boost-original';
 export { default as GainHappyHibiscusHula } from './gain-happy-hibiscus-hula';
 export { default as GainRelaxDewdropDream } from './gain-relax-dewdrop-dream';
 export { default as GainUltraIslandFreshPowder } from './gain-ultra-island-fresh-powder';
