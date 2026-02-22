@@ -1,5 +1,8 @@
 export enum Ingredient {
   Alcohol = 'Alcohol',
+  /**
+   * Synonyms: Amylase enzyme
+   **/
   Amylase = 'Amylase',
   AnionicModifiedPolyester = 'Anionic modified polyester',
   Bentonite = 'Bentonite',
@@ -32,11 +35,11 @@ export enum Ingredient {
   Ethanolamine = 'Ethanolamine',
   FluorescentBrightener71 = 'Fluorescent Brightener 71',
   /**
-  Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.
-  It is often used as a generic term for any ingredient that is added to a product to provide a scent.
-  In some cases, it may be used to refer to a specific fragrance ingredient, but in most cases, it is used as a general term for any fragrance ingredient.
-  Synonyms: Long Lasting Fragrance, Fragrances
-  **/
+   * Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.
+   * It is often used as a generic term for any ingredient that is added to a product to provide a scent.
+   * In some cases, it may be used to refer to a specific fragrance ingredient, but in most cases, it is used as a general term for any fragrance ingredient.
+   * Synonyms: Long Lasting Fragrance, Long Lasting Frgrance, Fragrances
+   **/
   Fragrance = 'Fragrance',
   Glycerin = 'Glycerin',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
@@ -45,6 +48,9 @@ export enum Ingredient {
   LaurylGlucoside = 'Lauryl Glucoside',
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
   Lipase = 'Lipase',
+  /**
+   * Synonyms: Mannanase enzyme
+   **/
   Mannanase = 'Mannanase',
   MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate',
   MEAC12_18FattyAcidsSalt = 'MEA Salts of C12-18 Fatty Acids',
@@ -72,6 +78,9 @@ export enum Ingredient {
   PhenylpropylEthylMethicone = 'Phenylpropyl Ethyl Methicone',
   PigmentBlue15 = 'Pigment Blue 15',
   PigmentRed5 = 'Pigment Red 5',
+  /**
+   * Synonyms: Polyethyleneimines Alkoxylated
+   **/
   PolyethyleneimineAlkoxylated = 'Polyethyleneimine Alkoxylated',
   /**
    * This is a specific type of Polyethyleneimine Alkoxylated.

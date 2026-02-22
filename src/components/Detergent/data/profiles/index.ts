@@ -29,6 +29,7 @@ export { default as TidePlusBleachPowder } from './tide-plus-bleach-powder';
 export { default as TidePlusFebrezeSportOdorDefenseLiquid } from './tide-plus-febreze-sport-odor-defense-liquid';
 export { default as TideUltraOxiPowder } from './tide-ultra-oxi-powder';
 export { default as TideUltraStainReleaseLiquid } from './tide-ultra-stain-release-liquid';
+export { default as TideZeroSoftLavender } from './tide-zero-soft-lavender';
 export { default as WholeFoods365SportFresh } from './whole-foods-365-sport-fresh';
 export { default as WholeFoods365UnscentedPowder } from './whole-foods-365-unscented-powder';
 export { default as WholeFoods365UnscentedConcentrated } from './whole-foods-365-unscented-concentrated';
