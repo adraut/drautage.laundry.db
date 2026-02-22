@@ -8,6 +8,7 @@ export { default as TideEvoFreeGentle } from './tide-evo-free-gentle';
 export { default as TideFreeGentle } from './tide-free-gentle';
 export { default as TideFreeGentleOdorRefresh } from './tide-free-gentle-odor-refresh';
 export { default as TideHygienicCleanHeavyDuty10x } from './tide-hygienic-clean-heavy-duty-10x';
+export { default as TideHygienicCleanHeavyDuty10xSpringMeadow } from './tide-hygienic-clean-heavy-duty-10x-spring-meadow';
 export { default as TideOriginalLiquid } from './tide-original-liquid';
 export { default as TideOriginalPowder } from './tide-original-powder';
 export { default as TidePods3in1Original } from './tide-pods-3in1-original';
