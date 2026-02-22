@@ -14,6 +14,7 @@ export { default as TidePodsSpringMeadow } from './tide-pods-spring-meadow';
 export { default as TideSimplyCleanFreshLiquid } from './tide-simply-clean-fresh-liquid';
 export { default as TideUltraOxiLiquid } from './tide-ultra-oxi-liquid';
 export { default as TidePlusATouchOfDownyPowder } from './tide-plus-a-touch-of-downy-powder';
+export { default as TidePlusBleachPowder } from './tide-plus-bleach-powder';
 export { default as TideUltraOxiPowder } from './tide-ultra-oxi-powder';
 export { default as WholeFoods365SportFresh } from './whole-foods-365-sport-fresh';
 export { default as WholeFoods365UnscentedPowder } from './whole-foods-365-unscented-powder';
