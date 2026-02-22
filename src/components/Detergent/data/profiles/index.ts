@@ -27,6 +27,7 @@ export { default as TidePlusATouchOfDownyLiquid } from './tide-plus-a-touch-of-d
 export { default as TidePlusATouchOfDownyPowder } from './tide-plus-a-touch-of-downy-powder';
 export { default as TidePlusBleachPowder } from './tide-plus-bleach-powder';
 export { default as TidePlusFebrezeSportOdorDefenseLiquid } from './tide-plus-febreze-sport-odor-defense-liquid';
+export { default as TidePlusFebrezeBotanicalRainLiquid } from './tide-plus-febreze-botanical-rain';
 export { default as TidePlusFebrezeFreshnessLiquid } from './tide-plus-febreze-freshness-liquid';
 export { default as TideUltraOxiPowder } from './tide-ultra-oxi-powder';
 export { default as TideUltraStainReleaseLiquid } from './tide-ultra-stain-release-liquid';
