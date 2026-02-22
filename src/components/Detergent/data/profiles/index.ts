@@ -16,6 +16,7 @@ export { default as TideSimplyAllInOneBerryBlossom } from './tide-simply-all-in-
 export { default as TideSimplyAllInOneDaybreakFresh } from './tide-simply-all-in-one-daybreak-fresh';
 export { default as TideSimplyAllInOneRefreshingBreeze } from './tide-simply-all-in-one-refreshing-breeze';
 export { default as TideSimplyCleanFreshLiquid } from './tide-simply-clean-fresh-liquid';
+export { default as TideSpringMeadowLiquid } from './tide-spring-meadow-liquid';
 export { default as TideUltraOxiLiquid } from './tide-ultra-oxi-liquid';
 export { default as TideUltraOxiHeavyDutyLiquid } from './tide-ultra-oxi-heavy-duty-liquid';
 export { default as TidePlusATouchOfDownyPowder } from './tide-plus-a-touch-of-downy-powder';
