@@ -102,7 +102,10 @@ describe('Detergents', () => {
       };
 
       const encoded = encodeFilter(testFilter);
-      const params = new URLSearchParams({ filter: encoded });
+      const params = new URLSearchParams();
+      encoded.forEach((param) => {
+        params.append('f', param);
+      });
       const testUrl = `http://localhost/?${params.toString()}`;
       window.history.pushState({}, '', testUrl);
 

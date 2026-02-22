@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useGridFilterSync } from '../hooks/useGridFilterSync';
 import { encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
-import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
+import { CompositeFilterDescriptor, FilterDescriptor } from '@progress/kendo-data-query';
 
 beforeEach(() => {
   // Reset URL and mocks before each test
@@ -42,8 +42,11 @@ describe('useGridFilterSync', () => {
 
       const encoded = encodeFilter(testFilter);
 
-      // Create a new URL with the filter param
-      const params = new URLSearchParams({ filter: encoded });
+      // Create a new URL with the filter params
+      const params = new URLSearchParams();
+      encoded.forEach((param) => {
+        params.append('f', param);
+      });
       const testUrl = `http://localhost/?${params.toString()}`;
       window.history.pushState({}, '', testUrl);
 
@@ -52,17 +55,8 @@ describe('useGridFilterSync', () => {
       expect(result.current.filter).toEqual(testFilter);
     });
 
-    it('should fall back to default filter on invalid URL param', () => {
-      const testUrl = 'http://localhost/?filter=INVALID_ENCODED_STRING';
-      window.history.pushState({}, '', testUrl);
-
-      const { result } = renderHookWithRouter(() => useGridFilterSync());
-
-      expect(result.current.filter).toEqual(getDefaultFilter());
-    });
-
-    it('should fall back to default filter on malformed URL param', () => {
-      const testUrl = 'http://localhost/?filter=';
+    it('should fall back to default filter when no f params present', () => {
+      const testUrl = 'http://localhost/?other=value';
       window.history.pushState({}, '', testUrl);
 
       const { result } = renderHookWithRouter(() => useGridFilterSync());
@@ -78,7 +72,7 @@ describe('useGridFilterSync', () => {
       const { result } = renderHookWithRouter(() => useGridFilterSync());
 
       const newFilter: CompositeFilterDescriptor = {
-        logic: 'or',
+        logic: 'and',
         filters: [{ field: 'hasAmylase', operator: 'eq', value: true }],
       };
 
@@ -96,11 +90,11 @@ describe('useGridFilterSync', () => {
 
       await waitFor(() => {
         const url = new URL(window.location.href);
-        const filterParam = url.searchParams.get('filter');
-        expect(filterParam).toBeTruthy();
+        const filterParams = url.searchParams.getAll('f');
+        expect(filterParams.length).toBeGreaterThan(0);
 
-        // Verify the URL param can be decoded back to our filter
-        const decodedFilter = decodeFilter(filterParam!);
+        // Verify the URL params can be decoded back to our filter
+        const decodedFilter = decodeFilter(filterParams);
         expect(decodedFilter).toEqual(newFilter);
       });
 
@@ -143,8 +137,8 @@ describe('useGridFilterSync', () => {
       // Should have encoded filter2, not filter1
       await waitFor(() => {
         const url = new URL(window.location.href);
-        const filterParam = url.searchParams.get('filter');
-        const decodedFilter = decodeFilter(filterParam!);
+        const filterParams = url.searchParams.getAll('f');
+        const decodedFilter = decodeFilter(filterParams);
         expect(decodedFilter).toEqual(filter2);
       });
 
@@ -169,12 +163,12 @@ describe('useGridFilterSync', () => {
         jest.advanceTimersByTime(500);
       });
 
-      // Should still update URL even with empty filters
+      // Empty filters are not encoded, so URL will be empty
       await waitFor(() => {
         const url = new URL(window.location.href);
-        const filterParam = url.searchParams.get('filter') as string;
-        const decodedFilter = decodeFilter(filterParam);
-        expect(decodedFilter).toEqual(invalidFilter);
+        const filterParams = url.searchParams.getAll('f');
+        // Empty filter array stays empty
+        expect(filterParams.length).toBe(0);
       });
 
       jest.useRealTimers();
@@ -242,19 +236,53 @@ describe('useGridFilterSync', () => {
       const encoded1 = encodeFilter(filter1);
       const encoded2 = encodeFilter(filter2);
 
-      expect(encoded1).not.toBe(encoded2);
+      expect(encoded1).not.toEqual(encoded2);
     });
 
-    it('should produce URL-safe encoded strings', () => {
+    it('should produce URL-safe encoded strings with repeating params', () => {
       const filter: CompositeFilterDescriptor = {
         logic: 'and',
-        filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
+        filters: [
+          { field: 'hasLipase', operator: 'eq', value: true },
+          { field: 'brand', operator: 'contains', value: 'Tide' },
+        ],
       };
 
       const encoded = encodeFilter(filter);
 
-      // Encoded URI component should only contain URL-safe characters
-      expect(encoded).toMatch(/^[A-Za-z0-9\-_.!~*'()+=]*$/);
+      // Should be an array with field names and field:value pairs
+      expect(Array.isArray(encoded)).toBe(true);
+      expect(encoded).toContain('hasLipase'); // Boolean true = just field name
+      expect(encoded).toContain('brand:Tide'); // Non-boolean = field:value
+    });
+
+    it('should auto-detect operators when decoding', () => {
+      // hasLipase is a boolean, so should get 'eq' operator
+      const booleanFilter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
+      };
+
+      const encoded = encodeFilter(booleanFilter);
+      const decoded = decodeFilter(encoded);
+
+      expect(decoded).toEqual(booleanFilter);
+      const firstFilter = decoded?.filters[0] as FilterDescriptor;
+      expect(firstFilter.operator).toBe('eq');
+    });
+
+    it('should use contains operator for text fields', () => {
+      const textFilter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'brand', operator: 'contains', value: 'Tide' }],
+      };
+
+      const encoded = encodeFilter(textFilter);
+      const decoded = decodeFilter(encoded);
+
+      expect(decoded).toEqual(textFilter);
+      const firstFilter = decoded?.filters[0] as FilterDescriptor;
+      expect(firstFilter.operator).toBe('contains');
     });
   });
 });
