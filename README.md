@@ -37,12 +37,18 @@ npm install
 
 ### Available Scripts
 
+- `npm install` - Install dependencies
 - `npm start` - Start development server on http://localhost:3000
-- `npm run build` - Build production bundle (minified)
-- `npm run build:dev` - Build development bundle
-- `npm run lint` - Run lint
+- `npm run build` - Build development bundle
+- `npm run build:prod` - Build production bundle (minified)
+- `npm run lint` - Run lint checks
 - `npm run lint:fix` - Run lint and auto-fix issues
+- `npm run format` - Check code formatting
+- `npm run format:fix` - Auto-fix code formatting
 - `npm run type-check` - Run TypeScript type checking
+- `npm test` - Run all tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:coverage` - Run tests with coverage report
 
 ## CI/CD
 
@@ -53,6 +59,7 @@ All pull requests must pass the following checks:
 - Lint validation
 - TypeScript type checking
 - Successful production build
+- Passing tests
 
 ### Deployment
 
@@ -67,26 +74,22 @@ The application includes a GitHub Actions workflow for deploying to Azure Static
 │   └── index.html        # HTML template
 ├── src/
 │   ├── components/       # Reusable components
-│   │   └── Navigation.tsx
+│   │   ├── Detergent/    # Detergent components, data, and types
+│   │   ├── common/       # Shared components and types
+│   │   ├── Booster/      # Booster components
+│   │   ├── Pretreater/   # Pretreater components
+│   │   ├── Glossary/     # Glossary component
+│   │   └── Navigation/   # Navigation component
 │   ├── pages/           # Page components
-│   │   ├── Home.tsx
-│   │   ├── Detergents.tsx
-│   │   ├── Boosters.tsx
-│   │   ├── Pretreaters.tsx
-│   │   ├── Glossary.tsx
-│   │   ├── CompareDetergents.tsx
-│   │   ├── CompareBoosters.tsx
-│   │   └── ComparePretreaters.tsx
 │   ├── App.tsx          # Main app component with routes
 │   ├── App.css          # Global styles
 │   └── index.tsx        # Application entry point
 ├── dist/                # Production build output (generated)
-├── eslint.config.js     # ESLint configuration
+├── rsbuild.config.ts    # Rsbuild configuration
 ├── tsconfig.json        # TypeScript configuration
-├── webpack.config.js    # Webpack configuration
 └── package.json         # Project dependencies and scripts
 ```
 
 ## License
 
-ISC
+AGPL-3.0

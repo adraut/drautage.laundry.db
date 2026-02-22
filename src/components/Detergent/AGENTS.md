@@ -19,6 +19,7 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 - Blog/social sources require cross‑reference with at least one authoritative source.
 - If unable to access sources due to network restrictions, use the ingredient list provided in the GitHub issue (treat as authoritative).
 - Record: source URL, date accessed, and region (if provided).
+- **Note:** SmartLabel pages (e.g., `smartlabel.pg.com`) are JavaScript-rendered and **cannot** be fetched by agents. Always fall back to the ingredient list provided in the issue.
 
 ## Add a new detergent profile
 
@@ -42,6 +43,9 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 - Enzyme lists that are generic: do **not** add specific enzyme ingredients; note “enzymes TBD”.
 - Unknown ingredients: do **not** add a placeholder enum; note unknowns in the PR.
 - Fragrance/dye: only add if explicitly listed in the ingredient source.
+- **SmartLabel “DL” suffix:** Ingredients suffixed with “DL” (e.g., `SubtilisinDL`, `Sodium BorateDL`) are SmartLabel notation meaning “Declared on Label”. Strip the suffix and treat the remainder as the ingredient name.
+- **SmartLabel “Enzyme” suffix:** Ingredients listed as “&lt;Name&gt; EnzymeDL” (e.g., `Amylase EnzymeDL`) should have the suffix stripped; treat the base name as the ingredient (e.g., `Amylase`).
+- **Plural vs. singular:** Source may list “Fragrances” (plural); map to the `Fragrance` enum value (singular).
 
 ## Tests
 
@@ -51,7 +55,8 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 ## Pull request requirements
 
 - Open a **draft PR**.
-- Use the PR template and fill in:
+- Do **not** modify `package-lock.json` — adding a detergent profile requires no dependency changes.
+- Use the .github/PULL_REQUEST_TEMPLATE/detergent.md PR template (no default template) and fill in:
   - `Closes #<issue_number>` to link and auto-close the issue.
   - Source link(s) with date accessed and region, or note if using ingredient list from issue.
   - List of unknown/ambiguous ingredients.
