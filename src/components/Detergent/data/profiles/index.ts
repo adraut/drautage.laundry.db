@@ -13,6 +13,7 @@ export { default as TideHygienicCleanHeavyDuty10xPowerPodsOriginal } from './tid
 export { default as TideOriginalLiquid } from './tide-original-liquid';
 export { default as TideOriginalPowder } from './tide-original-powder';
 export { default as TideOxiBoostPowerPods } from './tide-oxi-boost-power-pods';
+export { default as TideUltraOxiHeavyDutyPowerPods } from './tide-ultra-oxi-heavy-duty-power-pods';
 export { default as TideUltraOxiPowerPodsWithOdorEliminators } from './tide-ultra-oxi-power-pods-with-odor-eliminators';
 export { default as TidePods3in1Original } from './tide-pods-3in1-original';
 export { default as TidePodsCleanBreeze } from './tide-pods-clean-breeze';
