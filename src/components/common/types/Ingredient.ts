@@ -170,5 +170,10 @@ export enum Ingredient {
   Trimethylsiloxysilicate = 'Trimethylsiloxysilicate',
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
   Water = 'Water',
+  /**
+   * Zeolite is a naturally occurring or synthetic mineral used in laundry detergents as a water softener,
+   * binding calcium and magnesium ions to prevent them from interfering with cleaning.
+   * Synonyms: Sodium Silicoaluminate
+   */
   Zeolite = 'Zeolite',
 }
