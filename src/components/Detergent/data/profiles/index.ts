@@ -3,6 +3,7 @@ export { default as ArielOriginal } from './ariel-original';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
 export { default as GainUltraIslandFreshPowder } from './gain-ultra-island-fresh-powder';
 export { default as GainUltraLavenderPowder } from './gain-ultra-lavender-powder';
+export { default as GainUltraOriginalPowder } from './gain-ultra-original-powder';
 export { default as GainUltraMoonlightBreezePowder } from './gain-ultra-moonlight-breeze-powder';
 export { default as GainUltraWithFebrezeFreshnessHawaiianAloha } from './gain-ultra-with-febreze-freshness-hawaiian-aloha';
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
