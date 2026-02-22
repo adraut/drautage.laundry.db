@@ -9,6 +9,7 @@ export { default as TideFreeGentleOdorRefresh } from './tide-free-gentle-odor-re
 export { default as TideHygienicCleanHeavyDuty10x } from './tide-hygienic-clean-heavy-duty-10x';
 export { default as TideOriginalLiquid } from './tide-original-liquid';
 export { default as TidePods3in1Original } from './tide-pods-3in1-original';
+export { default as TideSimplyCleanFreshLiquid } from './tide-simply-clean-fresh-liquid';
 export { default as TideUltraOxiLiquid } from './tide-ultra-oxi-liquid';
 export { default as WholeFoods365SportFresh } from './whole-foods-365-sport-fresh';
 export { default as WholeFoods365UnscentedPowder } from './whole-foods-365-unscented-powder';
