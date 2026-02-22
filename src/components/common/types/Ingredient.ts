@@ -20,6 +20,11 @@ export enum Ingredient {
   CalciumFormate = 'Calcium formate',
   Cellulase = 'Cellulase',
   CelluloseGum = 'Cellulose Gum',
+  /**
+   * Chromophore substituted polyoxyalkylene is a polymeric dye used in laundry detergents
+   * to provide color and enhance whiteness perception without permanently staining fabrics.
+   */
+  ChromophoreSubstitutedPolyoxyalkylene = 'Chromophore substituted polyoxyalkylene',
   CitricAcid = 'Citric Acid',
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
   DenatoniumBenzoate = 'Denatonium Benzoate',
@@ -91,6 +96,10 @@ export enum Ingredient {
   PentasodiumPentetate = 'Pentasodium Pentetate',
   PhenylpropylEthylMethicone = 'Phenylpropyl Ethyl Methicone',
   PigmentBlue15 = 'Pigment Blue 15',
+  /**
+   * Pigment Green 7 is a synthetic phthalocyanine dye used as a colorant in laundry detergents.
+   */
+  PigmentGreen7 = 'Pigment Green 7',
   PigmentRed5 = 'Pigment Red 5',
   /**
    * Polyethyleneimine Alkoxylated is a polymer used as a soil release agent and dye transfer inhibitor in laundry detergents.
