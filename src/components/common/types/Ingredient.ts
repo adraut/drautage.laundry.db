@@ -20,6 +20,10 @@ export enum Ingredient {
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
   DenatoniumBenzoate = 'Denatonium Benzoate',
   Diethylenetriamine = 'Diethylenetriamine',
+  /**
+   * Diethylene Glycol is a solvent and humectant used in laundry detergents to help dissolve
+   * other ingredients, improve product stability, and regulate viscosity.
+   */
   DiethyleneGlycol = 'Diethylene Glycol',
   Dimethicone = 'Dimethicone',
   DisodiumDistyrylbiphenylDisulfonate = 'Disodium Distyrylbiphenyl Disulfonate',
@@ -53,6 +57,10 @@ export enum Ingredient {
   MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate
   MEADedecylbenzenesulfonate = 'MEA-Dodecylbenzenesulfonate',
   MEALaurethSulfate = 'MEA Laureth Sulfate',
+  /**
+   * Methoxypolyoxymethylene Melamine is a polymer used in laundry detergents for fragrance
+   * encapsulation, helping to release scent slowly during and after washing.
+   */
   MethoxypolyoxymethyleneMelamine = 'Methoxypolyoxymethylene Melamine',
   MethylDiTButylHydroxyhydrocinnamate = 'Methyl di-t-butyl hydroxyhydrocinnamate',
   OrganosiliconeCopolymer = 'Organosilicone copolymer',
@@ -75,6 +83,10 @@ export enum Ingredient {
   PolyoxyalkyleneSubstitutedChromophoreYellow = 'Polyoxyalkylene Substituted Chromophore (Yellow)',
   PolyvinylAlcoholPolymer = 'Polyvinyl Alcohol Polymer',
   PropyleneGlycol = 'Propylene Glycol',
+  /**
+   * Propoxylated Ethoxylated Amine is a nonionic surfactant used in laundry detergents to
+   * improve soil removal, enhance cleaning performance on oily stains, and help disperse soils.
+   */
   PropoxylatedEthoxylatedAmine = 'Propoxylated Ethoxylated Amine',
   Protease = 'Protease',
   SaltCake = 'Salt Cake',
