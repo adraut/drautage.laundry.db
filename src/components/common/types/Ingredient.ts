@@ -1,5 +1,9 @@
 export enum Ingredient {
   Alcohol = 'Alcohol',
+  /**
+   * Amylase is an enzyme that breaks down starch into simpler sugars, helping to remove starchy stains.
+   * Synonyms: Amylase Enzyme
+   */
   Amylase = 'Amylase',
   AnionicModifiedPolyester = 'Anionic modified polyester',
   Bentonite = 'Bentonite',
@@ -35,7 +39,7 @@ export enum Ingredient {
   Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.
   It is often used as a generic term for any ingredient that is added to a product to provide a scent.
   In some cases, it may be used to refer to a specific fragrance ingredient, but in most cases, it is used as a general term for any fragrance ingredient.
-  Synonyms: Long Lasting Fragrance
+  Synonyms: Long Lasting Fragrance, Fragrances
   **/
   Fragrance = 'Fragrance',
   Glycerin = 'Glycerin',
@@ -45,6 +49,11 @@ export enum Ingredient {
   LaurylGlucoside = 'Lauryl Glucoside',
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
   Lipase = 'Lipase',
+  /**
+   * Mannanase is an enzyme that breaks down mannans (polysaccharides), helping to remove food stains
+   * containing guar gum, locust bean gum, or similar thickeners.
+   * Synonyms: Mannanase Enzyme
+   */
   Mannanase = 'Mannanase',
   MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate',
   MEAC12_18FattyAcidsSalt = 'MEA Salts of C12-18 Fatty Acids',
@@ -72,6 +81,10 @@ export enum Ingredient {
   PhenylpropylEthylMethicone = 'Phenylpropyl Ethyl Methicone',
   PigmentBlue15 = 'Pigment Blue 15',
   PigmentRed5 = 'Pigment Red 5',
+  /**
+   * Polyethyleneimine Alkoxylated is a polymer used as a soil release agent and dye transfer inhibitor in laundry detergents.
+   * Synonyms: Polyethyleneimines Alkoxylated
+   */
   PolyethyleneimineAlkoxylated = 'Polyethyleneimine Alkoxylated',
   /**
    * This is a specific type of Polyethyleneimine Alkoxylated.
