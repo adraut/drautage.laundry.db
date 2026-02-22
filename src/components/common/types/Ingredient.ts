@@ -18,6 +18,11 @@ export enum Ingredient {
   C16_18FattyAcidsSodiumSalt = 'C16-18 fatty acids sodium salt',
   CalciumCarbonate = 'Calcium Carbonate',
   CalciumFormate = 'Calcium formate',
+  /**
+   * Cellulase is an enzyme that breaks down cellulose fibers, helping to remove cotton-based stains
+   * and restore fabric softness and color by removing surface fuzz (pilling).
+   * Synonyms: Cellulase Enzyme
+   */
   Cellulase = 'Cellulase',
   CelluloseGum = 'Cellulose Gum',
   /**
@@ -110,9 +115,19 @@ export enum Ingredient {
    * This is a specific type of Polyethyleneimine Alkoxylated.
    */
   PolyethlyleneImineEthoxylate = 'Polyethylene Imine Ethoxylate',
+  /**
+   * A polymeric dye used in laundry detergents to provide a blue hue and enhance whiteness
+   * perception without permanently staining fabrics.
+   * Synonyms: Polyoxyalkylene Substituted Chromophores (Blue)
+   */
   PolyoxyalkyleneSubstitutedChromophoreBlue = 'Polyoxyalkylene Substituted Chromophore (Blue)',
   PolyoxyalkyleneSubstitutedChromophoreCyan = 'Polyoxyalkylene Substituted Chromophore (Cyan)',
   PolyoxyalkyleneSubstitutedChromophoreViolet = 'Polyoxyalkylene Substituted Chromophore (Violet)',
+  /**
+   * A polymeric dye used in laundry detergents to provide a yellow hue and enhance color
+   * perception without permanently staining fabrics.
+   * Synonyms: Polyoxyalkylene Substituted Chromophores (Yellow)
+   */
   PolyoxyalkyleneSubstitutedChromophoreYellow = 'Polyoxyalkylene Substituted Chromophore (Yellow)',
   /**
    * Polyquaternium-10 is a cationic conditioning polymer used in laundry detergents (particularly
