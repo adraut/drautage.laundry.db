@@ -1,8 +1,9 @@
 export enum Ingredient {
   Alcohol = 'Alcohol',
   /**
-   * Synonyms: Amylase enzyme
-   **/
+   * Amylase is an enzyme that breaks down starch into simpler sugars, helping to remove starchy stains.
+   * Synonyms: Amylase Enzyme
+   */
   Amylase = 'Amylase',
   AnionicModifiedPolyester = 'Anionic modified polyester',
   Bentonite = 'Bentonite',
@@ -49,8 +50,10 @@ export enum Ingredient {
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
   Lipase = 'Lipase',
   /**
-   * Synonyms: Mannanase enzyme
-   **/
+   * Mannanase is an enzyme that breaks down mannans (polysaccharides), helping to remove food stains
+   * containing guar gum, locust bean gum, or similar thickeners.
+   * Synonyms: Mannanase Enzyme
+   */
   Mannanase = 'Mannanase',
   MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate',
   MEAC12_18FattyAcidsSalt = 'MEA Salts of C12-18 Fatty Acids',
@@ -79,8 +82,9 @@ export enum Ingredient {
   PigmentBlue15 = 'Pigment Blue 15',
   PigmentRed5 = 'Pigment Red 5',
   /**
+   * Polyethyleneimine Alkoxylated is a polymer used as a soil release agent and dye transfer inhibitor in laundry detergents.
    * Synonyms: Polyethyleneimines Alkoxylated
-   **/
+   */
   PolyethyleneimineAlkoxylated = 'Polyethyleneimine Alkoxylated',
   /**
    * This is a specific type of Polyethyleneimine Alkoxylated.
