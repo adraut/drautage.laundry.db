@@ -152,6 +152,16 @@ describe('DetergentProfile', () => {
         expect(profile.hasOxygenBleach).toBe(false);
       });
 
+      it('should detect hasTAED when TAED ingredient is present', () => {
+        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.TAED], new Date());
+        expect(profile.hasTAED).toBe(true);
+      });
+
+      it('should not detect hasTAED when TAED ingredient is absent', () => {
+        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        expect(profile.hasTAED).toBe(false);
+      });
+
       it('should not detect hasDyes when no dyes are present (Dyes set is empty)', () => {
         const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
         // Note: Dyes set is currently empty, so hasDyes will always be false
