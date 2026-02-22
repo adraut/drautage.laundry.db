@@ -2,6 +2,7 @@ import { Ingredient } from './Ingredient';
 
 const Dyes: Set<Ingredient> = new Set();
 
+Dyes.add(Ingredient.AlkoxylatedAmineSubstitutedTriarylMethane);
 Dyes.add(Ingredient.ChromophoreSubstitutedPolyoxyalkylene);
 Dyes.add(Ingredient.PigmentBlue15);
 Dyes.add(Ingredient.PigmentGreen7);
