@@ -35,7 +35,7 @@ export enum Ingredient {
   Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.
   It is often used as a generic term for any ingredient that is added to a product to provide a scent.
   In some cases, it may be used to refer to a specific fragrance ingredient, but in most cases, it is used as a general term for any fragrance ingredient.
-  Synonyms: Long Lasting Fragrance
+  Synonyms: Long Lasting Fragrance, Fragrances
   **/
   Fragrance = 'Fragrance',
   Glycerin = 'Glycerin',
