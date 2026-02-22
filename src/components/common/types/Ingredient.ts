@@ -36,11 +36,11 @@ export enum Ingredient {
   Ethanolamine = 'Ethanolamine',
   FluorescentBrightener71 = 'Fluorescent Brightener 71',
   /**
-  Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.
-  It is often used as a generic term for any ingredient that is added to a product to provide a scent.
-  In some cases, it may be used to refer to a specific fragrance ingredient, but in most cases, it is used as a general term for any fragrance ingredient.
-  Synonyms: Long Lasting Fragrance, Fragrances
-  **/
+   * Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.
+   * It is often used as a generic term for any ingredient that is added to a product to provide a scent.
+   * In some cases, it may be used to refer to a specific fragrance ingredient, but in most cases, it is used as a general term for any fragrance ingredient.
+   * Synonyms: Long Lasting Fragrance, Long Lasting Frgrance, Fragrances
+   **/
   Fragrance = 'Fragrance',
   Glycerin = 'Glycerin',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',

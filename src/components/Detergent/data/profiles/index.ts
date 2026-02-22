@@ -11,6 +11,7 @@ export { default as TideHygienicCleanHeavyDuty10x } from './tide-hygienic-clean-
 export { default as TideHygienicCleanHeavyDuty10xSpringMeadow } from './tide-hygienic-clean-heavy-duty-10x-spring-meadow';
 export { default as TideOriginalLiquid } from './tide-original-liquid';
 export { default as TideOriginalPowder } from './tide-original-powder';
+export { default as TideOxiBoostPowerPods } from './tide-oxi-boost-power-pods';
 export { default as TidePods3in1Original } from './tide-pods-3in1-original';
 export { default as TidePodsSpringMeadow } from './tide-pods-spring-meadow';
 export { default as TideSimplyAllInOneBerryBlossom } from './tide-simply-all-in-one-berry-blossom';
@@ -28,6 +29,8 @@ export { default as TidePlusBleachPowder } from './tide-plus-bleach-powder';
 export { default as TidePlusFebrezeSportOdorDefenseLiquid } from './tide-plus-febreze-sport-odor-defense-liquid';
 export { default as TidePlusFebrezeFreshnessLiquid } from './tide-plus-febreze-freshness-liquid';
 export { default as TideUltraOxiPowder } from './tide-ultra-oxi-powder';
+export { default as TideUltraStainReleaseLiquid } from './tide-ultra-stain-release-liquid';
+export { default as TideZeroSoftLavender } from './tide-zero-soft-lavender';
 export { default as WholeFoods365SportFresh } from './whole-foods-365-sport-fresh';
 export { default as WholeFoods365UnscentedPowder } from './whole-foods-365-unscented-powder';
 export { default as WholeFoods365UnscentedConcentrated } from './whole-foods-365-unscented-concentrated';
