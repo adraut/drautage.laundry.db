@@ -94,7 +94,17 @@ export enum Ingredient {
   PolyoxyalkyleneSubstitutedChromophoreCyan = 'Polyoxyalkylene Substituted Chromophore (Cyan)',
   PolyoxyalkyleneSubstitutedChromophoreViolet = 'Polyoxyalkylene Substituted Chromophore (Violet)',
   PolyoxyalkyleneSubstitutedChromophoreYellow = 'Polyoxyalkylene Substituted Chromophore (Yellow)',
+  /**
+   * Polyquaternium-10 is a cationic conditioning polymer used in laundry and fabric care products
+   * to provide softening and conditioning benefits to fabrics.
+   */
+  Polyquaternium10 = 'Polyquaternium-10',
   PolyvinylAlcoholPolymer = 'Polyvinyl Alcohol Polymer',
+  /**
+   * PPG (Polypropylene Glycol) is a solvent and humectant used in detergents to dissolve
+   * other ingredients, improve product stability, and regulate viscosity.
+   */
+  PPG = 'PPG',
   PropyleneGlycol = 'Propylene Glycol',
   /**
    * Propoxylated Ethoxylated Amine is a nonionic surfactant used in laundry detergents to
