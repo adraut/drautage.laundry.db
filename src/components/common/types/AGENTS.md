@@ -11,6 +11,7 @@ These instructions apply to [src/components/common/types](src/components/common/
 - Add new ingredients to [Ingredient.ts](Ingredient.ts) only when explicitly listed in authoritative sources.
 - Use a human‑readable enum value string that matches the source text.
 - Do **not** add placeholder/unknown ingredients.
+- Do keep ingredients in alphbetical order.
 
 ## Category sets
 
