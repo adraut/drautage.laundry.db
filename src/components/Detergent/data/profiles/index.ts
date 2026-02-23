@@ -4,6 +4,7 @@ export { default as CountrySavePowderLaundryDetergent } from './country-save-pow
 export { default as GainOdorDefenseSuperFresh } from './gain-odor-defense-super-fresh';
 export { default as GainAromaBoostMoonlightBreeze } from './gain-aroma-boost-moonlight-breeze';
 export { default as GainAromaBoostOriginal } from './gain-aroma-boost-original';
+export { default as GainAromaBoostSpringDaydream } from './gain-aroma-boost-spring-daydream';
 export { default as GainHappyHibiscusHula } from './gain-happy-hibiscus-hula';
 export { default as GainRelaxDewdropDream } from './gain-relax-dewdrop-dream';
 export { default as GainUltraIslandFreshPowder } from './gain-ultra-island-fresh-powder';
