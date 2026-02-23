@@ -2,5 +2,43 @@
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": ["/images/*.{png,jpg,gif,ico,svg}", "/*.{css,scss,js,txt}", "/static/*"]
-  }
+  },
+  "routes": [
+    {
+      "route": "/static/js/*.js",
+      "headers": {
+        "Cache-Control": "public, max-age=1209600, immutable"
+      }
+    },
+    {
+      "route": "/static/js/async/*.js",
+      "headers": {
+        "Cache-Control": "public, max-age=1209600, immutable"
+      }
+    },
+    {
+      "route": "/static/css/*.css",
+      "headers": {
+        "Cache-Control": "public, max-age=1209600, immutable"
+      }
+    },
+    {
+      "route": "/static/css/async/*.css",
+      "headers": {
+        "Cache-Control": "public, max-age=1209600, immutable"
+      }
+    },
+    {
+      "route": "/index.html",
+      "headers": {
+        "Cache-Control": "public, max-age=300, must-revalidate"
+      }
+    },
+    {
+      "route": "/favicon.ico",
+      "headers": {
+        "Cache-Control": "public, max-age=86400, must-revalidate"
+      }
+    }
+  ]
 }
