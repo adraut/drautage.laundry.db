@@ -2,6 +2,7 @@ export { default as AllFreeClear } from './all-free-clear';
 export { default as ArielOriginal } from './ariel-original';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
 export { default as GainOdorDefenseSuperFresh } from './gain-odor-defense-super-fresh';
+export { default as GainAromaBoostAppleMangoTangoLiquid } from './gain-aroma-boost-apple-mango-tango-liquid';
 export { default as GainAromaBoostColdWaterIslandFresh } from './gain-aroma-boost-cold-water-island-fresh';
 export { default as GainAromaBoostMoonlightBreeze } from './gain-aroma-boost-moonlight-breeze';
 export { default as GainAromaBoostOriginal } from './gain-aroma-boost-original';
