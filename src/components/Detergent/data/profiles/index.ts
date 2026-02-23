@@ -7,6 +7,7 @@ export { default as GainAromaBoostAppleMangoTangoLiquid } from './gain-aroma-boo
 export { default as GainAromaBoostColdWaterIslandFresh } from './gain-aroma-boost-cold-water-island-fresh';
 export { default as GainAromaBoostMoonlightBreeze } from './gain-aroma-boost-moonlight-breeze';
 export { default as GainAromaBoostOriginal } from './gain-aroma-boost-original';
+export { default as GainAromaBoostBlissfulBreeze } from './gain-aroma-boost-blissful-breeze';
 export { default as GainAromaBoostSpringDaydream } from './gain-aroma-boost-spring-daydream';
 export { default as GainHappyHibiscusHula } from './gain-happy-hibiscus-hula';
 export { default as GainRelaxDewdropDream } from './gain-relax-dewdrop-dream';

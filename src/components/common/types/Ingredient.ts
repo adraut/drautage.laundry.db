@@ -13,6 +13,11 @@ export enum Ingredient {
   AnionicModifiedPolyester = 'Anionic modified polyester',
   Bentonite = 'Bentonite',
   Benzisothiazolinone = 'Benzisothiazolinone',
+  /**
+   * Blend of Acid Blue 9 and Yellow 5 is a colorant mixture used in laundry detergents
+   * to provide a specific hue.
+   */
+  BlendOfAcidBlue9AndYellow5 = 'Blend of Acid Blue 9 and Yellow 5',
   C8_18FattyAcidsSodiumSalt = 'C8-18 Fatty Acids Sodium Salt',
   C10_16Alketh = 'C10-16 Alketh',
   C10_16AlkyldimethylamineOxide = 'C10-16 Alkyldimethylamine Oxide',
