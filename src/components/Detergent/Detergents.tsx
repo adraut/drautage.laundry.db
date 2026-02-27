@@ -147,7 +147,7 @@ function Detergents() {
           {/* Grid with filter row hidden */}
           <Grid
             data={sortedAndFilteredData}
-            style={{ minHeight: '75vh', minWidth: '95vw' }}
+            style={{ minWidth: '95vw' }}
             selectable={{ enabled: true, mode: 'single' }}
             filterable={false}
             editable={false}
