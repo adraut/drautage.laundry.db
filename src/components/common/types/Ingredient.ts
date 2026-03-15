@@ -18,6 +18,16 @@ export enum Ingredient {
    */
   AloeBarbadenisLeafPowder = 'Aloe Barbadensis Leaf Powder',
   /**
+   * alpha-Amylase is a specific subtype of amylase enzyme that breaks down starch by cleaving
+   * alpha-1,4-glycosidic bonds, helping to remove starchy stains.
+   */
+  AlphaAmylase = 'alpha-Amylase',
+  /**
+   * alpha-Cellulase is a specific subtype of cellulase enzyme that breaks down cellulose fibers,
+   * helping to remove cotton-based stains and restore fabric softness and color.
+   */
+  AlphaCellulase = 'alpha-Cellulase',
+  /**
    * Amylase is an enzyme that breaks down starch into simpler sugars, helping to remove starchy stains.
    * Synonyms: Amylase Enzyme, Amylase Enzyme Blend
    */
@@ -56,6 +66,12 @@ export enum Ingredient {
    */
   C12_13Pareth_2 = 'C12-13 Pareth-2',
   C12_14AlcoholsEthoxylated = 'C12-14 Alcohols Ethoxylated',
+  /**
+   * C12-15 Alcohols Ethoxylated is a nonionic surfactant made from C12-15 fatty alcohols
+   * reacted with ethylene oxide, used in laundry detergents to reduce surface tension and
+   * improve soil removal and wetting.
+   * Synonyms: C12-15 Alcohol Ethoxylate
+   */
   C12_15AlcoholsEthoxylated = 'C12-15 Alcohols Ethoxylated',
   C12_18FattyAcidsSodiumSalt = 'Sodium Salts of C12-18 Fatty Acids',
   C16_18FattyAcidsSodiumSalt = 'C16-18 fatty acids sodium salt',
@@ -94,6 +110,11 @@ export enum Ingredient {
   CitricAcid = 'Citric Acid',
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
   /**
+   * Coconut Fatty Acid is a mixture of fatty acids derived from coconut oil, used in laundry
+   * detergents as a soap precursor and surfactant.
+   */
+  CoconutFattyAcid = 'Coconut Fatty Acid',
+  /**
    * Colorants is a generic term for coloring agents used in laundry detergents to provide a
    * specific hue to the product. Used when a source lists only the generic term without specifying
    * individual colorant ingredients.
@@ -131,6 +152,11 @@ export enum Ingredient {
    */
   EssentialOil = 'Essential Oil',
   Ethanol = 'Ethanol',
+  /**
+   * Ethanolamine (monoethanolamine, MEA) is used in laundry detergents as a pH adjuster,
+   * alkalinity source, and surfactant co-builder.
+   * Synonyms: Monoethanolamine
+   */
   Ethanolamine = 'Ethanolamine',
   /**
    * Ethoxylated Alcohol is a generic nonionic surfactant term for a fatty alcohol reacted with
@@ -168,8 +194,14 @@ export enum Ingredient {
    * Glycerin (also known as glycerol) is a humectant and solvent used in laundry detergents
    * to help retain moisture and stabilize the formula.
    * Also listed on labels as: Glycerin (Organic)
+   * Synonyms: Glycerol
    */
   Glycerin = 'Glycerin',
+  /**
+   * Glycolipids are plant-derived biosurfactants consisting of a carbohydrate linked to a
+   * fatty acid, used in laundry detergents as nonionic surfactants and cleansing agents.
+   */
+  Glycolipids = 'Glycolipids',
   /**
    * Guar Gum is a natural polysaccharide derived from guar beans, used in laundry detergents
    * as a thickener and stabilizer.
@@ -238,6 +270,12 @@ export enum Ingredient {
    */
   LavandulaHybridaOil = 'Lavandula Hybrida Oil',
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
+  /**
+   * Linear Alkylbenzene Sulfonic Acid (LABSA) is an anionic surfactant and the free acid form
+   * of linear alkylbenzene sulfonate (LAS), used in laundry detergents as a primary cleaning
+   * agent. Distinct from its sodium salt (Sodium C10-16 Alkylbenzenesulfonate).
+   */
+  LinearAlkylbenzeneSulfonicAcid = 'Linear Alkylbenzene Sulfonic Acid',
   Lipase = 'Lipase',
   /**
    * Lonicera Japonica Flower Extract (Japanese Honeysuckle Flower Extract) is a plant-derived
@@ -245,6 +283,11 @@ export enum Ingredient {
    * Also listed on labels as: Lonicera Japonica (Organic Honeysuckle) Flower Extract
    */
   LoniceraJaponicaFlowerExtract = 'Lonicera Japonica Flower Extract',
+  /**
+   * Magnesium Chloride is an inorganic salt used in laundry detergents as a viscosity modifier
+   * and enzyme activator, helping to stabilize enzymes and adjust product consistency.
+   */
+  MagnesiumChloride = 'Magnesium Chloride',
   /**
    * Mannanase is an enzyme that breaks down mannans (polysaccharides), helping to remove food stains
    * containing guar gum, locust bean gum, or similar thickeners.
@@ -318,6 +361,14 @@ export enum Ingredient {
    * and prevent them from redepositing onto fabrics.
    */
   ModifiedAcrylicCopolymer = 'Modified Acrylic Copolymer',
+  /**
+   * Opacifier is a generic term for opacifying agents used in laundry detergents.
+   * Purpose: Primarily aesthetic — makes the detergent look more luxurious and consistent.
+   * Types: Styrene/Acrylates Copolymer is common, though newer options like biodegradable
+   * natural opacifiers (e.g., Syensqo Miracare® Biopacify) are emerging. Titanium dioxide
+   * is also used.
+   */
+  Opacifier = 'Opacifier',
   /**
    * Organic Soapberry Juice is a natural surfactant liquid derived from the soapberry fruit
    * (Sapindus Mukorossi), containing natural saponins that act as a plant-based cleansing agent
@@ -396,6 +447,12 @@ export enum Ingredient {
    */
   PolyethlyleneImineEthoxylate = 'Polyethylene Imine Ethoxylate',
   /**
+   * Polyethylenimine Polymer (PEI) is a non-alkoxylated polymer used in laundry detergents
+   * as a soil release agent and dye transfer inhibitor. Distinct from the alkoxylated form
+   * (Polyethyleneimine Alkoxylated).
+   */
+  PolyethyleniminePolymer = 'Polyethylenimine Polymer',
+  /**
    * A polymeric dye used in laundry detergents to provide a blue hue and enhance whiteness
    * perception without permanently staining fabrics.
    * Synonyms: Polyoxyalkylene Substituted Chromophores (Blue)
@@ -423,6 +480,12 @@ export enum Ingredient {
    * those with fabric softener boosters) to provide antistatic properties and improve fabric feel.
    */
   Polyquaternium10 = 'Polyquaternium-10',
+  /**
+   * Polysaccharides is a generic term for long-chain carbohydrate polymers (e.g. cellulose,
+   * starch, guar gum) used in laundry detergents as soil release agents, thickeners, or
+   * stabilizers.
+   */
+  Polysaccharides = 'Polysaccharides',
   /**
    * Polyvinyl Alcohol is a water-soluble synthetic polymer used in laundry sheet detergents
    * as the primary structural binder and film-forming agent that dissolves in water during washing.
@@ -479,6 +542,11 @@ export enum Ingredient {
    * Synonyms: Protease Enzyme, Protease Enzyme Blend
    */
   Protease = 'Protease',
+  /**
+   * Saccharomyces Ferment Filtrate is a yeast fermentation byproduct used in laundry detergents
+   * as a conditioning and bioactive agent, contributing to fabric care and formula stability.
+   */
+  SaccharomycesFermentFiltrate = 'Saccharomyces Ferment Filtrate',
   SaltCake = 'Salt Cake',
   /**
    * Saponins are naturally occurring plant-derived glycosides that function as nonionic surfactants
@@ -503,6 +571,11 @@ export enum Ingredient {
   SodiumChloride = 'Sodium Chloride',
   SodiumCitrate = 'Sodium Citrate',
   /**
+   * Sodium Cocoamphopropionate is an amphoteric surfactant derived from coconut oil, used in
+   * laundry detergents as a mild co-surfactant and foam booster.
+   */
+  SodiumCocoamphopropionate = 'Sodium Cocoamphopropionate',
+  /**
    * Sodium Cocoate is the sodium salt of coconut oil fatty acids, used as a surfactant and
    * cleansing agent in laundry detergents. It is a natural soap derived from coconut oil.
    */
@@ -524,7 +597,7 @@ export enum Ingredient {
   /**
    * Sodium Laureth Sulfate (SLES) is an anionic surfactant used in laundry detergents to
    * help remove soils and stains by lowering surface tension.
-   * Synonyms: Sodium Laureth Ether Sulfate
+   * Synonyms: Sodium Laureth Ether Sulfate, Sodium Lauryl Ether Sulfate
    */
   SodiumLaurethSulfate = 'Sodium Laureth Sulfate',
   SodiumLaurylSulfate = 'Sodium Lauryl Sulfate',
@@ -552,6 +625,11 @@ export enum Ingredient {
   SodiumMetaborate = 'Sodium Metaborate',
   SodiumMetasilicate = 'Sodium Metasilicate',
   /**
+   * Sodium Methyl 2-Sulphooctadecanoate is an anionic surfactant (alpha-sulfo fatty acid methyl
+   * ester, C18) derived from natural oils, used in laundry detergents as a primary cleansing agent.
+   */
+  SodiumMethyl2Sulphooctadecanoate = 'Sodium Methyl 2-Sulphooctadecanoate',
+  /**
    * Sodium Oleate is the sodium salt of oleic acid, used as a surfactant and
    * cleansing agent in laundry detergents. It is a natural soap derived from olive or other oils.
    */
@@ -563,6 +641,12 @@ export enum Ingredient {
    */
   SodiumPercarbonate = 'Sodium Percarbonate',
   SodiumPolyacrylate = 'Sodium Polyacrylate',
+  /**
+   * Sodium Polyitaconate is a polymer used in laundry detergents as an anti-redeposition and
+   * dispersing agent, helping to keep soils suspended in wash water and prevent them from
+   * redepositing onto fabrics.
+   */
+  SodiumPolyitaconate = 'Sodium Polyitaconate',
   SodiumSilicate = 'Sodium Silicate',
   SodiumSulfate = 'Sodium Sulfate',
   /**

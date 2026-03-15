@@ -8,6 +8,7 @@ AntiRedpositionAgents.add(Ingredient.Bentonite);
 AntiRedpositionAgents.add(Ingredient.CelluloseGum);
 AntiRedpositionAgents.add(Ingredient.HydrophobicallyModifiedAcrylateStyreneCopolymer);
 AntiRedpositionAgents.add(Ingredient.ModifiedAcrylicCopolymer);
+AntiRedpositionAgents.add(Ingredient.PolyethyleniminePolymer);
 AntiRedpositionAgents.add(Ingredient.SodiumAcrylicAcidMACopolymer);
 AntiRedpositionAgents.add(Ingredient.SodiumCarbonate);
 AntiRedpositionAgents.add(Ingredient.SodiumMaleateAcrylateCopolymer);
