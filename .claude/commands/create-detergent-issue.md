@@ -102,7 +102,7 @@ other P&G products list ingredients grouped by function rather than by concentra
   the printed category sequence (Cleaning Agents → Stabilizers/Process Aids → Water Softener →
   Enzymes → Cleaning Aids → Odor Removers → Solvents → Preservative → Colorants → Fragrances).
 - These labels often embed conditional phrases inside a category, e.g. `"Solvents: (ethanolamine;
-  alcohol; may contain: propylene glycol, sodium cumenesulfonate)"`. Apply the "may contain" rule
+alcohol; may contain: propylene glycol, sodium cumenesulfonate)"`. Apply the "may contain" rule
   above — include those trailing items in the list and note them as conditional.
 
 **OR alternatives:** Packaging sometimes lists `"ingredient A or ingredient B"` (or `"A and/or B"`).

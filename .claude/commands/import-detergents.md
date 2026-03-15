@@ -110,7 +110,7 @@ other P&G products list ingredients by function group rather than by concentrati
   Stabilizers/Process Aids → Water Softener → Enzymes → Cleaning Aids → Odor Removers →
   Solvents → Preservative → Colorants → Fragrances).
 - Conditional phrases are often embedded inside a category (e.g. `"Solvents: (ethanolamine;
-  alcohol; may contain: propylene glycol, sodium cumenesulfonate)"`). Apply the "may contain"
+alcohol; may contain: propylene glycol, sodium cumenesulfonate)"`). Apply the "may contain"
   rule above for those trailing items.
 
 **OR alternatives:** Packaging sometimes lists `"A or B"` or `"A and/or B"`.
@@ -180,6 +180,7 @@ row in the log:
 
 Repeat from step 2 for each subsequent `pending` row. Continue processing
 subsequent pairs without stopping unless:
+
 - User input is needed (ambiguity, unreadable text, unrecognized ingredient)
 - The user explicitly asks to pause
 
