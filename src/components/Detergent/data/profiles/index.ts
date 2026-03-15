@@ -1,5 +1,6 @@
 export { default as AllFreeClear } from './all-free-clear';
 export { default as ArielOriginal } from './ariel-original';
+export { default as ArielTouchOfDownyPowder } from './ariel-touch-of-downy-powder';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
 export { default as GainOdorDefenseSuperFresh } from './gain-odor-defense-super-fresh';
 export { default as GainAromaBoostLavender } from './gain-aroma-boost-lavender';
