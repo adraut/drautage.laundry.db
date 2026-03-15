@@ -249,6 +249,11 @@ export enum Ingredient {
    */
   Polyquaternium10 = 'Polyquaternium-10',
   /**
+   * Polyquaternium-7 is a cationic conditioning polymer used in laundry detergents with fabric
+   * softener as a conditioning and softening agent, helping to improve fabric feel and reduce static.
+   */
+  Polyquaternium7 = 'Polyquaternium-7',
+  /**
    * Polyvinyl Alcohol Film is the water-soluble film used to form the outer casing of
    * laundry pods and unit dose detergents, encapsulating the liquid or gel formula.
    */
