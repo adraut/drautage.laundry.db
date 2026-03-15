@@ -204,6 +204,11 @@ export enum Ingredient {
    */
   MEADedecylbenzenesulfonate = 'MEA-Dodecylbenzenesulfonate',
   /**
+   * MEA-Borate is the monoethanolamine salt of boric acid, used in laundry detergents
+   * as a pH buffer and booster to enhance cleaning performance.
+   */
+  MEABorate = 'MEA-Borate',
+  /**
    * MEA-LAS (Monoethanolamine Linear Alkylbenzene Sulfonate) is an anionic surfactant used as
    * the primary cleaning agent in laundry detergents to remove soils and stains.
    * It is the monoethanolamine salt of Linear Alkylbenzene Sulfonate (LAS)
@@ -215,6 +220,12 @@ export enum Ingredient {
    * encapsulation, helping to release scent slowly during and after washing.
    */
   MethoxypolyoxymethyleneMelamine = 'Methoxypolyoxymethylene Melamine',
+  /**
+   * Methylchloroisothiazolinone (CMIT/MCI) is a synthetic biocide and preservative used in
+   * laundry detergents to prevent microbial growth and extend shelf life.
+   * Often used in combination with Methylisothiazolinone.
+   */
+  Methylchloroisothiazolinone = 'Methylchloroisothiazolinone',
   /**
    * Methylisothiazolinone (MIT) is a synthetic preservative used in laundry detergents
    * to prevent microbial growth and extend shelf life.
@@ -361,6 +372,11 @@ export enum Ingredient {
   SodiumMEALaurethSulfate = 'Sodium and MEA Laureth Sulfate',
   SodiumMEALaurylSulfate = 'Sodium and MEA Lauryl Sulfate',
   SodiumMetasilicate = 'Sodium Metasilicate',
+  /**
+   * Sodium Metaborate is a sodium salt of metaboric acid, used in laundry detergents
+   * as a pH modifier and builder to improve cleaning performance.
+   */
+  SodiumMetaborate = 'Sodium Metaborate',
   SodiumPercarbonate = 'Sodium Percarbonate',
   SodiumPolyacrylate = 'Sodium Polyacrylate',
   SodiumSilicate = 'Sodium Silicate',
