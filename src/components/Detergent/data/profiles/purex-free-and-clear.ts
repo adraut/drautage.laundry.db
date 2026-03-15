@@ -11,7 +11,7 @@ const ingredients: Ingredient[] = [
   Ingredient.SodiumPolyacrylate,
   Ingredient.SodiumCocoate,
   Ingredient.TetrasodiumEDTA,
-  Ingredient.FluorescentBrightener28SodiumSalt,
+  Ingredient.FluorescentBrightener28,
   Ingredient.Methylisothiazolinone,
 ];
 
