@@ -74,6 +74,21 @@ image (OCR) or manually entered information.
    - Region (if known)
    - Source URL (if known — leave blank if packaging only)
 
+### Ingredient mapping rules
+
+Before comparing or listing ingredients, apply these rules:
+
+**OR alternatives:** Packaging sometimes lists `"ingredient A or ingredient B"` (or `"A and/or B"`).
+- If either option is already in the existing profile, treat the OR pair as satisfied — do not add or remove anything for that pair.
+- If neither option is in the profile, use the first-listed option.
+
+**Colorants:**
+- If the packaging names a specific colorant (e.g., `CI 42090`, `Pigment Blue 15`, `FD&C Blue 1`), use that specific `Ingredient` enum entry.
+- If the packaging only lists a generic term (`Colorants`, `Dyes`, `Colorants/Colorants`), add the generic `Ingredient.Colorants` entry instead.
+- Do **not** keep a specific colorant in the profile if the current packaging source only lists a generic term. Specific colorants from prior sources should be replaced with the generic entry.
+
+**Alketh vs. Pareth:** INCI names ending in `-alketh` and `-pareth` are distinct substances. If the packaging explicitly says `C10-16 alketh`, use `C10_16Alketh` — do not map it to `C10_16Pareth`.
+
 ### Check for an existing profile
 
 2. **Check whether a profile already exists** for this product.
