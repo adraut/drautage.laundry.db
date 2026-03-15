@@ -219,6 +219,12 @@ export enum Ingredient {
    * Methoxypolyoxymethylene Melamine is a polymer used in laundry detergents for fragrance
    * encapsulation, helping to release scent slowly during and after washing.
    */
+  /**
+   * Methoxy PEG-10 Cocoate is a PEGylated methyl ether ester of coconut oil fatty acids, used
+   * in laundry detergents as a nonionic surfactant and emollient to aid solubilization and
+   * improve the feel of treated fabrics.
+   */
+  MethoxyPEG10Cocoate = 'Methoxy PEG-10 Cocoate',
   MethoxypolyoxymethyleneMelamine = 'Methoxypolyoxymethylene Melamine',
   /**
    * Methylchloroisothiazolinone (CMIT/MCI) is a synthetic biocide and preservative used in
@@ -259,7 +265,18 @@ export enum Ingredient {
    * solvent and humectant in laundry detergent pods to help dissolve and stabilize the formula.
    */
   PEG_10 = 'PEG-10',
+  /**
+   * PEG-12 Dimethicone is a PEGylated dimethicone silicone used in laundry detergents as a
+   * suds modifier and conditioning agent that reduces excess foam while improving fabric feel.
+   */
+  PEG12Dimethicone = 'PEG-12 Dimethicone',
   PEG136PolyvinylAlcohol = 'PEG-136 Polyvinyl Alcohol',
+  /**
+   * PEG-7 Glyceryl Cocoate is a PEGylated glyceryl ester of coconut oil fatty acids, used in
+   * laundry detergents as a nonionic surfactant and emollient to aid solubilization and
+   * conditioning of treated fabrics.
+   */
+  PEG7GlycerylCocoate = 'PEG-7 Glyceryl Cocoate',
   /**
    * PEG Terephthalate Polymer is a polyester-based polymer used in laundry detergents
    * as a soil release agent and fabric protective ingredient, helping to prevent stains
@@ -318,6 +335,11 @@ export enum Ingredient {
    */
   Polyquaternium7 = 'Polyquaternium-7',
   /**
+   * Polyvinyl Alcohol is a water-soluble synthetic polymer used in laundry sheet detergents
+   * as the primary structural binder and film-forming agent that dissolves in water during washing.
+   */
+  PolyvinylAlcohol = 'Polyvinyl Alcohol',
+  /**
    * Polyvinyl Alcohol Film is the water-soluble film used to form the outer casing of
    * laundry pods and unit dose detergents, encapsulating the liquid or gel formula.
    * Synonyms: Polyvinyl Alcohol Based Film
@@ -343,6 +365,12 @@ export enum Ingredient {
   PropoxylatedEthoxylatedAmine = 'Propoxylated Ethoxylated Amine',
   Protease = 'Protease',
   SaltCake = 'Salt Cake',
+  /**
+   * Saponins are naturally occurring plant-derived glycosides that function as nonionic surfactants
+   * in laundry detergents, producing foam and aiding in soil removal.
+   * Synonyms: Sapindus Trifoliatus Fruit Extract (when the saponin source is specified)
+   */
+  Saponins = 'Saponins',
   Silica = 'Silica',
   Simethicone = 'Simethicone',
   SimethiconeDimethicone = 'Simethicone/Dimethicone',
@@ -377,11 +405,6 @@ export enum Ingredient {
    */
   SodiumMetaborate = 'Sodium Metaborate',
   SodiumMetasilicate = 'Sodium Metasilicate',
-  /**
-   * Sodium Metaborate is a sodium salt of metaboric acid, used in laundry detergents
-   * as a pH modifier and builder to improve cleaning performance.
-   */
-  SodiumMetaborate = 'Sodium Metaborate',
   SodiumPercarbonate = 'Sodium Percarbonate',
   SodiumPolyacrylate = 'Sodium Polyacrylate',
   SodiumSilicate = 'Sodium Silicate',
