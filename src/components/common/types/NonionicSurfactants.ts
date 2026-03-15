@@ -10,6 +10,7 @@ NonionicSurfactants.add(Ingredient.C12_13AlcoholsEthoxylated);
 NonionicSurfactants.add(Ingredient.C12_13Pareth_2);
 NonionicSurfactants.add(Ingredient.C12_14AlcoholsEthoxylated);
 NonionicSurfactants.add(Ingredient.C12_15AlcoholsEthoxylated);
+NonionicSurfactants.add(Ingredient.DecylGlucoside);
 NonionicSurfactants.add(Ingredient.Laureth_6);
 NonionicSurfactants.add(Ingredient.Laureth_7);
 NonionicSurfactants.add(Ingredient.Laureth_12);

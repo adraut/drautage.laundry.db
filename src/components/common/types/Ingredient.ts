@@ -67,6 +67,12 @@ export enum Ingredient {
   CalciumChloride = 'Calcium Chloride',
   CalciumFormate = 'Calcium formate',
   /**
+   * Caprylyl Glycol (1,2-octanediol) is a humectant and skin-conditioning agent used in laundry
+   * detergents as an antioxidant and antimicrobial booster, helping to extend product shelf life
+   * and enhance preservative efficacy.
+   */
+  CaprylylGlycol = 'Caprylyl Glycol',
+  /**
    * Cellulase is an enzyme that breaks down cellulose fibers, helping to remove cotton-based stains
    * and restore fabric softness and color by removing surface fuzz (pilling).
    * Synonyms: Cellulase Enzyme
@@ -86,6 +92,11 @@ export enum Ingredient {
    * individual colorant ingredients.
    */
   Colorants = 'Colorants',
+  /**
+   * Decyl Glucoside is a mild nonionic surfactant derived from glucose and decanol, used in
+   * laundry detergents as a gentle cleansing agent and foam booster.
+   */
+  DecylGlucoside = 'Decyl Glucoside',
   DenatoniumBenzoate = 'Denatonium Benzoate',
   /**
    * Diethylene Glycol is a solvent and humectant used in laundry detergents to help dissolve
@@ -179,6 +190,11 @@ export enum Ingredient {
    * and help stabilize formulations.
    */
   Laureth_12 = 'Laureth-12',
+  /**
+   * Lauric Acid (dodecanoic acid) is a medium-chain saturated fatty acid derived from coconut oil,
+   * used in laundry detergents as a lubricant and mild surfactant precursor.
+   */
+  LauricAcid = 'Lauric Acid',
   /**
    * Lauryl Alcohol Ethoxylate is a nonionic surfactant made from lauryl (C12) alcohol reacted
    * with ethylene oxide, used in laundry detergents to reduce surface tension and improve
@@ -329,6 +345,11 @@ export enum Ingredient {
    * to prevent microbial growth and extend shelf life.
    */
   Phenoxyethanol = 'Phenoxyethanol',
+  /**
+   * Phenylpropanol (3-phenyl-1-propanol, CAS 122-97-4) is a solvent used in laundry detergents
+   * to help dissolve fragrance and other ingredients, and may also provide mild antimicrobial support.
+   */
+  Phenylpropanol = 'Phenylpropanol',
   PhenylpropylEthylMethicone = 'Phenylpropyl Ethyl Methicone',
   PigmentBlue15 = 'Pigment Blue 15',
   /**
@@ -396,11 +417,22 @@ export enum Ingredient {
    */
   PotassiumCocoate = 'Potassium Cocoate',
   /**
+   * Potassium Sorbate is a potassium salt of sorbic acid used in laundry detergents as a
+   * preservative to inhibit the growth of mold, yeast, and fungi and extend shelf life.
+   */
+  PotassiumSorbate = 'Potassium Sorbate',
+  /**
    * PPG (Polypropylene Glycol) is a synthetic polymer used as a solvent and humectant in laundry
    * detergents. It helps dissolve other ingredients, stabilize the formula, and can function as
    * a mild defoamer.
    */
   PPG = 'PPG',
+  /**
+   * Propanediol (1,3-propanediol, CAS 504-63-2) is a bio-based solvent and humectant used in
+   * laundry detergents to help dissolve other ingredients and improve formula stability.
+   * Note: distinct from Propylene Glycol (1,2-propanediol, CAS 57-55-6).
+   */
+  Propanediol = 'Propanediol',
   /**
    * Propoxylated Ethoxylated Amine is a nonionic surfactant used in laundry detergents to
    * improve soil removal, enhance cleaning performance on oily stains, and help disperse soils.
@@ -424,6 +456,11 @@ export enum Ingredient {
   Simethicone = 'Simethicone',
   SimethiconeDimethicone = 'Simethicone/Dimethicone',
   SodiumAcrylicAcidMACopolymer = 'Sodium Acrylic Acid/MA Copolymer',
+  /**
+   * Sodium Benzoate is the sodium salt of benzoic acid, used in laundry detergents as an
+   * antifungal agent and preservative to inhibit microbial growth and extend shelf life.
+   */
+  SodiumBenzoate = 'Sodium Benzoate',
   SodiumBicarbonate = 'Sodium Bicarbonate',
   SodiumBisulfite = 'Sodium Bisulfite',
   SodiumBorate = 'Sodium Borate',
@@ -438,6 +475,11 @@ export enum Ingredient {
   SodiumCocoate = 'Sodium Cocoate',
   SodiumCumenesulfonate = 'Sodium Cumenesulfonate',
   SodiumFormate = 'Sodium Formate',
+  /**
+   * Sodium Gluconate is the sodium salt of gluconic acid, used in laundry detergents as a
+   * chelating agent to bind calcium and magnesium ions, improving cleaning performance in hard water.
+   */
+  SodiumGluconate = 'Sodium Gluconate',
   SodiumHydroxide = 'Sodium Hydroxide',
   /**
    * Sodium Laureth Sulfate (SLES) is an anionic surfactant used in laundry detergents to
