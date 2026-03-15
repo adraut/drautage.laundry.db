@@ -33,6 +33,7 @@ export { default as PersilUltraPacsOriginal } from './persil-ultra-pacs-original
 export { default as PurexFourInOneBrightCleanFreshMountainBreeze } from './purex-4-in-1-bright-clean-fresh-mountain-breeze';
 export { default as PurexFreeAndClear } from './purex-free-and-clear';
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
+export { default as SimpleTruthOrganicFreeAndClearLaundryDetergent } from './simple-truth-organic-free-and-clear-laundry-detergent';
 export { default as SimpleTruthOrganicSweetLavenderLaundryDetergent } from './simple-truth-organic-sweet-lavender-laundry-detergent';
 export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
 export { default as TideCleanGentle } from './tide-clean-gentle';
