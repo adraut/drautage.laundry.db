@@ -22,6 +22,7 @@ export { default as GainAromaBoostBlissfulBreeze } from './gain-aroma-boost-blis
 export { default as GainAromaBoostSpringDaydream } from './gain-aroma-boost-spring-daydream';
 export { default as GainFlingsHappy } from './gain-flings-happy';
 export { default as GainHappyHibiscusHula } from './gain-happy-hibiscus-hula';
+export { default as GainMoonlightBreezeWithFebrezeFreshness } from './gain-moonlight-breeze-with-febreze-freshness';
 export { default as GainRelaxDewdropDream } from './gain-relax-dewdrop-dream';
 export { default as GainUltraIslandFreshPowder } from './gain-ultra-island-fresh-powder';
 export { default as GainUltraLavenderPowder } from './gain-ultra-lavender-powder';
