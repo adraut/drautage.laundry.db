@@ -1,9 +1,12 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, within, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Detergents from '../Detergents';
 import { encodeFilter } from '../utils/gridFilterUtils';
-import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
+import { CompositeFilterDescriptor } from '../utils/filterTypes';
+
+// Helper to find the filter drawer (not the detail card drawer)
+const getFilterDrawer = () => screen.getByRole('dialog', { name: 'Filter Detergents' });
 
 describe('Detergents', () => {
   beforeEach(() => {
@@ -131,12 +134,8 @@ describe('Detergents', () => {
 
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
-      // Find the Product Name column header in the grid (inside a th element)
-      const productNameColumns = screen.getAllByText('Product Name');
-      const productNameInGrid = productNameColumns.find((el) => el.closest('th'));
-      expect(productNameInGrid).toBeDefined();
-      const thElement = productNameInGrid?.closest('th');
-      expect(thElement).toHaveAttribute('aria-sort', 'ascending');
+      const header = screen.getByRole('columnheader', { name: 'Product Name' });
+      expect(header).toHaveAttribute('aria-sort', 'ascending');
     });
 
     it('should have sortable columns with correct headers', async () => {
@@ -148,13 +147,9 @@ describe('Detergents', () => {
 
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
-      // Verify multiple columns are present in the grid (they appear in both drawer and grid)
-      const productNameElements = screen.getAllByText('Product Name');
-      expect(productNameElements.length).toBeGreaterThan(0);
-      const brandElements = screen.getAllByText('Brand');
-      expect(brandElements.length).toBeGreaterThan(0);
-      const typeElements = screen.getAllByText('Type');
-      expect(typeElements.length).toBeGreaterThan(0);
+      expect(screen.getByRole('columnheader', { name: 'Product Name' })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: 'Brand' })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: 'Type' })).toBeInTheDocument();
     });
 
     it('should apply sort and filter together', async () => {
@@ -167,14 +162,11 @@ describe('Detergents', () => {
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       // Grid should render with default sort (ascending name) and default filter (hasLipase = true)
-      const productNameColumns = screen.getAllByText('Product Name');
-      const productNameInGrid = productNameColumns.find((el) => el.closest('th'));
-      expect(productNameInGrid).toBeDefined();
-      const thElement = productNameInGrid?.closest('th');
-      expect(thElement).toHaveAttribute('aria-sort', 'ascending');
+      const header = screen.getByRole('columnheader', { name: 'Product Name' });
+      expect(header).toHaveAttribute('aria-sort', 'ascending');
 
       // Grid should be visible and rendered
-      expect(productNameColumns.length).toBeGreaterThan(0);
+      expect(screen.getByRole('columnheader', { name: 'Brand' })).toBeInTheDocument();
     });
   });
 
@@ -209,10 +201,9 @@ describe('Detergents', () => {
       const filterBar = screen.getByRole('button', { name: 'Open filters' });
       await user.click(filterBar);
 
-      // Wait for drawer to have the open class
+      // Wait for the filter drawer to have the open class
       await waitFor(() => {
-        const drawer = screen.getByRole('dialog');
-        expect(drawer).toHaveClass('drawer-open');
+        expect(getFilterDrawer()).toHaveClass('drawer-open');
       });
 
       // Filter bar should not be in the document when drawer is open
@@ -230,17 +221,17 @@ describe('Detergents', () => {
 
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
-      // Drawer should exist but not be open initially
-      const drawer = screen.getByRole('dialog');
-      expect(drawer).not.toHaveClass('drawer-open');
+      // Filter drawer should exist but not be open initially
+      const filterDrawer = getFilterDrawer();
+      expect(filterDrawer).not.toHaveClass('drawer-open');
 
       // Click the filter bar
       const filterBar = screen.getByRole('button', { name: 'Open filters' });
       await user.click(filterBar);
 
-      // Drawer should now have the open class
+      // Filter drawer should now have the open class
       await waitFor(() => {
-        expect(drawer).toHaveClass('drawer-open');
+        expect(filterDrawer).toHaveClass('drawer-open');
       });
 
       // Verify drawer content is visible
@@ -264,18 +255,18 @@ describe('Detergents', () => {
       const filterBar = screen.getByRole('button', { name: 'Open filters' });
       await user.click(filterBar);
 
-      const drawer = screen.getByRole('dialog');
+      const filterDrawer = getFilterDrawer();
       await waitFor(() => {
-        expect(drawer).toHaveClass('drawer-open');
+        expect(filterDrawer).toHaveClass('drawer-open');
       });
 
-      // Close the drawer using the close button
-      const closeButton = screen.getByRole('button', { name: 'Close drawer' });
+      // Close the drawer using the close button (scope to filter drawer to avoid ambiguity)
+      const closeButton = within(filterDrawer).getByRole('button', { name: 'Close drawer' });
       await user.click(closeButton);
 
       // Wait for drawer to close
       await waitFor(() => {
-        expect(drawer).not.toHaveClass('drawer-open');
+        expect(filterDrawer).not.toHaveClass('drawer-open');
       });
 
       // Filter bar should be visible again
@@ -297,9 +288,9 @@ describe('Detergents', () => {
       const filterBar = screen.getByRole('button', { name: 'Open filters' });
       await user.click(filterBar);
 
-      const drawer = screen.getByRole('dialog');
+      const filterDrawer = getFilterDrawer();
       await waitFor(() => {
-        expect(drawer).toHaveClass('drawer-open');
+        expect(filterDrawer).toHaveClass('drawer-open');
       });
 
       // Press ESC key
@@ -307,11 +298,106 @@ describe('Detergents', () => {
 
       // Drawer should close
       await waitFor(() => {
-        expect(drawer).not.toHaveClass('drawer-open');
+        expect(filterDrawer).not.toHaveClass('drawer-open');
       });
 
       // Filter bar should be visible again
       expect(screen.getByRole('button', { name: 'Open filters' })).toBeInTheDocument();
+    });
+  });
+
+  describe('Product detail card', () => {
+    it('should render product name cells as clickable buttons', async () => {
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>,
+      );
+
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
+
+      // Product name cells should be buttons
+      const detergentNameButtons = screen
+        .getAllByRole('button')
+        .filter((btn) => btn.classList.contains('detergent-name-btn'));
+      expect(detergentNameButtons.length).toBeGreaterThan(0);
+    });
+
+    it('should open the detail card when a product name is clicked', async () => {
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>,
+      );
+
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
+
+      const nameButtons = screen.getAllByRole('button').filter((btn) => btn.classList.contains('detergent-name-btn'));
+      expect(nameButtons.length).toBeGreaterThan(0);
+
+      const firstButton = nameButtons[0];
+
+      fireEvent.click(firstButton);
+
+      await waitFor(() => {
+        const detailDrawer = screen.getAllByRole('dialog').find((d) => d.classList.contains('drawer-right'));
+        expect(detailDrawer).toHaveClass('drawer-open');
+      });
+    });
+
+    it('should close the detail card when the close button is clicked', async () => {
+      const user = userEvent.setup();
+
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>,
+      );
+
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
+
+      const nameButtons = screen.getAllByRole('button').filter((btn) => btn.classList.contains('detergent-name-btn'));
+      const firstButton = nameButtons[0];
+
+      fireEvent.click(firstButton);
+
+      await waitFor(() => {
+        const detailDrawer = screen.getAllByRole('dialog').find((d) => d.classList.contains('drawer-right'));
+        expect(detailDrawer).toHaveClass('drawer-open');
+      });
+
+      // Close button is inside the now-open detail drawer
+      const detailDrawer = screen.getAllByRole('dialog').find((d) => d.classList.contains('drawer-right'))!;
+      const closeButton = within(detailDrawer).getByRole('button', { name: 'Close drawer' });
+      await user.click(closeButton);
+
+      await waitFor(() => {
+        const dialogs = screen.getAllByRole('dialog');
+        dialogs.forEach((dialog) => {
+          expect(dialog).not.toHaveClass('drawer-open');
+        });
+      });
+    });
+
+    it('should show brand and ingredient section in the detail card', async () => {
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>,
+      );
+
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
+
+      const nameButtons = screen.getAllByRole('button').filter((btn) => btn.classList.contains('detergent-name-btn'));
+
+      fireEvent.click(nameButtons[0]);
+
+      await waitFor(() => {
+        expect(screen.getByText('Ingredients')).toBeInTheDocument();
+      });
+
+      expect(screen.getByText('Details')).toBeInTheDocument();
+      expect(screen.getByText('Last updated')).toBeInTheDocument();
     });
   });
 });

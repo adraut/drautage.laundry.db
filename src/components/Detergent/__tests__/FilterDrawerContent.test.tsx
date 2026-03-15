@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FilterDrawerContent } from '../FilterDrawerContent';
-import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
+import { CompositeFilterDescriptor } from '../utils/filterTypes';
 
 const mockFields = [
   { field: 'name', title: 'Product Name', type: 'text' as const },

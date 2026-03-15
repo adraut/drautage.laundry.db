@@ -53,9 +53,9 @@ export default defineConfig({
             priority: 10,
             reuseExistingChunk: true,
           },
-          kendo: {
-            test: /node_modules[\\/](kendo|@progress)[\\/]/,
-            name: 'kendo',
+          agGrid: {
+            test: /node_modules[\\/](ag-grid-community|ag-grid-react)[\\/]/,
+            name: 'ag-grid',
             chunks: 'all',
             priority: 30,
             reuseExistingChunk: true,

@@ -1,5 +1,5 @@
 import { useState, useMemo, ChangeEvent } from 'react';
-import { CompositeFilterDescriptor, FilterDescriptor } from '@progress/kendo-data-query';
+import { CompositeFilterDescriptor, FilterDescriptor } from './utils/filterTypes';
 import './FilterDrawer.css';
 
 interface FilterField {

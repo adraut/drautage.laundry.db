@@ -1,4 +1,4 @@
-import { useEffect, ReactNode } from 'react';
+import { useEffect, useId, ReactNode } from 'react';
 import './Drawer.css';
 
 interface DrawerProps {
@@ -6,12 +6,14 @@ interface DrawerProps {
   onClose: () => void;
   children: ReactNode;
   title?: string;
+  side?: 'left' | 'right';
 }
 
 /**
  * A simple drawer component that slides in from the left side of the screen
  */
-export function Drawer({ isOpen, onClose, children, title }: DrawerProps) {
+export function Drawer({ isOpen, onClose, children, title, side = 'left' }: DrawerProps) {
+  const titleId = useId();
   // Handle escape key to close drawer
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -39,13 +41,13 @@ export function Drawer({ isOpen, onClose, children, title }: DrawerProps) {
 
       {/* Drawer panel */}
       <div
-        className={`drawer ${isOpen ? 'drawer-open' : ''}`}
+        className={`drawer${side === 'right' ? ' drawer-right' : ''}${isOpen ? ' drawer-open' : ''}`}
         role="dialog"
         aria-modal="true"
-        aria-labelledby={title ? 'drawer-title' : undefined}
+        aria-labelledby={title ? titleId : undefined}
       >
         <div className="drawer-header">
-          {title && <h2 id="drawer-title">{title}</h2>}
+          {title && <h2 id={titleId}>{title}</h2>}
           <button className="drawer-close-btn" onClick={onClose} aria-label="Close drawer">
             ✕
           </button>

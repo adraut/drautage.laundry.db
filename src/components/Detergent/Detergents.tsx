@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Grid, GridColumn as Column, GridSortChangeEvent } from '@progress/kendo-react-grid';
-import { CompositeFilterDescriptor, filterBy, orderBy, SortDescriptor } from '@progress/kendo-data-query';
-import '@progress/kendo-theme-default/dist/all.css';
+import { useState, useEffect, useCallback, useMemo, useRef, createContext, useContext } from 'react';
+import type { ColDef, ICellRendererParams } from 'ag-grid-community';
+import { ModuleRegistry, ClientSideRowModelModule, themeQuartz } from 'ag-grid-community';
+import { AgGridReact } from 'ag-grid-react';
+import { CompositeFilterDescriptor, filterBy } from './utils/filterTypes';
 import { DetergentProfile } from './types/DetergentProfile';
 import { DetergentType } from './types/DetergentType';
 import { loadDetergents } from './data/detergents-data';
@@ -9,8 +10,11 @@ import { useGridFilterSync } from './hooks/useGridFilterSync';
 import { Drawer } from '../common/Drawer';
 import { FilterDrawerContent } from './FilterDrawerContent';
 import { FilterBar } from './FilterBar';
+import { DetergentDetailCard } from './DetergentDetailCard';
 import './FilterDrawer.css';
 import './FilterBar.css';
+
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 // Define filter fields in the same order as grid columns
 const FILTER_FIELDS = [
@@ -44,12 +48,59 @@ const FILTER_FIELDS = [
   { field: 'lastUpdatedFormatted', title: 'Last Updated', type: 'date' as const },
 ];
 
+// Context so NameCellRenderer (module-level, stable reference) can call back into Detergents
+const DetergentClickContext = createContext<(detergent: DetergentProfile) => void>(() => {});
+
+// Module-level component — stable reference, avoids AG Grid remounting cells on each render
+function NameCellRenderer(params: ICellRendererParams<DetergentProfile>) {
+  const onNameClick = useContext(DetergentClickContext);
+  const { data } = params;
+  if (!data) return null;
+  return (
+    <button className="detergent-name-btn" onClick={() => onNameClick(data)}>
+      {data.name}
+    </button>
+  );
+}
+
+const DEFAULT_COL_DEF: ColDef<DetergentProfile> = {
+  sortable: true,
+  resizable: true,
+  filter: false,
+  cellDataType: false,
+};
+
+const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
+  { field: 'brand', headerName: 'Brand' },
+  { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer, sort: 'asc' },
+  { field: 'type', headerName: 'Type' },
+  { field: 'hasOxygenBleach', headerName: 'Oxygen Bleach' },
+  { field: 'hasTAED', headerName: 'TAED' },
+  { field: 'hasOpticalBrighteners', headerName: 'Optical Brighteners' },
+  { field: 'hasAmylase', headerName: 'Amylase' },
+  { field: 'hasCellulase', headerName: 'Cellulase' },
+  { field: 'hasDNase', headerName: 'DNase' },
+  { field: 'hasLipase', headerName: 'Lipase' },
+  { field: 'hasMannanase', headerName: 'Mannanase' },
+  { field: 'hasPectinase', headerName: 'Pectinase' },
+  { field: 'hasProtease', headerName: 'Protease' },
+  { field: 'hasScents', headerName: 'Scents' },
+  { field: 'hasSoaps', headerName: 'Soaps' },
+  { field: 'hasDyes', headerName: 'Dyes' },
+  { field: 'hasAnionicSurfactants', headerName: 'Anionic Surfactants' },
+  { field: 'hasNonionicSurfactants', headerName: 'Nonionic Surfactants' },
+  { field: 'isBiodegradable', headerName: 'Biodegradable' },
+  { field: 'isSepticSafe', headerName: 'Septic Safe' },
+  { field: 'countriesAvailable', headerName: 'Countries Available' },
+  { field: 'lastUpdatedFormatted', headerName: 'Last Updated' },
+];
+
 function Detergents() {
   const [detergents, setDetergents] = useState<Map<string, DetergentProfile>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState<CompositeFilterDescriptor | null>(null);
-  const [sort, setSort] = useState<SortDescriptor[]>([{ field: 'name', dir: 'asc' }]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [selectedDetergent, setSelectedDetergent] = useState<DetergentProfile | null>(null);
   const { filter: urlFilter, updateFilterInUrl } = useGridFilterSync();
 
   // Store the initial filter from URL for reset functionality
@@ -91,9 +142,8 @@ function Detergents() {
     [updateFilterInUrl],
   );
 
-  // Handle sort changes from Grid
-  const handleSortChange = useCallback((e: GridSortChangeEvent) => {
-    setSort(e.sort);
+  const handleNameClick = useCallback((detergent: DetergentProfile) => {
+    setSelectedDetergent(detergent);
   }, []);
 
   const resetFilter = useCallback(() => {
@@ -115,10 +165,6 @@ function Detergents() {
     () => (filter ? filterBy(detergentArray, filter) : detergentArray),
     [detergentArray, filter],
   );
-  const sortedAndFilteredData = useMemo(
-    () => (sort && sort.length > 0 ? orderBy(filteredData, sort) : filteredData),
-    [filteredData, sort],
-  );
 
   return (
     <div>
@@ -133,6 +179,9 @@ function Detergents() {
           {/* Vertical Filter Bar */}
           <FilterBar onClick={() => setIsDrawerOpen(true)} isVisible={!isDrawerOpen} />
 
+          {/* Detail Card */}
+          <DetergentDetailCard detergent={selectedDetergent} onClose={() => setSelectedDetergent(null)} />
+
           {/* Filter Drawer */}
           <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} title="Filter Detergents">
             <FilterDrawerContent
@@ -144,44 +193,20 @@ function Detergents() {
             />
           </Drawer>
 
-          {/* Grid with filter row hidden */}
-          <Grid
-            data={sortedAndFilteredData}
-            style={{ minWidth: '95vw' }}
-            selectable={{ enabled: true, mode: 'single' }}
-            filterable={false}
-            editable={false}
-            reorderable={true}
-            sortable={{ allowUnsort: true, mode: 'single' }}
-            resizable={true}
-            scrollable="none"
-            sort={sort}
-            onSortChange={handleSortChange}
-          >
-            <Column field="brand" title="Brand" sortable />
-            <Column field="name" title="Product Name" sortable />
-            <Column field="type" title="Type" sortable />
-            <Column field="hasOxygenBleach" title="Oxygen Bleach" sortable />
-            <Column field="hasTAED" title="TAED" sortable />
-            <Column field="hasOpticalBrighteners" title="Optical Brighteners" sortable />
-            <Column field="hasAmylase" title="Amylase" sortable />
-            <Column field="hasCellulase" title="Cellulase" sortable />
-            <Column field="hasDNase" title="DNase" sortable />
-            <Column field="hasLipase" title="Lipase" sortable />
-            <Column field="hasMannanase" title="Mannanase" sortable />
-            <Column field="hasPectinase" title="Pectinase" sortable />
-            <Column field="hasProtease" title="Protease" sortable />
-            <Column field="hasScents" title="Scents" sortable />
-            <Column field="hasSoaps" title="Soaps" sortable />
-            <Column field="isHardWaterTolerant" title="Hard Water Tolerant" sortable />
-            <Column field="hasDyes" title="Dyes" sortable />
-            <Column field="hasAnionicSurfactants" title="Anionic Surfactants" sortable />
-            <Column field="hasNonionicSurfactants" title="Nonionic Surfactants" sortable />
-            <Column field="isBiodegradable" title="Biodegradable" sortable />
-            <Column field="isSepticSafe" title="Septic Safe" sortable />
-            <Column field="countriesAvailable" title="Countries Available" sortable />
-            <Column field="lastUpdatedFormatted" title="Last Updated" sortable />
-          </Grid>
+          {/* AG Grid */}
+          <DetergentClickContext.Provider value={handleNameClick}>
+            <div style={{ minWidth: '95vw' }}>
+              <AgGridReact<DetergentProfile>
+                theme={themeQuartz}
+                rowData={filteredData}
+                columnDefs={COLUMN_DEFS}
+                defaultColDef={DEFAULT_COL_DEF}
+                domLayout="autoHeight"
+                suppressRowClickSelection={true}
+                suppressCellFocus={true}
+              />
+            </div>
+          </DetergentClickContext.Provider>
         </div>
       )}
     </div>

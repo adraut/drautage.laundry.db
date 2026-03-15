@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
+import { CompositeFilterDescriptor } from '../utils/filterTypes';
 import { encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
 
 const FILTER_PARAM_NAME = 'f';

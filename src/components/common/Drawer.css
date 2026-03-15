@@ -77,6 +77,18 @@
   padding: 1.5rem;
 }
 
+/* Right-side drawer variant */
+.drawer-right {
+  left: auto;
+  right: 0;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+}
+
+.drawer-right.drawer-open {
+  transform: translateX(0);
+}
+
 /* Responsive - wider on larger screens */
 @media (min-width: 1200px) {
   .drawer {

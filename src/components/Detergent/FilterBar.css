@@ -4,7 +4,7 @@
   left: 0;
   top: 50vh;
   transform: translateY(-50%);
-  width: 48px;
+  width: 36px;
   background-color: #0078d4;
   color: white;
   cursor: pointer;
@@ -40,4 +40,20 @@
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.1em;
+}
+
+.detergent-name-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: #0078d4;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.detergent-name-btn:hover {
+  color: #106ebe;
 }
