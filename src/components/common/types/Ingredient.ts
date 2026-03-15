@@ -230,7 +230,7 @@ export enum Ingredient {
   PigmentRed5 = 'Pigment Red 5',
   /**
    * Polyethyleneimine Alkoxylated is a polymer used as a soil release agent and dye transfer inhibitor in laundry detergents.
-   * Synonyms: Polyethyleneimines Alkoxylated
+   * Synonyms: Polyethyleneimines Alkoxylated, Polyethylenimine Alkoxylated
    */
   PolyethyleneimineAlkoxylated = 'Polyethyleneimine Alkoxylated',
   /**
