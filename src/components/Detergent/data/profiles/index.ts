@@ -2,6 +2,7 @@ export { default as AllFreeClear } from './all-free-clear';
 export { default as AllFreeClearMightyPacsTheOriginal } from './all-free-clear-mighty-pacs-the-original';
 export { default as AllFreeClearOdorRelief } from './all-free-clear-odor-relief';
 export { default as AllSensitiveFreshSpringBreeze } from './all-sensitive-fresh-spring-breeze';
+export { default as ArmAndHammerDeepCleanFreeAndClear } from './arm-and-hammer-deep-clean-free-and-clear';
 export { default as ArmAndHammerDetergentPlusSoftenerOrchardBloom } from './arm-and-hammer-detergent-plus-softener-orchard-bloom';
 export { default as ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks } from './arm-and-hammer-plus-oxiclean-with-odor-blasters-5-in-1-power-paks';
 export { default as ArielOriginal } from './ariel-original';
