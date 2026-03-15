@@ -6,7 +6,7 @@ const ingredients: Ingredient[] = [
   Ingredient.SodiumSulfate,
   Ingredient.SodiumCarbonate,
   Ingredient.SodiumC10_16Alkylbenzenesulfonate,
-  Ingredient.SodiumCarbonatePeroxide,
+  Ingredient.SodiumPercarbonate,
   Ingredient.SodiumSilicate,
   Ingredient.Zeolite,
   Ingredient.Water,

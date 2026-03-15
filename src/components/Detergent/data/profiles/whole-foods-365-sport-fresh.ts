@@ -5,7 +5,7 @@ import { DetergentType } from '../../types/DetergentType';
 const ingredients: Ingredient[] = [
   Ingredient.Water,
   Ingredient.Glycerin,
-  Ingredient.SodiumLaurethEtherSulfate,
+  Ingredient.SodiumLaurethSulfate,
   Ingredient.SodiumCitrate,
   Ingredient.SodiumChloride,
   Ingredient.DNase,

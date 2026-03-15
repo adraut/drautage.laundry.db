@@ -4,7 +4,7 @@ import { DetergentType } from '../../types/DetergentType';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumCarbonate,
-  Ingredient.SodiumCarbonatePeroxide,
+  Ingredient.SodiumPercarbonate,
   Ingredient.Laureth_7,
   Ingredient.SodiumMetasilicate,
   Ingredient.CalciumCarbonate,

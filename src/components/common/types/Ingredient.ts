@@ -35,12 +35,12 @@ export enum Ingredient {
    * to provide a specific hue.
    */
   BlendOfAcidBlue9AndYellow5 = 'Blend of Acid Blue 9 and Yellow 5',
-  C8_18FattyAcidsSodiumSalt = 'C8-18 Fatty Acids Sodium Salt',
   /**
    * C8-18 Fatty Acid Amide MEA is a fatty acid alkanolamide (monoethanolamine amide) used as a
    * nonionic co-surfactant, foam booster, and viscosity builder in laundry detergents.
    */
   C8_18FattyAcidAmideMEA = 'C8-18 Fatty Acid Amide MEA',
+  C8_18FattyAcidsSodiumSalt = 'C8-18 Fatty Acids Sodium Salt',
   C10_16Alketh = 'C10-16 Alketh',
   C10_16AlkyldimethylamineOxide = 'C10-16 Alkyldimethylamine Oxide',
   C10_16Pareth = 'C10-16 Pareth',
@@ -87,12 +87,12 @@ export enum Ingredient {
    */
   Colorants = 'Colorants',
   DenatoniumBenzoate = 'Denatonium Benzoate',
-  Diethylenetriamine = 'Diethylenetriamine',
   /**
    * Diethylene Glycol is a solvent and humectant used in laundry detergents to help dissolve
    * other ingredients, improve product stability, and regulate viscosity.
    */
   DiethyleneGlycol = 'Diethylene Glycol',
+  Diethylenetriamine = 'Diethylenetriamine',
   Dimethicone = 'Dimethicone',
   /**
    * Dipropylene Glycol is a solvent and humectant used in laundry detergents
@@ -156,6 +156,11 @@ export enum Ingredient {
    */
   HydroxypropylCyclodextrin = 'Hydroxypropyl Cyclodextrin',
   /**
+   * Lauramine Oxide is an amine oxide surfactant used in laundry detergents as a
+   * co-surfactant, foam booster, and viscosity builder.
+   */
+  LauramineOxide = 'Lauramine Oxide',
+  /**
    * Laureth-6 is a nonionic surfactant and emulsifier derived from lauryl alcohol
    * with 6 ethylene oxide units, used in laundry detergents to improve soil removal
    * and help stabilize formulations.
@@ -169,11 +174,6 @@ export enum Ingredient {
    */
   Laureth_12 = 'Laureth-12',
   LaurylGlucoside = 'Lauryl Glucoside',
-  /**
-   * Lauramine Oxide is an amine oxide surfactant used in laundry detergents as a
-   * co-surfactant, foam booster, and viscosity builder.
-   */
-  LauramineOxide = 'Lauramine Oxide',
   /**
    * Lavandula Hybrida Oil (lavandin oil) is an essential oil from a hybrid lavender plant,
    * used in laundry detergents as a natural fragrance.
@@ -194,6 +194,11 @@ export enum Ingredient {
    * Synonyms: Mannanase Enzyme, Mannanase Enzyme Blend
    */
   Mannanase = 'Mannanase',
+  /**
+   * MEA-Borate is the monoethanolamine salt of boric acid, used in laundry detergents
+   * as a pH buffer and booster to enhance cleaning performance.
+   */
+  MEABorate = 'MEA-Borate',
   MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate',
   /**
    * MEA C12-15 Alkyl Ether Sulfate is an anionic surfactant used in laundry detergents to
@@ -215,11 +220,6 @@ export enum Ingredient {
    */
   MEADedecylbenzenesulfonate = 'MEA-Dodecylbenzenesulfonate',
   /**
-   * MEA-Borate is the monoethanolamine salt of boric acid, used in laundry detergents
-   * as a pH buffer and booster to enhance cleaning performance.
-   */
-  MEABorate = 'MEA-Borate',
-  /**
    * MEA-LAS (Monoethanolamine Linear Alkylbenzene Sulfonate) is an anionic surfactant used as
    * the primary cleaning agent in laundry detergents to remove soils and stains.
    * It is the monoethanolamine salt of Linear Alkylbenzene Sulfonate (LAS)
@@ -227,15 +227,15 @@ export enum Ingredient {
   MEALAS = 'MEA-LAS',
   MEALaurethSulfate = 'MEA Laureth Sulfate',
   /**
-   * Methoxypolyoxymethylene Melamine is a polymer used in laundry detergents for fragrance
-   * encapsulation, helping to release scent slowly during and after washing.
-   */
-  /**
    * Methoxy PEG-10 Cocoate is a PEGylated methyl ether ester of coconut oil fatty acids, used
    * in laundry detergents as a nonionic surfactant and emollient to aid solubilization and
    * improve the feel of treated fabrics.
    */
   MethoxyPEG10Cocoate = 'Methoxy PEG-10 Cocoate',
+  /**
+   * Methoxypolyoxymethylene Melamine is a polymer used in laundry detergents for fragrance
+   * encapsulation, helping to release scent slowly during and after washing.
+   */
   MethoxypolyoxymethyleneMelamine = 'Methoxypolyoxymethylene Melamine',
   /**
    * Methylchloroisothiazolinone (CMIT/MCI) is a synthetic biocide and preservative used in
@@ -244,17 +244,17 @@ export enum Ingredient {
    */
   Methylchloroisothiazolinone = 'Methylchloroisothiazolinone',
   /**
-   * Methylisothiazolinone (MIT) is a synthetic preservative used in laundry detergents
-   * to prevent microbial growth and extend shelf life.
-   */
-  Methylisothiazolinone = 'Methylisothiazolinone',
-  /**
    * Methyl di-t-butyl hydroxycinnimate is a phenolic antioxidant used in laundry detergents
    * to prevent oxidation of fragrance and other sensitive ingredients, extending product
    * stability and shelf life.
    */
   MethylDiTButylHydroxycinnimate = 'Methyl di-t-butyl hydroxycinnimate',
   MethylDiTButylHydroxyhydrocinnamate = 'Methyl di-t-butyl hydroxyhydrocinnamate',
+  /**
+   * Methylisothiazolinone (MIT) is a synthetic preservative used in laundry detergents
+   * to prevent microbial growth and extend shelf life.
+   */
+  Methylisothiazolinone = 'Methylisothiazolinone',
   /**
    * Modified Acrylic Copolymer is a synthetic polymer used in laundry detergents as a
    * dispersant and anti-redeposition agent, helping to keep soils suspended in wash water
@@ -278,6 +278,12 @@ export enum Ingredient {
   Pectinase = 'Pectinase',
   PEG = 'PEG',
   /**
+   * PEG-7 Glyceryl Cocoate is a PEGylated glyceryl ester of coconut oil fatty acids, used in
+   * laundry detergents as a nonionic surfactant and emollient to aid solubilization and
+   * conditioning of treated fabrics.
+   */
+  PEG7GlycerylCocoate = 'PEG-7 Glyceryl Cocoate',
+  /**
    * PEG-10 (Polyethylene Glycol-10) is a low molecular weight polyethylene glycol used as a
    * solvent and humectant in laundry detergent pods to help dissolve and stabilize the formula.
    */
@@ -288,12 +294,6 @@ export enum Ingredient {
    */
   PEG12Dimethicone = 'PEG-12 Dimethicone',
   PEG136PolyvinylAlcohol = 'PEG-136 Polyvinyl Alcohol',
-  /**
-   * PEG-7 Glyceryl Cocoate is a PEGylated glyceryl ester of coconut oil fatty acids, used in
-   * laundry detergents as a nonionic surfactant and emollient to aid solubilization and
-   * conditioning of treated fabrics.
-   */
-  PEG7GlycerylCocoate = 'PEG-7 Glyceryl Cocoate',
   /**
    * PEG Terephthalate Polymer is a polyester-based polymer used in laundry detergents
    * as a soil release agent and fabric protective ingredient, helping to prevent stains
@@ -347,15 +347,15 @@ export enum Ingredient {
    */
   PolyoxyalkyleneSubstitutedChromophoreYellow = 'Polyoxyalkylene Substituted Chromophore (Yellow)',
   /**
-   * Polyquaternium-10 is a cationic conditioning polymer used in laundry detergents (particularly
-   * those with fabric softener boosters) to provide antistatic properties and improve fabric feel.
-   */
-  Polyquaternium10 = 'Polyquaternium-10',
-  /**
    * Polyquaternium-7 is a cationic conditioning polymer used in laundry detergents with fabric
    * softener as a conditioning and softening agent, helping to improve fabric feel and reduce static.
    */
   Polyquaternium7 = 'Polyquaternium-7',
+  /**
+   * Polyquaternium-10 is a cationic conditioning polymer used in laundry detergents (particularly
+   * those with fabric softener boosters) to provide antistatic properties and improve fabric feel.
+   */
+  Polyquaternium10 = 'Polyquaternium-10',
   /**
    * Polyvinyl Alcohol is a water-soluble synthetic polymer used in laundry sheet detergents
    * as the primary structural binder and film-forming agent that dissolves in water during washing.
@@ -384,12 +384,12 @@ export enum Ingredient {
    * a mild defoamer.
    */
   PPG = 'PPG',
-  PropyleneGlycol = 'Propylene Glycol',
   /**
    * Propoxylated Ethoxylated Amine is a nonionic surfactant used in laundry detergents to
    * improve soil removal, enhance cleaning performance on oily stains, and help disperse soils.
    */
   PropoxylatedEthoxylatedAmine = 'Propoxylated Ethoxylated Amine',
+  PropyleneGlycol = 'Propylene Glycol',
   /**
    * Protease is an enzyme that breaks down proteins, helping to remove protein-based stains
    * such as blood, grass, and food.
@@ -412,7 +412,6 @@ export enum Ingredient {
   SodiumBorate = 'Sodium Borate',
   SodiumC10_16Alkylbenzenesulfonate = 'Sodium C10-16 Alkylbenzenesulfonate',
   SodiumCarbonate = 'Sodium Carbonate',
-  SodiumCarbonatePeroxide = 'Sodium Carbonate Peroxide',
   SodiumChloride = 'Sodium Chloride',
   SodiumCitrate = 'Sodium Citrate',
   /**
@@ -421,14 +420,13 @@ export enum Ingredient {
    */
   SodiumCocoate = 'Sodium Cocoate',
   SodiumCumenesulfonate = 'Sodium Cumenesulfonate',
-  /**
-   * Sodium Oleate is the sodium salt of oleic acid, used as a surfactant and
-   * cleansing agent in laundry detergents. It is a natural soap derived from olive or other oils.
-   */
-  SodiumOleate = 'Sodium Oleate',
   SodiumFormate = 'Sodium Formate',
   SodiumHydroxide = 'Sodium Hydroxide',
-  SodiumLaurethEtherSulfate = 'Sodium Laureth Ether Sulfate',
+  /**
+   * Sodium Laureth Sulfate (SLES) is an anionic surfactant used in laundry detergents to
+   * help remove soils and stains by lowering surface tension.
+   * Synonyms: Sodium Laureth Ether Sulfate
+   */
   SodiumLaurethSulfate = 'Sodium Laureth Sulfate',
   SodiumLaurylSulfate = 'Sodium Lauryl Sulfate',
   SodiumMEAC10_16Alkylbenzenesulfonate = 'Sodium and MEA C10-16 Alkylbenzenesulfonate',
@@ -442,6 +440,16 @@ export enum Ingredient {
    */
   SodiumMetaborate = 'Sodium Metaborate',
   SodiumMetasilicate = 'Sodium Metasilicate',
+  /**
+   * Sodium Oleate is the sodium salt of oleic acid, used as a surfactant and
+   * cleansing agent in laundry detergents. It is a natural soap derived from olive or other oils.
+   */
+  SodiumOleate = 'Sodium Oleate',
+  /**
+   * Sodium Percarbonate is an oxygen-releasing bleaching agent used in laundry detergents
+   * to remove stains and whiten fabrics. It releases hydrogen peroxide when dissolved in water.
+   * Synonyms: Sodium Carbonate Peroxide
+   */
   SodiumPercarbonate = 'Sodium Percarbonate',
   SodiumPolyacrylate = 'Sodium Polyacrylate',
   SodiumSilicate = 'Sodium Silicate',
