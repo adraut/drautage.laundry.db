@@ -1,4 +1,4 @@
-import { CompositeFilterDescriptor, FilterDescriptor } from '@progress/kendo-data-query';
+import { CompositeFilterDescriptor, FilterDescriptor } from './filterTypes';
 
 const DEFAULT_FILTER: CompositeFilterDescriptor = {
   logic: 'and',

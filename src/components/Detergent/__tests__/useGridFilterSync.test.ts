@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useGridFilterSync } from '../hooks/useGridFilterSync';
 import { encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
-import { CompositeFilterDescriptor, FilterDescriptor } from '@progress/kendo-data-query';
+import { CompositeFilterDescriptor, FilterDescriptor } from '../utils/filterTypes';
 
 beforeEach(() => {
   // Reset URL and mocks before each test
