@@ -1,4 +1,10 @@
 export enum Ingredient {
+  /**
+   * Acrylic Acid Homopolymer (polyacrylic acid, PAA) is a polymer used in laundry detergents
+   * as a dispersant and anti-redeposition agent, helping to keep soils suspended in the wash water
+   * and prevent them from redepositing onto fabrics.
+   */
+  AcrylicAcidHomopolymer = 'Acrylic Acid Homopolymer',
   Alcohol = 'Alcohol',
   /**
    * Alkoxylated Amine Substituted Triaryl Methane is a triarylmethane-based polymeric dye
@@ -22,6 +28,11 @@ export enum Ingredient {
   C10_16Alketh = 'C10-16 Alketh',
   C10_16AlkyldimethylamineOxide = 'C10-16 Alkyldimethylamine Oxide',
   C10_16Pareth = 'C10-16 Pareth',
+  /**
+   * C12-13 Alcohols Ethoxylated is a nonionic surfactant used in laundry detergents to reduce
+   * surface tension and improve soil removal and wetting.
+   */
+  C12_13AlcoholsEthoxylated = 'C12-13 Alcohols Ethoxylated',
   /**
    * C12-13 Pareth-2 is a nonionic surfactant derived from C12-13 fatty alcohols
    * ethoxylated with 2 ethylene oxide units, used in laundry detergents to reduce
@@ -153,6 +164,12 @@ export enum Ingredient {
   Pectinase = 'Pectinase',
   PEG = 'PEG',
   PEG136PolyvinylAlcohol = 'PEG-136 Polyvinyl Alcohol',
+  /**
+   * Pentasodium Pentetate (pentasodium salt of DTPA) is a chelating agent used in laundry
+   * detergents to bind heavy metal ions, prevent oxidative damage to enzymes, and improve
+   * cleaning performance.
+   * Synonyms: Pentasodium DTPA
+   */
   PentasodiumPentetate = 'Pentasodium Pentetate',
   PhenylpropylEthylMethicone = 'Phenylpropyl Ethyl Methicone',
   PigmentBlue15 = 'Pigment Blue 15',
