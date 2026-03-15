@@ -6,11 +6,9 @@ const ingredients: Ingredient[] = [
   Ingredient.Water,
   Ingredient.SodiumMEAC10_16Alkylbenzenesulfonate,
   Ingredient.C10_16Alketh,
-  Ingredient.PropyleneGlycol,
-  Ingredient.SodiumBorate,
+  Ingredient.SodiumLaurethSulfate,
   Ingredient.SodiumMEACitrate,
   Ingredient.Fragrance,
-  Ingredient.SodiumLaurylSulfate,
   Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.Alcohol,
   Ingredient.TetrasodiumGlutamateDiacetate,
@@ -23,12 +21,11 @@ const ingredients: Ingredient[] = [
   Ingredient.Amylase,
   Ingredient.Cellulase,
   Ingredient.Mannanase,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreYellow,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreBlue,
   Ingredient.Ethanolamine,
-  Ingredient.SodiumLaurethSulfate,
   Ingredient.SodiumFormate,
-  Ingredient.AlkoxylatedAmineSubstitutedTriarylMethane,
+  Ingredient.Diethylenetriamine,
+  Ingredient.MethylDiTButylHydroxycinnimate,
+  Ingredient.Colorants,
 ];
 
 const GainUltraOxiWaterfallDelight: DetergentProfile = new DetergentProfile(
@@ -36,7 +33,7 @@ const GainUltraOxiWaterfallDelight: DetergentProfile = new DetergentProfile(
   'Gain',
   DetergentType.Liquid,
   ingredients,
-  new Date('2026-02-22'),
+  new Date('2026-03-15'),
 );
 GainUltraOxiWaterfallDelight.countryOfOrigin = 'USA';
 GainUltraOxiWaterfallDelight.countriesAvailable = ['USA'];

@@ -157,6 +157,12 @@ export enum Ingredient {
    * to prevent microbial growth and extend shelf life.
    */
   Methylisothiazolinone = 'Methylisothiazolinone',
+  /**
+   * Methyl di-t-butyl hydroxycinnimate is a phenolic antioxidant used in laundry detergents
+   * to prevent oxidation of fragrance and other sensitive ingredients, extending product
+   * stability and shelf life.
+   */
+  MethylDiTButylHydroxycinnimate = 'Methyl di-t-butyl hydroxycinnimate',
   MethylDiTButylHydroxyhydrocinnamate = 'Methyl di-t-butyl hydroxyhydrocinnamate',
   OrganosiliconeCopolymer = 'Organosilicone copolymer',
   /**
