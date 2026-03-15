@@ -87,6 +87,7 @@ export { default as TidePlusFebrezeBotanicalRainLiquid } from './tide-plus-febre
 export { default as TidePlusFebrezeFreshnessLiquid } from './tide-plus-febreze-freshness-liquid';
 export { default as TidePowerPodsFebrezeSportOdorDefense } from './tide-power-pods-febreze-sport-odor-defense';
 export { default as TidePowerPodsDownyAprilFresh } from './tide-power-pods-downy-april-fresh';
+export { default as TidePowerPodsOxiBoost } from './tide-power-pods-oxi-boost';
 export { default as TideUltraOxiPowder } from './tide-ultra-oxi-powder';
 export { default as TideUltraSport } from './tide-ultra-sport';
 export { default as TideUltraStainReleaseLiquid } from './tide-ultra-stain-release-liquid';
