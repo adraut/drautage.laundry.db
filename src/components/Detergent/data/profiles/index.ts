@@ -5,6 +5,7 @@ export { default as AllSensitiveFreshSpringBreeze } from './all-sensitive-fresh-
 export { default as ArmAndHammerDeepCleanFreeAndClear } from './arm-and-hammer-deep-clean-free-and-clear';
 export { default as ArmAndHammerDeepCleanFreeAndClearPods } from './arm-and-hammer-deep-clean-free-and-clear-pods';
 export { default as ArmAndHammerDeepCleanOdorFormula } from './arm-and-hammer-deep-clean-odor-formula';
+export { default as ArmAndHammerDeepCleanStainFormulaPods } from './arm-and-hammer-deep-clean-stain-formula-pods';
 export { default as ArmAndHammerDeepCleanStainFormulaSparklingClean } from './arm-and-hammer-deep-clean-stain-formula-sparkling-clean';
 export { default as ArmAndHammerDetergentPlusSoftenerOrchardBloom } from './arm-and-hammer-detergent-plus-softener-orchard-bloom';
 export { default as ArmAndHammerFreeAndClearSensitiveSkin } from './arm-and-hammer-free-and-clear-sensitive-skin';
