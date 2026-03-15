@@ -1,12 +1,19 @@
 import { useState, useEffect, useCallback, useMemo, useRef, createContext, useContext } from 'react';
 import type { ColDef, ICellRendererParams } from 'ag-grid-community';
-import { ModuleRegistry, ClientSideRowModelModule, themeQuartz } from 'ag-grid-community';
+import {
+  ModuleRegistry,
+  ClientSideRowModelModule,
+  ColumnApiModule,
+  GridStateModule,
+  themeQuartz,
+} from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import { CompositeFilterDescriptor, filterBy } from './utils/filterTypes';
 import { DetergentProfile } from './types/DetergentProfile';
 import { DetergentType } from './types/DetergentType';
 import { loadDetergents } from './data/detergents-data';
 import { useGridFilterSync } from './hooks/useGridFilterSync';
+import { useGridSortSync } from './hooks/useGridSortSync';
 import { Drawer } from '../common/Drawer';
 import { FilterDrawerContent } from './FilterDrawerContent';
 import { FilterBar } from './FilterBar';
@@ -14,7 +21,7 @@ import { DetergentDetailCard } from './DetergentDetailCard';
 import './FilterDrawer.css';
 import './FilterBar.css';
 
-ModuleRegistry.registerModules([ClientSideRowModelModule]);
+ModuleRegistry.registerModules([ClientSideRowModelModule, ColumnApiModule, GridStateModule]);
 
 // Define filter fields in the same order as grid columns
 const FILTER_FIELDS = [
@@ -63,6 +70,18 @@ function NameCellRenderer(params: ICellRendererParams<DetergentProfile>) {
   );
 }
 
+function BooleanCellRenderer(params: ICellRendererParams<DetergentProfile>) {
+  return (
+    <input
+      type="checkbox"
+      checked={!!params.value}
+      onChange={() => {}}
+      tabIndex={-1}
+      style={{ cursor: 'default', pointerEvents: 'none' }}
+    />
+  );
+}
+
 const DEFAULT_COL_DEF: ColDef<DetergentProfile> = {
   sortable: true,
   resizable: true,
@@ -70,27 +89,29 @@ const DEFAULT_COL_DEF: ColDef<DetergentProfile> = {
   cellDataType: false,
 };
 
+const BOOLEAN_COL: Partial<ColDef<DetergentProfile>> = { cellRenderer: BooleanCellRenderer };
+
 const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
   { field: 'brand', headerName: 'Brand' },
-  { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer, sort: 'asc' },
+  { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer },
   { field: 'type', headerName: 'Type' },
-  { field: 'hasOxygenBleach', headerName: 'Oxygen Bleach' },
-  { field: 'hasTAED', headerName: 'TAED' },
-  { field: 'hasOpticalBrighteners', headerName: 'Optical Brighteners' },
-  { field: 'hasAmylase', headerName: 'Amylase' },
-  { field: 'hasCellulase', headerName: 'Cellulase' },
-  { field: 'hasDNase', headerName: 'DNase' },
-  { field: 'hasLipase', headerName: 'Lipase' },
-  { field: 'hasMannanase', headerName: 'Mannanase' },
-  { field: 'hasPectinase', headerName: 'Pectinase' },
-  { field: 'hasProtease', headerName: 'Protease' },
-  { field: 'hasScents', headerName: 'Scents' },
-  { field: 'hasSoaps', headerName: 'Soaps' },
-  { field: 'hasDyes', headerName: 'Dyes' },
-  { field: 'hasAnionicSurfactants', headerName: 'Anionic Surfactants' },
-  { field: 'hasNonionicSurfactants', headerName: 'Nonionic Surfactants' },
-  { field: 'isBiodegradable', headerName: 'Biodegradable' },
-  { field: 'isSepticSafe', headerName: 'Septic Safe' },
+  { field: 'hasOxygenBleach', headerName: 'Oxygen Bleach', ...BOOLEAN_COL },
+  { field: 'hasTAED', headerName: 'TAED', ...BOOLEAN_COL },
+  { field: 'hasOpticalBrighteners', headerName: 'Optical Brighteners', ...BOOLEAN_COL },
+  { field: 'hasAmylase', headerName: 'Amylase', ...BOOLEAN_COL },
+  { field: 'hasCellulase', headerName: 'Cellulase', ...BOOLEAN_COL },
+  { field: 'hasDNase', headerName: 'DNase', ...BOOLEAN_COL },
+  { field: 'hasLipase', headerName: 'Lipase', ...BOOLEAN_COL },
+  { field: 'hasMannanase', headerName: 'Mannanase', ...BOOLEAN_COL },
+  { field: 'hasPectinase', headerName: 'Pectinase', ...BOOLEAN_COL },
+  { field: 'hasProtease', headerName: 'Protease', ...BOOLEAN_COL },
+  { field: 'hasScents', headerName: 'Scents', ...BOOLEAN_COL },
+  { field: 'hasSoaps', headerName: 'Soaps', ...BOOLEAN_COL },
+  { field: 'hasDyes', headerName: 'Dyes', ...BOOLEAN_COL },
+  { field: 'hasAnionicSurfactants', headerName: 'Anionic Surfactants', ...BOOLEAN_COL },
+  { field: 'hasNonionicSurfactants', headerName: 'Nonionic Surfactants', ...BOOLEAN_COL },
+  { field: 'isBiodegradable', headerName: 'Biodegradable', ...BOOLEAN_COL },
+  { field: 'isSepticSafe', headerName: 'Septic Safe', ...BOOLEAN_COL },
   { field: 'countriesAvailable', headerName: 'Countries Available' },
   { field: 'lastUpdatedFormatted', headerName: 'Last Updated' },
 ];
@@ -102,6 +123,9 @@ function Detergents() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedDetergent, setSelectedDetergent] = useState<DetergentProfile | null>(null);
   const { filter: urlFilter, updateFilterInUrl } = useGridFilterSync();
+  const { sortModel, updateSortInUrl } = useGridSortSync();
+  const gridRef = useRef<AgGridReact<DetergentProfile>>(null);
+  const isFirstSortRender = useRef(true);
 
   // Store the initial filter from URL for reset functionality
   const initialFilterRef = useRef<CompositeFilterDescriptor | null>(null);
@@ -141,6 +165,32 @@ function Detergents() {
     },
     [updateFilterInUrl],
   );
+
+  // Apply sort model to grid when URL changes (e.g. browser back/forward).
+  // Skip the first render — initialState handles that.
+  useEffect(() => {
+    if (isFirstSortRender.current) {
+      isFirstSortRender.current = false;
+      return;
+    }
+    const api = gridRef.current?.api;
+    if (!api) return;
+    api.applyColumnState({
+      state: sortModel.map((item, idx) => ({ colId: item.colId, sort: item.sort, sortIndex: idx })),
+      defaultState: { sort: null },
+    });
+  }, [sortModel]);
+
+  const handleSortChanged = useCallback(() => {
+    const api = gridRef.current?.api;
+    if (!api) return;
+    const colState = api.getColumnState();
+    const sorted = colState
+      .filter((col) => col.sort)
+      .sort((a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0))
+      .map((col) => ({ colId: col.colId, sort: col.sort as 'asc' | 'desc' }));
+    updateSortInUrl(sorted);
+  }, [updateSortInUrl]);
 
   const handleNameClick = useCallback((detergent: DetergentProfile) => {
     setSelectedDetergent(detergent);
@@ -197,13 +247,15 @@ function Detergents() {
           <DetergentClickContext.Provider value={handleNameClick}>
             <div style={{ minWidth: '95vw' }}>
               <AgGridReact<DetergentProfile>
+                ref={gridRef}
                 theme={themeQuartz}
                 rowData={filteredData}
                 columnDefs={COLUMN_DEFS}
                 defaultColDef={DEFAULT_COL_DEF}
                 domLayout="autoHeight"
-                suppressRowClickSelection={true}
                 suppressCellFocus={true}
+                initialState={{ sort: { sortModel } }}
+                onSortChanged={handleSortChanged}
               />
             </div>
           </DetergentClickContext.Provider>

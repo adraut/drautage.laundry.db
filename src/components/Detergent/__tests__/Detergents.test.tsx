@@ -156,6 +156,41 @@ describe('Detergents', () => {
     });
   });
 
+  describe('Grid boolean cells', () => {
+    it('should render boolean columns as checkboxes', async () => {
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>,
+      );
+
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
+
+      // Boolean columns should render as checkboxes, not true/false text
+      const checkboxes = screen.getAllByRole('checkbox');
+      expect(checkboxes.length).toBeGreaterThan(0);
+      expect(screen.queryByText('true')).not.toBeInTheDocument();
+      expect(screen.queryByText('false')).not.toBeInTheDocument();
+    });
+
+    it('should render checked checkboxes for true values and unchecked for false', async () => {
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>,
+      );
+
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
+
+      // Mock data has products with some true and some false boolean values
+      const checkedBoxes = screen.getAllByRole('checkbox', { checked: true });
+      expect(checkedBoxes.length).toBeGreaterThan(0);
+
+      const uncheckedBoxes = screen.getAllByRole('checkbox', { checked: false });
+      expect(uncheckedBoxes.length).toBeGreaterThan(0);
+    });
+  });
+
   describe('Grid sorting', () => {
     it('should render grid with default ascending sort on product name', async () => {
       render(
