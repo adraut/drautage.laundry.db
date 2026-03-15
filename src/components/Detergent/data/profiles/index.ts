@@ -1,5 +1,6 @@
 export { default as AllFreeClear } from './all-free-clear';
 export { default as AllFreeClearMightyPacsTheOriginal } from './all-free-clear-mighty-pacs-the-original';
+export { default as AllFreeClearOdorRelief } from './all-free-clear-odor-relief';
 export { default as ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks } from './arm-and-hammer-plus-oxiclean-with-odor-blasters-5-in-1-power-paks';
 export { default as ArielOriginal } from './ariel-original';
 export { default as ArielTouchOfDownyPowder } from './ariel-touch-of-downy-powder';
@@ -73,4 +74,5 @@ export { default as WholeFoods365SportFresh } from './whole-foods-365-sport-fres
 export { default as WholeFoods365UnscentedPowder } from './whole-foods-365-unscented-powder';
 export { default as WholeFoods365UnscentedConcentrated } from './whole-foods-365-unscented-concentrated';
 export { default as WooliteDamageDefense } from './woolite-damage-defense';
+export { default as XtraPlusOdorBlastersFreshScent } from './xtra-plus-odor-blasters-fresh-scent';
 export { default as XtraPlusOxiCleanCrystalClean } from './xtra-plus-oxiclean-crystal-clean';

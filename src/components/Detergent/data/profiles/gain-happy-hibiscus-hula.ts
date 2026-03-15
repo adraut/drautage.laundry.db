@@ -7,12 +7,9 @@ const ingredients: Ingredient[] = [
   Ingredient.SodiumMEAC10_16Alkylbenzenesulfonate,
   Ingredient.C10_16Alketh,
   Ingredient.SodiumLaurethSulfate,
-  Ingredient.PropyleneGlycol,
-  Ingredient.SodiumBorate,
   Ingredient.Fragrance,
   Ingredient.SodiumMEACitrate,
   Ingredient.SodiumFormate,
-  Ingredient.SodiumLaurylSulfate,
   Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.Alcohol,
   Ingredient.Ethanolamine,
@@ -23,11 +20,10 @@ const ingredients: Ingredient[] = [
   Ingredient.CalciumFormate,
   Ingredient.Subtilisin,
   Ingredient.Benzisothiazolinone,
-  Ingredient.AlkoxylatedAmineSubstitutedTriarylMethane,
   Ingredient.Amylase,
-  Ingredient.Cellulase,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreYellow,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreBlue,
+  Ingredient.Diethylenetriamine,
+  Ingredient.MethylDiTButylHydroxyhydrocinnamate,
+  Ingredient.Colorants,
 ];
 
 const GainHappyHibiscusHula: DetergentProfile = new DetergentProfile(
