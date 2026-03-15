@@ -9,6 +9,7 @@ WaterConditioners.add(Ingredient.SodiumCarbonate);
 WaterConditioners.add(Ingredient.SodiumMetaborate);
 WaterConditioners.add(Ingredient.SodiumCitrate);
 WaterConditioners.add(Ingredient.SodiumCumenesulfonate);
+WaterConditioners.add(Ingredient.SodiumGluconate);
 WaterConditioners.add(Ingredient.SodiumMEACitrate);
 WaterConditioners.add(Ingredient.SodiumMetaborate);
 WaterConditioners.add(Ingredient.SodiumSilicate);

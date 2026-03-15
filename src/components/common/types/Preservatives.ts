@@ -8,5 +8,7 @@ Preservatives.add(Ingredient.LoniceraJaponicaFlowerExtract);
 Preservatives.add(Ingredient.Methylchloroisothiazolinone);
 Preservatives.add(Ingredient.Methylisothiazolinone);
 Preservatives.add(Ingredient.Phenoxyethanol);
+Preservatives.add(Ingredient.PotassiumSorbate);
+Preservatives.add(Ingredient.SodiumBenzoate);
 
 export { Preservatives };
