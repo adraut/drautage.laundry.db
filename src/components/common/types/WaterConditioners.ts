@@ -10,6 +10,7 @@ WaterConditioners.add(Ingredient.SodiumCumenesulfonate);
 WaterConditioners.add(Ingredient.SodiumMEACitrate);
 WaterConditioners.add(Ingredient.SodiumSilicate);
 WaterConditioners.add(Ingredient.PentasodiumPentetate);
+WaterConditioners.add(Ingredient.TetrasodiumEDTA);
 WaterConditioners.add(Ingredient.TetrasodiumGlutamateDiacetate);
 WaterConditioners.add(Ingredient.Zeolite);
 
