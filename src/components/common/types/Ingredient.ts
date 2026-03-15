@@ -25,6 +25,11 @@ export enum Ingredient {
    */
   BlendOfAcidBlue9AndYellow5 = 'Blend of Acid Blue 9 and Yellow 5',
   C8_18FattyAcidsSodiumSalt = 'C8-18 Fatty Acids Sodium Salt',
+  /**
+   * C8-18 Fatty Acid Amide MEA is a fatty acid alkanolamide (monoethanolamine amide) used as a
+   * nonionic co-surfactant, foam booster, and viscosity builder in laundry detergents.
+   */
+  C8_18FattyAcidAmideMEA = 'C8-18 Fatty Acid Amide MEA',
   C10_16Alketh = 'C10-16 Alketh',
   C10_16AlkyldimethylamineOxide = 'C10-16 Alkyldimethylamine Oxide',
   C10_16Pareth = 'C10-16 Pareth',
@@ -163,6 +168,11 @@ export enum Ingredient {
   PectateLyase = 'Pectate Lyase',
   Pectinase = 'Pectinase',
   PEG = 'PEG',
+  /**
+   * PEG-10 (Polyethylene Glycol-10) is a low molecular weight polyethylene glycol used as a
+   * solvent and humectant in laundry detergent pods to help dissolve and stabilize the formula.
+   */
+  PEG_10 = 'PEG-10',
   PEG136PolyvinylAlcohol = 'PEG-136 Polyvinyl Alcohol',
   /**
    * Pentasodium Pentetate (pentasodium salt of DTPA) is a chelating agent used in laundry
@@ -274,6 +284,11 @@ export enum Ingredient {
    */
   TetrasodiumEDTA = 'Tetrasodium EDTA',
   TetrasodiumGlutamateDiacetate = 'Tetrasodium Glutamate Diacetate',
+  /**
+   * Tetrasodium Iminodisuccinate is a biodegradable chelating agent used in laundry detergents
+   * to bind metal ions (calcium, magnesium, iron) and improve cleaning performance in hard water.
+   */
+  TetrasodiumIminodisuccinate = 'Tetrasodium Iminodisuccinate',
   Trimethylsiloxysilicate = 'Trimethylsiloxysilicate',
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
   Water = 'Water',

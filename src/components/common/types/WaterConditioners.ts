@@ -12,6 +12,7 @@ WaterConditioners.add(Ingredient.SodiumSilicate);
 WaterConditioners.add(Ingredient.PentasodiumPentetate);
 WaterConditioners.add(Ingredient.TetrasodiumEDTA);
 WaterConditioners.add(Ingredient.TetrasodiumGlutamateDiacetate);
+WaterConditioners.add(Ingredient.TetrasodiumIminodisuccinate);
 WaterConditioners.add(Ingredient.Zeolite);
 
 export { WaterConditioners };
