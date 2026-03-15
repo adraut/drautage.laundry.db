@@ -83,6 +83,13 @@ export enum Ingredient {
   CalciumChloride = 'Calcium Chloride',
   CalciumFormate = 'Calcium formate',
   /**
+   * Caprylyl/Capryl Glucoside is a mild nonionic surfactant and emulsifier derived from
+   * coconut fatty alcohols (C8/C10 chain) and glucose, used in laundry detergents as a gentle
+   * cleansing agent and foam booster. Same alkyl glucoside family as Lauryl Glucoside (C12) and
+   * Decyl Glucoside (C10).
+   */
+  CaprylylCaprylGlucoside = 'Caprylyl/Capryl Glucoside',
+  /**
    * Caprylyl Glycol (1,2-octanediol) is a humectant and skin-conditioning agent used in laundry
    * detergents as an antioxidant and antimicrobial booster, helping to extend product shelf life
    * and enhance preservative efficacy.
@@ -237,6 +244,11 @@ export enum Ingredient {
    * scents on fabrics.
    */
   HydroxypropylCyclodextrin = 'Hydroxypropyl Cyclodextrin',
+  /**
+   * Lactic Acid is a mild organic acid used in laundry detergents as a pH adjuster
+   * and descaling agent.
+   */
+  LacticAcid = 'Lactic Acid',
   /**
    * Lauramine Oxide is an amine oxide surfactant used in laundry detergents as a
    * co-surfactant, foam booster, and viscosity builder.
@@ -503,6 +515,11 @@ export enum Ingredient {
   PolyvinylAlcoholFilm = 'Polyvinyl Alcohol Film',
   PolyvinylAlcoholPolymer = 'Polyvinyl Alcohol Polymer',
   /**
+   * Potassium Carbonate is an inorganic alkalinity builder used in laundry detergents as a
+   * pH adjuster and water softener.
+   */
+  PotassiumCarbonate = 'Potassium Carbonate',
+  /**
    * Potassium Chloride is an inorganic salt used in laundry detergents as a viscosity modifier
    * and processing aid, helping to regulate product texture and improve powder flowability.
    */
@@ -605,6 +622,12 @@ export enum Ingredient {
    */
   SodiumLaurethSulfate = 'Sodium Laureth Sulfate',
   SodiumLaurylSulfate = 'Sodium Lauryl Sulfate',
+  /**
+   * Sodium Maleate Acrylate Copolymer is a polymer dispersant and anti-redeposition agent
+   * used in laundry detergents to keep soils and stains suspended in wash water and prevent
+   * them from redepositing onto fabrics.
+   */
+  SodiumMaleateAcrylateCopolymer = 'Sodium Maleate Acrylate Copolymer',
   SodiumMEAC10_16Alkylbenzenesulfonate = 'Sodium and MEA C10-16 Alkylbenzenesulfonate',
   SodiumMEAC12_18FattyAcidsSalt = 'Sodium and MEA Salts of C12-18 Fatty Acids',
   SodiumMEACitrate = 'Sodium and MEA citrate',
