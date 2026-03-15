@@ -48,12 +48,6 @@ export enum Ingredient {
    */
   Colorants = 'Colorants',
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
-  /**
-   * Colorants is a generic term for dyes and pigments used in laundry detergents to provide
-   * color to the product. Packaging may list this generically when specific colorant identities
-   * are not disclosed.
-   */
-  Colorants = 'Colorants',
   DenatoniumBenzoate = 'Denatonium Benzoate',
   Diethylenetriamine = 'Diethylenetriamine',
   /**
