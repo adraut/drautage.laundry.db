@@ -19,7 +19,7 @@ export enum Ingredient {
   AloeBarbadenisLeafPowder = 'Aloe Barbadensis Leaf Powder',
   /**
    * Amylase is an enzyme that breaks down starch into simpler sugars, helping to remove starchy stains.
-   * Synonyms: Amylase Enzyme
+   * Synonyms: Amylase Enzyme, Amylase Enzyme Blend
    */
   Amylase = 'Amylase',
   AnionicModifiedPolyester = 'Anionic modified polyester',
@@ -186,7 +186,7 @@ export enum Ingredient {
   /**
    * Mannanase is an enzyme that breaks down mannans (polysaccharides), helping to remove food stains
    * containing guar gum, locust bean gum, or similar thickeners.
-   * Synonyms: Mannanase Enzyme
+   * Synonyms: Mannanase Enzyme, Mannanase Enzyme Blend
    */
   Mannanase = 'Mannanase',
   MEAC10_16Alkylbenzenesulfonate = 'MEA C10-16 Alkylbenzenesulfonate',
@@ -372,7 +372,7 @@ export enum Ingredient {
   /**
    * Protease is an enzyme that breaks down proteins, helping to remove protein-based stains
    * such as blood, grass, and food.
-   * Synonyms: Protease Enzyme
+   * Synonyms: Protease Enzyme, Protease Enzyme Blend
    */
   Protease = 'Protease',
   SaltCake = 'Salt Cake',
