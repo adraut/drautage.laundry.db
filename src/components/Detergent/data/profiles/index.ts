@@ -45,6 +45,7 @@ export { default as GainUltraOxiWaterfallDelight } from './gain-ultra-oxi-waterf
 export { default as GainUltraPlusOxiOriginal } from './gain-ultra-plus-oxi-original';
 export { default as GainUltraMoonlightBreezePowder } from './gain-ultra-moonlight-breeze-powder';
 export { default as GainUltraWithFebrezeFreshnessHawaiianAloha } from './gain-ultra-with-febreze-freshness-hawaiian-aloha';
+export { default as MrsMeyersCleanDayLaundryDetergentCompassionFlower } from './mrs-meyers-clean-day-laundry-detergent-compassion-flower';
 export { default as PersilAdvancedCleanOxiPower } from './persil-advanced-clean-oxi-power';
 export { default as PersilIntenseFresh } from './persil-intense-fresh';
 export { default as PersilOriginalLiquid } from './persil-original-liquid';

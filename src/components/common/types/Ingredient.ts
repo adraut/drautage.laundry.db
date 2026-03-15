@@ -85,6 +85,11 @@ export enum Ingredient {
    */
   ChromophoreSubstitutedPolyoxyalkylene = 'Chromophore substituted polyoxyalkylene',
   CitricAcid = 'Citric Acid',
+  /**
+   * Citrus Aurantium Dulcis (Orange) Peel Oil is an essential oil derived from sweet orange peel,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  CitrusAurantiumDulcisOrangePeelOil = 'Citrus Aurantium Dulcis (Orange) Peel Oil',
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
   /**
    * Colorants is a generic term for coloring agents used in laundry detergents to provide a
@@ -137,9 +142,20 @@ export enum Ingredient {
    */
   EthylhexylGlycerin = 'Ethylhexylglycerin',
   /**
+   * Fatty Acid, C8-C18 and C18 Unsaturated is the free acid form (CAS 67701-05-7) of a blend of
+   * C8-C18 saturated fatty acids and C18 unsaturated fatty acids, used as a soap precursor and
+   * surfactant in alkaline liquid detergents. In alkaline formulas the free acid immediately
+   * deprotonates to the soap anion, making it functionally equivalent to the sodium salt form
+   * (see FattyAcidsC8_18AndC18UnsaturatedSodiumSalts, CAS 67701-10-4), but the two carry
+   * separate CAS numbers and ECHA registrations and are tracked as distinct entries.
+   */
+  FattyAcidC8_18AndC18Unsaturated = 'Fatty Acid, C8-C18 and C18 unsatd.',
+  /**
    * Fatty Acids C8-18 and C18-Unsaturated Sodium Salts is the sodium salt form of a blend of
    * C8-C18 saturated fatty acids and C18 unsaturated fatty acids, used as a soap and surfactant
    * in laundry detergents.
+   * See also FattyAcidC8_18AndC18Unsaturated (CAS 67701-05-7), the corresponding free acid form,
+   * which is functionally equivalent in alkaline formulas but carries a distinct CAS number.
    */
   FattyAcidsC8_18AndC18UnsaturatedSodiumSalts = 'Fatty acids C8-18 and C18-unsaturated sodium salts',
   /**
@@ -434,6 +450,11 @@ export enum Ingredient {
    */
   PotassiumCocoate = 'Potassium Cocoate',
   /**
+   * Potassium Hydroxide (KOH) is a strong base used in liquid laundry detergents as a pH adjuster
+   * and saponification agent, converting fatty acids into soap (potassium soaps) to enhance cleaning.
+   */
+  PotassiumHydroxide = 'Potassium Hydroxide',
+  /**
    * Potassium Sorbate is a potassium salt of sorbic acid used in laundry detergents as a
    * preservative to inhibit the growth of mold, yeast, and fungi and extend shelf life.
    */
@@ -528,6 +549,12 @@ export enum Ingredient {
    */
   SodiumMetaborate = 'Sodium Metaborate',
   SodiumMetasilicate = 'Sodium Metasilicate',
+  /**
+   * Sodium Methyl 2-Sulfolaurate is an anionic surfactant of the alpha-sulfo fatty acid methyl
+   * ester class with a C12 (laurate) chain. Distinct from the C18 variant
+   * Sodium Methyl 2-Sulphooctadecanoate.
+   */
+  SodiumMethyl2Sulfolaurate = 'Sodium Methyl 2-Sulfolaurate',
   /**
    * Sodium Oleate is the sodium salt of oleic acid, used as a surfactant and
    * cleansing agent in laundry detergents. It is a natural soap derived from olive or other oils.
