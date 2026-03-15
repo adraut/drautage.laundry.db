@@ -41,15 +41,11 @@ export enum Ingredient {
    */
   ChromophoreSubstitutedPolyoxyalkylene = 'Chromophore substituted polyoxyalkylene',
   CitricAcid = 'Citric Acid',
+  CocamidopropylBetaine = 'Cocamidopropyl Betaine',
   /**
    * Colorants is a generic term for coloring agents used in laundry detergents to provide a
    * specific hue to the product. Used when a source lists only the generic term without specifying
    * individual colorant ingredients.
-   */
-  Colorants = 'Colorants',
-  CocamidopropylBetaine = 'Cocamidopropyl Betaine',
-  /**
-   * Colorants is a generic term for dyes and pigments used in laundry detergents to provide color.
    */
   Colorants = 'Colorants',
   DenatoniumBenzoate = 'Denatonium Benzoate',
