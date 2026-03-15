@@ -6,6 +6,7 @@ export { default as ArmAndHammerDeepCleanFreeAndClear } from './arm-and-hammer-d
 export { default as ArmAndHammerDeepCleanStainFormulaSparklingClean } from './arm-and-hammer-deep-clean-stain-formula-sparkling-clean';
 export { default as ArmAndHammerDetergentPlusSoftenerOrchardBloom } from './arm-and-hammer-detergent-plus-softener-orchard-bloom';
 export { default as ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks } from './arm-and-hammer-plus-oxiclean-with-odor-blasters-5-in-1-power-paks';
+export { default as ArmAndHammerPowerSheetsFreshBreeze } from './arm-and-hammer-power-sheets-fresh-breeze';
 export { default as ArielOriginal } from './ariel-original';
 export { default as ArielTouchOfDownyPowder } from './ariel-touch-of-downy-powder';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';

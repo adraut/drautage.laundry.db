@@ -15,6 +15,9 @@ NonionicSurfactants.add(Ingredient.Laureth_7);
 NonionicSurfactants.add(Ingredient.Laureth_12);
 NonionicSurfactants.add(Ingredient.LauramineOxide);
 NonionicSurfactants.add(Ingredient.LaurylGlucoside);
+NonionicSurfactants.add(Ingredient.MethoxyPEG10Cocoate);
+NonionicSurfactants.add(Ingredient.PEG7GlycerylCocoate);
 NonionicSurfactants.add(Ingredient.PropoxylatedEthoxylatedAmine);
+NonionicSurfactants.add(Ingredient.Saponins);
 
 export { NonionicSurfactants };
