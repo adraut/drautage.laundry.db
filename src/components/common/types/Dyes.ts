@@ -11,6 +11,7 @@ Dyes.add(Ingredient.PigmentGreen7);
 Dyes.add(Ingredient.PigmentRed5);
 Dyes.add(Ingredient.PolyoxyalkyleneSubstitutedChromophoreBlue);
 Dyes.add(Ingredient.PolyoxyalkyleneSubstitutedChromophoreCyan);
+Dyes.add(Ingredient.PolyoxyalkyleneSubstitutedChromophorePink);
 Dyes.add(Ingredient.PolyoxyalkyleneSubstitutedChromophoreViolet);
 Dyes.add(Ingredient.PolyoxyalkyleneSubstitutedChromophoreYellow);
 

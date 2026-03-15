@@ -41,6 +41,12 @@ export enum Ingredient {
    */
   ChromophoreSubstitutedPolyoxyalkylene = 'Chromophore substituted polyoxyalkylene',
   CitricAcid = 'Citric Acid',
+  /**
+   * Colorants is a generic term for coloring agents used in laundry detergents to provide a
+   * specific hue to the product. Used when a source lists only the generic term without specifying
+   * individual colorant ingredients.
+   */
+  Colorants = 'Colorants',
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
   /**
    * Colorants is a generic term for dyes and pigments used in laundry detergents to provide color.
@@ -58,6 +64,12 @@ export enum Ingredient {
   DNase = 'DNase',
   Ethanol = 'Ethanol',
   Ethanolamine = 'Ethanolamine',
+  /**
+   * Fluorescent Brightener 28 Sodium Salt (also known as Tinopal CBS-X) is an optical brightener
+   * used in laundry detergents to absorb UV light and re-emit it as visible blue light,
+   * making fabrics appear whiter and brighter.
+   */
+  FluorescentBrightener28SodiumSalt = 'Fluorescent Brightener 28 Sodium Salt',
   FluorescentBrightener71 = 'Fluorescent Brightener 71',
   /**
    * Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.
@@ -70,6 +82,12 @@ export enum Ingredient {
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
   HydrophobicallyModifiedAcrylateStyreneCopolymer = 'Hydrophobically Modified Acrylate Styrene Copolymer',
   Laureth_7 = 'Laureth-7',
+  /**
+   * Laureth-12 is a nonionic surfactant and emulsifier derived from lauryl alcohol
+   * with 12 ethylene oxide units, used in laundry detergents to improve soil removal
+   * and help stabilize formulations.
+   */
+  Laureth_12 = 'Laureth-12',
   LaurylGlucoside = 'Lauryl Glucoside',
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
   Lipase = 'Lipase',
@@ -106,6 +124,11 @@ export enum Ingredient {
    * encapsulation, helping to release scent slowly during and after washing.
    */
   MethoxypolyoxymethyleneMelamine = 'Methoxypolyoxymethylene Melamine',
+  /**
+   * Methylisothiazolinone (MIT) is a synthetic preservative used in laundry detergents
+   * to prevent microbial growth and extend shelf life.
+   */
+  Methylisothiazolinone = 'Methylisothiazolinone',
   MethylDiTButylHydroxyhydrocinnamate = 'Methyl di-t-butyl hydroxyhydrocinnamate',
   OrganosiliconeCopolymer = 'Organosilicone copolymer',
   PectateLyase = 'Pectate Lyase',
@@ -136,6 +159,10 @@ export enum Ingredient {
    */
   PolyoxyalkyleneSubstitutedChromophoreBlue = 'Polyoxyalkylene Substituted Chromophore (Blue)',
   PolyoxyalkyleneSubstitutedChromophoreCyan = 'Polyoxyalkylene Substituted Chromophore (Cyan)',
+  /**
+   * A polymeric dye used in laundry detergents to provide a pink hue.
+   */
+  PolyoxyalkyleneSubstitutedChromophorePink = 'Polyoxyalkylene Substituted Chromophore (Pink)',
   PolyoxyalkyleneSubstitutedChromophoreViolet = 'Polyoxyalkylene Substituted Chromophore (Violet)',
   /**
    * A polymeric dye used in laundry detergents to provide a yellow hue and enhance color
@@ -175,6 +202,11 @@ export enum Ingredient {
   SodiumCarbonatePeroxide = 'Sodium Carbonate Peroxide',
   SodiumChloride = 'Sodium Chloride',
   SodiumCitrate = 'Sodium Citrate',
+  /**
+   * Sodium Cocoate is the sodium salt of coconut oil fatty acids, used as a surfactant and
+   * cleansing agent in laundry detergents. It is a natural soap derived from coconut oil.
+   */
+  SodiumCocoate = 'Sodium Cocoate',
   SodiumCumenesulfonate = 'Sodium Cumenesulfonate',
   SodiumFormate = 'Sodium Formate',
   SodiumHydroxide = 'Sodium Hydroxide',
@@ -195,6 +227,12 @@ export enum Ingredient {
   Subtilisin = 'Subtilisin',
   TAED = 'TAED',
   TeaTreeOil = 'Tea Tree Oil',
+  /**
+   * Tetrasodium EDTA (Ethylenediaminetetraacetic Acid tetrasodium salt) is a chelating agent
+   * used in laundry detergents to bind metal ions (calcium, magnesium, iron) that can interfere
+   * with cleaning performance, helping to soften water and stabilize the formula.
+   */
+  TetrasodiumEDTA = 'Tetrasodium EDTA',
   TetrasodiumGlutamateDiacetate = 'Tetrasodium Glutamate Diacetate',
   Trimethylsiloxysilicate = 'Trimethylsiloxysilicate',
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
