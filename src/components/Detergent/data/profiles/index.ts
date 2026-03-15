@@ -88,6 +88,7 @@ export { default as TidePowerPodsDownyAprilFresh } from './tide-power-pods-downy
 export { default as TideUltraOxiPowder } from './tide-ultra-oxi-powder';
 export { default as TideUltraSport } from './tide-ultra-sport';
 export { default as TideUltraStainReleaseLiquid } from './tide-ultra-stain-release-liquid';
+export { default as TideUltraWhite } from './tide-ultra-white';
 export { default as TideZeroSoftLavender } from './tide-zero-soft-lavender';
 export { default as WholeFoods365SportFresh } from './whole-foods-365-sport-fresh';
 export { default as WholeFoods365UnscentedPowder } from './whole-foods-365-unscented-powder';
