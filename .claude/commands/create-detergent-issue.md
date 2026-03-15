@@ -74,9 +74,38 @@ image (OCR) or manually entered information.
    - Region (if known)
    - Source URL (if known — leave blank if packaging only)
 
+### Check for an existing profile
+
+2. **Check whether a profile already exists** for this product.
+
+   Construct the expected filename from the product details:
+   - Lowercase the brand, product name, and variant
+   - Replace spaces and special characters with hyphens
+   - Pattern: `<brand>-<product name>[-<variant>].ts` (omit variant segment if N/A)
+   - Example: brand="Tide", product="Original", variant="Liquid" → `tide-original-liquid.ts`
+
+   Check for the file at `src/components/Detergent/data/profiles/<filename>`.
+
+   **If no match is found:** proceed to create an "Add" issue (step 3).
+
+   **If a match is found:**
+   a. Read the existing profile file and extract its ingredient list (all `Ingredient.XXX`
+      enum values in the `ingredients` array).
+   b. Compare the existing ingredients against the new ingredient list extracted from
+      the image or provided by the user. To compare, map each `Ingredient.EnumName`
+      to its plain-text equivalent by splitting on camel-case boundaries and known
+      abbreviations — an exact set match (order-insensitive) means no change.
+   c. **If the ingredient sets are identical:** inform the user that the profile is
+      already up to date and stop — do not create an issue.
+   d. **If the ingredient sets differ:** proceed to create an "Update" issue (step 3),
+      noting the differences in the issue body. Use "Update" in the title and add the
+      `update` label alongside `enhancement,Detergent`.
+
 ### Create the issue
 
-2. **Create the GitHub issue** using the collected data:
+3. **Create the GitHub issue** using the collected data.
+
+   For a **new** product (no existing profile):
    ```
    gh issue create \
      --title "Add <Brand> <Product Name>" \
@@ -108,7 +137,50 @@ image (OCR) or manually entered information.
    "
    ```
 
-3. **Report the issue URL** to the user and remind them they can run
+   For an **existing** product with changed ingredients (existing profile found):
+   ```
+   gh issue create \
+     --title "Update <Brand> <Product Name>" \
+     --label "enhancement,Detergent,update" \
+     --body "## Product details
+
+   - **Brand:** <brand>
+   - **Product name:** <product name>
+   - **Product variant (if any):** <variant or 'N/A'>
+   - **Detergent type:** <type>
+   - **Existing profile:** \`src/components/Detergent/data/profiles/<filename>.ts\`
+
+   ## Ingredient changes
+
+   ### Ingredients added (in new source, not in existing profile)
+
+   <list added ingredients, one per line, or 'None'>
+
+   ### Ingredients removed (in existing profile, not in new source)
+
+   <list removed ingredients, one per line, or 'None'>
+
+   ## Ingredient source(s)
+
+   - **Primary source:** <'packaging image' if from photo, otherwise source type>
+   - **Source URL:** <URL or 'N/A'>
+   - **Date accessed:** <today's date>
+   - **Region (if applicable):** <region or 'not specified'>
+
+   ## Full ingredient list
+
+   \`\`\`
+   <complete new ingredient list, one per line>
+   \`\`\`
+
+   ## Notes
+
+   - **Ingredient list language:** <source language, or 'English' if no translation was needed>
+   <any ambiguities noted during OCR, translation, or entry, or 'None' if no others>
+   "
+   ```
+
+4. **Report the issue URL** to the user and remind them they can run
    `/add-detergent <issue_number>` once they have reviewed the issue.
 
 ## Notes
