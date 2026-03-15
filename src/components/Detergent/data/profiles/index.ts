@@ -7,6 +7,7 @@ export { default as ArmAndHammerDeepCleanFreeAndClearPods } from './arm-and-hamm
 export { default as ArmAndHammerDeepCleanOdorFormula } from './arm-and-hammer-deep-clean-odor-formula';
 export { default as ArmAndHammerDeepCleanStainFormulaSparklingClean } from './arm-and-hammer-deep-clean-stain-formula-sparkling-clean';
 export { default as ArmAndHammerDetergentPlusSoftenerOrchardBloom } from './arm-and-hammer-detergent-plus-softener-orchard-bloom';
+export { default as ArmAndHammerFreeAndClearSensitiveSkin } from './arm-and-hammer-free-and-clear-sensitive-skin';
 export { default as ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks } from './arm-and-hammer-plus-oxiclean-with-odor-blasters-5-in-1-power-paks';
 export { default as ArmAndHammerPowerSheetsFragranceFree } from './arm-and-hammer-power-sheets-fragrance-free';
 export { default as ArmAndHammerPowerSheetsFreshBreeze } from './arm-and-hammer-power-sheets-fresh-breeze';
