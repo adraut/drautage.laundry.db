@@ -14,7 +14,7 @@ const ingredients: Ingredient[] = [
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
   Ingredient.Fragrance,
   Ingredient.Colorants,
-  Ingredient.SodiumCarbonatePeroxide,
+  Ingredient.SodiumPercarbonate,
   Ingredient.Protease,
   Ingredient.Amylase,
 ];

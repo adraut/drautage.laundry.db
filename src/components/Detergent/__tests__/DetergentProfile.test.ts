@@ -125,17 +125,6 @@ describe('DetergentProfile', () => {
         expect(profile.hasOpticalBrighteners).toBe(false);
       });
 
-      it('should detect hasOxygenBleach when SodiumCarbonatePeroxide is present', () => {
-        const profile = new DetergentProfile(
-          'Test',
-          'Brand',
-          DetergentType.Liquid,
-          [Ingredient.SodiumCarbonatePeroxide],
-          new Date(),
-        );
-        expect(profile.hasOxygenBleach).toBe(true);
-      });
-
       it('should detect hasOxygenBleach when SodiumPercarbonate is present', () => {
         const profile = new DetergentProfile(
           'Test',
@@ -285,7 +274,7 @@ describe('DetergentProfile', () => {
             Ingredient.SodiumC10_16Alkylbenzenesulfonate,
             Ingredient.C10_16Alketh,
             Ingredient.FluorescentBrightener71,
-            Ingredient.SodiumCarbonatePeroxide,
+            Ingredient.SodiumPercarbonate,
             Ingredient.SimethiconeDimethicone,
           ],
           new Date(),

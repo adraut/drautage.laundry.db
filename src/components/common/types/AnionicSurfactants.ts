@@ -10,7 +10,6 @@ AnionicSurfactants.add(Ingredient.MEADedecylbenzenesulfonate);
 AnionicSurfactants.add(Ingredient.MEALAS);
 AnionicSurfactants.add(Ingredient.MEALaurethSulfate);
 AnionicSurfactants.add(Ingredient.SodiumC10_16Alkylbenzenesulfonate);
-AnionicSurfactants.add(Ingredient.SodiumLaurethEtherSulfate);
 AnionicSurfactants.add(Ingredient.SodiumLaurethSulfate);
 AnionicSurfactants.add(Ingredient.SodiumLaurylSulfate);
 AnionicSurfactants.add(Ingredient.SodiumMEAC10_16Alkylbenzenesulfonate);

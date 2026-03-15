@@ -14,7 +14,7 @@ const ingredients: Ingredient[] = [
   Ingredient.C10_16Alketh,
   Ingredient.CelluloseGum,
   Ingredient.AnionicModifiedPolyester,
-  Ingredient.SodiumCarbonatePeroxide,
+  Ingredient.SodiumPercarbonate,
   Ingredient.TAED,
   Ingredient.Fragrance,
   Ingredient.FluorescentBrightener71,
