@@ -12,6 +12,12 @@ export enum Ingredient {
    */
   AlkoxylatedAmineSubstitutedTriarylMethane = 'Alkoxylated Amine Substituted Triaryl Methane',
   /**
+   * Aloe Barbadensis Leaf Powder is the dried, powdered form of aloe vera leaf gel, used in
+   * laundry detergents as a soothing and conditioning ingredient for fabrics and skin.
+   * Also listed on labels as: Aloe Barbadensis (Organic Aloe) Leaf Powder
+   */
+  AloeBarbadenisLeafPowder = 'Aloe Barbadensis Leaf Powder',
+  /**
    * Amylase is an enzyme that breaks down starch into simpler sugars, helping to remove starchy stains.
    * Synonyms: Amylase Enzyme
    */
@@ -112,7 +118,24 @@ export enum Ingredient {
    * Synonyms: Long Lasting Fragrance, Long Lasting Frgrance, Fragrances
    **/
   Fragrance = 'Fragrance',
+  /**
+   * Glycerin (also known as glycerol) is a humectant and solvent used in laundry detergents
+   * to help retain moisture and stabilize the formula.
+   * Also listed on labels as: Glycerin (Organic)
+   */
   Glycerin = 'Glycerin',
+  /**
+   * Guar Gum is a natural polysaccharide derived from guar beans, used in laundry detergents
+   * as a thickener and stabilizer.
+   * Also listed on labels as: Guar Gum (Organic)
+   */
+  GuarGum = 'Guar Gum',
+  /**
+   * Gum Acacia (also known as gum arabic) is a natural plant-derived gum from Acacia trees,
+   * used in laundry detergents as a thickener and stabilizer.
+   * Also listed on labels as: Gum Acacia (Organic)
+   */
+  GumAcacia = 'Gum Acacia',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
   /**
    * Hydrophobically Modified Acrylate Styrene Copolymer is a polymeric soil release and
@@ -140,8 +163,20 @@ export enum Ingredient {
    * co-surfactant, foam booster, and viscosity builder.
    */
   LauramineOxide = 'Lauramine Oxide',
+  /**
+   * Lavandula Hybrida Oil (lavandin oil) is an essential oil from a hybrid lavender plant,
+   * used in laundry detergents as a natural fragrance.
+   * Also listed on labels as: Lavandula (Organic Lavender) Hybrida Oil
+   */
+  LavandulaHybridaOil = 'Lavandula Hybrida Oil',
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
   Lipase = 'Lipase',
+  /**
+   * Lonicera Japonica Flower Extract (Japanese Honeysuckle Flower Extract) is a plant-derived
+   * extract used in laundry detergents as a natural antimicrobial and preservative agent.
+   * Also listed on labels as: Lonicera Japonica (Organic Honeysuckle) Flower Extract
+   */
+  LoniceraJaponicaFlowerExtract = 'Lonicera Japonica Flower Extract',
   /**
    * Mannanase is an enzyme that breaks down mannans (polysaccharides), helping to remove food stains
    * containing guar gum, locust bean gum, or similar thickeners.
@@ -192,6 +227,12 @@ export enum Ingredient {
    */
   MethylDiTButylHydroxycinnimate = 'Methyl di-t-butyl hydroxycinnimate',
   MethylDiTButylHydroxyhydrocinnamate = 'Methyl di-t-butyl hydroxyhydrocinnamate',
+  /**
+   * Organic Soapberry Juice is a natural surfactant liquid derived from the soapberry fruit
+   * (Sapindus Mukorossi), containing natural saponins that act as a plant-based cleansing agent
+   * in laundry detergents. Composed of water and Sapindus Mukorossi Fruit Extract.
+   */
+  OrganicSoapberryJuice = 'Organic Soapberry Juice',
   OrganosiliconeCopolymer = 'Organosilicone copolymer',
   /**
    * Palm Kernel Acid is a fatty acid mixture derived from palm kernel oil, used in laundry
@@ -273,6 +314,11 @@ export enum Ingredient {
   PolyvinylAlcoholFilm = 'Polyvinyl Alcohol Film',
   PolyvinylAlcoholPolymer = 'Polyvinyl Alcohol Polymer',
   /**
+   * Potassium Cocoate is the potassium salt of coconut oil fatty acids, used as a soap and
+   * surfactant in laundry detergents. It is a natural soap derived from coconut oil.
+   */
+  PotassiumCocoate = 'Potassium Cocoate',
+  /**
    * PPG (Polypropylene Glycol) is a synthetic polymer used as a solvent and humectant in laundry
    * detergents. It helps dissolve other ingredients, stabilize the formula, and can function as
    * a mild defoamer.
@@ -348,6 +394,11 @@ export enum Ingredient {
    * as a fabric conditioning and protective ingredient, helping to strengthen and protect fibers.
    */
   WheatProteinSilanetriol = 'Wheat Protein Silanetriol',
+  /**
+   * Xanthan Gum is a natural polysaccharide produced by fermentation, used in laundry detergents
+   * as a thickener and stabilizer to improve product viscosity and stability.
+   */
+  XanthanGum = 'Xanthan Gum',
   /**
    * Zeolite is a naturally occurring or synthetic mineral used in laundry detergents as a water softener,
    * binding calcium and magnesium ions to prevent them from interfering with cleaning.
