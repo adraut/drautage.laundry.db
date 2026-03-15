@@ -6,16 +6,17 @@ const ingredients: Ingredient[] = [
   Ingredient.Water,
   Ingredient.C10_16Pareth,
   Ingredient.SodiumC10_16Alkylbenzenesulfonate,
-  Ingredient.C12_18FattyAcidsSodiumSalt,
-  Ingredient.PropyleneGlycol,
+  Ingredient.SodiumLaurylSulfate,
   Ingredient.PolyethyleneimineAlkoxylated,
+  Ingredient.C12_18FattyAcidsSodiumSalt,
   Ingredient.SodiumCitrate,
-  Ingredient.SodiumBorate,
-  Ingredient.SodiumCumenesulfonate,
-  Ingredient.C10_16AlkyldimethylamineOxide,
+  Ingredient.CalciumFormate,
   Ingredient.Subtilisin,
-  Ingredient.SodiumFormate,
   Ingredient.Amylase,
+  Ingredient.Alcohol,
+  Ingredient.PropyleneGlycol,
+  Ingredient.TetrasodiumGlutamateDiacetate,
+  Ingredient.Benzisothiazolinone,
   Ingredient.Mannanase,
 ];
 
@@ -24,7 +25,7 @@ const TideFreeGentle: DetergentProfile = new DetergentProfile(
   'Tide',
   DetergentType.Liquid,
   ingredients,
-  new Date('2026-02-08'),
+  new Date('2026-03-15'),
 );
 TideFreeGentle.countryOfOrigin = 'USA';
 TideFreeGentle.countriesAvailable = ['USA'];
