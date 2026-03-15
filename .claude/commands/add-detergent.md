@@ -10,9 +10,11 @@ Adds a new detergent profile to the repository based on a GitHub issue.
 
 1. **Read the issue** to extract brand, product name, variant, detergent type,
    source URL(s), region, and ingredient list:
+
    ```
    gh issue view <issue_number>
    ```
+
    Note whether the issue title starts with **"Add"** or **"Update"** — this
    determines the rest of the workflow.
 
@@ -47,6 +49,7 @@ Adds a new detergent profile to the repository based on a GitHub issue.
    exists.)
 
 8. **Run quality checks** and fix any failures:
+
    ```
    npm run checks
    ```
@@ -67,6 +70,7 @@ Adds a new detergent profile to the repository based on a GitHub issue.
 11. **Open a draft PR** using the structure from `.github/PULL_REQUEST_TEMPLATE/detergent.md`:
 
     For **Add** issues:
+
     ```
     gh pr create \
       --draft \
@@ -90,6 +94,7 @@ Adds a new detergent profile to the repository based on a GitHub issue.
     ```
 
     For **Update** issues:
+
     ```
     gh pr create \
       --draft \

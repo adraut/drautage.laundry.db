@@ -19,18 +19,18 @@ Static Web Apps via GitHub Actions.
 
 ## Development commands
 
-| Task | Command |
-|------|---------|
-| All checks (lint + type-check + test + format) | `npm run checks` |
-| Lint (check) | `npm run lint` |
-| Lint (auto-fix) | `npm run lint:fix` |
-| Format (check) | `npm run format` |
-| Format (auto-fix) | `npm run format:fix` |
-| Type check | `npm run type-check` |
-| Tests | `npm test` |
-| Tests (coverage) | `npm run test:coverage` |
-| Dev server | `npm start` |
-| Production build | `npm run build:prod` |
+| Task                                           | Command                 |
+| ---------------------------------------------- | ----------------------- |
+| All checks (lint + type-check + test + format) | `npm run checks`        |
+| Lint (check)                                   | `npm run lint`          |
+| Lint (auto-fix)                                | `npm run lint:fix`      |
+| Format (check)                                 | `npm run format`        |
+| Format (auto-fix)                              | `npm run format:fix`    |
+| Type check                                     | `npm run type-check`    |
+| Tests                                          | `npm test`              |
+| Tests (coverage)                               | `npm run test:coverage` |
+| Dev server                                     | `npm start`             |
+| Production build                               | `npm run build:prod`    |
 
 ## Domain instructions
 

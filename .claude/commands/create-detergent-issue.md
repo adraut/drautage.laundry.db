@@ -79,10 +79,12 @@ image (OCR) or manually entered information.
 Before comparing or listing ingredients, apply these rules:
 
 **OR alternatives:** Packaging sometimes lists `"ingredient A or ingredient B"` (or `"A and/or B"`).
+
 - If either option is already in the existing profile, treat the OR pair as satisfied — do not add or remove anything for that pair.
 - If neither option is in the profile (new product or new ingredient), use the **first-listed** option and discard the rest.
 
 **Colorants:**
+
 - If the packaging names a specific colorant (e.g., `CI 42090`, `Pigment Blue 15`, `FD&C Blue 1`), use that specific `Ingredient` enum entry.
 - If the packaging only lists a generic term (`Colorants`, `Dyes`, `Colorants/Colorants`), add the generic `Ingredient.Colorants` entry instead.
 - Do **not** keep a specific colorant in the profile if the current packaging source only lists a generic term. Specific colorants from prior sources should be replaced with the generic entry.
@@ -105,22 +107,23 @@ Before comparing or listing ingredients, apply these rules:
 
    **If a match is found:**
    a. Read the existing profile file and extract its ingredient list (all `Ingredient.XXX`
-      enum values in the `ingredients` array).
+   enum values in the `ingredients` array).
    b. Compare the existing ingredients against the new ingredient list extracted from
-      the image or provided by the user. To compare, map each `Ingredient.EnumName`
-      to its plain-text equivalent by splitting on camel-case boundaries and known
-      abbreviations — an exact set match (order-insensitive) means no change.
+   the image or provided by the user. To compare, map each `Ingredient.EnumName`
+   to its plain-text equivalent by splitting on camel-case boundaries and known
+   abbreviations — an exact set match (order-insensitive) means no change.
    c. **If the ingredient sets are identical:** inform the user that the profile is
-      already up to date and stop — do not create an issue.
+   already up to date and stop — do not create an issue.
    d. **If the ingredient sets differ:** proceed to create an "Update" issue (step 3),
-      noting the differences in the issue body. Use "Update" in the title and add the
-      `update` label alongside `enhancement,Detergent`.
+   noting the differences in the issue body. Use "Update" in the title and add the
+   `update` label alongside `enhancement,Detergent`.
 
 ### Create the issue
 
 3. **Create the GitHub issue** using the collected data.
 
    For a **new** product (no existing profile):
+
    ```
    gh issue create \
      --title "Add <Brand> <Product Name>" \
@@ -153,6 +156,7 @@ Before comparing or listing ingredients, apply these rules:
    ```
 
    For an **existing** product with changed ingredients (existing profile found):
+
    ```
    gh issue create \
      --title "Update <Brand> <Product Name>" \

@@ -16,6 +16,7 @@ creating or updating GitHub issues for each product. Progress is tracked in
 ## Overview
 
 Images come in consecutive pairs (sorted alphabetically by filename):
+
 - **Odd image** (1st of pair) — front of packaging: brand, product name, variant
 - **Even image** (2nd of pair) — ingredient list panel
 
@@ -31,6 +32,7 @@ with columns: `#`, `Front image`, `Ingredient image`, `Product`, `Status`,
 `Notes`.
 
 Status values:
+
 - `pending` — not yet started
 - `identified` — front image read, product identified, not yet processed
 - `issue-created` — GitHub issue was created
@@ -45,6 +47,7 @@ one at a time in order, pausing for user input when needed.
 #### Step 2a — Identify the product (front image)
 
 Read the front image. Extract:
+
 - Brand name
 - Product name
 - Variant (if any)
@@ -57,6 +60,7 @@ before continuing.
 #### Step 2b — Check for an existing profile
 
 Construct the expected filename:
+
 - Lowercase brand, product name, and variant
 - Replace spaces and special characters with hyphens
 - Pattern: `<brand>-<product name>[-<variant>].ts`
@@ -72,12 +76,14 @@ Read the ingredient image. Apply the following rules during extraction:
 other language versions. If English is absent, translate to English INCI names.
 
 **OR alternatives:** Packaging sometimes lists `"A or B"` or `"A and/or B"`.
+
 - If either option is already in the existing profile, treat the OR pair as
   satisfied — do not add or remove anything for that pair.
 - If neither option is in the profile (new product or new ingredient), use
   the **first-listed** option and discard the rest.
 
 **Colorants:**
+
 - If the packaging names a specific colorant (e.g., `CI 42090`,
   `Pigment Blue 15`), use that specific `Ingredient` enum entry.
 - If the packaging only lists a generic term (`Colorants`, `Dyes`), use
@@ -105,6 +111,7 @@ If no profile exists → create an Add issue.
 #### Step 2e — Confirm ambiguities with the user
 
 Before creating the issue, raise any ambiguities:
+
 - OCR uncertainty (smudged, cut-off, or low-contrast text)
 - Ingredient names that are unclear or have no obvious enum match
 - Whether a product name matches an existing profile title
@@ -124,6 +131,7 @@ Use separate `--label` flags (not comma-separated) to avoid label-not-found erro
 
 After the issue is created (or the pair is skipped/up-to-date), update the
 row in the log:
+
 - Set the `Product` column to the identified product name
 - Set the `Status` column to the appropriate value
 - Add a brief note in the `Notes` column (issue number, key changes, OR rules applied, etc.)

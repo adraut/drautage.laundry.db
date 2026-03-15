@@ -15,6 +15,7 @@ npm run checks
 This runs lint, type-check, tests, and format check in sequence.
 
 If any check fails:
+
 - **Lint**: run `npm run lint:fix`, then re-run `npm run lint`
 - **Format**: run `npm run format:fix`, then re-run `npm run format`
 - **Type errors**: fix manually — no auto-fix available
