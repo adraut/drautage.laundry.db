@@ -1,14 +1,6 @@
 name: Azure Static Web Apps - Deploy
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '.github/**'
-      - '**/*.md'
-      - '.copilot-setup-steps.yml'
-      - '.gitignore'
   workflow_dispatch:
 
 jobs:
