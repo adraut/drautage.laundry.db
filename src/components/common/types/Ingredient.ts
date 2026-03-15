@@ -296,6 +296,11 @@ export enum Ingredient {
    * Synonyms: Pentasodium DTPA
    */
   PentasodiumPentetate = 'Pentasodium Pentetate',
+  /**
+   * Phenoxyethanol is a synthetic preservative used in laundry detergents
+   * to prevent microbial growth and extend shelf life.
+   */
+  Phenoxyethanol = 'Phenoxyethanol',
   PhenylpropylEthylMethicone = 'Phenylpropyl Ethyl Methicone',
   PigmentBlue15 = 'Pigment Blue 15',
   /**
