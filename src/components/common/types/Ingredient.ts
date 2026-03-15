@@ -60,6 +60,11 @@ export enum Ingredient {
   C12_18FattyAcidsSodiumSalt = 'Sodium Salts of C12-18 Fatty Acids',
   C16_18FattyAcidsSodiumSalt = 'C16-18 fatty acids sodium salt',
   CalciumCarbonate = 'Calcium Carbonate',
+  /**
+   * Calcium Chloride is an inorganic salt used in laundry detergents as a viscosity modifier
+   * and thickener, helping to adjust the consistency of liquid formulations.
+   */
+  CalciumChloride = 'Calcium Chloride',
   CalciumFormate = 'Calcium formate',
   /**
    * Cellulase is an enzyme that breaks down cellulose fibers, helping to remove cotton-based stains
