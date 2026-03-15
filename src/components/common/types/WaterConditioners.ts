@@ -14,6 +14,7 @@ WaterConditioners.add(Ingredient.SodiumMEACitrate);
 WaterConditioners.add(Ingredient.SodiumMetaborate);
 WaterConditioners.add(Ingredient.SodiumSilicate);
 WaterConditioners.add(Ingredient.PentasodiumPentetate);
+WaterConditioners.add(Ingredient.PotassiumCarbonate);
 WaterConditioners.add(Ingredient.TetrasodiumEDTA);
 WaterConditioners.add(Ingredient.TetrasodiumGlutamateDiacetate);
 WaterConditioners.add(Ingredient.TetrasodiumIminodisuccinate);

@@ -10,6 +10,7 @@ AntiRedpositionAgents.add(Ingredient.HydrophobicallyModifiedAcrylateStyreneCopol
 AntiRedpositionAgents.add(Ingredient.ModifiedAcrylicCopolymer);
 AntiRedpositionAgents.add(Ingredient.SodiumAcrylicAcidMACopolymer);
 AntiRedpositionAgents.add(Ingredient.SodiumCarbonate);
+AntiRedpositionAgents.add(Ingredient.SodiumMaleateAcrylateCopolymer);
 AntiRedpositionAgents.add(Ingredient.SodiumMetasilicate);
 AntiRedpositionAgents.add(Ingredient.SodiumPolyacrylate);
 AntiRedpositionAgents.add(Ingredient.SodiumSilicate);
