@@ -16,7 +16,7 @@ const ingredients: Ingredient[] = [
   Ingredient.CalciumFormate,
   Ingredient.Ethanolamine,
   Ingredient.Benzisothiazolinone,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreBlue,
+  Ingredient.Colorants,
 ];
 
 const TideSimplyAllInOneDaybreakFresh: DetergentProfile = new DetergentProfile(
@@ -24,7 +24,7 @@ const TideSimplyAllInOneDaybreakFresh: DetergentProfile = new DetergentProfile(
   'Tide',
   DetergentType.Liquid,
   ingredients,
-  new Date('2026-02-21'),
+  new Date('2026-03-15'),
 );
 TideSimplyAllInOneDaybreakFresh.countryOfOrigin = 'USA';
 TideSimplyAllInOneDaybreakFresh.countriesAvailable = ['USA'];
