@@ -56,6 +56,12 @@ export enum Ingredient {
    */
   C12_13Pareth_2 = 'C12-13 Pareth-2',
   C12_14AlcoholsEthoxylated = 'C12-14 Alcohols Ethoxylated',
+  /**
+   * C12-15 Alcohols Ethoxylated is a nonionic surfactant made from C12-15 fatty alcohols
+   * reacted with ethylene oxide, used in laundry detergents to reduce surface tension and
+   * improve soil removal and wetting.
+   * Synonyms: C12-15 Alcohol Ethoxylate
+   */
   C12_15AlcoholsEthoxylated = 'C12-15 Alcohols Ethoxylated',
   C12_18FattyAcidsSodiumSalt = 'Sodium Salts of C12-18 Fatty Acids',
   C16_18FattyAcidsSodiumSalt = 'C16-18 fatty acids sodium salt',
@@ -86,6 +92,11 @@ export enum Ingredient {
   ChromophoreSubstitutedPolyoxyalkylene = 'Chromophore substituted polyoxyalkylene',
   CitricAcid = 'Citric Acid',
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
+  /**
+   * Coconut Fatty Acid is a mixture of fatty acids derived from coconut oil, used in laundry
+   * detergents as a soap precursor and surfactant.
+   */
+  CoconutFattyAcid = 'Coconut Fatty Acid',
   /**
    * Colorants is a generic term for coloring agents used in laundry detergents to provide a
    * specific hue to the product. Used when a source lists only the generic term without specifying
@@ -124,6 +135,11 @@ export enum Ingredient {
    */
   EssentialOil = 'Essential Oil',
   Ethanol = 'Ethanol',
+  /**
+   * Ethanolamine (monoethanolamine, MEA) is used in laundry detergents as a pH adjuster,
+   * alkalinity source, and surfactant co-builder.
+   * Synonyms: Monoethanolamine
+   */
   Ethanolamine = 'Ethanolamine',
   /**
    * Ethoxylated Alcohol is a generic nonionic surfactant term for a fatty alcohol reacted with
@@ -161,6 +177,7 @@ export enum Ingredient {
    * Glycerin (also known as glycerol) is a humectant and solvent used in laundry detergents
    * to help retain moisture and stabilize the formula.
    * Also listed on labels as: Glycerin (Organic)
+   * Synonyms: Glycerol
    */
   Glycerin = 'Glycerin',
   /**
@@ -226,6 +243,12 @@ export enum Ingredient {
    */
   LavandulaHybridaOil = 'Lavandula Hybrida Oil',
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
+  /**
+   * Linear Alkylbenzene Sulfonic Acid (LABSA) is an anionic surfactant and the free acid form
+   * of linear alkylbenzene sulfonate (LAS), used in laundry detergents as a primary cleaning
+   * agent. Distinct from its sodium salt (Sodium C10-16 Alkylbenzenesulfonate).
+   */
+  LinearAlkylbenzeneSulfonicAcid = 'Linear Alkylbenzene Sulfonic Acid',
   Lipase = 'Lipase',
   /**
    * Lonicera Japonica Flower Extract (Japanese Honeysuckle Flower Extract) is a plant-derived
@@ -307,6 +330,14 @@ export enum Ingredient {
    */
   ModifiedAcrylicCopolymer = 'Modified Acrylic Copolymer',
   /**
+   * Opacifier is a generic term for opacifying agents used in laundry detergents.
+   * Purpose: Primarily aesthetic — makes the detergent look more luxurious and consistent.
+   * Types: Styrene/Acrylates Copolymer is common, though newer options like biodegradable
+   * natural opacifiers (e.g., Syensqo Miracare® Biopacify) are emerging. Titanium dioxide
+   * is also used.
+   */
+  Opacifier = 'Opacifier',
+  /**
    * Organic Soapberry Juice is a natural surfactant liquid derived from the soapberry fruit
    * (Sapindus Mukorossi), containing natural saponins that act as a plant-based cleansing agent
    * in laundry detergents. Composed of water and Sapindus Mukorossi Fruit Extract.
@@ -383,6 +414,12 @@ export enum Ingredient {
    * This is a specific type of Polyethyleneimine Alkoxylated.
    */
   PolyethlyleneImineEthoxylate = 'Polyethylene Imine Ethoxylate',
+  /**
+   * Polyethylenimine Polymer (PEI) is a non-alkoxylated polymer used in laundry detergents
+   * as a soil release agent and dye transfer inhibitor. Distinct from the alkoxylated form
+   * (Polyethyleneimine Alkoxylated).
+   */
+  PolyethyleniminePolymer = 'Polyethylenimine Polymer',
   /**
    * A polymeric dye used in laundry detergents to provide a blue hue and enhance whiteness
    * perception without permanently staining fabrics.
@@ -507,7 +544,7 @@ export enum Ingredient {
   /**
    * Sodium Laureth Sulfate (SLES) is an anionic surfactant used in laundry detergents to
    * help remove soils and stains by lowering surface tension.
-   * Synonyms: Sodium Laureth Ether Sulfate
+   * Synonyms: Sodium Laureth Ether Sulfate, Sodium Lauryl Ether Sulfate
    */
   SodiumLaurethSulfate = 'Sodium Laureth Sulfate',
   SodiumLaurylSulfate = 'Sodium Lauryl Sulfate',
