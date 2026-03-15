@@ -9,6 +9,7 @@ export { default as ArielTouchOfDownyPowder } from './ariel-touch-of-downy-powde
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
 export { default as DreftStage1Newborn } from './dreft-stage-1-newborn';
 export { default as GainOdorDefenseSuperFresh } from './gain-odor-defense-super-fresh';
+export { default as GainOriginalLiquid } from './gain-original-liquid';
 export { default as GainAromaBoostLavender } from './gain-aroma-boost-lavender';
 export { default as GainAromaBoostHawaiianAloha } from './gain-aroma-boost-hawaiian-aloha';
 export { default as GainAromaBoostAppleMangoTangoLiquid } from './gain-aroma-boost-apple-mango-tango-liquid';
