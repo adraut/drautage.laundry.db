@@ -132,6 +132,10 @@ export enum Ingredient {
    */
   PolyoxyalkyleneSubstitutedChromophoreBlue = 'Polyoxyalkylene Substituted Chromophore (Blue)',
   PolyoxyalkyleneSubstitutedChromophoreCyan = 'Polyoxyalkylene Substituted Chromophore (Cyan)',
+  /**
+   * A polymeric dye used in laundry detergents to provide a pink hue.
+   */
+  PolyoxyalkyleneSubstitutedChromophorePink = 'Polyoxyalkylene Substituted Chromophore (Pink)',
   PolyoxyalkyleneSubstitutedChromophoreViolet = 'Polyoxyalkylene Substituted Chromophore (Violet)',
   /**
    * A polymeric dye used in laundry detergents to provide a yellow hue and enhance color
