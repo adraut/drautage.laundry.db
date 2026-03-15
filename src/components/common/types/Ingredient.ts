@@ -251,6 +251,12 @@ export enum Ingredient {
   MethylDiTButylHydroxycinnimate = 'Methyl di-t-butyl hydroxycinnimate',
   MethylDiTButylHydroxyhydrocinnamate = 'Methyl di-t-butyl hydroxyhydrocinnamate',
   /**
+   * Modified Acrylic Copolymer is a synthetic polymer used in laundry detergents as a
+   * dispersant and anti-redeposition agent, helping to keep soils suspended in wash water
+   * and prevent them from redepositing onto fabrics.
+   */
+  ModifiedAcrylicCopolymer = 'Modified Acrylic Copolymer',
+  /**
    * Organic Soapberry Juice is a natural surfactant liquid derived from the soapberry fruit
    * (Sapindus Mukorossi), containing natural saponins that act as a plant-based cleansing agent
    * in laundry detergents. Composed of water and Sapindus Mukorossi Fruit Extract.
@@ -357,6 +363,11 @@ export enum Ingredient {
    */
   PolyvinylAlcoholFilm = 'Polyvinyl Alcohol Film',
   PolyvinylAlcoholPolymer = 'Polyvinyl Alcohol Polymer',
+  /**
+   * Potassium Chloride is an inorganic salt used in laundry detergents as a viscosity modifier
+   * and processing aid, helping to regulate product texture and improve powder flowability.
+   */
+  PotassiumChloride = 'Potassium Chloride',
   /**
    * Potassium Cocoate is the potassium salt of coconut oil fatty acids, used as a soap and
    * surfactant in laundry detergents. It is a natural soap derived from coconut oil.
