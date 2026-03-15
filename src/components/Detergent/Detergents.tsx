@@ -85,9 +85,9 @@ const DEFAULT_COL_DEF: ColDef<DetergentProfile> = {
 const BOOLEAN_COL: Partial<ColDef<DetergentProfile>> = { cellRenderer: BooleanCellRenderer };
 
 const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
-  { field: 'brand', headerName: 'Brand' },
-  { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer, sort: 'asc' },
-  { field: 'type', headerName: 'Type' },
+  { field: 'brand', headerName: 'Brand', sort: 'asc', sortIndex: 0 },
+  { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer, sort: 'asc', sortIndex: 1 },
+  { field: 'type', headerName: 'Type', sort: 'asc', sortIndex: 2 },
   { field: 'hasOxygenBleach', headerName: 'Oxygen Bleach', ...BOOLEAN_COL },
   { field: 'hasTAED', headerName: 'TAED', ...BOOLEAN_COL },
   { field: 'hasOpticalBrighteners', headerName: 'Optical Brighteners', ...BOOLEAN_COL },
