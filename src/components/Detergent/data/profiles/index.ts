@@ -30,6 +30,7 @@ export { default as GainUltraPlusOxiOriginal } from './gain-ultra-plus-oxi-origi
 export { default as GainUltraMoonlightBreezePowder } from './gain-ultra-moonlight-breeze-powder';
 export { default as GainUltraWithFebrezeFreshnessHawaiianAloha } from './gain-ultra-with-febreze-freshness-hawaiian-aloha';
 export { default as PersilUltraPacsOriginal } from './persil-ultra-pacs-original';
+export { default as PersilUltraPacsAdvancedCleanOxiPower } from './persil-ultra-pacs-advanced-clean-oxi-power';
 export { default as PurexFourInOneBrightCleanFreshMountainBreeze } from './purex-4-in-1-bright-clean-fresh-mountain-breeze';
 export { default as PurexFreeAndClear } from './purex-free-and-clear';
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
