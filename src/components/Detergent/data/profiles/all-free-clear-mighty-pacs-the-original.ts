@@ -10,7 +10,7 @@ const ingredients: Ingredient[] = [
   Ingredient.PropyleneGlycol,
   Ingredient.C8_18FattyAcidAmideMEA,
   Ingredient.PEG_10,
-  Ingredient.PolyvinylAlcoholPolymer,
+  Ingredient.PolyvinylAlcoholFilm,
   Ingredient.SodiumLaurethSulfate,
   Ingredient.Ethanol,
   Ingredient.TetrasodiumIminodisuccinate,

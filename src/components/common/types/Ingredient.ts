@@ -1,4 +1,10 @@
 export enum Ingredient {
+  /**
+   * Acrylic Acid Homopolymer (polyacrylic acid, PAA) is a polymer used in laundry detergents
+   * as a dispersant and anti-redeposition agent, helping to keep soils suspended in the wash water
+   * and prevent them from redepositing onto fabrics.
+   */
+  AcrylicAcidHomopolymer = 'Acrylic Acid Homopolymer',
   Alcohol = 'Alcohol',
   /**
    * Alkoxylated Amine Substituted Triaryl Methane is a triarylmethane-based polymeric dye
@@ -27,6 +33,17 @@ export enum Ingredient {
   C10_16Alketh = 'C10-16 Alketh',
   C10_16AlkyldimethylamineOxide = 'C10-16 Alkyldimethylamine Oxide',
   C10_16Pareth = 'C10-16 Pareth',
+  /**
+   * C12-13 Alcohols Ethoxylated is a nonionic surfactant used in laundry detergents to reduce
+   * surface tension and improve soil removal and wetting.
+   */
+  C12_13AlcoholsEthoxylated = 'C12-13 Alcohols Ethoxylated',
+  /**
+   * C12-13 Pareth-2 is a nonionic surfactant derived from C12-13 fatty alcohols
+   * ethoxylated with 2 ethylene oxide units, used in laundry detergents to reduce
+   * surface tension and improve soil removal.
+   */
+  C12_13Pareth_2 = 'C12-13 Pareth-2',
   C12_14AlcoholsEthoxylated = 'C12-14 Alcohols Ethoxylated',
   C12_15AlcoholsEthoxylated = 'C12-15 Alcohols Ethoxylated',
   C12_18FattyAcidsSodiumSalt = 'Sodium Salts of C12-18 Fatty Acids',
@@ -61,6 +78,11 @@ export enum Ingredient {
    */
   DiethyleneGlycol = 'Diethylene Glycol',
   Dimethicone = 'Dimethicone',
+  /**
+   * Dipropylene Glycol is a solvent and humectant used in laundry detergents
+   * to help dissolve other ingredients and improve product stability.
+   */
+  DipropyleneGlycol = 'Dipropylene Glycol',
   DisodiumDistyrylbiphenylDisulfonate = 'Disodium Distyrylbiphenyl Disulfonate',
   DNase = 'DNase',
   Ethanol = 'Ethanol',
@@ -112,6 +134,11 @@ export enum Ingredient {
    * Synonyms: Ethanolamine Citrate
    */
   MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate
+  /**
+   * MEA-Dodecylbenzenesulfonate is an anionic surfactant used in laundry detergents
+   * as a primary cleaning agent. It is the monoethanolamine salt of dodecylbenzenesulfonic acid.
+   * Synonyms: MEA dodecylbenzenesulfonate
+   */
   MEADedecylbenzenesulfonate = 'MEA-Dodecylbenzenesulfonate',
   /**
    * MEA-LAS (Monoethanolamine Linear Alkylbenzene Sulfonate) is an anionic surfactant used as
@@ -132,6 +159,12 @@ export enum Ingredient {
   Methylisothiazolinone = 'Methylisothiazolinone',
   MethylDiTButylHydroxyhydrocinnamate = 'Methyl di-t-butyl hydroxyhydrocinnamate',
   OrganosiliconeCopolymer = 'Organosilicone copolymer',
+  /**
+   * Palm Kernel Acid is a fatty acid mixture derived from palm kernel oil, used in laundry
+   * detergents as a soap and surfactant. It consists primarily of lauric acid with other
+   * medium-chain fatty acids.
+   */
+  PalmKernelAcid = 'Palm Kernel Acid',
   PectateLyase = 'Pectate Lyase',
   Pectinase = 'Pectinase',
   PEG = 'PEG',
@@ -141,6 +174,12 @@ export enum Ingredient {
    */
   PEG_10 = 'PEG-10',
   PEG136PolyvinylAlcohol = 'PEG-136 Polyvinyl Alcohol',
+  /**
+   * Pentasodium Pentetate (pentasodium salt of DTPA) is a chelating agent used in laundry
+   * detergents to bind heavy metal ions, prevent oxidative damage to enzymes, and improve
+   * cleaning performance.
+   * Synonyms: Pentasodium DTPA
+   */
   PentasodiumPentetate = 'Pentasodium Pentetate',
   PhenylpropylEthylMethicone = 'Phenylpropyl Ethyl Methicone',
   PigmentBlue15 = 'Pigment Blue 15',
@@ -182,10 +221,10 @@ export enum Ingredient {
    */
   Polyquaternium10 = 'Polyquaternium-10',
   /**
-   * Polyvinyl Alcohol Polymer is the polyvinyl alcohol (PVA) material used in laundry detergents.
-   * In pod/pac formulations it forms the dissolving film encasing the detergent.
-   * Synonyms: Polyvinyl alcohol based film
+   * Polyvinyl Alcohol Film is the water-soluble film used to form the outer casing of
+   * laundry pods and unit dose detergents, encapsulating the liquid or gel formula.
    */
+  PolyvinylAlcoholFilm = 'Polyvinyl Alcohol Film',
   PolyvinylAlcoholPolymer = 'Polyvinyl Alcohol Polymer',
   /**
    * PPG (Polypropylene Glycol) is a synthetic polymer used as a solvent and humectant in laundry
