@@ -114,6 +114,12 @@ export enum Ingredient {
   Fragrance = 'Fragrance',
   Glycerin = 'Glycerin',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
+  /**
+   * Hydrophobically Modified Acrylate Styrene Copolymer is a polymeric soil release and
+   * anti-redeposition agent used in laundry detergents to help suspend soils in wash water
+   * and prevent them from redepositing onto fabrics.
+   * Synonyms: Hydrophobically Modified Acrylate/Styrene Copolymer
+   */
   HydrophobicallyModifiedAcrylateStyreneCopolymer = 'Hydrophobically Modified Acrylate Styrene Copolymer',
   /**
    * Hydroxypropyl Cyclodextrin is a modified cyclodextrin used as an odor eliminator in laundry
@@ -262,6 +268,7 @@ export enum Ingredient {
   /**
    * Polyvinyl Alcohol Film is the water-soluble film used to form the outer casing of
    * laundry pods and unit dose detergents, encapsulating the liquid or gel formula.
+   * Synonyms: Polyvinyl Alcohol Based Film
    */
   PolyvinylAlcoholFilm = 'Polyvinyl Alcohol Film',
   PolyvinylAlcoholPolymer = 'Polyvinyl Alcohol Polymer',
