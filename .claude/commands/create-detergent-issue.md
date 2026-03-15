@@ -80,7 +80,7 @@ Before comparing or listing ingredients, apply these rules:
 
 **OR alternatives:** Packaging sometimes lists `"ingredient A or ingredient B"` (or `"A and/or B"`).
 - If either option is already in the existing profile, treat the OR pair as satisfied — do not add or remove anything for that pair.
-- If neither option is in the profile, use the first-listed option.
+- If neither option is in the profile (new product or new ingredient), use the **first-listed** option and discard the rest.
 
 **Colorants:**
 - If the packaging names a specific colorant (e.g., `CI 42090`, `Pigment Blue 15`, `FD&C Blue 1`), use that specific `Ingredient` enum entry.
