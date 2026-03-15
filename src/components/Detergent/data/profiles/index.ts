@@ -2,6 +2,7 @@ export { default as AllFreeClear } from './all-free-clear';
 export { default as AllFreeClearMightyPacsTheOriginal } from './all-free-clear-mighty-pacs-the-original';
 export { default as AllFreeClearOdorRelief } from './all-free-clear-odor-relief';
 export { default as AllSensitiveFreshSpringBreeze } from './all-sensitive-fresh-spring-breeze';
+export { default as ArmAndHammerCleanBurst5In1PowerPaks } from './arm-and-hammer-clean-burst-5-in-1-power-paks';
 export { default as ArmAndHammerDeepCleanFreeAndClear } from './arm-and-hammer-deep-clean-free-and-clear';
 export { default as ArmAndHammerDeepCleanFreeAndClearPods } from './arm-and-hammer-deep-clean-free-and-clear-pods';
 export { default as ArmAndHammerDeepCleanOdorFormula } from './arm-and-hammer-deep-clean-odor-formula';
