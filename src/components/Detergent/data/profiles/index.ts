@@ -81,3 +81,4 @@ export { default as WholeFoods365UnscentedConcentrated } from './whole-foods-365
 export { default as WooliteDamageDefense } from './woolite-damage-defense';
 export { default as XtraPlusOdorBlastersFreshScent } from './xtra-plus-odor-blasters-fresh-scent';
 export { default as XtraPlusOxiCleanCrystalClean } from './xtra-plus-oxiclean-crystal-clean';
+export { default as XtraTropicalPassion } from './xtra-tropical-passion';
