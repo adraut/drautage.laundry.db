@@ -8,5 +8,6 @@ Soaps.add(Ingredient.OrganicSoapberryJuice);
 Soaps.add(Ingredient.PalmKernelAcid);
 Soaps.add(Ingredient.PotassiumCocoate);
 Soaps.add(Ingredient.SodiumCocoate);
+Soaps.add(Ingredient.SodiumOleate);
 
 export { Soaps };

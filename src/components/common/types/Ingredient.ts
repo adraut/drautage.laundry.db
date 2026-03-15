@@ -150,6 +150,12 @@ export enum Ingredient {
    * scents on fabrics.
    */
   HydroxypropylCyclodextrin = 'Hydroxypropyl Cyclodextrin',
+  /**
+   * Laureth-6 is a nonionic surfactant and emulsifier derived from lauryl alcohol
+   * with 6 ethylene oxide units, used in laundry detergents to improve soil removal
+   * and help stabilize formulations.
+   */
+  Laureth_6 = 'Laureth-6',
   Laureth_7 = 'Laureth-7',
   /**
    * Laureth-12 is a nonionic surfactant and emulsifier derived from lauryl alcohol
@@ -366,6 +372,11 @@ export enum Ingredient {
    */
   SodiumCocoate = 'Sodium Cocoate',
   SodiumCumenesulfonate = 'Sodium Cumenesulfonate',
+  /**
+   * Sodium Oleate is the sodium salt of oleic acid, used as a surfactant and
+   * cleansing agent in laundry detergents. It is a natural soap derived from olive or other oils.
+   */
+  SodiumOleate = 'Sodium Oleate',
   SodiumFormate = 'Sodium Formate',
   SodiumHydroxide = 'Sodium Hydroxide',
   SodiumLaurethEtherSulfate = 'Sodium Laureth Ether Sulfate',
