@@ -1,4 +1,5 @@
 export { default as AllFreeClear } from './all-free-clear';
+export { default as ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks } from './arm-and-hammer-plus-oxiclean-with-odor-blasters-5-in-1-power-paks';
 export { default as ArielOriginal } from './ariel-original';
 export { default as ArielTouchOfDownyPowder } from './ariel-touch-of-downy-powder';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
@@ -21,6 +22,7 @@ export { default as GainUltraOxiWaterfallDelight } from './gain-ultra-oxi-waterf
 export { default as GainUltraPlusOxiOriginal } from './gain-ultra-plus-oxi-original';
 export { default as GainUltraMoonlightBreezePowder } from './gain-ultra-moonlight-breeze-powder';
 export { default as GainUltraWithFebrezeFreshnessHawaiianAloha } from './gain-ultra-with-febreze-freshness-hawaiian-aloha';
+export { default as PurexFourInOneBrightCleanFreshMountainBreeze } from './purex-4-in-1-bright-clean-fresh-mountain-breeze';
 export { default as PurexFreeAndClear } from './purex-free-and-clear';
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
 export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
