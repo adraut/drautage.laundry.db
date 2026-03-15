@@ -347,6 +347,11 @@ export enum Ingredient {
    * improve soil removal, enhance cleaning performance on oily stains, and help disperse soils.
    */
   PropoxylatedEthoxylatedAmine = 'Propoxylated Ethoxylated Amine',
+  /**
+   * Protease is an enzyme that breaks down proteins, helping to remove protein-based stains
+   * such as blood, grass, and food.
+   * Synonyms: Protease Enzyme
+   */
   Protease = 'Protease',
   SaltCake = 'Salt Cake',
   Silica = 'Silica',
