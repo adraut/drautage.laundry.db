@@ -371,6 +371,11 @@ export enum Ingredient {
   SodiumMEACitrate = 'Sodium and MEA citrate',
   SodiumMEALaurethSulfate = 'Sodium and MEA Laureth Sulfate',
   SodiumMEALaurylSulfate = 'Sodium and MEA Lauryl Sulfate',
+  /**
+   * Sodium Metaborate is a boron-based builder and alkalinity source used in laundry detergents
+   * to soften water, enhance cleaning performance, and stabilize the formula.
+   */
+  SodiumMetaborate = 'Sodium Metaborate',
   SodiumMetasilicate = 'Sodium Metasilicate',
   /**
    * Sodium Metaborate is a sodium salt of metaboric acid, used in laundry detergents
