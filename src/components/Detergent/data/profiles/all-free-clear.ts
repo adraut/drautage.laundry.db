@@ -6,12 +6,10 @@ const ingredients: Ingredient[] = [
   Ingredient.Water,
   Ingredient.C12_15AlcoholsEthoxylated,
   Ingredient.SodiumLaurethSulfate,
+  Ingredient.SodiumCarbonate,
   Ingredient.TrisodiumDicarboxymethylAlaninate,
-  Ingredient.Ethanol,
-  Ingredient.PolyethyleneimineAlkoxylated,
-  Ingredient.SodiumBicarbonate,
-  Ingredient.HydrophobicallyModifiedAcrylateStyreneCopolymer,
   Ingredient.C8_18FattyAcidsSodiumSalt,
+  Ingredient.SodiumPolyacrylate,
   Ingredient.Benzisothiazolinone,
 ];
 
@@ -20,7 +18,7 @@ const AllFreeClear: DetergentProfile = new DetergentProfile(
   'All',
   DetergentType.Liquid,
   ingredients,
-  new Date('2026-01-31'),
+  new Date('2026-03-15'),
 );
 AllFreeClear.countryOfOrigin = 'USA';
 AllFreeClear.countriesAvailable = ['USA'];
