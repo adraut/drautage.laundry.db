@@ -1,4 +1,5 @@
 export { default as AllFreeClear } from './all-free-clear';
+export { default as AllFreeClearMightyPacsTheOriginal } from './all-free-clear-mighty-pacs-the-original';
 export { default as ArielOriginal } from './ariel-original';
 export { default as ArielTouchOfDownyPowder } from './ariel-touch-of-downy-powder';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
