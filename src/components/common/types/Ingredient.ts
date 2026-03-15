@@ -115,17 +115,12 @@ export enum Ingredient {
    */
   FattyAcidsC8_18AndC18UnsaturatedSodiumSalts = 'Fatty acids C8-18 and C18-unsaturated sodium salts',
   /**
-   * Fluorescent Brightener 28 is an optical brightener used in laundry detergents to absorb UV
-   * light and re-emit it as visible blue light, making fabrics appear whiter and brighter.
-   * Synonyms: Optical Brighteners (Fluorescent Brightener 28)
+   * Fluorescent Brightener 28 (also known as Tinopal CBS-X) is an optical brightener used in
+   * laundry detergents to absorb UV light and re-emit it as visible blue light, making fabrics
+   * appear whiter and brighter. Chemically a disodium salt (disodium 4,4'-bis(2-sulfostyryl)biphenyl).
+   * Synonyms: Fluorescent Brightener 28 Sodium Salt, Optical Brighteners (Fluorescent Brightener 28)
    */
   FluorescentBrightener28 = 'Fluorescent Brightener 28',
-  /**
-   * Fluorescent Brightener 28 Sodium Salt (also known as Tinopal CBS-X) is an optical brightener
-   * used in laundry detergents to absorb UV light and re-emit it as visible blue light,
-   * making fabrics appear whiter and brighter.
-   */
-  FluorescentBrightener28SodiumSalt = 'Fluorescent Brightener 28 Sodium Salt',
   FluorescentBrightener71 = 'Fluorescent Brightener 71',
   /**
    * Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.

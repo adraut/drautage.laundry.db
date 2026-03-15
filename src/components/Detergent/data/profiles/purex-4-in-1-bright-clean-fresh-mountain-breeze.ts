@@ -12,7 +12,7 @@ const ingredients: Ingredient[] = [
   Ingredient.Fragrance,
   Ingredient.SodiumCocoate,
   Ingredient.TetrasodiumEDTA,
-  Ingredient.FluorescentBrightener28SodiumSalt,
+  Ingredient.FluorescentBrightener28,
   Ingredient.Colorants,
   Ingredient.Methylisothiazolinone,
 ];
