@@ -11,14 +11,18 @@ const ingredients: Ingredient[] = [
   Ingredient.Bentonite,
   Ingredient.Zeolite,
   Ingredient.SodiumPolyacrylate,
-  Ingredient.C10_16Pareth,
+  Ingredient.C10_16Alketh,
+  Ingredient.CelluloseGum,
+  Ingredient.AnionicModifiedPolyester,
+  Ingredient.SodiumCarbonatePeroxide,
+  Ingredient.TAED,
   Ingredient.Fragrance,
   Ingredient.FluorescentBrightener71,
+  Ingredient.DisodiumDistyrylbiphenylDisulfonate,
   Ingredient.OrganosiliconeCopolymer,
   Ingredient.Subtilisin,
   Ingredient.Lipase,
-  Ingredient.PigmentGreen7,
-  Ingredient.ChromophoreSubstitutedPolyoxyalkylene,
+  Ingredient.Colorants,
 ];
 
 const GainUltraOriginalPowder: DetergentProfile = new DetergentProfile(
@@ -26,7 +30,7 @@ const GainUltraOriginalPowder: DetergentProfile = new DetergentProfile(
   'Gain',
   DetergentType.Powder,
   ingredients,
-  new Date('2026-02-22'),
+  new Date('2026-03-14'),
 );
 GainUltraOriginalPowder.countryOfOrigin = 'USA';
 GainUltraOriginalPowder.countriesAvailable = ['USA'];
