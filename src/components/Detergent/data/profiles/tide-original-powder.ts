@@ -10,7 +10,7 @@ const ingredients: Ingredient[] = [
   Ingredient.SodiumSilicate,
   Ingredient.Zeolite,
   Ingredient.Water,
-  Ingredient.C10_16Pareth,
+  Ingredient.C10_16Alketh,
   Ingredient.TAED,
   Ingredient.SodiumPolyacrylate,
   Ingredient.Fragrance,
@@ -22,6 +22,7 @@ const ingredients: Ingredient[] = [
   Ingredient.OrganosiliconeCopolymer,
   Ingredient.Subtilisin,
   Ingredient.Amylase,
+  Ingredient.Lipase,
   Ingredient.PigmentBlue15,
 ];
 
@@ -30,7 +31,7 @@ const TideOriginalPowder: DetergentProfile = new DetergentProfile(
   'Tide',
   DetergentType.Powder,
   ingredients,
-  new Date('2026-02-21'),
+  new Date('2026-03-14'),
 );
 TideOriginalPowder.countryOfOrigin = 'USA';
 TideOriginalPowder.countriesAvailable = ['USA'];
