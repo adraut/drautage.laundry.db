@@ -6,20 +6,23 @@ const ingredients: Ingredient[] = [
   Ingredient.Water,
   Ingredient.C12_15AlcoholsEthoxylated,
   Ingredient.SodiumLaurethSulfate,
+  Ingredient.Ethanol,
   Ingredient.SodiumCarbonate,
+  Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts,
   Ingredient.TrisodiumDicarboxymethylAlaninate,
-  Ingredient.C8_18FattyAcidsSodiumSalt,
   Ingredient.SodiumPolyacrylate,
+  Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.Benzisothiazolinone,
+  Ingredient.HydroxypropylCyclodextrin,
 ];
 
-const AllFreeClear: DetergentProfile = new DetergentProfile(
-  'Free Clear',
+const AllFreeClearOdorRelief: DetergentProfile = new DetergentProfile(
+  'Free Clear Odor Relief',
   'All',
   DetergentType.Liquid,
   ingredients,
   new Date('2026-03-15'),
 );
-AllFreeClear.countryOfOrigin = 'USA';
-AllFreeClear.countriesAvailable = ['USA'];
-export default AllFreeClear;
+AllFreeClearOdorRelief.countryOfOrigin = 'USA';
+AllFreeClearOdorRelief.countriesAvailable = ['USA'];
+export default AllFreeClearOdorRelief;
