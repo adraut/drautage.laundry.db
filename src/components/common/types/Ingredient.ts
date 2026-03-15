@@ -20,6 +20,11 @@ export enum Ingredient {
   Bentonite = 'Bentonite',
   Benzisothiazolinone = 'Benzisothiazolinone',
   /**
+   * BHT (Butylated Hydroxytoluene) is a synthetic antioxidant used in laundry detergents
+   * to prevent oxidation of fragrance and other sensitive ingredients, extending shelf life.
+   */
+  BHT = 'BHT',
+  /**
    * Blend of Acid Blue 9 and Yellow 5 is a colorant mixture used in laundry detergents
    * to provide a specific hue.
    */
@@ -124,6 +129,11 @@ export enum Ingredient {
    */
   Laureth_12 = 'Laureth-12',
   LaurylGlucoside = 'Lauryl Glucoside',
+  /**
+   * Lauramine Oxide is an amine oxide surfactant used in laundry detergents as a
+   * co-surfactant, foam booster, and viscosity builder.
+   */
+  LauramineOxide = 'Lauramine Oxide',
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
   Lipase = 'Lipase',
   /**
@@ -186,6 +196,12 @@ export enum Ingredient {
    */
   PEG_10 = 'PEG-10',
   PEG136PolyvinylAlcohol = 'PEG-136 Polyvinyl Alcohol',
+  /**
+   * PEG Terephthalate Polymer is a polyester-based polymer used in laundry detergents
+   * as a soil release agent and fabric protective ingredient, helping to prevent stains
+   * from adhering to fabric fibers.
+   */
+  PEGTerephthalatePolymer = 'PEG Terephthalate Polymer',
   /**
    * Pentasodium Pentetate (pentasodium salt of DTPA) is a chelating agent used in laundry
    * detergents to bind heavy metal ions, prevent oxidative damage to enzymes, and improve
@@ -301,9 +317,19 @@ export enum Ingredient {
    * to bind metal ions (calcium, magnesium, iron) and improve cleaning performance in hard water.
    */
   TetrasodiumIminodisuccinate = 'Tetrasodium Iminodisuccinate',
+  /**
+   * Triethanolamine (TEA) is used in laundry detergents as a pH adjuster and buffer,
+   * and can also function as a surfactant and emulsifier.
+   */
+  Triethanolamine = 'Triethanolamine',
   Trimethylsiloxysilicate = 'Trimethylsiloxysilicate',
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
   Water = 'Water',
+  /**
+   * Wheat Protein Silanetriol is a silane-modified wheat protein used in laundry detergents
+   * as a fabric conditioning and protective ingredient, helping to strengthen and protect fibers.
+   */
+  WheatProteinSilanetriol = 'Wheat Protein Silanetriol',
   /**
    * Zeolite is a naturally occurring or synthetic mineral used in laundry detergents as a water softener,
    * binding calcium and magnesium ions to prevent them from interfering with cleaning.
