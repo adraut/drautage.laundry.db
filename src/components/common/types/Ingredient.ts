@@ -88,6 +88,12 @@ export enum Ingredient {
   Ethanol = 'Ethanol',
   Ethanolamine = 'Ethanolamine',
   /**
+   * Fatty Acids C8-18 and C18-Unsaturated Sodium Salts is the sodium salt form of a blend of
+   * C8-C18 saturated fatty acids and C18 unsaturated fatty acids, used as a soap and surfactant
+   * in laundry detergents.
+   */
+  FattyAcidsC8_18AndC18UnsaturatedSodiumSalts = 'Fatty acids C8-18 and C18-unsaturated sodium salts',
+  /**
    * Fluorescent Brightener 28 Sodium Salt (also known as Tinopal CBS-X) is an optical brightener
    * used in laundry detergents to absorb UV light and re-emit it as visible blue light,
    * making fabrics appear whiter and brighter.
@@ -104,6 +110,12 @@ export enum Ingredient {
   Glycerin = 'Glycerin',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
   HydrophobicallyModifiedAcrylateStyreneCopolymer = 'Hydrophobically Modified Acrylate Styrene Copolymer',
+  /**
+   * Hydroxypropyl Cyclodextrin is a modified cyclodextrin used as an odor eliminator in laundry
+   * detergents. It traps malodor molecules inside its cyclic structure, neutralizing unpleasant
+   * scents on fabrics.
+   */
+  HydroxypropylCyclodextrin = 'Hydroxypropyl Cyclodextrin',
   Laureth_7 = 'Laureth-7',
   /**
    * Laureth-12 is a nonionic surfactant and emulsifier derived from lauryl alcohol
