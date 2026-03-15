@@ -4,32 +4,32 @@ import { DetergentType } from '../../types/DetergentType';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
-  Ingredient.C10_16Pareth,
-  Ingredient.SodiumMEAC10_16Alkylbenzenesulfonate,
+  Ingredient.C10_16Alketh,
   Ingredient.SodiumLaurylSulfate,
-  Ingredient.Alcohol,
-  Ingredient.PolyethyleneimineAlkoxylated,
-  Ingredient.C10_16AlkyldimethylamineOxide,
+  Ingredient.SodiumMEAC10_16Alkylbenzenesulfonate,
   Ingredient.MEALaurethSulfate,
-  Ingredient.PropyleneGlycol,
-  Ingredient.SodiumBorate,
-  Ingredient.SodiumCumenesulfonate,
-  Ingredient.Fragrance,
-  Ingredient.SodiumMEAC12_18FattyAcidsSalt,
-  Ingredient.SodiumMEACitrate,
-  Ingredient.TetrasodiumGlutamateDiacetate,
-  Ingredient.Subtilisin,
+  Ingredient.C10_16AlkyldimethylamineOxide,
   Ingredient.CalciumFormate,
-  Ingredient.Diethylenetriamine,
-  Ingredient.FluorescentBrightener71,
-  Ingredient.MethylDiTButylHydroxyhydrocinnamate,
+  Ingredient.HydrogenatedCastorOil,
+  Ingredient.SodiumMEAC12_18FattyAcidsSalt,
+  Ingredient.PhenylpropylEthylMethicone,
+  Ingredient.Trimethylsiloxysilicate,
+  Ingredient.Simethicone,
+  Ingredient.SodiumMEACitrate,
+  Ingredient.Subtilisin,
   Ingredient.Amylase,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreViolet,
+  Ingredient.Cellulase,
   Ingredient.Mannanase,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreBlue,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreYellow,
-  Ingredient.SodiumFormate,
+  Ingredient.PolyethyleneimineAlkoxylated,
+  Ingredient.TetrasodiumGlutamateDiacetate,
+  Ingredient.Diethylenetriamine,
+  Ingredient.MethylDiTButylHydroxyhydrocinnamate,
+  Ingredient.Alcohol,
   Ingredient.Ethanolamine,
+  Ingredient.PropyleneGlycol,
+  Ingredient.Benzisothiazolinone,
+  Ingredient.Colorants,
+  Ingredient.Fragrance,
 ];
 
 const TideCleanBreezeLiquid: DetergentProfile = new DetergentProfile(
@@ -37,9 +37,9 @@ const TideCleanBreezeLiquid: DetergentProfile = new DetergentProfile(
   'Tide',
   DetergentType.Liquid,
   ingredients,
-  new Date('2026-02-21'),
+  new Date('2026-03-15'),
 );
 TideCleanBreezeLiquid.countryOfOrigin = 'USA';
-TideCleanBreezeLiquid.countriesAvailable = ['USA'];
+TideCleanBreezeLiquid.countriesAvailable = ['USA', 'CAN'];
 
 export default TideCleanBreezeLiquid;
