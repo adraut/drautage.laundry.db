@@ -4,6 +4,37 @@ import { BrowserRouter } from 'react-router-dom';
 import Detergents from '../Detergents';
 import { encodeFilter } from '../utils/gridFilterUtils';
 import { CompositeFilterDescriptor } from '../utils/filterTypes';
+import { loadDetergents } from '../data/detergents-data';
+import { DetergentProfile } from '../types/DetergentProfile';
+import { DetergentType } from '../types/DetergentType';
+import { Ingredient } from '../../common/types/Ingredient';
+
+jest.mock('../data/detergents-data');
+
+function createMockDetergents(): Map<string, DetergentProfile> {
+  const withCellulase = new DetergentProfile(
+    'Original',
+    'Tide',
+    DetergentType.Liquid,
+    [Ingredient.Lipase, Ingredient.Cellulase, Ingredient.Protease],
+    new Date('2026-01-01'),
+  );
+  withCellulase.countriesAvailable = ['USA'];
+
+  const withoutCellulase = new DetergentProfile(
+    'Tide Clean & Gentle',
+    'Tide',
+    DetergentType.Liquid,
+    [Ingredient.Lipase, Ingredient.Protease],
+    new Date('2026-01-01'),
+  );
+  withoutCellulase.countriesAvailable = ['USA'];
+
+  return new Map([
+    ['tide-original', withCellulase],
+    ['tide-clean-gentle', withoutCellulase],
+  ]);
+}
 
 // Helper to find the filter drawer (not the detail card drawer)
 const getFilterDrawer = () => screen.getByRole('dialog', { name: 'Filter Detergents' });
@@ -11,6 +42,7 @@ const getFilterDrawer = () => screen.getByRole('dialog', { name: 'Filter Deterge
 describe('Detergents', () => {
   beforeEach(() => {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
+    (loadDetergents as jest.Mock).mockResolvedValue(createMockDetergents());
   });
 
   afterEach(() => {
