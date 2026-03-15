@@ -26,6 +26,8 @@ These instructions apply to [src/components/common/types](src/components/common/
 
 ## Category sets
 
+When adding a new ingredient to a category set file, insert it in **alphabetical order by enum key name**. Do not append it at the end.
+
 When adding a new ingredient, decide if it belongs in any of these sets (non‑exhaustive):
 
 - Enzymes, Proteases, OpticalBrighteners
