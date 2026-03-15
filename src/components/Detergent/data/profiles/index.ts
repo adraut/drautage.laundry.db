@@ -79,6 +79,7 @@ export { default as TideUltraHygienicClean } from './tide-ultra-hygienic-clean';
 export { default as TideUltraOxiLiquid } from './tide-ultra-oxi-liquid';
 export { default as TideUltraOxiWithOdorEliminatorsLiquid } from './tide-ultra-oxi-with-odor-eliminators-liquid';
 export { default as TideUltraOxiHeavyDutyLiquid } from './tide-ultra-oxi-heavy-duty-liquid';
+export { default as TideUltraOdorOxiDefense } from './tide-ultra-odor-oxi-defense';
 export { default as TideUltraOxiBoostLiquid } from './tide-ultra-oxi-boost-liquid';
 export { default as TidePowerPodsFebrezeOdorEliminatorsSpringRenewal } from './tide-power-pods-febreze-odor-eliminators-spring-renewal';
 export { default as TidePlusATouchOfDownyLiquid } from './tide-plus-a-touch-of-downy-liquid';
