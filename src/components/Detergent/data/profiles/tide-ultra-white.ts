@@ -3,6 +3,7 @@ import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
 
 const ingredients: Ingredient[] = [
+  Ingredient.Water,
   Ingredient.C10_16Alketh,
   Ingredient.SodiumLaurylSulfate,
   Ingredient.SodiumMEAC10_16Alkylbenzenesulfonate,
@@ -29,7 +30,6 @@ const ingredients: Ingredient[] = [
   Ingredient.Benzisothiazolinone,
   Ingredient.Colorants,
   Ingredient.Fragrance,
-  Ingredient.Water,
 ];
 
 const TideUltraWhite: DetergentProfile = new DetergentProfile(
