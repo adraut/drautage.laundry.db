@@ -17,10 +17,8 @@ const ingredients: Ingredient[] = [
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
   Ingredient.FluorescentBrightener71,
   Ingredient.Subtilisin,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreBlue,
+  Ingredient.Colorants,
   Ingredient.Lipase,
-  Ingredient.PigmentRed5,
-  Ingredient.PolyoxyalkyleneSubstitutedChromophoreViolet,
 ];
 
 const ArielOriginal: DetergentProfile = new DetergentProfile(
@@ -28,7 +26,7 @@ const ArielOriginal: DetergentProfile = new DetergentProfile(
   'Ariel',
   DetergentType.Powder,
   ingredients,
-  new Date('2026-02-08'),
+  new Date('2026-03-14'),
 );
 ArielOriginal.countriesAvailable = ['USA', 'MEX'];
 
