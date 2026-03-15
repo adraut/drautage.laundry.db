@@ -2,6 +2,8 @@ import { Ingredient } from './Ingredient';
 
 const Enzymes: Set<Ingredient> = new Set();
 
+Enzymes.add(Ingredient.AlphaAmylase);
+Enzymes.add(Ingredient.AlphaCellulase);
 Enzymes.add(Ingredient.Amylase);
 Enzymes.add(Ingredient.Cellulase);
 Enzymes.add(Ingredient.DNase);
@@ -13,6 +15,20 @@ Enzymes.add(Ingredient.Protease);
 Enzymes.add(Ingredient.Subtilisin);
 
 export { Enzymes };
+
+const Amylases: Set<Ingredient> = new Set();
+
+Amylases.add(Ingredient.Amylase);
+Amylases.add(Ingredient.AlphaAmylase);
+
+export { Amylases };
+
+const Cellulases: Set<Ingredient> = new Set();
+
+Cellulases.add(Ingredient.Cellulase);
+Cellulases.add(Ingredient.AlphaCellulase);
+
+export { Cellulases };
 
 const Proteases: Set<Ingredient> = new Set();
 

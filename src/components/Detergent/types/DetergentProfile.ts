@@ -5,7 +5,7 @@ import { Soaps } from '../../common/types/Soaps';
 import { SepticUnfriendly } from '../../common/types/SepticUnfriendly';
 import { Scents } from '../../common/types/Scents';
 import { OpticalBrighteners } from '../../common/types/OpticalBrighteners';
-import { Enzymes, Proteases, Pectinases } from '../../common/types/Enzymes';
+import { Enzymes, Proteases, Pectinases, Amylases, Cellulases } from '../../common/types/Enzymes';
 import { Dyes } from '../../common/types/Dyes';
 import { NonBiodegradable } from '../../common/types/NonBiodegradable';
 import { NonionicSurfactants } from '../../common/types/NonionicSurfactants';
@@ -50,8 +50,8 @@ export class DetergentProfile {
     this.lastUpdatedFormatted = this.lastUpdated.toISOString().split('T')[0];
 
     // Compute all derived properties once during construction
-    this.hasAmylase = ingredients.includes(Ingredient.Amylase);
-    this.hasCellulase = ingredients.includes(Ingredient.Cellulase);
+    this.hasAmylase = ingredients.some((ing) => Amylases.has(ing));
+    this.hasCellulase = ingredients.some((ing) => Cellulases.has(ing));
     this.hasDNase = ingredients.includes(Ingredient.DNase);
     this.hasLipase = ingredients.includes(Ingredient.Lipase);
     this.hasMannanase = ingredients.includes(Ingredient.Mannanase);
