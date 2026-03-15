@@ -341,6 +341,11 @@ export enum Ingredient {
    * improve soil removal, enhance cleaning performance on oily stains, and help disperse soils.
    */
   PropoxylatedEthoxylatedAmine = 'Propoxylated Ethoxylated Amine',
+  /**
+   * Protease is an enzyme that breaks down proteins, helping to remove protein-based stains
+   * such as blood, grass, and food.
+   * Synonyms: Protease Enzyme
+   */
   Protease = 'Protease',
   SaltCake = 'Salt Cake',
   Silica = 'Silica',
@@ -377,11 +382,6 @@ export enum Ingredient {
    */
   SodiumMetaborate = 'Sodium Metaborate',
   SodiumMetasilicate = 'Sodium Metasilicate',
-  /**
-   * Sodium Metaborate is a sodium salt of metaboric acid, used in laundry detergents
-   * as a pH modifier and builder to improve cleaning performance.
-   */
-  SodiumMetaborate = 'Sodium Metaborate',
   SodiumPercarbonate = 'Sodium Percarbonate',
   SodiumPolyacrylate = 'Sodium Polyacrylate',
   SodiumSilicate = 'Sodium Silicate',
