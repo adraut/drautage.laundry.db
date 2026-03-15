@@ -44,14 +44,15 @@ export function useGridFilterSync() {
       // Set new timer
       debounceTimerRef.current = setTimeout(() => {
         const encoded = encodeFilter(newFilter);
-        if (encoded && encoded.length > 0) {
-          // Use URLSearchParams to properly handle repeating parameters
-          const params = new URLSearchParams();
-          encoded.forEach((param) => {
-            params.append(FILTER_PARAM_NAME, param);
-          });
-          setSearchParams(params, { replace: false });
-        }
+        setSearchParams(
+          (prev) => {
+            const params = new URLSearchParams(prev.toString());
+            params.delete(FILTER_PARAM_NAME);
+            encoded.forEach((param) => params.append(FILTER_PARAM_NAME, param));
+            return params;
+          },
+          { replace: false },
+        );
         debounceTimerRef.current = null;
       }, DEBOUNCE_DELAY);
     },
