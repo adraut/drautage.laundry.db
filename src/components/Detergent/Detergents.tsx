@@ -63,6 +63,18 @@ function NameCellRenderer(params: ICellRendererParams<DetergentProfile>) {
   );
 }
 
+function BooleanCellRenderer(params: ICellRendererParams<DetergentProfile>) {
+  return (
+    <input
+      type="checkbox"
+      checked={!!params.value}
+      onChange={() => {}}
+      tabIndex={-1}
+      style={{ cursor: 'default', pointerEvents: 'none' }}
+    />
+  );
+}
+
 const DEFAULT_COL_DEF: ColDef<DetergentProfile> = {
   sortable: true,
   resizable: true,
@@ -70,27 +82,29 @@ const DEFAULT_COL_DEF: ColDef<DetergentProfile> = {
   cellDataType: false,
 };
 
+const BOOLEAN_COL: Partial<ColDef<DetergentProfile>> = { cellRenderer: BooleanCellRenderer };
+
 const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
   { field: 'brand', headerName: 'Brand' },
   { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer, sort: 'asc' },
   { field: 'type', headerName: 'Type' },
-  { field: 'hasOxygenBleach', headerName: 'Oxygen Bleach' },
-  { field: 'hasTAED', headerName: 'TAED' },
-  { field: 'hasOpticalBrighteners', headerName: 'Optical Brighteners' },
-  { field: 'hasAmylase', headerName: 'Amylase' },
-  { field: 'hasCellulase', headerName: 'Cellulase' },
-  { field: 'hasDNase', headerName: 'DNase' },
-  { field: 'hasLipase', headerName: 'Lipase' },
-  { field: 'hasMannanase', headerName: 'Mannanase' },
-  { field: 'hasPectinase', headerName: 'Pectinase' },
-  { field: 'hasProtease', headerName: 'Protease' },
-  { field: 'hasScents', headerName: 'Scents' },
-  { field: 'hasSoaps', headerName: 'Soaps' },
-  { field: 'hasDyes', headerName: 'Dyes' },
-  { field: 'hasAnionicSurfactants', headerName: 'Anionic Surfactants' },
-  { field: 'hasNonionicSurfactants', headerName: 'Nonionic Surfactants' },
-  { field: 'isBiodegradable', headerName: 'Biodegradable' },
-  { field: 'isSepticSafe', headerName: 'Septic Safe' },
+  { field: 'hasOxygenBleach', headerName: 'Oxygen Bleach', ...BOOLEAN_COL },
+  { field: 'hasTAED', headerName: 'TAED', ...BOOLEAN_COL },
+  { field: 'hasOpticalBrighteners', headerName: 'Optical Brighteners', ...BOOLEAN_COL },
+  { field: 'hasAmylase', headerName: 'Amylase', ...BOOLEAN_COL },
+  { field: 'hasCellulase', headerName: 'Cellulase', ...BOOLEAN_COL },
+  { field: 'hasDNase', headerName: 'DNase', ...BOOLEAN_COL },
+  { field: 'hasLipase', headerName: 'Lipase', ...BOOLEAN_COL },
+  { field: 'hasMannanase', headerName: 'Mannanase', ...BOOLEAN_COL },
+  { field: 'hasPectinase', headerName: 'Pectinase', ...BOOLEAN_COL },
+  { field: 'hasProtease', headerName: 'Protease', ...BOOLEAN_COL },
+  { field: 'hasScents', headerName: 'Scents', ...BOOLEAN_COL },
+  { field: 'hasSoaps', headerName: 'Soaps', ...BOOLEAN_COL },
+  { field: 'hasDyes', headerName: 'Dyes', ...BOOLEAN_COL },
+  { field: 'hasAnionicSurfactants', headerName: 'Anionic Surfactants', ...BOOLEAN_COL },
+  { field: 'hasNonionicSurfactants', headerName: 'Nonionic Surfactants', ...BOOLEAN_COL },
+  { field: 'isBiodegradable', headerName: 'Biodegradable', ...BOOLEAN_COL },
+  { field: 'isSepticSafe', headerName: 'Septic Safe', ...BOOLEAN_COL },
   { field: 'countriesAvailable', headerName: 'Countries Available' },
   { field: 'lastUpdatedFormatted', headerName: 'Last Updated' },
 ];
@@ -202,7 +216,6 @@ function Detergents() {
                 columnDefs={COLUMN_DEFS}
                 defaultColDef={DEFAULT_COL_DEF}
                 domLayout="autoHeight"
-                suppressRowClickSelection={true}
                 suppressCellFocus={true}
               />
             </div>
