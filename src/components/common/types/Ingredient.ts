@@ -153,9 +153,9 @@ export enum Ingredient {
    * MEA-citrate is a common ingredient in laundry detergents that is used as a chelating agent and a pH adjuster.
    * It is a combination of Monoethanolamine (MEA) and citric acid, which helps to improve the performance of the detergent by binding to metal ions and preventing them from interfering with the cleaning process.
    * MEA-citrate can also help to soften water and improve the effectiveness of the detergent.
-   * Synonyms: Ethanolamine Citrate
+   * Synonyms: Ethanolamine Citrate, MEA Citrate
    */
-  MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate
+  MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate, MEA Citrate
   /**
    * MEA-Dodecylbenzenesulfonate is an anionic surfactant used in laundry detergents
    * as a primary cleaning agent. It is the monoethanolamine salt of dodecylbenzenesulfonic acid.
@@ -224,7 +224,7 @@ export enum Ingredient {
   PigmentRed5 = 'Pigment Red 5',
   /**
    * Polyethyleneimine Alkoxylated is a polymer used as a soil release agent and dye transfer inhibitor in laundry detergents.
-   * Synonyms: Polyethyleneimines Alkoxylated
+   * Synonyms: Polyethyleneimines Alkoxylated, Polyethylenimine Alkoxylated
    */
   PolyethyleneimineAlkoxylated = 'Polyethyleneimine Alkoxylated',
   /**
