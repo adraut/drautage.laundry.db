@@ -40,11 +40,21 @@ Status values:
 - `up-to-date` — existing profile matches packaging; no issue needed
 
 Find the **first row with status `pending`** and begin there. Process pairs
-one at a time in order, pausing for user input when needed.
+in order, reading ahead in parallel to maximize throughput.
 
 ### 2. For each pending pair
 
 #### Step 2a — Identify the product (front image)
+
+**Parallel reads:** Issue all image reads (front + ingredient) and profile
+existence checks simultaneously for the current pair before starting
+analysis. Pre-fetch the next 2–3 pairs' images in the same batch so they
+are ready when needed. Issue `gh issue create` calls as soon as the data is
+ready, without waiting for unrelated reads to finish.
+
+**Pause when needed:** Always stop and ask the user before creating an issue
+when: OCR is uncertain, an ingredient cannot be matched, or a product
+identity is ambiguous. Speed optimizations must not bypass these checkpoints.
 
 Read the front image. Extract:
 
@@ -70,10 +80,38 @@ Check `src/components/Detergent/data/profiles/<filename>`.
 
 #### Step 2c — Read the ingredient image
 
-Read the ingredient image. Apply the following rules during extraction:
+**Pre-processing:** Before reading, check whether the ingredient image shows
+more than just the ingredient list panel (e.g., a wide shot of the packaging
+back). Cropping or zooming to just the ingredient list area before OCR
+significantly improves accuracy. Attempt this automatically if image editing
+tools are available. If the crop cannot be done automatically, ask the user
+to provide a cropped or zoomed image before proceeding — do not attempt OCR
+on a region that is too small or cluttered to read reliably.
+
+Read the (pre-processed) ingredient image. Apply the following rules during extraction:
 
 **Language:** If bilingual, use English ingredients only and discard all
 other language versions. If English is absent, translate to English INCI names.
+
+**Order:** Preserve the exact sequence of ingredients as listed on the packaging.
+Do not sort, alphabetize, or reorder. Ingredient order is significant.
+
+**"May contain" / conditional ingredients:** Packaging sometimes notes ingredients with phrases
+like `"may contain: X, Y"`. **Include these in the ingredient list** — someone avoiding a
+specific ingredient needs to know it may be present. Note each one in the issue Notes as
+conditional, e.g. `"may contain: propylene glycol, sodium cumenesulfonate — included as conditional"`.
+
+**Functional-category labels (P&G "MADE WITH:" format):** Gain liquids, Tide Simply, and some
+other P&G products list ingredients by function group rather than by concentration:
+`"Cleaning Agents: (A; B). Stabilizers: (C). Enzymes: (D). ... Colorants. Fragrances. Water."`
+
+- Water appears last in this format but is always first by concentration. **List Water first.**
+- Follow the printed category sequence for all other ingredients (Cleaning Agents →
+  Stabilizers/Process Aids → Water Softener → Enzymes → Cleaning Aids → Odor Removers →
+  Solvents → Preservative → Colorants → Fragrances).
+- Conditional phrases are often embedded inside a category (e.g. `"Solvents: (ethanolamine;
+alcohol; may contain: propylene glycol, sodium cumenesulfonate)"`). Apply the "may contain"
+  rule above for those trailing items.
 
 **OR alternatives:** Packaging sometimes lists `"A or B"` or `"A and/or B"`.
 
@@ -101,10 +139,11 @@ note it as TBD in the issue rather than guessing.
 #### Step 2d — Compare vs. existing profile (if profile found)
 
 Map each `Ingredient.EnumName` in the profile to its plain-text equivalent
-and compare against the extracted ingredient list (order-insensitive).
+and compare against the extracted ingredient list, **including order**.
 
-- **Identical sets** → mark as `up-to-date`, no issue needed.
-- **Different sets** → note added and removed ingredients; create an Update issue.
+- **Identical sequence** → mark as `up-to-date`, no issue needed.
+- **Different ingredients or different order** → note added, removed, and reordered
+  ingredients; create an Update issue.
 
 If no profile exists → create an Add issue.
 
@@ -126,6 +165,7 @@ Follow the issue format from `/create-detergent-issue`:
 - **Update** issue: `gh issue create --title "Update <Brand> <Product>" --label "enhancement,Detergent,update"`
 
 Use separate `--label` flags (not comma-separated) to avoid label-not-found errors.
+Example: `--label "enhancement" --label "Detergent"` not `--label "enhancement,Detergent"`.
 
 #### Step 2g — Update the log
 
@@ -138,8 +178,14 @@ row in the log:
 
 ### 3. Continue to the next pending pair
 
-Repeat from step 2 for each subsequent `pending` row. After each pair, check
-whether the user wants to continue or pause.
+Repeat from step 2 for each subsequent `pending` row. Continue processing
+subsequent pairs without stopping unless:
+
+- User input is needed (ambiguity, unreadable text, unrecognized ingredient)
+- The user explicitly asks to pause
+
+Pre-reading ahead (step 2a parallel strategy) keeps throughput near 1–2
+pairs per minute.
 
 ## Notes
 
@@ -149,5 +195,8 @@ whether the user wants to continue or pause.
   wait for user clarification before processing the ingredient image.
 - SmartLabel pages (`smartlabel.pg.com`) are JavaScript-rendered and
   inaccessible via fetch. Fall back to the ingredient image.
+- **Same product, different bottle size** — mark as `skipped` (duplicate). Only the first
+  occurrence of a formula needs an issue. Note the skipped pair's size and the original
+  issue number in the Notes column.
 - The issue is a review checkpoint — do not create profiles automatically.
   Always stop after creating the issue for each pair.

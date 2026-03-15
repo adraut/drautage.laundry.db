@@ -16,8 +16,16 @@ image (OCR) or manually entered information.
 
 ### If an image path was provided
 
-1. **Read the image file** using the Read tool. The image should show the
-   ingredient list from the product packaging.
+1. **Pre-process and read the image file.** Before reading, check whether the
+   image shows more than just the ingredient list (e.g., a full packaging panel
+   or wide-angle shot). Cropping or zooming to just the ingredient list area
+   before OCR significantly improves accuracy. Attempt this automatically if
+   image editing tools are available. If the crop cannot be done automatically,
+   ask the user to provide a cropped or zoomed image of the ingredient list
+   before proceeding — do not attempt OCR on a region that is too small or
+   cluttered to read reliably.
+
+   Read the (pre-processed) image file using the Read tool.
 
 2. **Identify the language(s)** of the text in the image. Packaging may be
    multilingual or in a language other than English.
@@ -52,7 +60,7 @@ image (OCR) or manually entered information.
    - Product name
    - Product variant (if visible)
    - Detergent type (Liquid / Powder / Pod / Other)
-   - Full ingredient list (English, deduplicated, one per line)
+   - Full ingredient list (English, deduplicated, **in the exact order listed on the packaging**)
    - Region/country (if visible on packaging)
 
    If any field is not legible or not present on the packaging, note it as
@@ -77,6 +85,25 @@ image (OCR) or manually entered information.
 ### Ingredient mapping rules
 
 Before comparing or listing ingredients, apply these rules:
+
+**"May contain" / conditional ingredients:** Packaging sometimes notes ingredients with phrases
+like `"may contain: X, Y"` or `"may contain sodium laureth sulfate"`. **Include these ingredients
+in the ingredient list** — someone avoiding a specific ingredient needs to know it may be present.
+Note each one in the issue's Notes section as conditional, e.g.:
+`"may contain: propylene glycol, sodium cumenesulfonate — included in list as conditional"`.
+
+**Functional-category labels (P&G "MADE WITH:" format):** Gain liquids, Tide Simply, and some
+other P&G products list ingredients grouped by function rather than by concentration:
+`"Cleaning Agents: (A; B). Stabilizers: (C). Enzymes: (D; E). ... Colorants. Fragrances. Water."`
+
+- Water always appears last in this format but is always the dominant ingredient by weight.
+  **List Water first**, not last.
+- Extract ingredients in the order they appear within and across each category group, following
+  the printed category sequence (Cleaning Agents → Stabilizers/Process Aids → Water Softener →
+  Enzymes → Cleaning Aids → Odor Removers → Solvents → Preservative → Colorants → Fragrances).
+- These labels often embed conditional phrases inside a category, e.g. `"Solvents: (ethanolamine;
+alcohol; may contain: propylene glycol, sodium cumenesulfonate)"`. Apply the "may contain" rule
+  above — include those trailing items in the list and note them as conditional.
 
 **OR alternatives:** Packaging sometimes lists `"ingredient A or ingredient B"` (or `"A and/or B"`).
 
@@ -111,7 +138,9 @@ Before comparing or listing ingredients, apply these rules:
    b. Compare the existing ingredients against the new ingredient list extracted from
    the image or provided by the user. To compare, map each `Ingredient.EnumName`
    to its plain-text equivalent by splitting on camel-case boundaries and known
-   abbreviations — an exact set match (order-insensitive) means no change.
+   abbreviations — an exact match including order means no change. A difference
+   in order alone (same ingredients, different sequence) is treated as a change
+   and warrants an Update issue.
    c. **If the ingredient sets are identical:** inform the user that the profile is
    already up to date and stop — do not create an issue.
    d. **If the ingredient sets differ:** proceed to create an "Update" issue (step 3),
@@ -209,6 +238,7 @@ Before comparing or listing ingredients, apply these rules:
 - If English is present alongside other languages, discard the non-English
   ingredients — do not mix languages in the output list.
 - Always deduplicate the ingredient list before writing it to the issue.
+- **Preserve ingredient order.** The sequence of ingredients in the issue must match exactly the order they appear on the packaging. Do not sort, alphabetize, or reorder.
 - Always verify the final ingredient count against the raw count from the image
   and report any discrepancy to the user at the confirmation step.
 - Do not infer or guess missing text — note it as unknown.
