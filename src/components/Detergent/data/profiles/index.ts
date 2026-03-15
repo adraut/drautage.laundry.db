@@ -23,6 +23,7 @@ export { default as GainAromaBoostBlissfulBreeze } from './gain-aroma-boost-blis
 export { default as GainAromaBoostSpringDaydream } from './gain-aroma-boost-spring-daydream';
 export { default as GainFlingsHappy } from './gain-flings-happy';
 export { default as GainHappyHibiscusHula } from './gain-happy-hibiscus-hula';
+export { default as GainMoonlightBreezeWithFebrezeFreshness } from './gain-moonlight-breeze-with-febreze-freshness';
 export { default as GainRelaxDewdropDream } from './gain-relax-dewdrop-dream';
 export { default as GainUltraIslandFreshPowder } from './gain-ultra-island-fresh-powder';
 export { default as GainUltraLavenderPowder } from './gain-ultra-lavender-powder';
@@ -32,11 +33,13 @@ export { default as GainUltraPlusOxiOriginal } from './gain-ultra-plus-oxi-origi
 export { default as GainUltraMoonlightBreezePowder } from './gain-ultra-moonlight-breeze-powder';
 export { default as GainUltraWithFebrezeFreshnessHawaiianAloha } from './gain-ultra-with-febreze-freshness-hawaiian-aloha';
 export { default as PersilAdvancedCleanOxiPower } from './persil-advanced-clean-oxi-power';
+export { default as PersilIntenseFresh } from './persil-intense-fresh';
 export { default as PersilUltraPacsOriginal } from './persil-ultra-pacs-original';
 export { default as PersilUltraPacsAdvancedCleanOxiPower } from './persil-ultra-pacs-advanced-clean-oxi-power';
 export { default as PurexFourInOneBrightCleanFreshMountainBreeze } from './purex-4-in-1-bright-clean-fresh-mountain-breeze';
 export { default as PurexFreeAndClear } from './purex-free-and-clear';
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
+export { default as SeventhGenerationSensitiveSkinFreeAndClear } from './seventh-generation-sensitive-skin-free-and-clear';
 export { default as SimpleTruthOrganicFreeAndClearLaundryDetergent } from './simple-truth-organic-free-and-clear-laundry-detergent';
 export { default as SimpleTruthOrganicSweetLavenderLaundryDetergent } from './simple-truth-organic-sweet-lavender-laundry-detergent';
 export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
