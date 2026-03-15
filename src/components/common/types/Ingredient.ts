@@ -117,8 +117,25 @@ export enum Ingredient {
   DipropyleneGlycol = 'Dipropylene Glycol',
   DisodiumDistyrylbiphenylDisulfonate = 'Disodium Distyrylbiphenyl Disulfonate',
   DNase = 'DNase',
+  /**
+   * Essential Oil is a natural aromatic extract derived from plants, used in laundry detergents
+   * as a scent ingredient. May be listed as conditional on the label (e.g. "when used"),
+   * indicating it is present only in scented variants.
+   */
+  EssentialOil = 'Essential Oil',
   Ethanol = 'Ethanol',
   Ethanolamine = 'Ethanolamine',
+  /**
+   * Ethoxylated Alcohol is a generic nonionic surfactant term for a fatty alcohol reacted with
+   * ethylene oxide, used in laundry detergents to reduce surface tension and improve soil removal.
+   * Listed without a carbon chain specification; do not map to a specific C-range variant.
+   */
+  EthoxylatedAlcohol = 'Ethoxylated Alcohol',
+  /**
+   * Ethylhexylglycerin (1,2-octanediol/glycerin ether) is a synthetic humectant and skin-conditioning
+   * agent used in laundry detergents as a preservative booster and antimicrobial co-agent.
+   */
+  EthylhexylGlycerin = 'Ethylhexylglycerin',
   /**
    * Fatty Acids C8-18 and C18-Unsaturated Sodium Salts is the sodium salt form of a blend of
    * C8-C18 saturated fatty acids and C18 unsaturated fatty acids, used as a soap and surfactant
@@ -474,6 +491,12 @@ export enum Ingredient {
    */
   SodiumCocoate = 'Sodium Cocoate',
   SodiumCumenesulfonate = 'Sodium Cumenesulfonate',
+  /**
+   * Sodium Dodecylbenzenesulfonate is an anionic surfactant (the sodium salt of C12
+   * alkylbenzenesulfonic acid) used as a primary cleaning agent in laundry detergents.
+   * Note: distinct from Sodium C10-16 Alkylbenzenesulfonate, which covers a broader carbon range.
+   */
+  SodiumDodecylbenzenesulfonate = 'Sodium Dodecylbenzenesulfonate',
   SodiumFormate = 'Sodium Formate',
   /**
    * Sodium Gluconate is the sodium salt of gluconic acid, used in laundry detergents as a

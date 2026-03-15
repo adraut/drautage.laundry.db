@@ -21,6 +21,7 @@ export { default as ArmAndHammerPowerSheetsFreshBreeze } from './arm-and-hammer-
 export { default as ArmAndHammerSensitiveSkinPlusFreshScent } from './arm-and-hammer-sensitive-skin-plus-fresh-scent';
 export { default as ArielOriginal } from './ariel-original';
 export { default as ArielTouchOfDownyPowder } from './ariel-touch-of-downy-powder';
+export { default as CommonGoodBergamot } from './common-good-bergamot';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
 export { default as DreftStage1Newborn } from './dreft-stage-1-newborn';
 export { default as GainOdorDefenseSuperFresh } from './gain-odor-defense-super-fresh';
