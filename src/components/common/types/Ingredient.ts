@@ -93,6 +93,11 @@ export enum Ingredient {
    */
   DiethyleneGlycol = 'Diethylene Glycol',
   Diethylenetriamine = 'Diethylenetriamine',
+  /**
+   * Dimethicone (polydimethylsiloxane) is a silicone polymer used in laundry detergents as a
+   * suds reducer and defoamer, controlling foam levels during the wash cycle.
+   * Synonyms: Dimethicone Defoamer
+   */
   Dimethicone = 'Dimethicone',
   /**
    * Dipropylene Glycol is a solvent and humectant used in laundry detergents
@@ -109,6 +114,12 @@ export enum Ingredient {
    * in laundry detergents.
    */
   FattyAcidsC8_18AndC18UnsaturatedSodiumSalts = 'Fatty acids C8-18 and C18-unsaturated sodium salts',
+  /**
+   * Fluorescent Brightener 28 is an optical brightener used in laundry detergents to absorb UV
+   * light and re-emit it as visible blue light, making fabrics appear whiter and brighter.
+   * Synonyms: Optical Brighteners (Fluorescent Brightener 28)
+   */
+  FluorescentBrightener28 = 'Fluorescent Brightener 28',
   /**
    * Fluorescent Brightener 28 Sodium Salt (also known as Tinopal CBS-X) is an optical brightener
    * used in laundry detergents to absorb UV light and re-emit it as visible blue light,
@@ -173,6 +184,12 @@ export enum Ingredient {
    * and help stabilize formulations.
    */
   Laureth_12 = 'Laureth-12',
+  /**
+   * Lauryl Alcohol Ethoxylate is a nonionic surfactant made from lauryl (C12) alcohol reacted
+   * with ethylene oxide, used in laundry detergents to reduce surface tension and improve
+   * soil removal and wetting.
+   */
+  LaurylAlcoholEthoxylate = 'Lauryl Alcohol Ethoxylate',
   LaurylGlucoside = 'Lauryl Glucoside',
   /**
    * Lavandula Hybrida Oil (lavandin oil) is an essential oil from a hybrid lavender plant,
@@ -274,6 +291,11 @@ export enum Ingredient {
    * medium-chain fatty acids.
    */
   PalmKernelAcid = 'Palm Kernel Acid',
+  /**
+   * Pectate Lyase is an enzyme that breaks down pectin (a polysaccharide found in plant cell
+   * walls), helping to remove fruit and vegetable stains.
+   * Synonyms: Pectate Lyase Enzyme
+   */
   PectateLyase = 'Pectate Lyase',
   Pectinase = 'Pectinase',
   PEG = 'PEG',
@@ -435,6 +457,12 @@ export enum Ingredient {
   SodiumMEALaurethSulfate = 'Sodium and MEA Laureth Sulfate',
   SodiumMEALaurylSulfate = 'Sodium and MEA Lauryl Sulfate',
   /**
+   * Sodium and MEA Linear Alkylbenzene is an anionic surfactant blend of sodium and
+   * monoethanolamine salts of linear alkylbenzene, used as a primary cleaning agent in laundry
+   * detergents. Listed without a carbon-chain range or sulfonate suffix on this product's label.
+   */
+  SodiumMEALinearAlkylbenzene = 'Sodium and MEA Linear Alkylbenzene',
+  /**
    * Sodium Metaborate is a boron-based builder and alkalinity source used in laundry detergents
    * to soften water, enhance cleaning performance, and stabilize the formula.
    */
@@ -454,6 +482,11 @@ export enum Ingredient {
   SodiumPolyacrylate = 'Sodium Polyacrylate',
   SodiumSilicate = 'Sodium Silicate',
   SodiumSulfate = 'Sodium Sulfate',
+  /**
+   * Soft Water is water that has been treated to remove hardness minerals (calcium and magnesium
+   * ions), used as the base solvent in liquid laundry detergents. Listed as "Soft Water" on some
+   * product labels instead of plain "Water".
+   */
   StyreneAcrylatesCopolymer = 'Styrene/Acrylates Copolymer',
   Subtilisin = 'Subtilisin',
   TAED = 'TAED',
@@ -477,6 +510,9 @@ export enum Ingredient {
   Triethanolamine = 'Triethanolamine',
   Trimethylsiloxysilicate = 'Trimethylsiloxysilicate',
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
+  /**
+   * Synonyms: Soft Water
+   */
   Water = 'Water',
   /**
    * Wheat Protein Silanetriol is a silane-modified wheat protein used in laundry detergents

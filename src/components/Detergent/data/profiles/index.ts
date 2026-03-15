@@ -1,3 +1,4 @@
+export { default as AldiTandiFreeClearWithoutLipaseLiquid } from './aldi-tandil-free-clear-without-lipase-liquid';
 export { default as AllFreeClear } from './all-free-clear';
 export { default as AllFreeClearMightyPacsTheOriginal } from './all-free-clear-mighty-pacs-the-original';
 export { default as AllFreeClearOdorRelief } from './all-free-clear-odor-relief';
