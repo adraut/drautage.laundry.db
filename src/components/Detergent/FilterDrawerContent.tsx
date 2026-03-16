@@ -125,51 +125,58 @@ export function FilterDrawerContent({ fields, filter, onFilterChange, onReset, o
           const isApplied = getFilterValue(fieldDef.field) !== '';
           const appliedDescId = `filter-${fieldDef.field}-applied`;
           return (
-          <div key={fieldDef.field} className={`filter-field${isApplied ? ' filter-field--applied' : ''}`}>
-            <label htmlFor={`filter-${fieldDef.field}`} className={`filter-label${isApplied ? ' filter-label--applied' : ''}`}>
-              {fieldDef.title}
-            </label>
-            {isApplied && <span id={appliedDescId} className="sr-only">Filter applied</span>}
+            <div key={fieldDef.field} className={`filter-field${isApplied ? ' filter-field--applied' : ''}`}>
+              <label
+                htmlFor={`filter-${fieldDef.field}`}
+                className={`filter-label${isApplied ? ' filter-label--applied' : ''}`}
+              >
+                {fieldDef.title}
+              </label>
+              {isApplied && (
+                <span id={appliedDescId} className="sr-only">
+                  Filter applied
+                </span>
+              )}
 
-            {fieldDef.type === 'boolean' ? (
-              <select
-                id={`filter-${fieldDef.field}`}
-                value={getFilterValue(fieldDef.field)}
-                onChange={handleBooleanChange(fieldDef.field)}
-                className="filter-input filter-select"
-                aria-describedby={isApplied ? appliedDescId : undefined}
-              >
-                <option value="">All</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
-            ) : fieldDef.type === 'enum' ? (
-              <select
-                id={`filter-${fieldDef.field}`}
-                value={getFilterValue(fieldDef.field)}
-                onChange={handleEnumChange(fieldDef.field)}
-                className="filter-input filter-select"
-                aria-describedby={isApplied ? appliedDescId : undefined}
-              >
-                <option value="">All</option>
-                {fieldDef.options?.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <input
-                id={`filter-${fieldDef.field}`}
-                type="text"
-                value={getFilterValue(fieldDef.field)}
-                onChange={handleTextChange(fieldDef.field)}
-                placeholder={`Filter by ${fieldDef.title.toLowerCase()}...`}
-                className="filter-input filter-text"
-                aria-describedby={isApplied ? appliedDescId : undefined}
-              />
-            )}
-          </div>
+              {fieldDef.type === 'boolean' ? (
+                <select
+                  id={`filter-${fieldDef.field}`}
+                  value={getFilterValue(fieldDef.field)}
+                  onChange={handleBooleanChange(fieldDef.field)}
+                  className="filter-input filter-select"
+                  aria-describedby={isApplied ? appliedDescId : undefined}
+                >
+                  <option value="">All</option>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              ) : fieldDef.type === 'enum' ? (
+                <select
+                  id={`filter-${fieldDef.field}`}
+                  value={getFilterValue(fieldDef.field)}
+                  onChange={handleEnumChange(fieldDef.field)}
+                  className="filter-input filter-select"
+                  aria-describedby={isApplied ? appliedDescId : undefined}
+                >
+                  <option value="">All</option>
+                  {fieldDef.options?.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  id={`filter-${fieldDef.field}`}
+                  type="text"
+                  value={getFilterValue(fieldDef.field)}
+                  onChange={handleTextChange(fieldDef.field)}
+                  placeholder={`Filter by ${fieldDef.title.toLowerCase()}...`}
+                  className="filter-input filter-text"
+                  aria-describedby={isApplied ? appliedDescId : undefined}
+                />
+              )}
+            </div>
           );
         })}
       </div>
