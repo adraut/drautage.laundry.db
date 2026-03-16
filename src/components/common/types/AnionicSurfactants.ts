@@ -19,6 +19,7 @@ AnionicSurfactants.add(Ingredient.SodiumMEAC12_18FattyAcidsSalt);
 AnionicSurfactants.add(Ingredient.SodiumMEALaurethSulfate);
 AnionicSurfactants.add(Ingredient.SodiumMEALaurylSulfate);
 AnionicSurfactants.add(Ingredient.SodiumMEALinearAlkylbenzene);
+AnionicSurfactants.add(Ingredient.SodiumMethyl2Sulfolaurate);
 AnionicSurfactants.add(Ingredient.SodiumMethyl2Sulphooctadecanoate);
 
 export { AnionicSurfactants };
