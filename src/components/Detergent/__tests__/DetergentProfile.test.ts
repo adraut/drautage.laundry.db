@@ -188,7 +188,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
-          [Ingredient.SodiumCarbonate],
+          [Ingredient.CelluloseGum],
           new Date(),
         );
         expect(profile.hasAntiRedepositionAgents).toBe(true);
