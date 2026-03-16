@@ -9,8 +9,8 @@ Enzymes.add(Ingredient.Cellulase);
 Enzymes.add(Ingredient.DNase);
 Enzymes.add(Ingredient.Lipase);
 Enzymes.add(Ingredient.Mannanase);
-Enzymes.add(Ingredient.Pectinase);
 Enzymes.add(Ingredient.PectateLyase);
+Enzymes.add(Ingredient.Pectinase);
 Enzymes.add(Ingredient.Protease);
 Enzymes.add(Ingredient.Subtilisin);
 
@@ -18,15 +18,15 @@ export { Enzymes };
 
 const Amylases: Set<Ingredient> = new Set();
 
-Amylases.add(Ingredient.Amylase);
 Amylases.add(Ingredient.AlphaAmylase);
+Amylases.add(Ingredient.Amylase);
 
 export { Amylases };
 
 const Cellulases: Set<Ingredient> = new Set();
 
-Cellulases.add(Ingredient.Cellulase);
 Cellulases.add(Ingredient.AlphaCellulase);
+Cellulases.add(Ingredient.Cellulase);
 
 export { Cellulases };
 
