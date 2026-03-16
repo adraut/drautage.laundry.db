@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CompositeFilterDescriptor } from '../utils/filterTypes';
-import { encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
+import { encodeFilter, decodeFilter, getDefaultFilter, isFilterDefault } from '../utils/gridFilterUtils';
 
 const FILTER_PARAM_NAME = 'f';
 const DEBOUNCE_DELAY = 500;
@@ -68,8 +68,31 @@ export function useGridFilterSync() {
     };
   }, []);
 
+  // Non-debounced variant for reset actions — cancels any pending debounce and updates immediately
+  const resetFilterInUrl = useCallback(
+    (newFilter: CompositeFilterDescriptor) => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+        debounceTimerRef.current = null;
+      }
+      setSearchParams(
+        (prev) => {
+          const params = new URLSearchParams(prev.toString());
+          params.delete(FILTER_PARAM_NAME);
+          if (!isFilterDefault(newFilter)) {
+            encodeFilter(newFilter).forEach((param) => params.append(FILTER_PARAM_NAME, param));
+          }
+          return params;
+        },
+        { replace: false },
+      );
+    },
+    [setSearchParams],
+  );
+
   return {
     filter,
     updateFilterInUrl,
+    resetFilterInUrl,
   };
 }

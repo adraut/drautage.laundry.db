@@ -15,6 +15,7 @@ import { DetergentType } from './types/DetergentType';
 import { loadDetergents } from './data/detergents-data';
 import { useGridFilterSync } from './hooks/useGridFilterSync';
 import { useGridSortSync } from './hooks/useGridSortSync';
+import { getDefaultSort } from './utils/gridSortUtils';
 import { Drawer } from '../common/Drawer';
 import { FilterDrawerContent } from './FilterDrawerContent';
 import { FilterBar } from './FilterBar';
@@ -92,10 +93,14 @@ const DEFAULT_COL_DEF: ColDef<DetergentProfile> = {
 
 const BOOLEAN_COL: Partial<ColDef<DetergentProfile>> = { cellRenderer: BooleanCellRenderer };
 
+const TEXT_COL: Partial<ColDef<DetergentProfile>> = {
+  comparator: (a: string, b: string) => (a ?? '').toLowerCase().localeCompare((b ?? '').toLowerCase()),
+};
+
 const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
-  { field: 'brand', headerName: 'Brand' },
-  { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer },
-  { field: 'type', headerName: 'Type' },
+  { field: 'brand', headerName: 'Brand', ...TEXT_COL },
+  { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer, ...TEXT_COL },
+  { field: 'type', headerName: 'Type', ...TEXT_COL },
   { field: 'hasOxygenBleach', headerName: 'Oxygen Bleach', ...BOOLEAN_COL },
   { field: 'hasTAED', headerName: 'TAED', ...BOOLEAN_COL },
   { field: 'hasOpticalBrighteners', headerName: 'Optical Brighteners', ...BOOLEAN_COL },
@@ -124,8 +129,8 @@ function Detergents() {
   const [filter, setFilter] = useState<CompositeFilterDescriptor | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedDetergent, setSelectedDetergent] = useState<DetergentProfile | null>(null);
-  const { filter: urlFilter, updateFilterInUrl } = useGridFilterSync();
-  const { sortModel, updateSortInUrl } = useGridSortSync();
+  const { filter: urlFilter, updateFilterInUrl, resetFilterInUrl } = useGridFilterSync();
+  const { sortModel, updateSortInUrl, resetSortInUrl } = useGridSortSync();
   const gridRef = useRef<AgGridReact<DetergentProfile>>(null);
   const isFirstSortRender = useRef(true);
 
@@ -199,18 +204,29 @@ function Detergents() {
   }, []);
 
   const resetFilter = useCallback(() => {
-    // Reset to the initial filter from URL
+    // Reset to the initial filter from URL — use immediate variant to avoid debounce race with sort reset
     const resetToFilter = initialFilterRef.current || { logic: 'and' as const, filters: [] };
     setFilter(resetToFilter);
-    updateFilterInUrl(resetToFilter);
-  }, [updateFilterInUrl]);
+    resetFilterInUrl(resetToFilter);
+
+    // Reset sort to default — immediate so both URL updates compose in the same React batch
+    const defaultSort = getDefaultSort();
+    gridRef.current?.api.applyColumnState({
+      state: defaultSort.map((item, idx) => ({ colId: item.colId, sort: item.sort, sortIndex: idx })),
+      defaultState: { sort: null },
+    });
+    resetSortInUrl(defaultSort);
+  }, [resetFilterInUrl, resetSortInUrl]);
 
   const clearFilter = useCallback(() => {
-    // Always clear all filters
+    // Always clear all filters and sort
     const emptyFilter = { logic: 'and' as const, filters: [] };
     setFilter(emptyFilter);
-    updateFilterInUrl(emptyFilter);
-  }, [updateFilterInUrl]);
+    resetFilterInUrl(emptyFilter);
+
+    gridRef.current?.api.applyColumnState({ defaultState: { sort: null } });
+    resetSortInUrl([]);
+  }, [resetFilterInUrl, resetSortInUrl]);
 
   const detergentArray = useMemo(() => Array.from(detergents.values()), [detergents]);
   const filteredData = useMemo(
@@ -219,7 +235,7 @@ function Detergents() {
   );
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
       <h1>Detergents</h1>
 
       {isLoading ? (
@@ -227,7 +243,7 @@ function Detergents() {
           <p>Loading detergents...</p>
         </div>
       ) : (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
           {/* Vertical Filter Bar */}
           <FilterBar onClick={() => setIsDrawerOpen(true)} isVisible={!isDrawerOpen} />
 
@@ -247,14 +263,13 @@ function Detergents() {
 
           {/* AG Grid */}
           <DetergentClickContext.Provider value={handleNameClick}>
-            <div style={{ overflowX: 'auto' }}>
+            <div style={{ flex: 1, minHeight: 0 }}>
               <AgGridReact<DetergentProfile>
                 ref={gridRef}
                 theme={themeQuartz}
                 rowData={filteredData}
                 columnDefs={COLUMN_DEFS}
                 defaultColDef={DEFAULT_COL_DEF}
-                domLayout="autoHeight"
                 suppressCellFocus={true}
                 initialState={{ sort: { sortModel } }}
                 onSortChanged={handleSortChanged}
