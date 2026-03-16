@@ -4,6 +4,7 @@ import {
   ModuleRegistry,
   ClientSideRowModelModule,
   ColumnApiModule,
+  ColumnAutoSizeModule,
   GridStateModule,
   themeQuartz,
 } from 'ag-grid-community';
@@ -14,6 +15,7 @@ import { DetergentType } from './types/DetergentType';
 import { loadDetergents } from './data/detergents-data';
 import { useGridFilterSync } from './hooks/useGridFilterSync';
 import { useGridSortSync } from './hooks/useGridSortSync';
+import { getDefaultSort } from './utils/gridSortUtils';
 import { Drawer } from '../common/Drawer';
 import { FilterDrawerContent } from './FilterDrawerContent';
 import { FilterBar } from './FilterBar';
@@ -21,7 +23,7 @@ import { DetergentDetailCard } from './DetergentDetailCard';
 import './FilterDrawer.css';
 import './FilterBar.css';
 
-ModuleRegistry.registerModules([ClientSideRowModelModule, ColumnApiModule, GridStateModule]);
+ModuleRegistry.registerModules([ClientSideRowModelModule, ColumnApiModule, ColumnAutoSizeModule, GridStateModule]);
 
 // Define filter fields in the same order as grid columns
 const FILTER_FIELDS = [
@@ -33,8 +35,8 @@ const FILTER_FIELDS = [
     type: 'enum' as const,
     options: Object.values(DetergentType),
   },
+  { field: 'hasScents', title: 'Fragrance', type: 'boolean' as const },
   { field: 'hasOxygenBleach', title: 'Oxygen Bleach', type: 'boolean' as const },
-  { field: 'hasTAED', title: 'TAED', type: 'boolean' as const },
   { field: 'hasOpticalBrighteners', title: 'Optical Brighteners', type: 'boolean' as const },
   { field: 'hasAmylase', title: 'Amylase', type: 'boolean' as const },
   { field: 'hasCellulase', title: 'Cellulase', type: 'boolean' as const },
@@ -43,10 +45,10 @@ const FILTER_FIELDS = [
   { field: 'hasMannanase', title: 'Mannanase', type: 'boolean' as const },
   { field: 'hasPectinase', title: 'Pectinase', type: 'boolean' as const },
   { field: 'hasProtease', title: 'Protease', type: 'boolean' as const },
-  { field: 'hasScents', title: 'Scents', type: 'boolean' as const },
+  { field: 'hasAntiRedepositionAgents', title: 'Anti-Redeposition', type: 'boolean' as const },
   { field: 'hasSoaps', title: 'Soaps', type: 'boolean' as const },
-  { field: 'isHardWaterTolerant', title: 'Hard Water Tolerant', type: 'boolean' as const },
   { field: 'hasDyes', title: 'Dyes', type: 'boolean' as const },
+  { field: 'hasTAED', title: 'TAED', type: 'boolean' as const },
   { field: 'hasAnionicSurfactants', title: 'Anionic Surfactants', type: 'boolean' as const },
   { field: 'hasNonionicSurfactants', title: 'Nonionic Surfactants', type: 'boolean' as const },
   { field: 'isBiodegradable', title: 'Biodegradable', type: 'boolean' as const },
@@ -91,13 +93,17 @@ const DEFAULT_COL_DEF: ColDef<DetergentProfile> = {
 
 const BOOLEAN_COL: Partial<ColDef<DetergentProfile>> = { cellRenderer: BooleanCellRenderer };
 
+const TEXT_COL: Partial<ColDef<DetergentProfile>> = {
+  comparator: (a: string, b: string) => (a ?? '').toLowerCase().localeCompare((b ?? '').toLowerCase()),
+};
+
 const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
-  { field: 'brand', headerName: 'Brand' },
-  { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer },
-  { field: 'type', headerName: 'Type' },
+  { field: 'brand', headerName: 'Brand', ...TEXT_COL },
+  { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer, ...TEXT_COL },
+  { field: 'type', headerName: 'Type', ...TEXT_COL },
   { field: 'hasOxygenBleach', headerName: 'Oxygen Bleach', ...BOOLEAN_COL },
-  { field: 'hasTAED', headerName: 'TAED', ...BOOLEAN_COL },
   { field: 'hasOpticalBrighteners', headerName: 'Optical Brighteners', ...BOOLEAN_COL },
+  { field: 'hasScents', headerName: 'Fragranced', ...BOOLEAN_COL },
   { field: 'hasAmylase', headerName: 'Amylase', ...BOOLEAN_COL },
   { field: 'hasCellulase', headerName: 'Cellulase', ...BOOLEAN_COL },
   { field: 'hasDNase', headerName: 'DNase', ...BOOLEAN_COL },
@@ -105,9 +111,10 @@ const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
   { field: 'hasMannanase', headerName: 'Mannanase', ...BOOLEAN_COL },
   { field: 'hasPectinase', headerName: 'Pectinase', ...BOOLEAN_COL },
   { field: 'hasProtease', headerName: 'Protease', ...BOOLEAN_COL },
-  { field: 'hasScents', headerName: 'Scents', ...BOOLEAN_COL },
-  { field: 'hasSoaps', headerName: 'Soaps', ...BOOLEAN_COL },
+  { field: 'hasAntiRedepositionAgents', headerName: 'Anti-Redeposition', ...BOOLEAN_COL },
+  { field: 'hasTAED', headerName: 'TAED', ...BOOLEAN_COL },
   { field: 'hasDyes', headerName: 'Dyes', ...BOOLEAN_COL },
+  { field: 'hasSoaps', headerName: 'Soaps', ...BOOLEAN_COL },
   { field: 'hasAnionicSurfactants', headerName: 'Anionic Surfactants', ...BOOLEAN_COL },
   { field: 'hasNonionicSurfactants', headerName: 'Nonionic Surfactants', ...BOOLEAN_COL },
   { field: 'isBiodegradable', headerName: 'Biodegradable', ...BOOLEAN_COL },
@@ -122,8 +129,8 @@ function Detergents() {
   const [filter, setFilter] = useState<CompositeFilterDescriptor | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedDetergent, setSelectedDetergent] = useState<DetergentProfile | null>(null);
-  const { filter: urlFilter, updateFilterInUrl } = useGridFilterSync();
-  const { sortModel, updateSortInUrl } = useGridSortSync();
+  const { filter: urlFilter, updateFilterInUrl, resetFilterInUrl } = useGridFilterSync();
+  const { sortModel, updateSortInUrl, resetSortInUrl } = useGridSortSync();
   const gridRef = useRef<AgGridReact<DetergentProfile>>(null);
   const isFirstSortRender = useRef(true);
 
@@ -197,18 +204,29 @@ function Detergents() {
   }, []);
 
   const resetFilter = useCallback(() => {
-    // Reset to the initial filter from URL
+    // Reset to the initial filter from URL — use immediate variant to avoid debounce race with sort reset
     const resetToFilter = initialFilterRef.current || { logic: 'and' as const, filters: [] };
     setFilter(resetToFilter);
-    updateFilterInUrl(resetToFilter);
-  }, [updateFilterInUrl]);
+    resetFilterInUrl(resetToFilter);
+
+    // Reset sort to default — immediate so both URL updates compose in the same React batch
+    const defaultSort = getDefaultSort();
+    gridRef.current?.api.applyColumnState({
+      state: defaultSort.map((item, idx) => ({ colId: item.colId, sort: item.sort, sortIndex: idx })),
+      defaultState: { sort: null },
+    });
+    resetSortInUrl(defaultSort);
+  }, [resetFilterInUrl, resetSortInUrl]);
 
   const clearFilter = useCallback(() => {
-    // Always clear all filters
+    // Always clear all filters and sort
     const emptyFilter = { logic: 'and' as const, filters: [] };
     setFilter(emptyFilter);
-    updateFilterInUrl(emptyFilter);
-  }, [updateFilterInUrl]);
+    resetFilterInUrl(emptyFilter);
+
+    gridRef.current?.api.applyColumnState({ defaultState: { sort: null } });
+    resetSortInUrl([]);
+  }, [resetFilterInUrl, resetSortInUrl]);
 
   const detergentArray = useMemo(() => Array.from(detergents.values()), [detergents]);
   const filteredData = useMemo(
@@ -217,7 +235,7 @@ function Detergents() {
   );
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
       <h1>Detergents</h1>
 
       {isLoading ? (
@@ -225,7 +243,7 @@ function Detergents() {
           <p>Loading detergents...</p>
         </div>
       ) : (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
           {/* Vertical Filter Bar */}
           <FilterBar onClick={() => setIsDrawerOpen(true)} isVisible={!isDrawerOpen} />
 
@@ -245,17 +263,18 @@ function Detergents() {
 
           {/* AG Grid */}
           <DetergentClickContext.Provider value={handleNameClick}>
-            <div style={{ minWidth: '95vw' }}>
+            <div style={{ flex: 1, minHeight: 0 }}>
               <AgGridReact<DetergentProfile>
                 ref={gridRef}
                 theme={themeQuartz}
                 rowData={filteredData}
                 columnDefs={COLUMN_DEFS}
                 defaultColDef={DEFAULT_COL_DEF}
-                domLayout="autoHeight"
                 suppressCellFocus={true}
                 initialState={{ sort: { sortModel } }}
                 onSortChanged={handleSortChanged}
+                autoSizeStrategy={{ type: 'fitCellContents' }}
+                suppressColumnVirtualisation={true}
               />
             </div>
           </DetergentClickContext.Provider>

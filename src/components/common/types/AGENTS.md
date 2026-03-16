@@ -34,6 +34,7 @@ When adding a new ingredient, decide if it belongs in any of these sets (non‑e
 - AnionicSurfactants, NonionicSurfactants, Soaps, Scents, Dyes
 - OxygenBleaches, SudsReducers, WaterConditioners
 - Preservatives, AntiRedpositionAgents, NonBiodegradable, SepticUnfriendly, OdorEliminators
+  - `AntiRedpositionAgents` is strictly for **dye** anti-redeposition agents (fiber-coating agents like CMC and dye transfer inhibitors like PEI polymers). Do **not** add soil anti-redeposition polymers (e.g. polyacrylates, maleate/acrylate copolymers) or builders (e.g. sodium carbonate, silicates) to this set.
 
 Update the appropriate set file(s) so `DetergentProfile` derived flags remain accurate. Only place an ingredient into a category if the source explicitly indicates it.
 

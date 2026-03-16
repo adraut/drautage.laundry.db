@@ -148,3 +148,11 @@ function isFilterDescriptor(obj: any): obj is FilterDescriptor {
 export function getDefaultFilter(): CompositeFilterDescriptor {
   return JSON.parse(JSON.stringify(DEFAULT_FILTER));
 }
+
+/**
+ * Returns true if the given filter is equivalent to the default filter,
+ * meaning no URL params should be written for it.
+ */
+export function isFilterDefault(filter: CompositeFilterDescriptor): boolean {
+  return JSON.stringify(encodeFilter(filter).sort()) === JSON.stringify(encodeFilter(DEFAULT_FILTER).sort());
+}

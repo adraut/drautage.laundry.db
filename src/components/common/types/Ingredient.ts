@@ -1,7 +1,7 @@
 export enum Ingredient {
   /**
    * Acrylic Acid Homopolymer (polyacrylic acid, PAA) is a polymer used in laundry detergents
-   * as a dispersant and anti-redeposition agent, helping to keep soils suspended in the wash water
+   * as a dispersant and soil anti-redeposition agent, helping to keep soils suspended in the wash water
    * and prevent them from redepositing onto fabrics.
    */
   AcrylicAcidHomopolymer = 'Acrylic Acid Homopolymer',
@@ -32,6 +32,12 @@ export enum Ingredient {
    * Synonyms: Amylase Enzyme, Amylase Enzyme Blend
    */
   Amylase = 'Amylase',
+  /**
+   * Anionic Modified Polyester is a polymer used in laundry detergents as a soil release agent,
+   * making synthetic (polyester) fabrics more hydrophilic so soils wash off more easily. It also
+   * provides secondary dye anti-redeposition benefits on synthetic fabrics by reducing the
+   * affinity of dye molecules for polyester fiber surfaces.
+   */
   AnionicModifiedPolyester = 'Anionic modified polyester',
   Bentonite = 'Bentonite',
   Benzisothiazolinone = 'Benzisothiazolinone',
@@ -233,7 +239,7 @@ export enum Ingredient {
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
   /**
    * Hydrophobically Modified Acrylate Styrene Copolymer is a polymeric soil release and
-   * anti-redeposition agent used in laundry detergents to help suspend soils in wash water
+   * soil anti-redeposition agent used in laundry detergents to help suspend soils in wash water
    * and prevent them from redepositing onto fabrics.
    * Synonyms: Hydrophobically Modified Acrylate/Styrene Copolymer
    */
@@ -373,7 +379,7 @@ export enum Ingredient {
   Methylisothiazolinone = 'Methylisothiazolinone',
   /**
    * Modified Acrylic Copolymer is a synthetic polymer used in laundry detergents as a
-   * dispersant and anti-redeposition agent, helping to keep soils suspended in wash water
+   * dispersant and soil anti-redeposition agent, helping to keep soils suspended in wash water
    * and prevent them from redepositing onto fabrics.
    */
   ModifiedAcrylicCopolymer = 'Modified Acrylic Copolymer',
@@ -623,7 +629,7 @@ export enum Ingredient {
   SodiumLaurethSulfate = 'Sodium Laureth Sulfate',
   SodiumLaurylSulfate = 'Sodium Lauryl Sulfate',
   /**
-   * Sodium Maleate Acrylate Copolymer is a polymer dispersant and anti-redeposition agent
+   * Sodium Maleate Acrylate Copolymer is a polymer dispersant and soil anti-redeposition agent
    * used in laundry detergents to keep soils and stains suspended in wash water and prevent
    * them from redepositing onto fabrics.
    */

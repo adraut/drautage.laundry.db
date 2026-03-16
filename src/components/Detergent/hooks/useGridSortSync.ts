@@ -63,5 +63,27 @@ export function useGridSortSync() {
     };
   }, []);
 
-  return { sortModel, updateSortInUrl };
+  // Non-debounced variant for reset actions — cancels any pending debounce and updates immediately
+  const resetSortInUrl = useCallback(
+    (newSort: SortModelItem[]) => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+        debounceTimerRef.current = null;
+      }
+      setSearchParams(
+        (prev) => {
+          const params = new URLSearchParams(prev.toString());
+          params.delete(SORT_PARAM_NAME);
+          if (!isSortDefault(newSort)) {
+            encodeSort(newSort).forEach((p) => params.append(SORT_PARAM_NAME, p));
+          }
+          return params;
+        },
+        { replace: false },
+      );
+    },
+    [setSearchParams],
+  );
+
+  return { sortModel, updateSortInUrl, resetSortInUrl };
 }

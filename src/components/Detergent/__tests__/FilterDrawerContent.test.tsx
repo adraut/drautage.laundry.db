@@ -357,6 +357,122 @@ describe('FilterDrawerContent', () => {
     });
   });
 
+  describe('applied filter indicators', () => {
+    it('should add filter-field--applied class when a text filter is applied', () => {
+      const filter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'name', operator: 'contains', value: 'Tide' }],
+      };
+
+      render(
+        <FilterDrawerContent
+          fields={mockFields}
+          filter={filter}
+          onFilterChange={() => {}}
+          onReset={() => {}}
+          onClear={() => {}}
+        />,
+      );
+
+      const nameInput = screen.getByLabelText('Product Name');
+      expect(nameInput.closest('.filter-field')).toHaveClass('filter-field--applied');
+    });
+
+    it('should add filter-field--applied class when a boolean filter is applied', () => {
+      const filter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
+      };
+
+      render(
+        <FilterDrawerContent
+          fields={mockFields}
+          filter={filter}
+          onFilterChange={() => {}}
+          onReset={() => {}}
+          onClear={() => {}}
+        />,
+      );
+
+      const proteaseSelect = screen.getByLabelText('Protease');
+      expect(proteaseSelect.closest('.filter-field')).toHaveClass('filter-field--applied');
+    });
+
+    it('should not add filter-field--applied class when no filter is applied', () => {
+      render(
+        <FilterDrawerContent
+          fields={mockFields}
+          filter={null}
+          onFilterChange={() => {}}
+          onReset={() => {}}
+          onClear={() => {}}
+        />,
+      );
+
+      const nameInput = screen.getByLabelText('Product Name');
+      expect(nameInput.closest('.filter-field')).not.toHaveClass('filter-field--applied');
+    });
+
+    it('should add filter-label--applied class and sr-only description for applied filters', () => {
+      const filter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'name', operator: 'contains', value: 'Tide' }],
+      };
+
+      render(
+        <FilterDrawerContent
+          fields={mockFields}
+          filter={filter}
+          onFilterChange={() => {}}
+          onReset={() => {}}
+          onClear={() => {}}
+        />,
+      );
+
+      const input = screen.getByLabelText('Product Name');
+      const fieldContainer = input.closest('.filter-field')!;
+      expect(fieldContainer.querySelector('.filter-label')).toHaveClass('filter-label--applied');
+
+      const descId = input.getAttribute('aria-describedby')!;
+      expect(document.getElementById(descId)).toHaveTextContent('Filter applied');
+    });
+
+    it('should not add applied indicator classes for unapplied filters', () => {
+      render(
+        <FilterDrawerContent
+          fields={mockFields}
+          filter={null}
+          onFilterChange={() => {}}
+          onReset={() => {}}
+          onClear={() => {}}
+        />,
+      );
+
+      expect(document.querySelector('.filter-label--applied')).not.toBeInTheDocument();
+      expect(document.querySelector('.sr-only')).not.toBeInTheDocument();
+    });
+
+    it('should only apply indicators to fields with applied filters, not others', () => {
+      const filter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'name', operator: 'contains', value: 'Tide' }],
+      };
+
+      render(
+        <FilterDrawerContent
+          fields={mockFields}
+          filter={filter}
+          onFilterChange={() => {}}
+          onReset={() => {}}
+          onClear={() => {}}
+        />,
+      );
+
+      const brandInput = screen.getByLabelText('Brand');
+      expect(brandInput.closest('.filter-field')).not.toHaveClass('filter-field--applied');
+    });
+  });
+
   it('should clear enum filter when "All" is selected', async () => {
     const user = userEvent.setup();
     const onFilterChange = jest.fn();

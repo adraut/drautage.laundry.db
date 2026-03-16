@@ -110,6 +110,34 @@
   cursor: pointer;
 }
 
+/* Applied filter indicator */
+.filter-field--applied {
+  border-left: 3px solid #0078d4;
+  background-color: rgba(0, 120, 212, 0.06);
+  border-radius: 0 4px 4px 0;
+  padding-left: 0.5rem;
+}
+
+.filter-label--applied::before {
+  content: '●';
+  color: #0078d4;
+  margin-right: 0.3rem;
+  font-size: 0.6rem;
+  vertical-align: middle;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Empty state message */
 .no-filters-message {
   text-align: center;
