@@ -4,6 +4,7 @@ import {
   ModuleRegistry,
   ClientSideRowModelModule,
   ColumnApiModule,
+  ColumnAutoSizeModule,
   GridStateModule,
   themeQuartz,
 } from 'ag-grid-community';
@@ -21,7 +22,7 @@ import { DetergentDetailCard } from './DetergentDetailCard';
 import './FilterDrawer.css';
 import './FilterBar.css';
 
-ModuleRegistry.registerModules([ClientSideRowModelModule, ColumnApiModule, GridStateModule]);
+ModuleRegistry.registerModules([ClientSideRowModelModule, ColumnApiModule, ColumnAutoSizeModule, GridStateModule]);
 
 // Define filter fields in the same order as grid columns
 const FILTER_FIELDS = [
@@ -257,6 +258,8 @@ function Detergents() {
                 suppressCellFocus={true}
                 initialState={{ sort: { sortModel } }}
                 onSortChanged={handleSortChanged}
+                autoSizeStrategy={{ type: 'fitCellContents' }}
+                suppressColumnVirtualisation={true}
               />
             </div>
           </DetergentClickContext.Provider>
