@@ -182,6 +182,22 @@ describe('DetergentProfile', () => {
         // Note: Soaps set is currently empty, so hasSoaps will always be false
         expect(profile.hasSoaps).toBe(false);
       });
+
+      it('should detect hasAntiRedepositionAgents when an anti-redeposition ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          [Ingredient.SodiumCarbonate],
+          new Date(),
+        );
+        expect(profile.hasAntiRedepositionAgents).toBe(true);
+      });
+
+      it('should not detect hasAntiRedepositionAgents when no anti-redeposition ingredients are present', () => {
+        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        expect(profile.hasAntiRedepositionAgents).toBe(false);
+      });
     });
 
     describe('surfactant detection properties', () => {
