@@ -246,7 +246,7 @@ function Detergents() {
 
           {/* AG Grid */}
           <DetergentClickContext.Provider value={handleNameClick}>
-            <div style={{ minWidth: '95vw' }}>
+            <div style={{ overflowX: 'auto' }}>
               <AgGridReact<DetergentProfile>
                 ref={gridRef}
                 theme={themeQuartz}
