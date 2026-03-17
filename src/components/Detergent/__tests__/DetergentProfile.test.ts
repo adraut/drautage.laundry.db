@@ -183,7 +183,7 @@ describe('DetergentProfile', () => {
         expect(profile.hasSoaps).toBe(false);
       });
 
-      it('should detect hasAntiRedepositionAgents when an anti-redeposition ingredient is present', () => {
+      it('should detect hasDyeTransferInhibitors when a dye transfer inhibitor ingredient is present', () => {
         const profile = new DetergentProfile(
           'Test',
           'Brand',
@@ -191,12 +191,12 @@ describe('DetergentProfile', () => {
           [Ingredient.CelluloseGum],
           new Date(),
         );
-        expect(profile.hasAntiRedepositionAgents).toBe(true);
+        expect(profile.hasDyeTransferInhibitors).toBe(true);
       });
 
-      it('should not detect hasAntiRedepositionAgents when no anti-redeposition ingredients are present', () => {
+      it('should not detect hasDyeTransferInhibitors when no dye transfer inhibitor ingredients are present', () => {
         const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
-        expect(profile.hasAntiRedepositionAgents).toBe(false);
+        expect(profile.hasDyeTransferInhibitors).toBe(false);
       });
     });
 
