@@ -14,12 +14,10 @@ import { Ingredient } from './Ingredient';
  * dispersants such as AcrylicAcidHomopolymer, SodiumMaleateAcrylateCopolymer, and
  * SodiumPolyacrylate belong in a separate soil anti-redeposition category if needed.
  */
-const AntiRedpositionAgents: Set<Ingredient> = new Set();
+const DyeTransferInhibitors: Set<Ingredient> = new Set();
 
-AntiRedpositionAgents.add(Ingredient.AnionicModifiedPolyester);
-AntiRedpositionAgents.add(Ingredient.CelluloseGum);
-AntiRedpositionAgents.add(Ingredient.PolyethlyleneImineEthoxylate);
-AntiRedpositionAgents.add(Ingredient.PolyethyleneimineAlkoxylated);
-AntiRedpositionAgents.add(Ingredient.PolyethyleniminePolymer);
+DyeTransferInhibitors.add(Ingredient.AnionicModifiedPolyester);
+DyeTransferInhibitors.add(Ingredient.CelluloseGum);
+DyeTransferInhibitors.add(Ingredient.PolyethyleniminePolymer);
 
-export { AntiRedpositionAgents };
+export { DyeTransferInhibitors };

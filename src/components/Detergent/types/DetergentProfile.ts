@@ -11,7 +11,7 @@ import { NonBiodegradable } from '../../common/types/NonBiodegradable';
 import { NonionicSurfactants } from '../../common/types/NonionicSurfactants';
 import { AnionicSurfactants } from '../../common/types/AnionicSurfactants';
 import { OxygenBleaches } from '../../common/types/OxygenBleaches';
-import { AntiRedpositionAgents } from '../../common/types/AntiRedpositionAgents';
+import { DyeTransferInhibitors } from '../../common/types/DyeTransferInhibitors';
 
 export class DetergentProfile {
   name: string;
@@ -39,7 +39,7 @@ export class DetergentProfile {
   readonly hasDyes: boolean;
   readonly hasScents: boolean;
   readonly hasSoaps: boolean;
-  readonly hasAntiRedepositionAgents: boolean;
+  readonly hasDyeTransferInhibitors: boolean;
   readonly isBiodegradable: boolean;
   readonly isSepticSafe: boolean;
 
@@ -68,7 +68,7 @@ export class DetergentProfile {
     this.hasDyes = ingredients.some((ing) => Dyes.has(ing));
     this.hasScents = ingredients.some((ing) => Scents.has(ing));
     this.hasSoaps = ingredients.some((ing) => Soaps.has(ing));
-    this.hasAntiRedepositionAgents = ingredients.some((ing) => AntiRedpositionAgents.has(ing));
+    this.hasDyeTransferInhibitors = ingredients.some((ing) => DyeTransferInhibitors.has(ing));
     this.isBiodegradable = !ingredients.some((ing) => NonBiodegradable.has(ing));
     this.isSepticSafe = !ingredients.some((ing) => SepticUnfriendly.has(ing));
   }
