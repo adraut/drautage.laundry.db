@@ -49,6 +49,7 @@ export { default as GainUltraPlusOxiOriginal } from './gain-ultra-plus-oxi-origi
 export { default as GainUltraWithFebrezeFreshnessHawaiianAloha } from './gain-ultra-with-febreze-freshness-hawaiian-aloha';
 export { default as GingerLilyFarmsBotanicalsPlantBasedLaundryDetergentFreeAndClear } from './ginger-lily-farms-botanicals-plant-based-laundry-detergent-free-and-clear';
 export { default as GuestsOnEarthLaundryDetergentGreenHinoki } from './guests-on-earth-laundry-detergent-green-hinoki';
+export { default as MethodGingerMangoLaundryDetergent } from './method-ginger-mango-laundry-detergent';
 export { default as MrsMeyersCleanDayLaundryDetergentCompassionFlower } from './mrs-meyers-clean-day-laundry-detergent-compassion-flower';
 export { default as PersilAdvancedCleanOxiPower } from './persil-advanced-clean-oxi-power';
 export { default as PersilIntenseFresh } from './persil-intense-fresh';

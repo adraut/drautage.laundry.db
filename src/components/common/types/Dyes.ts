@@ -9,6 +9,7 @@ Dyes.add(Ingredient.Colorants);
 Dyes.add(Ingredient.PigmentBlue15);
 Dyes.add(Ingredient.PigmentGreen7);
 Dyes.add(Ingredient.PigmentRed5);
+Dyes.add(Ingredient.PolymericOrange);
 Dyes.add(Ingredient.PolyoxyalkyleneSubstitutedChromophoreBlue);
 Dyes.add(Ingredient.PolyoxyalkyleneSubstitutedChromophoreCyan);
 Dyes.add(Ingredient.PolyoxyalkyleneSubstitutedChromophorePink);

@@ -162,6 +162,11 @@ export enum Ingredient {
    * indicating it is present only in scented variants.
    */
   EssentialOil = 'Essential Oil',
+  /**
+   * Ethanol (ethyl alcohol) is a solvent and co-solvent used in laundry detergents to dissolve
+   * other ingredients, improve formula stability, and act as a carrier for fragrances.
+   * Synonyms: Alcohol Denat.
+   */
   Ethanol = 'Ethanol',
   /**
    * Ethanolamine (monoethanolamine, MEA) is used in laundry detergents as a pH adjuster,
@@ -384,6 +389,12 @@ export enum Ingredient {
    */
   ModifiedAcrylicCopolymer = 'Modified Acrylic Copolymer',
   /**
+   * Nonionic Polyester is a polyester-based polymer used in laundry detergents as a fabric care
+   * and soil release agent, making synthetic (polyester) fabrics more hydrophilic so soils and
+   * stains wash off more easily.
+   */
+  NonionicPolyester = 'Nonionic Polyester',
+  /**
    * Opacifier is a generic term for opacifying agents used in laundry detergents.
    * Purpose: Primarily aesthetic — makes the detergent look more luxurious and consistent.
    * Types: Styrene/Acrylates Copolymer is common, though newer options like biodegradable
@@ -474,6 +485,11 @@ export enum Ingredient {
    * (Polyethyleneimine Alkoxylated).
    */
   PolyethyleniminePolymer = 'Polyethylenimine Polymer',
+  /**
+   * Polymeric Orange is a Method-specific polymeric colorant used to impart an orange hue
+   * to the detergent formula.
+   */
+  PolymericOrange = 'Polymeric Orange',
   /**
    * A polymeric dye used in laundry detergents to provide a blue hue and enhance whiteness
    * perception without permanently staining fabrics.
@@ -593,6 +609,12 @@ export enum Ingredient {
   SodiumBicarbonate = 'Sodium Bicarbonate',
   SodiumBisulfite = 'Sodium Bisulfite',
   SodiumBorate = 'Sodium Borate',
+  /**
+   * Sodium Carboxymethyl Inulin is a plant-derived (inulin-based) polymer used in laundry
+   * detergents as a biodegradable anti-redeposition and dispersing agent, helping to keep soils
+   * suspended in wash water and prevent them from redepositing onto fabrics.
+   */
+  SodiumCarboxymethylInulin = 'Sodium Carboxymethyl Inulin',
   SodiumC10_16Alkylbenzenesulfonate = 'Sodium C10-16 Alkylbenzenesulfonate',
   SodiumCarbonate = 'Sodium Carbonate',
   SodiumChloride = 'Sodium Chloride',
