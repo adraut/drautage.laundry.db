@@ -55,6 +55,11 @@ export enum Ingredient {
    * used as a fragrance ingredient in laundry detergents.
    */
   ArtemisiaPallensFlowerOil = 'Artemisia Pallens (Davana) Flower Oil',
+  /**
+   * Barosma Betulina (Buchu) Leaf Oil is an essential oil derived from the buchu plant,
+   * native to South Africa, used as a fragrance ingredient with a blackcurrant-like aroma.
+   */
+  BarosmaBetulina = 'Barosma Betulina (Buchu) Leaf Oil',
   Bentonite = 'Bentonite',
   Benzisothiazolinone = 'Benzisothiazolinone',
   /**
@@ -144,6 +149,11 @@ export enum Ingredient {
    * and enhance preservative efficacy.
    */
   CaprylylGlycol = 'Caprylyl Glycol',
+  /**
+   * Carthamus Tinctorius (Safflower) Seed Oil is an oil derived from safflower seeds,
+   * used as a plant-derived fragrance carrier and skin-conditioning ingredient.
+   */
+  CarthamusTinctoriusSeedOil = 'Carthamus Tinctorius (Safflower) Seed Oil',
   /**
    * Cellulase is an enzyme that breaks down cellulose fibers, helping to remove cotton-based stains
    * and restore fabric softness and color by removing surface fuzz (pilling).

@@ -4,10 +4,12 @@ const Scents: Set<Ingredient> = new Set();
 
 Scents.add(Ingredient.AmyrisBalsamiferaBarkOil);
 Scents.add(Ingredient.ArtemisiaPallensFlowerOil);
+Scents.add(Ingredient.BarosmaBetulina);
 Scents.add(Ingredient.BetaPinene);
 Scents.add(Ingredient.BoswelliaCarteriOil);
 Scents.add(Ingredient.BulnesiaSarmientoiWoodOil);
 Scents.add(Ingredient.CanangaOdorataFlowerOil);
+Scents.add(Ingredient.CarthamusTinctoriusSeedOil);
 Scents.add(Ingredient.Cinnamal);
 Scents.add(Ingredient.Citral);
 Scents.add(Ingredient.CistusLadaniferusResin);
