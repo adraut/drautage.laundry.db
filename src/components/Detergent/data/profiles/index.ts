@@ -61,6 +61,7 @@ export { default as PurexFourInOneBrightCleanFreshMountainBreeze } from './purex
 export { default as PurexFreeAndClear } from './purex-free-and-clear';
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
 export { default as SeventhGenerationBiobasedDeepCleanFreshLavender } from './seventh-generation-biobased-deep-clean-fresh-lavender';
+export { default as SeventhGenerationEasyDoseUltraPowerPlusCleanScent } from './seventh-generation-easydose-ultra-power-plus-clean-scent';
 export { default as SeventhGenerationFreeAndClearLaundryDetergentSheets } from './seventh-generation-free-and-clear-laundry-detergent-sheets';
 export { default as SeventhGenerationSensitiveSkinFreeAndClear } from './seventh-generation-sensitive-skin-free-and-clear';
 export { default as SimpleTruthOrganicFreeAndClearLaundryDetergent } from './simple-truth-organic-free-and-clear-laundry-detergent';
