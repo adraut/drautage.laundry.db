@@ -171,6 +171,11 @@ export enum Ingredient {
    * used as a fragrance ingredient in laundry detergents.
    */
   CistusLadaniferusResinAbsolute = 'Cistus Ladaniferus Resin Absolute',
+  /**
+   * Citral is a naturally occurring monoterpene aldehyde found in many essential oils (e.g., lemon,
+   * lemongrass), used as a fragrance component in laundry detergents.
+   */
+  Citral = 'Citral',
   CitricAcid = 'Citric Acid',
   /**
    * Citrus Aurantifolia (Lime) Oil is an essential oil derived from lime peel,
@@ -197,6 +202,11 @@ export enum Ingredient {
    * used as a fragrance ingredient in laundry detergents.
    */
   CitrusAurantiumDulcisOrangePeelOil = 'Citrus Aurantium Dulcis (Orange) Peel Oil',
+  /**
+   * Citrus Grandis (Grapefruit) Peel Oil is an essential oil derived from grapefruit peel,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  CitrusGrandisPeelOil = 'Citrus Grandis (Grapefruit) Peel Oil',
   /**
    * Citrus Limon (Lemon) Peel Oil is an essential oil derived from lemon peel,
    * used as a fragrance ingredient in laundry detergents.
@@ -470,7 +480,7 @@ export enum Ingredient {
   LaurylAlcoholEthoxylate = 'Lauryl Alcohol Ethoxylate',
   LaurylGlucoside = 'Lauryl Glucoside',
   /**
-   * Lavandula Angustifolia (Lavender) Oil is an essential oil derived from true lavender,
+   * Lavandula Angustifolia (Lavender) Oil is an essential oil derived from true lavender flowers,
    * used as a fragrance ingredient in laundry detergents.
    */
   LavandulAngustifoliaOil = 'Lavandula Angustifolia (Lavender) Oil',
@@ -485,6 +495,11 @@ export enum Ingredient {
    * Also listed on labels as: Lavandula (Organic Lavender) Hybrida Oil
    */
   LavandulaHybridaOil = 'Lavandula Hybrida Oil',
+  /**
+   * Limonene is a naturally occurring cyclic monoterpene found in citrus peel oils, used as a
+   * fragrance component and fragrance allergen in laundry detergents.
+   */
+  Limonene = 'Limonene',
   /**
    * Linalool is a naturally occurring terpene alcohol found in many essential oils, used as a
    * fragrance ingredient in laundry detergents.

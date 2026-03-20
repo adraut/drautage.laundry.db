@@ -33,6 +33,7 @@ export { default as Dropps4In1PlusOxiCrispBreeze } from './dropps-4-in-1-plus-ox
 export { default as Dropps4In1PlusOxiFreeAndClear } from './dropps-4-in-1-plus-oxi-free-plus-clear';
 export { default as EcostoreUltraSensitive3xConcentrateLaundryLiquidFragranceFree } from './ecostore-ultra-sensitive-3x-concentrate-laundry-liquid-fragrance-free';
 export { default as EverSpringFreeAndClear } from './ever-spring-free-and-clear';
+export { default as EverSpringLavenderBergamot } from './ever-spring-lavender-bergamot';
 export { default as GainAromaBoostAppleMangoTangoLiquid } from './gain-aroma-boost-apple-mango-tango-liquid';
 export { default as GainAromaBoostBlissfulBreeze } from './gain-aroma-boost-blissful-breeze';
 export { default as GainAromaBoostColdWaterIslandFresh } from './gain-aroma-boost-cold-water-island-fresh';
@@ -74,6 +75,7 @@ export { default as SeventhGenerationEasyDoseUltraPowerPlusCleanScent } from './
 export { default as SeventhGenerationFreeAndClearLaundryDetergentSheets } from './seventh-generation-free-and-clear-laundry-detergent-sheets';
 export { default as SeventhGenerationSensitiveSkinFreeAndClear } from './seventh-generation-sensitive-skin-free-and-clear';
 export { default as SeventhGenerationSensitiveSkinLaundryDetergentPacksFreeAndClear } from './seventh-generation-sensitive-skin-laundry-detergent-packs-free-and-clear';
+export { default as SeventhGenerationUltraPowerPlusLaundryDetergentPacksCleanScent } from './seventh-generation-ultra-power-plus-laundry-detergent-packs-clean-scent';
 export { default as SimpleTruthOrganicFreeAndClearLaundryDetergent } from './simple-truth-organic-free-and-clear-laundry-detergent';
 export { default as SimpleTruthOrganicSweetLavenderLaundryDetergent } from './simple-truth-organic-sweet-lavender-laundry-detergent';
 export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
