@@ -39,14 +39,29 @@ export enum Ingredient {
    */
   Amylase = 'Amylase',
   /**
+   * Amyris Balsamifera Bark Oil is an essential oil derived from the bark of Amyris balsamifera
+   * (West Indian sandalwood), used as a fragrance ingredient in laundry detergents.
+   */
+  AmyrisBalsamiferaBarkOil = 'Amyris Balsamifera Bark Oil',
+  /**
    * Anionic Modified Polyester is a polymer used in laundry detergents as a soil release agent,
    * making synthetic (polyester) fabrics more hydrophilic so soils wash off more easily. It also
    * provides secondary dye anti-redeposition benefits on synthetic fabrics by reducing the
    * affinity of dye molecules for polyester fiber surfaces.
    */
   AnionicModifiedPolyester = 'Anionic modified polyester',
+  /**
+   * Artemisia Pallens (Davana) Flower Oil is an essential oil derived from the davana plant,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  ArtemisiaPallensFlowerOil = 'Artemisia Pallens (Davana) Flower Oil',
   Bentonite = 'Bentonite',
   Benzisothiazolinone = 'Benzisothiazolinone',
+  /**
+   * Beta-Pinene is a naturally occurring monoterpene found in many essential oils, used as a
+   * fragrance ingredient in laundry detergents.
+   */
+  BetaPinene = 'Beta-Pinene',
   /**
    * BHT (Butylated Hydroxytoluene) is a synthetic antioxidant used in laundry detergents
    * to prevent oxidation of fragrance and other sensitive ingredients, extending shelf life.
@@ -57,6 +72,16 @@ export enum Ingredient {
    * to provide a specific hue.
    */
   BlendOfAcidBlue9AndYellow5 = 'Blend of Acid Blue 9 and Yellow 5',
+  /**
+   * Boswellia Carterii Oil is an essential oil derived from the Boswellia carterii (frankincense)
+   * tree, used as a fragrance ingredient in laundry detergents.
+   */
+  BoswelliaCarteriOil = 'Boswellia Carterii Oil',
+  /**
+   * Bulnesia Sarmientoi Wood Oil (guaiac wood oil) is an essential oil derived from the wood of
+   * Bulnesia sarmientoi, used as a fragrance ingredient in laundry detergents.
+   */
+  BulnesiaSarmientoiWoodOil = 'Bulnesia Sarmientoi Wood Oil',
   /**
    * C8-18 Fatty Acid Amide MEA is a fatty acid alkanolamide (monoethanolamine amide) used as a
    * nonionic co-surfactant, foam booster, and viscosity builder in laundry detergents.
@@ -101,10 +126,16 @@ export enum Ingredient {
   CalciumChloride = 'Calcium Chloride',
   CalciumFormate = 'Calcium formate',
   /**
+   * Cananga Odorata (Ylang Ylang) Flower Oil is an essential oil derived from the ylang ylang
+   * flower, used as a fragrance ingredient in laundry detergents.
+   */
+  CanangaOdorataFlowerOil = 'Cananga Odorata (Ylang Ylang) Flower Oil',
+  /**
    * Caprylyl/Capryl Glucoside is a mild nonionic surfactant and emulsifier derived from
    * coconut fatty alcohols (C8/C10 chain) and glucose, used in laundry detergents as a gentle
    * cleansing agent and foam booster. Same alkyl glucoside family as Lauryl Glucoside (C12) and
    * Decyl Glucoside (C10).
+   * Synonyms: Octyl/Decyl Glucoside
    */
   CaprylylCaprylGlucoside = 'Caprylyl/Capryl Glucoside',
   /**
@@ -125,12 +156,52 @@ export enum Ingredient {
    * to provide color and enhance whiteness perception without permanently staining fabrics.
    */
   ChromophoreSubstitutedPolyoxyalkylene = 'Chromophore substituted polyoxyalkylene',
+  /**
+   * Cinnamal (cinnamaldehyde) is a naturally occurring aromatic aldehyde, used as a
+   * fragrance ingredient in laundry detergents.
+   */
+  Cinnamal = 'Cinnamal',
+  /**
+   * Cistus Ladaniferus Resin is a natural resin derived from the rock rose plant, used as a
+   * fragrance ingredient in laundry detergents.
+   */
+  CistusLadaniferusResin = 'Cistus Ladaniferus Resin',
+  /**
+   * Cistus Ladaniferus Resin Absolute is a solvent-extracted form of cistus labdanum resin,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  CistusLadaniferusResinAbsolute = 'Cistus Ladaniferus Resin Absolute',
   CitricAcid = 'Citric Acid',
+  /**
+   * Citrus Aurantifolia (Lime) Oil is an essential oil derived from lime peel,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  CitrusAurantifoliaLimeOil = 'Citrus Aurantifolia (Lime) Oil',
+  /**
+   * Citrus Aurantium Amara (Bitter Orange) Leaf/Twig Oil is an essential oil derived from the
+   * leaves and twigs of the bitter orange tree, used as a fragrance ingredient in laundry detergents.
+   */
+  CitrusAurantiumAmaraLeafTwigOil = 'Citrus Aurantium Amara (Bitter Orange) Leaf/Twig Oil',
+  /**
+   * Citrus Aurantium Bergamia (Bergamot) Fruit Oil is an essential oil derived from bergamot
+   * orange peel, used as a fragrance ingredient in laundry detergents.
+   */
+  CitrusAurantiumBergamiaFruitOil = 'Citrus Aurantium Bergamia (Bergamot) Fruit Oil',
+  /**
+   * Citrus Aurantium Dulcis (Orange) Fruit Extract is an extract derived from sweet orange fruit,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  CitrusAurantiumDulcisFruitExtract = 'Citrus Aurantium Dulcis (Orange) Fruit Extract',
   /**
    * Citrus Aurantium Dulcis (Orange) Peel Oil is an essential oil derived from sweet orange peel,
    * used as a fragrance ingredient in laundry detergents.
    */
   CitrusAurantiumDulcisOrangePeelOil = 'Citrus Aurantium Dulcis (Orange) Peel Oil',
+  /**
+   * Citrus Limon (Lemon) Peel Oil is an essential oil derived from lemon peel,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  CitrusLimonPeelOil = 'Citrus Limon (Lemon) Peel Oil',
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
   /**
    * Coconut Fatty Acid is a mixture of fatty acids derived from coconut oil, used in laundry
@@ -143,6 +214,16 @@ export enum Ingredient {
    * individual colorant ingredients.
    */
   Colorants = 'Colorants',
+  /**
+   * Coriandrum Sativum (Coriander) Fruit Oil is an essential oil derived from coriander seeds,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  CoriandrumSativumFruitOil = 'Coriandrum Sativum (Coriander) Fruit Oil',
+  /**
+   * Cymbopogon Martini (Palmarosa) Oil is an essential oil derived from palmarosa grass,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  CymbopogonMartiniPalmarosaOil = 'Cymbopogon Martini (Palmarosa) Oil',
   /**
    * Decyl Glucoside is a mild nonionic surfactant derived from glucose and decanol, used in
    * laundry detergents as a gentle cleansing agent and foam booster.
@@ -161,6 +242,11 @@ export enum Ingredient {
    * Synonyms: Dimethicone Defoamer
    */
   Dimethicone = 'Dimethicone',
+  /**
+   * Dimethyl Heptenal is a synthetic fragrance aldehyde used as a fragrance ingredient
+   * in laundry detergents.
+   */
+  DimethylHeptenal = 'Dimethyl Heptenal',
   /**
    * Dipropylene Glycol is a solvent and humectant used in laundry detergents
    * to help dissolve other ingredients and improve product stability.
@@ -225,6 +311,11 @@ export enum Ingredient {
    */
   FattyAcidsC8_18AndC18UnsaturatedSodiumSalts = 'Fatty acids C8-18 and C18-unsaturated sodium salts',
   /**
+   * Ferula Galbanifula (Galbanum) Resin Oil is an essential oil derived from galbanum resin,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  FerulGalbaniferaResinOil = 'Ferula Galbanifula (Galbanum) Resin Oil',
+  /**
    * Fluorescent Brightener 28 (also known as Tinopal CBS-X) is an optical brightener used in
    * laundry detergents to absorb UV light and re-emit it as visible blue light, making fabrics
    * appear whiter and brighter. Chemically a disodium salt (disodium 4,4'-bis(2-sulfostyryl)biphenyl).
@@ -233,12 +324,32 @@ export enum Ingredient {
   FluorescentBrightener28 = 'Fluorescent Brightener 28',
   FluorescentBrightener71 = 'Fluorescent Brightener 71',
   /**
+   * Foeniculum Vulgare (Fennel) Oil is an essential oil derived from fennel seeds,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  FoeniculumVulgareOil = 'Foeniculum Vulgare (Fennel) Oil',
+  /**
    * Fragrance is a catch-all term that can refer to a wide variety of different fragrance ingredients.
    * It is often used as a generic term for any ingredient that is added to a product to provide a scent.
    * In some cases, it may be used to refer to a specific fragrance ingredient, but in most cases, it is used as a general term for any fragrance ingredient.
    * Synonyms: Long Lasting Fragrance, Long Lasting Frgrance, Fragrances
    **/
   Fragrance = 'Fragrance',
+  /**
+   * Gamma-Decalactone is a naturally occurring lactone with a peachy, fruity aroma, used as a
+   * fragrance ingredient in laundry detergents.
+   */
+  GammaDecalactone = 'Gamma-Decalactone',
+  /**
+   * Gamma-Nonalactone is a naturally occurring lactone with a coconut-like aroma, used as a
+   * fragrance ingredient in laundry detergents.
+   */
+  GammaNonalactone = 'Gamma-Nonalactone',
+  /**
+   * Geraniol is a naturally occurring monoterpene alcohol found in many essential oils, used as a
+   * fragrance ingredient in laundry detergents.
+   */
+  Geraniol = 'Geraniol',
   /**
    * Glycerin (also known as glycerol) is a humectant and solvent used in laundry detergents
    * to help retain moisture and stabilize the formula.
@@ -264,6 +375,11 @@ export enum Ingredient {
    */
   GumAcacia = 'Gum Acacia',
   /**
+   * Heliotropine (piperonal) is an aromatic aldehyde with a sweet, floral, vanilla-like scent,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  Heliotropine = 'Heliotropine',
+  /**
    * Hexyl Cinnamal is a synthetic fragrance ingredient (aldehyde) used to impart a fresh,
    * floral scent. It is a recognized fragrance allergen, often disclosed in parentheses
    * after a "Fragrance" entry on ingredient labels.
@@ -284,6 +400,21 @@ export enum Ingredient {
    */
   HydroxypropylCyclodextrin = 'Hydroxypropyl Cyclodextrin',
   /**
+   * Illicium Verum (Anise) Fruit/Seed Oil is an essential oil derived from star anise,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  IlliciumVerumFruitSeedOil = 'Illicium Verum (Anise) Fruit/Seed Oil',
+  /**
+   * Isoamyl Salicylate is a synthetic ester with a floral, orchid-like scent, used as a
+   * fragrance ingredient in laundry detergents.
+   */
+  IsoamylSalicylate = 'Isoamyl Salicylate',
+  /**
+   * Juniperus Mexicana (Cedar) Oil is an essential oil derived from the Texas cedar tree,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  JuniperusMexicanaCedarOil = 'Juniperus Mexicana (Cedar) Oil',
+  /**
    * Juniperus Virginiana (Cedarwood) Oil is an essential oil derived from the Eastern red cedar tree,
    * used in laundry detergents as a natural fragrance ingredient.
    */
@@ -293,6 +424,11 @@ export enum Ingredient {
    * and descaling agent.
    */
   LacticAcid = 'Lactic Acid',
+  /**
+   * Laminaria Digitata Extract is an extract derived from brown seaweed (kelp), used in laundry
+   * detergents as a conditioning and film-forming agent.
+   */
+  LaminariaDigitataExtract = 'Laminaria Digitata Extract',
   /**
    * Lauramine Oxide is an amine oxide surfactant used in laundry detergents as a
    * co-surfactant, foam booster, and viscosity builder.
@@ -324,11 +460,21 @@ export enum Ingredient {
   LaurylAlcoholEthoxylate = 'Lauryl Alcohol Ethoxylate',
   LaurylGlucoside = 'Lauryl Glucoside',
   /**
+   * Lavandula Hybrida (Lavandin) Oil is an essential oil from the lavandin hybrid plant
+   * (Lavandula × intermedia), used as a fragrance ingredient in laundry detergents.
+   */
+  LavandulaHybridaLavandinOil = 'Lavandula Hybrida (Lavandin) Oil',
+  /**
    * Lavandula Hybrida Oil (lavandin oil) is an essential oil from a hybrid lavender plant,
    * used in laundry detergents as a natural fragrance.
    * Also listed on labels as: Lavandula (Organic Lavender) Hybrida Oil
    */
   LavandulaHybridaOil = 'Lavandula Hybrida Oil',
+  /**
+   * Linalool is a naturally occurring terpene alcohol found in many essential oils, used as a
+   * fragrance ingredient in laundry detergents.
+   */
+  Linalool = 'Linalool',
   LinearAlcoholEthoxylates = 'Linear Alcohol Ethoxylates',
   /**
    * Linear Alkylbenzene Sulfonic Acid (LABSA) is an anionic surfactant and the free acid form
@@ -432,6 +578,11 @@ export enum Ingredient {
    */
   ModifiedAcrylicCopolymer = 'Modified Acrylic Copolymer',
   /**
+   * Myroxylon Pereirae (Balsam Peru) Oil is an essential oil derived from balsam of Peru,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  MyroxylonPereiraeOil = 'Myroxylon Pereirae (Balsam Peru) Oil',
+  /**
    * Nonionic Polyester is a polyester-based polymer used in laundry detergents as a fabric care
    * and soil release agent, making synthetic (polyester) fabrics more hydrophilic so soils and
    * stains wash off more easily.
@@ -490,12 +641,22 @@ export enum Ingredient {
    */
   PEGTerephthalatePolymer = 'PEG Terephthalate Polymer',
   /**
+   * Pelargonium Graveolens (Geranium) Flower Oil is an essential oil derived from geranium flowers,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  PelargoniumGraveolensFlowerOil = 'Pelargonium Graveolens (Geranium) Flower Oil',
+  /**
    * Pentasodium Pentetate (pentasodium salt of DTPA) is a chelating agent used in laundry
    * detergents to bind heavy metal ions, prevent oxidative damage to enzymes, and improve
    * cleaning performance.
    * Synonyms: Pentasodium DTPA
    */
   PentasodiumPentetate = 'Pentasodium Pentetate',
+  /**
+   * Phenethyl Alcohol (2-phenylethanol) is a naturally occurring aromatic alcohol with a rose-like
+   * scent, used as a fragrance ingredient in laundry detergents.
+   */
+  PhenethylAlcohol = 'Phenethyl Alcohol',
   /**
    * Phenoxyethanol is a synthetic preservative used in laundry detergents
    * to prevent microbial growth and extend shelf life.
@@ -513,6 +674,16 @@ export enum Ingredient {
    */
   PigmentGreen7 = 'Pigment Green 7',
   PigmentRed5 = 'Pigment Red 5',
+  /**
+   * Pogostemon Cablin (Patchouli) Leaf Extract is an extract derived from patchouli leaves,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  PogostemonCablinLeafExtract = 'Pogostemon Cablin (Patchouli) Leaf Extract',
+  /**
+   * Pogostemon Cablin (Patchouli) Oil is an essential oil derived from patchouli leaves,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  PogostemonCablinOil = 'Pogostemon Cablin (Patchouli) Oil',
   /**
    * Polyethyleneimine Alkoxylated is a polymer used primarily as a soil anti-redeposition agent in laundry detergents, with secondary dye transfer inhibition properties.
    * Synonyms: Polyethyleneimines Alkoxylated, Polyethylenimine Alkoxylated
@@ -639,11 +810,21 @@ export enum Ingredient {
    */
   RosaDamascenaFlowerExtract = 'Rosa Damascena Flower Extract',
   /**
+   * Rosmarinus Officinalis (Rosemary) Leaf Oil is an essential oil derived from rosemary leaves,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  RosmarinusOfficinalisLeafOil = 'Rosmarinus Officinalis (Rosemary) Leaf Oil',
+  /**
    * Saccharomyces Ferment Filtrate is a yeast fermentation byproduct used in laundry detergents
    * as a conditioning and bioactive agent, contributing to fabric care and formula stability.
    */
   SaccharomycesFermentFiltrate = 'Saccharomyces Ferment Filtrate',
   SaltCake = 'Salt Cake',
+  /**
+   * Salvia Sclarea (Clary Sage) Oil is an essential oil derived from clary sage,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  SalviaSclaraeOil = 'Salvia Sclarea (Clary Sage) Oil',
   /**
    * Saponins are naturally occurring plant-derived glycosides that function as nonionic surfactants
    * in laundry detergents, producing foam and aiding in soil removal.
@@ -768,6 +949,11 @@ export enum Ingredient {
    * ions), used as the base solvent in liquid laundry detergents. Listed as "Soft Water" on some
    * product labels instead of plain "Water".
    */
+  /**
+   * Styrax Tonkinensis Resin Extract is an extract derived from Siam benzoin resin,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  StyraxTonkinensisResinExtract = 'Styrax Tonkinensis Resin Extract',
   StyreneAcrylatesCopolymer = 'Styrene/Acrylates Copolymer',
   Subtilisin = 'Subtilisin',
   TAED = 'TAED',
@@ -785,12 +971,22 @@ export enum Ingredient {
    */
   TetrasodiumIminodisuccinate = 'Tetrasodium Iminodisuccinate',
   /**
+   * 3-Hexenol (cis-3-hexen-1-ol) is a naturally occurring green, grassy fragrance alcohol found
+   * in many plant oils, used as a fragrance ingredient in laundry detergents.
+   */
+  ThreeHexenol = '3-Hexenol',
+  /**
    * Triethanolamine (TEA) is used in laundry detergents as a pH adjuster and buffer,
    * and can also function as a surfactant and emulsifier.
    */
   Triethanolamine = 'Triethanolamine',
   Trimethylsiloxysilicate = 'Trimethylsiloxysilicate',
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
+  /**
+   * Vanillin is a naturally occurring or synthetic aromatic aldehyde with a vanilla scent,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  Vanillin = 'Vanillin',
   /**
    * Vinegar (dilute acetic acid) is used in laundry detergents as a mild acid to neutralize
    * alkalinity, soften fabrics, and help remove mineral deposits and odors.
