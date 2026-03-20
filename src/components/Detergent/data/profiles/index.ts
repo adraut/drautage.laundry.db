@@ -73,6 +73,7 @@ export { default as SeventhGenerationBiobasedDeepCleanFreshLavender } from './se
 export { default as SeventhGenerationEasyDoseUltraPowerPlusCleanScent } from './seventh-generation-easydose-ultra-power-plus-clean-scent';
 export { default as SeventhGenerationFreeAndClearLaundryDetergentSheets } from './seventh-generation-free-and-clear-laundry-detergent-sheets';
 export { default as SeventhGenerationSensitiveSkinFreeAndClear } from './seventh-generation-sensitive-skin-free-and-clear';
+export { default as SeventhGenerationSensitiveSkinLaundryDetergentPacksFreeAndClear } from './seventh-generation-sensitive-skin-laundry-detergent-packs-free-and-clear';
 export { default as SimpleTruthOrganicFreeAndClearLaundryDetergent } from './simple-truth-organic-free-and-clear-laundry-detergent';
 export { default as SimpleTruthOrganicSweetLavenderLaundryDetergent } from './simple-truth-organic-sweet-lavender-laundry-detergent';
 export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
