@@ -29,6 +29,7 @@ export { default as CountrySavePowderLaundryDetergent } from './country-save-pow
 export { default as DreftStage1Newborn } from './dreft-stage-1-newborn';
 export { default as DreftStage2ActiveBaby } from './dreft-stage-2-active-baby';
 export { default as Dropps4In1PlusOxiCrispBreeze } from './dropps-4-in-1-plus-oxi-crisp-breeze';
+export { default as Dropps4In1PlusOxiFreeAndClear } from './dropps-4-in-1-plus-oxi-free-plus-clear';
 export { default as EcostoreUltraSensitive3xConcentrateLaundryLiquidFragranceFree } from './ecostore-ultra-sensitive-3x-concentrate-laundry-liquid-fragrance-free';
 export { default as EverSpringFreeAndClear } from './ever-spring-free-and-clear';
 export { default as GainAromaBoostAppleMangoTangoLiquid } from './gain-aroma-boost-apple-mango-tango-liquid';
