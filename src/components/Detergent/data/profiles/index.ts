@@ -72,6 +72,7 @@ export { default as PurexNaturalElementsLinenAndLilies } from './purex-natural-e
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
 export { default as SeventhGenerationBiobasedDeepCleanFreshCitrus } from './seventh-generation-biobased-deep-clean-fresh-citrus';
 export { default as SeventhGenerationBiobasedDeepCleanFreshLavender } from './seventh-generation-biobased-deep-clean-fresh-lavender';
+export { default as SeventhGenerationEasyDoseBiobasedDeepCleanFreshLavender } from './seventh-generation-easydose-biobased-deep-clean-fresh-lavender';
 export { default as SeventhGenerationEasyDoseSensitiveSkinFreeAndClear } from './seventh-generation-easydose-sensitive-skin-free-and-clear';
 export { default as SeventhGenerationEasyDoseUltraPowerPlusCleanScent } from './seventh-generation-easydose-ultra-power-plus-clean-scent';
 export { default as SeventhGenerationFreeAndClearLaundryDetergentSheets } from './seventh-generation-free-and-clear-laundry-detergent-sheets';
