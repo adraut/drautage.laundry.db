@@ -2,6 +2,7 @@ import { Ingredient } from './Ingredient';
 
 const NonionicSurfactants: Set<Ingredient> = new Set();
 
+NonionicSurfactants.add(Ingredient.AlkylGlucoside);
 NonionicSurfactants.add(Ingredient.C8_18FattyAcidAmideMEA);
 NonionicSurfactants.add(Ingredient.C10_16Alketh);
 NonionicSurfactants.add(Ingredient.C10_16AlkyldimethylamineOxide);
@@ -10,6 +11,7 @@ NonionicSurfactants.add(Ingredient.C12_13AlcoholsEthoxylated);
 NonionicSurfactants.add(Ingredient.C12_13Pareth_2);
 NonionicSurfactants.add(Ingredient.C12_14AlcoholsEthoxylated);
 NonionicSurfactants.add(Ingredient.C12_15AlcoholsEthoxylated);
+NonionicSurfactants.add(Ingredient.C12_16Pareth);
 NonionicSurfactants.add(Ingredient.CaprylylCaprylGlucoside);
 NonionicSurfactants.add(Ingredient.DecylGlucoside);
 NonionicSurfactants.add(Ingredient.EthoxylatedAlcohol);
