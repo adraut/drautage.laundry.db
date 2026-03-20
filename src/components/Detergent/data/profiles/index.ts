@@ -1,4 +1,5 @@
 export { default as NineElementsLaundryDetergentCitrus } from './9-elements-laundry-detergent-citrus';
+export { default as NineElementsLaundryDetergentLavender } from './9-elements-laundry-detergent-lavender';
 export { default as AholdDelhaizePremiumLaundryDetergent3In1OriginalScent } from './ahold-delhaize-premium-laundry-detergent-3-in-1-original-scent';
 export { default as AldiTandiFreeClearWithoutLipaseLiquid } from './aldi-tandil-free-clear-without-lipase-liquid';
 export { default as AllFreeClear } from './all-free-clear';
