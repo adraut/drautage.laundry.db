@@ -12,6 +12,12 @@ export enum Ingredient {
    */
   AlkoxylatedAmineSubstitutedTriarylMethane = 'Alkoxylated Amine Substituted Triaryl Methane',
   /**
+   * Alkyl Glucoside is a generic plant-derived nonionic surfactant and cleaning agent made by
+   * reacting fatty alcohols with glucose. Commonly used as a mild cleanser and foam booster in
+   * laundry detergents.
+   */
+  AlkylGlucoside = 'Alkyl Glucoside',
+  /**
    * Aloe Barbadensis Leaf Powder is the dried, powdered form of aloe vera leaf gel, used in
    * laundry detergents as a soothing and conditioning ingredient for fabrics and skin.
    * Also listed on labels as: Aloe Barbadensis (Organic Aloe) Leaf Powder
@@ -186,6 +192,16 @@ export enum Ingredient {
    */
   EthylhexylGlycerin = 'Ethylhexylglycerin',
   /**
+   * Eucalyptus Globulus (Eucalyptus) Leaf Oil is an essential oil derived from the leaves of
+   * the eucalyptus tree, used in laundry detergents as a fragrance ingredient.
+   */
+  EucalyptusGlobusLeafOil = 'Eucalyptus Globulus (Eucalyptus) Leaf Oil',
+  /**
+   * Eugenia Caryophyllus (Clove) Leaf Oil is an essential oil derived from the leaves of the
+   * clove plant, used in laundry detergents as a fragrance ingredient.
+   */
+  EugeniaCaryphyllusLeafOil = 'Eugenia Caryophyllus (Clove) Leaf Oil',
+  /**
    * Fatty Acid, C8-C18 and C18 Unsaturated is the free acid form (CAS 67701-05-7) of a blend of
    * C8-C18 saturated fatty acids and C18 unsaturated fatty acids, used as a soap precursor and
    * surfactant in alkaline liquid detergents. In alkaline formulas the free acid immediately
@@ -341,6 +357,11 @@ export enum Ingredient {
    */
   MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate, MEA Citrate
   /**
+   * MEA-Cocoate is the monoethanolamine salt of coconut fatty acids, used in laundry detergents
+   * as a cleaning agent and foam booster.
+   */
+  MEACocoate = 'MEA-Cocoate',
+  /**
    * MEA-Dodecylbenzenesulfonate is an anionic surfactant used in laundry detergents
    * as a primary cleaning agent. It is the monoethanolamine salt of dodecylbenzenesulfonic acid.
    * Synonyms: MEA dodecylbenzenesulfonate
@@ -353,6 +374,11 @@ export enum Ingredient {
    */
   MEALAS = 'MEA-LAS',
   MEALaurethSulfate = 'MEA Laureth Sulfate',
+  /**
+   * Mentha Arvensis (Cornmint) Leaf Oil is an essential oil derived from the leaves of the
+   * cornmint plant, used in laundry detergents as a fragrance ingredient.
+   */
+  MenthaArvensisLeafOil = 'Mentha Arvensis (Cornmint) Leaf Oil',
   /**
    * Methoxy PEG-10 Cocoate is a PEGylated methyl ether ester of coconut oil fatty acids, used
    * in laundry detergents as a nonionic surfactant and emollient to aid solubilization and
@@ -586,6 +612,11 @@ export enum Ingredient {
    */
   Protease = 'Protease',
   /**
+   * Quaternised Hydrolyzed Wheat Protein/Silicone Copolymer is a conditioning polymer used in
+   * laundry detergents as a fabric care ingredient, helping to improve fabric softness and feel.
+   */
+  QuaternisedHydrolyzedWheatProteinSiliconeCopolymer = 'Quaternised Hydrolyzed Wheat Protein/Silicone Copolymer',
+  /**
    * Saccharomyces Ferment Filtrate is a yeast fermentation byproduct used in laundry detergents
    * as a conditioning and bioactive agent, contributing to fabric care and formula stability.
    */
@@ -706,6 +737,11 @@ export enum Ingredient {
   SodiumSilicate = 'Sodium Silicate',
   SodiumSulfate = 'Sodium Sulfate',
   /**
+   * Sodium Sulfite is an inorganic salt used in laundry detergents as a stabilizer and
+   * antioxidant, helping to prevent oxidation of active ingredients and extend shelf life.
+   */
+  SodiumSulfite = 'Sodium Sulfite',
+  /**
    * Soft Water is water that has been treated to remove hardness minerals (calcium and magnesium
    * ions), used as the base solvent in liquid laundry detergents. Listed as "Soft Water" on some
    * product labels instead of plain "Water".
@@ -753,4 +789,9 @@ export enum Ingredient {
    * Synonyms: Sodium Silicoaluminate
    */
   Zeolite = 'Zeolite',
+  /**
+   * Zinc Ricinoleate is a zinc salt of ricinoleic acid (a fatty acid from castor oil), used in
+   * laundry detergents as an odor-fighting ingredient that traps and neutralizes malodor molecules.
+   */
+  ZincRicinoleate = 'Zinc Ricinoleate',
 }
