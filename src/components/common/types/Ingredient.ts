@@ -12,6 +12,12 @@ export enum Ingredient {
    */
   AlkoxylatedAmineSubstitutedTriarylMethane = 'Alkoxylated Amine Substituted Triaryl Methane',
   /**
+   * Alkyl Glucoside is a generic plant-derived nonionic surfactant and cleaning agent made by
+   * reacting fatty alcohols with glucose. Commonly used as a mild cleanser and foam booster in
+   * laundry detergents.
+   */
+  AlkylGlucoside = 'Alkyl Glucoside',
+  /**
    * Aloe Barbadensis Leaf Powder is the dried, powdered form of aloe vera leaf gel, used in
    * laundry detergents as a soothing and conditioning ingredient for fabrics and skin.
    * Also listed on labels as: Aloe Barbadensis (Organic Aloe) Leaf Powder
@@ -104,6 +110,12 @@ export enum Ingredient {
    * Synonyms: C12-15 Alcohol Ethoxylate
    */
   C12_15AlcoholsEthoxylated = 'C12-15 Alcohols Ethoxylated',
+  /**
+   * C12-16 Pareth is a nonionic surfactant (polyoxyethylene ether) derived from C12-16 fatty
+   * alcohols, used in laundry detergents to reduce surface tension and improve soil removal
+   * and wetting.
+   */
+  C12_16Pareth = 'C12-16 Pareth',
   C12_18FattyAcidsSodiumSalt = 'Sodium Salts of C12-18 Fatty Acids',
   C16_18FattyAcidsSodiumSalt = 'C16-18 fatty acids sodium salt',
   CalciumCarbonate = 'Calcium Carbonate',
@@ -272,13 +284,13 @@ export enum Ingredient {
    */
   EthylhexylGlycerin = 'Ethylhexylglycerin',
   /**
-   * Eucalyptus Globulus Leaf Oil is an essential oil derived from eucalyptus leaves,
-   * used as a fragrance ingredient in laundry detergents.
+   * Eucalyptus Globulus (Eucalyptus) Leaf Oil is an essential oil derived from the leaves of
+   * the eucalyptus tree, used in laundry detergents as a fragrance ingredient.
    */
-  EucalyptusGlobusLeafOil = 'Eucalyptus Globulus Leaf Oil',
+  EucalyptusGlobusLeafOil = 'Eucalyptus Globulus (Eucalyptus) Leaf Oil',
   /**
-   * Eugenia Caryophyllus (Clove) Leaf Oil is an essential oil derived from clove leaves,
-   * used as a fragrance ingredient in laundry detergents.
+   * Eugenia Caryophyllus (Clove) Leaf Oil is an essential oil derived from the leaves of the
+   * clove plant, used in laundry detergents as a fragrance ingredient.
    */
   EugeniaCaryphyllusLeafOil = 'Eugenia Caryophyllus (Clove) Leaf Oil',
   /**
@@ -367,6 +379,12 @@ export enum Ingredient {
    * used as a fragrance ingredient in laundry detergents.
    */
   Heliotropine = 'Heliotropine',
+  /**
+   * Hexyl Cinnamal is a synthetic fragrance ingredient (aldehyde) used to impart a fresh,
+   * floral scent. It is a recognized fragrance allergen, often disclosed in parentheses
+   * after a "Fragrance" entry on ingredient labels.
+   */
+  HexylCinnamal = 'Hexyl Cinnamal',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
   /**
    * Hydrophobically Modified Acrylate Styrene Copolymer is a polymeric soil release and
@@ -397,10 +415,10 @@ export enum Ingredient {
    */
   JuniperusMexicanaCedarOil = 'Juniperus Mexicana (Cedar) Oil',
   /**
-   * Juniperus Virginiana (Cedar) Oil is an essential oil derived from Eastern red cedar,
-   * used as a fragrance ingredient in laundry detergents.
+   * Juniperus Virginiana (Cedarwood) Oil is an essential oil derived from the Eastern red cedar tree,
+   * used in laundry detergents as a natural fragrance ingredient.
    */
-  JuniperusVirginianaCedarwoodOil = 'Juniperus Virginiana (Cedar) Oil',
+  JuniperusVirginianaCedarwoodOil = 'Juniperus Virginiana (Cedarwood) Oil',
   /**
    * Lactic Acid is a mild organic acid used in laundry detergents as a pH adjuster
    * and descaling agent.
@@ -502,6 +520,11 @@ export enum Ingredient {
    */
   MEACitrate = 'MEA-citrate', // also listed as: Ethanolamine Citrate, MEA Citrate
   /**
+   * MEA-Cocoate is the monoethanolamine salt of coconut fatty acids, used in laundry detergents
+   * as a cleaning agent and foam booster.
+   */
+  MEACocoate = 'MEA-Cocoate',
+  /**
    * MEA-Dodecylbenzenesulfonate is an anionic surfactant used in laundry detergents
    * as a primary cleaning agent. It is the monoethanolamine salt of dodecylbenzenesulfonic acid.
    * Synonyms: MEA dodecylbenzenesulfonate
@@ -514,6 +537,11 @@ export enum Ingredient {
    */
   MEALAS = 'MEA-LAS',
   MEALaurethSulfate = 'MEA Laureth Sulfate',
+  /**
+   * Mentha Arvensis (Cornmint) Leaf Oil is an essential oil derived from the leaves of the
+   * cornmint plant, used in laundry detergents as a fragrance ingredient.
+   */
+  MenthaArvensisLeafOil = 'Mentha Arvensis (Cornmint) Leaf Oil',
   /**
    * Methoxy PEG-10 Cocoate is a PEGylated methyl ether ester of coconut oil fatty acids, used
    * in laundry detergents as a nonionic surfactant and emollient to aid solubilization and
@@ -772,6 +800,16 @@ export enum Ingredient {
    */
   Protease = 'Protease',
   /**
+   * Quaternised Hydrolyzed Wheat Protein/Silicone Copolymer is a conditioning polymer used in
+   * laundry detergents as a fabric care ingredient, helping to improve fabric softness and feel.
+   */
+  QuaternisedHydrolyzedWheatProteinSiliconeCopolymer = 'Quaternised Hydrolyzed Wheat Protein/Silicone Copolymer',
+  /**
+   * Rosa Damascena Flower Extract is a botanical extract derived from the Damask rose,
+   * used in laundry detergents as a natural fragrance ingredient.
+   */
+  RosaDamascenaFlowerExtract = 'Rosa Damascena Flower Extract',
+  /**
    * Rosmarinus Officinalis (Rosemary) Leaf Oil is an essential oil derived from rosemary leaves,
    * used as a fragrance ingredient in laundry detergents.
    */
@@ -902,6 +940,11 @@ export enum Ingredient {
   SodiumSilicate = 'Sodium Silicate',
   SodiumSulfate = 'Sodium Sulfate',
   /**
+   * Sodium Sulfite is an inorganic salt used in laundry detergents as a stabilizer and
+   * antioxidant, helping to prevent oxidation of active ingredients and extend shelf life.
+   */
+  SodiumSulfite = 'Sodium Sulfite',
+  /**
    * Soft Water is water that has been treated to remove hardness minerals (calcium and magnesium
    * ions), used as the base solvent in liquid laundry detergents. Listed as "Soft Water" on some
    * product labels instead of plain "Water".
@@ -945,6 +988,11 @@ export enum Ingredient {
    */
   Vanillin = 'Vanillin',
   /**
+   * Vinegar (dilute acetic acid) is used in laundry detergents as a mild acid to neutralize
+   * alkalinity, soften fabrics, and help remove mineral deposits and odors.
+   */
+  Vinegar = 'Vinegar',
+  /**
    * Synonyms: Soft Water
    */
   Water = 'Water',
@@ -964,4 +1012,9 @@ export enum Ingredient {
    * Synonyms: Sodium Silicoaluminate
    */
   Zeolite = 'Zeolite',
+  /**
+   * Zinc Ricinoleate is a zinc salt of ricinoleic acid (a fatty acid from castor oil), used in
+   * laundry detergents as an odor-fighting ingredient that traps and neutralizes malodor molecules.
+   */
+  ZincRicinoleate = 'Zinc Ricinoleate',
 }
