@@ -1,6 +1,7 @@
 export { default as AholdDelhaizePremiumLaundryDetergent3In1OriginalScent } from './ahold-delhaize-premium-laundry-detergent-3-in-1-original-scent';
 export { default as AldiTandiFreeClearWithoutLipaseLiquid } from './aldi-tandil-free-clear-without-lipase-liquid';
 export { default as AllFreeClear } from './all-free-clear';
+export { default as AllFreeClearAdvancedOxi } from './all-free-clear-advanced-oxi';
 export { default as AllFreeClearMightyPacsTheOriginal } from './all-free-clear-mighty-pacs-the-original';
 export { default as AllFreeClearOdorRelief } from './all-free-clear-odor-relief';
 export { default as AllSensitiveFreshSpringBreeze } from './all-sensitive-fresh-spring-breeze';
