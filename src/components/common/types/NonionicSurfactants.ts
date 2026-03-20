@@ -2,6 +2,7 @@ import { Ingredient } from './Ingredient';
 
 const NonionicSurfactants: Set<Ingredient> = new Set();
 
+NonionicSurfactants.add(Ingredient.AlkylGlucoside);
 NonionicSurfactants.add(Ingredient.C8_18FattyAcidAmideMEA);
 NonionicSurfactants.add(Ingredient.C10_16Alketh);
 NonionicSurfactants.add(Ingredient.C10_16AlkyldimethylamineOxide);
