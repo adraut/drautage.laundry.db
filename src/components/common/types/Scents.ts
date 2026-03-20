@@ -43,6 +43,7 @@ Scents.add(Ingredient.LavandulaHybridaOil);
 Scents.add(Ingredient.Limonene);
 Scents.add(Ingredient.Linalool);
 Scents.add(Ingredient.MenthaArvensisLeafOil);
+Scents.add(Ingredient.MenthaViridisLeafOil);
 Scents.add(Ingredient.MyroxylonPereiraeOil);
 Scents.add(Ingredient.PelargoniumGraveolensFlowerOil);
 Scents.add(Ingredient.PhenethylAlcohol);

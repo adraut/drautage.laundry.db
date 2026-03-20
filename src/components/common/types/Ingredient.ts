@@ -573,6 +573,11 @@ export enum Ingredient {
    */
   MenthaArvensisLeafOil = 'Mentha Arvensis (Cornmint) Leaf Oil',
   /**
+   * Mentha Viridis (Spearmint) Leaf Oil is an essential oil derived from spearmint leaves,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  MenthaViridisLeafOil = 'Mentha Viridis (Spearmint) Leaf Oil',
+  /**
    * Methoxy PEG-10 Cocoate is a PEGylated methyl ether ester of coconut oil fatty acids, used
    * in laundry detergents as a nonionic surfactant and emollient to aid solubilization and
    * improve the feel of treated fabrics.

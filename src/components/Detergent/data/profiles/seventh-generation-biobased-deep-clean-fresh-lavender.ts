@@ -16,7 +16,13 @@ const ingredients: Ingredient[] = [
   Ingredient.Mannanase,
   Ingredient.Benzisothiazolinone,
   Ingredient.Methylisothiazolinone,
-  Ingredient.Fragrance,
+  Ingredient.CitrusAurantiumDulcisOrangePeelOil,
+  Ingredient.LavandulAngustifoliaOil,
+  Ingredient.LavandulaHybridaLavandinOil,
+  Ingredient.Linalool,
+  Ingredient.MenthaViridisLeafOil,
+  Ingredient.PelargoniumGraveolensFlowerOil,
+  Ingredient.PogostemonCablinOil,
 ];
 
 const SeventhGenerationBiobasedDeepCleanFreshLavender: DetergentProfile = new DetergentProfile(
