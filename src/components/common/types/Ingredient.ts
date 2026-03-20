@@ -209,6 +209,11 @@ export enum Ingredient {
    */
   CoconutFattyAcid = 'Coconut Fatty Acid',
   /**
+   * Cocos Nucifera (Coconut) Oil is the fixed oil derived from coconut, used in laundry
+   * detergent formulations as an emollient and raw material for surfactant synthesis.
+   */
+  CocosNuciferaOil = 'Cocos Nucifera (Coconut) Oil',
+  /**
    * Colorants is a generic term for coloring agents used in laundry detergents to provide a
    * specific hue to the product. Used when a source lists only the generic term without specifying
    * individual colorant ingredients.
@@ -385,6 +390,11 @@ export enum Ingredient {
    * after a "Fragrance" entry on ingredient labels.
    */
   HexylCinnamal = 'Hexyl Cinnamal',
+  /**
+   * Hydrated Silica is a mineral-based amorphous silica used as a flow aid and anti-caking
+   * agent in powder and pod laundry detergents.
+   */
+  HydratedSilica = 'Hydrated Silica',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
   /**
    * Hydrophobically Modified Acrylate Styrene Copolymer is a polymeric soil release and
