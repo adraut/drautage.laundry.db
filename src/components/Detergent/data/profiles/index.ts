@@ -40,6 +40,7 @@ export { default as GainMoonlightBreezeWithFebrezeFreshness } from './gain-moonl
 export { default as GainOdorDefenseSuperFresh } from './gain-odor-defense-super-fresh';
 export { default as GainOriginalLiquid } from './gain-original-liquid';
 export { default as GainRelaxDewdropDream } from './gain-relax-dewdrop-dream';
+export { default as GainSpringDaydream } from './gain-spring-daydream';
 export { default as GainUltraIslandFreshPowder } from './gain-ultra-island-fresh-powder';
 export { default as GainUltraLavenderPowder } from './gain-ultra-lavender-powder';
 export { default as GainUltraMoonlightBreezePowder } from './gain-ultra-moonlight-breeze-powder';
