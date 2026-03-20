@@ -85,6 +85,12 @@ export enum Ingredient {
    * Synonyms: C12-15 Alcohol Ethoxylate
    */
   C12_15AlcoholsEthoxylated = 'C12-15 Alcohols Ethoxylated',
+  /**
+   * C12-16 Pareth is a nonionic surfactant (polyoxyethylene ether) derived from C12-16 fatty
+   * alcohols, used in laundry detergents to reduce surface tension and improve soil removal
+   * and wetting.
+   */
+  C12_16Pareth = 'C12-16 Pareth',
   C12_18FattyAcidsSodiumSalt = 'Sodium Salts of C12-18 Fatty Acids',
   C16_18FattyAcidsSodiumSalt = 'C16-18 fatty acids sodium salt',
   CalciumCarbonate = 'Calcium Carbonate',
@@ -769,6 +775,11 @@ export enum Ingredient {
   Triethanolamine = 'Triethanolamine',
   Trimethylsiloxysilicate = 'Trimethylsiloxysilicate',
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
+  /**
+   * Vinegar (dilute acetic acid) is used in laundry detergents as a mild acid to neutralize
+   * alkalinity, soften fabrics, and help remove mineral deposits and odors.
+   */
+  Vinegar = 'Vinegar',
   /**
    * Synonyms: Soft Water
    */
