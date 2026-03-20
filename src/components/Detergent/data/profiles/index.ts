@@ -67,6 +67,7 @@ export { default as PersilUltraPacsAdvancedCleanOxiPower } from './persil-ultra-
 export { default as PersilUltraPacsOriginal } from './persil-ultra-pacs-original';
 export { default as PurexFourInOneBrightCleanFreshMountainBreeze } from './purex-4-in-1-bright-clean-fresh-mountain-breeze';
 export { default as PurexFreeAndClear } from './purex-free-and-clear';
+export { default as PurexNaturalElementsLinenAndLilies } from './purex-natural-elements-linen-and-lilies';
 export { default as RockinGreenPlatinumActiveWear } from './rockin-green-platinum-active-wear';
 export { default as SeventhGenerationBiobasedDeepCleanFreshLavender } from './seventh-generation-biobased-deep-clean-fresh-lavender';
 export { default as SeventhGenerationEasyDoseUltraPowerPlusCleanScent } from './seventh-generation-easydose-ultra-power-plus-clean-scent';
