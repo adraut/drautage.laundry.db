@@ -263,6 +263,12 @@ export enum Ingredient {
    * Also listed on labels as: Gum Acacia (Organic)
    */
   GumAcacia = 'Gum Acacia',
+  /**
+   * Hexyl Cinnamal is a synthetic fragrance ingredient (aldehyde) used to impart a fresh,
+   * floral scent. It is a recognized fragrance allergen, often disclosed in parentheses
+   * after a "Fragrance" entry on ingredient labels.
+   */
+  HexylCinnamal = 'Hexyl Cinnamal',
   HydrogenatedCastorOil = 'Hydrogenated Castor Oil',
   /**
    * Hydrophobically Modified Acrylate Styrene Copolymer is a polymeric soil release and
@@ -277,6 +283,11 @@ export enum Ingredient {
    * scents on fabrics.
    */
   HydroxypropylCyclodextrin = 'Hydroxypropyl Cyclodextrin',
+  /**
+   * Juniperus Virginiana (Cedarwood) Oil is an essential oil derived from the Eastern red cedar tree,
+   * used in laundry detergents as a natural fragrance ingredient.
+   */
+  JuniperusVirginianaCedarwoodOil = 'Juniperus Virginiana (Cedarwood) Oil',
   /**
    * Lactic Acid is a mild organic acid used in laundry detergents as a pH adjuster
    * and descaling agent.
@@ -622,6 +633,11 @@ export enum Ingredient {
    * laundry detergents as a fabric care ingredient, helping to improve fabric softness and feel.
    */
   QuaternisedHydrolyzedWheatProteinSiliconeCopolymer = 'Quaternised Hydrolyzed Wheat Protein/Silicone Copolymer',
+  /**
+   * Rosa Damascena Flower Extract is a botanical extract derived from the Damask rose,
+   * used in laundry detergents as a natural fragrance ingredient.
+   */
+  RosaDamascenaFlowerExtract = 'Rosa Damascena Flower Extract',
   /**
    * Saccharomyces Ferment Filtrate is a yeast fermentation byproduct used in laundry detergents
    * as a conditioning and bioactive agent, contributing to fabric care and formula stability.
