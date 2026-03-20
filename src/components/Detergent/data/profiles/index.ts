@@ -98,6 +98,7 @@ export { default as TidePowerPodsOxiBoost } from './tide-power-pods-oxi-boost';
 export { default as TideSimplyAllInOneBerryBlossom } from './tide-simply-all-in-one-berry-blossom';
 export { default as TideSimplyAllInOneDaybreakFresh } from './tide-simply-all-in-one-daybreak-fresh';
 export { default as TideSimplyAllInOneRefreshingBreeze } from './tide-simply-all-in-one-refreshing-breeze';
+export { default as TideSimplyOxiBoostUltraStainReleaseRefreshingBreeze } from './tide-simply-oxi-boost-ultra-stain-release-refreshing-breeze';
 export { default as TideSimplyCleanFreshLiquid } from './tide-simply-clean-fresh-liquid';
 export { default as TideSpringMeadowLiquid } from './tide-spring-meadow-liquid';
 export { default as TideUltraHygienicClean } from './tide-ultra-hygienic-clean';
