@@ -102,6 +102,7 @@ export { default as TidePowerPodsDownyAprilFresh } from './tide-power-pods-downy
 export { default as TidePowerPodsFebrezeOdorEliminatorsSpringRenewal } from './tide-power-pods-febreze-odor-eliminators-spring-renewal';
 export { default as TidePowerPodsFebrezeSportOdorDefense } from './tide-power-pods-febreze-sport-odor-defense';
 export { default as TidePowerPodsOxiBoost } from './tide-power-pods-oxi-boost';
+export { default as TidePurcleanHoneyLavender } from './tide-purclean-honey-lavender';
 export { default as TideSimplyAllInOneBerryBlossom } from './tide-simply-all-in-one-berry-blossom';
 export { default as TideSimplyAllInOneDaybreakFresh } from './tide-simply-all-in-one-daybreak-fresh';
 export { default as TideSimplyAllInOneRefreshingBreeze } from './tide-simply-all-in-one-refreshing-breeze';
