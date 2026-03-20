@@ -470,6 +470,11 @@ export enum Ingredient {
   LaurylAlcoholEthoxylate = 'Lauryl Alcohol Ethoxylate',
   LaurylGlucoside = 'Lauryl Glucoside',
   /**
+   * Lavandula Angustifolia (Lavender) Oil is an essential oil derived from true lavender,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  LavandulAngustifoliaOil = 'Lavandula Angustifolia (Lavender) Oil',
+  /**
    * Lavandula Hybrida (Lavandin) Oil is an essential oil from the lavandin hybrid plant
    * (Lavandula × intermedia), used as a fragrance ingredient in laundry detergents.
    */
@@ -552,6 +557,11 @@ export enum Ingredient {
    * cornmint plant, used in laundry detergents as a fragrance ingredient.
    */
   MenthaArvensisLeafOil = 'Mentha Arvensis (Cornmint) Leaf Oil',
+  /**
+   * Mentha Viridis (Spearmint) Leaf Oil is an essential oil derived from spearmint leaves,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  MenthaViridisLeafOil = 'Mentha Viridis (Spearmint) Leaf Oil',
   /**
    * Methoxy PEG-10 Cocoate is a PEGylated methyl ether ester of coconut oil fatty acids, used
    * in laundry detergents as a nonionic surfactant and emollient to aid solubilization and
