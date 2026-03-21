@@ -1,248 +1,367 @@
 # Create Detergent GitHub Issue
 
-Creates a GitHub issue for a new detergent product using either a packaging
-image (OCR) or manually entered information.
+Creates a GitHub issue for a single detergent product from packaging images or
+manual input.
+
+> **Sync note:** The image-processing rules in this skill (cropping, OCR
+> confidence, multi-image reconciliation, extraction rules, profile comparison,
+> proposal file format) must be kept in sync with the equivalent steps in
+> `/import-detergents`. If you update one, update the other.
 
 ## Usage
 
 ```
-/create-detergent-issue [image_path]
+/create-detergent-issue [front_image] [ingredient_image ...]
 ```
 
-- **With image path** — reads the image and extracts ingredients via OCR
-- **Without argument** — prompts for manual input
+- **With images** — `front_image` is the packaging front; one or more
+  `ingredient_image` paths follow (multiple angles are supported and improve
+  accuracy)
+- **Without arguments** — prompts for manual input
 
-## Steps
+## If images were provided
 
-### If an image path was provided
+### Step 1 — Identify the product (front image)
 
-1. **Pre-process and read the image file.** Before reading, check whether the
-   image shows more than just the ingredient list (e.g., a full packaging panel
-   or wide-angle shot). Cropping or zooming to just the ingredient list area
-   before OCR significantly improves accuracy. Attempt this automatically if
-   image editing tools are available. If the crop cannot be done automatically,
-   ask the user to provide a cropped or zoomed image of the ingredient list
-   before proceeding — do not attempt OCR on a region that is too small or
-   cluttered to read reliably.
+Read the front image. Extract:
 
-   Read the (pre-processed) image file using the Read tool.
+- Brand name
+- Product name
+- Variant (if any)
+- Detergent type (Liquid / Powder / Pod / Other)
+- Region/country (if visible)
 
-2. **Identify the language(s)** of the text in the image. Packaging may be
-   multilingual or in a language other than English.
-   - If you can confidently identify the language from the image, proceed.
-   - If the language is ambiguous or unrecognized, **ask the user before
-     continuing** — do not attempt to extract or translate ingredients until
-     the language is confirmed.
+If the image is unclear or the product cannot be identified, ask the user
+before continuing.
 
-3. **Extract the ingredient list.** Ingredient lists are typically delimited by
-   commas, slashes, dots, or bullets. Count the number of delimited items in
-   the image — this is the expected ingredient count.
+**Run this step in parallel with step 2 and step 3.**
 
-   **Handling multilingual lists:** Packaging often repeats the ingredient list
-   in multiple languages (e.g., English followed by French for each ingredient,
-   or two full lists side by side).
-   - If English is present, use the English ingredients only and discard all
-     other language versions.
-   - If English is not present, translate all ingredients to English (see below).
-   - After language filtering, deduplicate the list — remove any ingredient that
-     appears more than once.
-   - Verify the final deduplicated count. If it does not match the expected
-     count from the image (accounting for the multilingual duplication), note
-     the discrepancy in the confirmation step.
+### Step 2 — Check for an existing profile
 
-   **Translation (non-English only):** Translate ingredient names to their
-   standard English chemical/INCI names where a clear equivalent exists. If a
-   term has no direct English equivalent or the translation is uncertain,
-   include the original text in parentheses, e.g. `Surfactant (tensioactivo)`.
+Construct the expected filename:
 
-   **Extract:**
-   - Brand name
-   - Product name
-   - Product variant (if visible)
-   - Detergent type (Liquid / Powder / Pod / Other)
-   - Full ingredient list (English, deduplicated, **in the exact order listed on the packaging**)
-   - Region/country (if visible on packaging)
+- Lowercase brand, product name, and variant
+- Replace spaces and special characters with hyphens
+- Pattern: `<brand>-<product name>[-<variant>].ts`
+- Example: brand="Tide", product="Original", variant="Liquid" →
+  `tide-original-liquid.ts`
 
-   If any field is not legible or not present on the packaging, note it as
-   unknown rather than guessing.
+Check `src/components/Detergent/data/profiles/<filename>`.
 
-4. **Confirm the extracted data with the user** before creating the issue.
-   Display the English ingredient list, note the source language(s), the raw
-   count from the image, and the final deduplicated count. Ask if it looks
-   correct and allow the user to make corrections.
+**Run this step in parallel with step 1 and step 3.**
 
-### If no image path was provided
+### Step 3 — Crop and OCR each ingredient image
 
-1. **Ask the user for the following information** (you may ask all at once):
-   - Brand name
-   - Product name
-   - Product variant (if any)
-   - Detergent type (Liquid / Powder / Pod / Other)
-   - Ingredient list (paste as-is from packaging or label)
-   - Region (if known)
-   - Source URL (if known — leave blank if packaging only)
+**Run all ingredient images in parallel.**
 
-### Ingredient mapping rules
+#### OCR strategy — full image first, crop only if needed
 
-Before comparing or listing ingredients, apply these rules:
+**Step 1 — Full-image OCR (always):**
 
-**"May contain" / conditional ingredients:** Packaging sometimes notes ingredients with phrases
-like `"may contain: X, Y"` or `"may contain sodium laureth sulfate"`. **Include these ingredients
-in the ingredient list** — someone avoiding a specific ingredient needs to know it may be present.
-Note each one in the issue's Notes section as conditional, e.g.:
-`"may contain: propylene glycol, sodium cumenesulfonate — included in list as conditional"`.
+Use the `Read` tool with the absolute file path for each ingredient image.
+To run multiple ingredient images in parallel, issue all `Read` calls in the
+same response. Use this prompt when reading each image:
 
-**Functional-category labels (P&G "MADE WITH:" format):** Gain liquids, Tide Simply, and some
-other P&G products list ingredients grouped by function rather than by concentration:
-`"Cleaning Agents: (A; B). Stabilizers: (C). Enzymes: (D; E). ... Colorants. Fragrances. Water."`
+> "Read the ingredient list from this image. Transcribe every ingredient
+> name exactly as printed, in the order printed. After any word or character
+> you are not 100% certain of, immediately append `[?]` — include your
+> best-guess reading before the marker (e.g. `laureth-6 [?]`). For any text
+> that is completely unreadable, write `[unreadable]` as a placeholder.
+> Output the list as one ingredient per line. At the end, add a Confidence
+> summary listing each flagged item with the reason for uncertainty (cut off,
+> smudged, low contrast, ambiguous character, etc.)."
 
-- Water always appears last in this format but is always the dominant ingredient by weight.
-  **List Water first**, not last.
-- Extract ingredients in the order they appear within and across each category group, following
-  the printed category sequence (Cleaning Agents → Stabilizers/Process Aids → Water Softener →
-  Enzymes → Cleaning Aids → Odor Removers → Solvents → Preservative → Colorants → Fragrances).
-- These labels often embed conditional phrases inside a category, e.g. `"Solvents: (ethanolamine;
-alcohol; may contain: propylene glycol, sodium cumenesulfonate)"`. Apply the "may contain" rule
-  above — include those trailing items in the list and note them as conditional.
+This pass is sufficient for most close-up shots.
 
-**OR alternatives:** Packaging sometimes lists `"ingredient A or ingredient B"` (or `"A and/or B"`).
+**Step 2 — Crop and re-OCR (only when confidence is low):**
 
-- If either option is already in the existing profile, treat the OR pair as satisfied — do not add or remove anything for that pair.
-- If neither option is in the profile (new product or new ingredient), use the **first-listed** option and discard the rest.
+If the full-image pass produced any `[?]` or `[unreadable]` items, crop to
+the ingredient list panel and re-read using the same prompt above. Use the
+higher-confidence reading per ingredient across both passes.
+
+**Tool detection for cropping** — check once per session, in priority order:
+
+1. **Docker + ImageMagick** (`docker info`) — preferred container runtime.
+   Use the `dpokidov/imagemagick` image. Pull once: `docker pull dpokidov/imagemagick`.
+2. **Podman + ImageMagick** (`podman info`) — drop-in Docker alternative;
+   commands are identical with `podman` substituted for `docker`.
+   Pull once: `podman pull dpokidov/imagemagick`.
+3. **Local ImageMagick** (`magick --version`) — install on Windows via
+   `winget install ImageMagick.Q16-HDRI`.
+4. **Python + Pillow** (`python -c "from PIL import Image"`) — install via
+   `pip install Pillow`.
+
+Set `RUNTIME` to whichever is found first (`docker` or `podman`) and reuse
+it for all crop commands in this session.
+
+**Crop commands** (run only when step 2 is triggered):
+
+1. Note the ingredient list region from the full-image read.
+
+2. **Get image dimensions.** Use `MSYS_NO_PATHCONV=1` to prevent Git Bash
+   from rewriting container paths, and `--entrypoint magick` because the
+   `dpokidov/imagemagick` image defaults to the legacy `convert` entrypoint:
+
+   ```
+   MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
+     -v "C:/path/to/image dir:/img" dpokidov/imagemagick \
+     identify -format "%wx%h\n" "/img/<filename>"
+   ```
+
+3. **Generate a coordinate grid overlay** and read it to pinpoint the
+   ingredient region in one shot. Draw horizontal lines every 500 px labeled
+   with their y-value, then read the resulting image to see exactly which
+   gridlines bracket the ingredient text — no guessing required.
+
+   Generate the grid (substitute `<W>` with the image width from step 2, and
+   add/remove lines to cover the full height at 500 px intervals):
+
+   ```
+   MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
+     -v "C:/path/to/image dir:/img" dpokidov/imagemagick \
+     "/img/<filename>" \
+     -font DejaVu-Sans -pointsize 80 -fill red -stroke red -strokewidth 3 \
+     -draw "line 0,500 <W>,500"    -annotate +20+490  "y=500" \
+     -draw "line 0,1000 <W>,1000"  -annotate +20+990  "y=1000" \
+     -draw "line 0,1500 <W>,1500"  -annotate +20+1490 "y=1500" \
+     -draw "line 0,2000 <W>,2000"  -annotate +20+1990 "y=2000" \
+     -draw "line 0,2500 <W>,2500"  -annotate +20+2490 "y=2500" \
+     -draw "line 0,3000 <W>,3000"  -annotate +20+2990 "y=3000" \
+     -draw "line 0,3500 <W>,3500"  -annotate +20+3490 "y=3500" \
+     "/img/<stem>_grid.jpg"
+   ```
+
+   Read `<stem>_grid.jpg` with the `Read` tool. The ingredient text will be
+   visibly bracketed between two labeled gridlines — read off the y-values
+   and compute: `height = y_end - y_start`, crop = `<W>x<height>+0+<y_start>`.
+   Delete the grid file after reading it.
+
+4. Run the crop. **Paths with spaces must be quoted; use forward slashes for
+   Windows paths in container volume mounts. Always set `MSYS_NO_PATHCONV=1`
+   and `--entrypoint magick` for the `dpokidov/imagemagick` image.**
+
+   Crop geometry: `WxH+X+Y` = width × height + left offset + top offset
+   from top-left corner (all in pixels).
+   - Docker or Podman + ImageMagick:
+     ```
+     MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
+       -v "C:/path/to/image dir:/img" dpokidov/imagemagick \
+       "/img/<filename>" -crop <WxH+X+Y> +repage "/img/<stem>_cropped.jpg"
+     ```
+   - Local ImageMagick:
+     `magick "<input>" -crop <WxH+X+Y> +repage "<stem>_cropped.jpg"`
+   - Pillow:
+     `python -c "from PIL import Image; img=Image.open('<input>'); img.crop((<x1>,<y1>,<x2>,<y2>)).save('<stem>_cropped.jpg')"`
+   - **No tool available:** re-read the full image with the prompt above,
+     prefixed with: _"Focus only on the ingredient list panel in the
+     [lower half / right column / etc.]. Ignore all other text."_
+
+#### OCR with confidence annotation
+
+The prompt in step 1 above covers confidence annotation inline. As a reminder:
+
+- Uncertain text → `best-guess reading [?]` inline
+- Completely unreadable → `[unreadable]`
+- End of transcription → **Confidence summary** with each flagged item and
+  reason (cut off, smudged, low contrast, ambiguous character, etc.)
+
+#### Multi-image reconciliation
+
+When more than one ingredient image is provided, merge the OCR results:
+
+- Use each image's transcription independently.
+- Where they agree, accept the reading as high-confidence.
+- Where they disagree or one is missing text the other has, note the
+  discrepancy and flag it as `[?]`.
+- Prefer the clearest read of any individual ingredient across all images.
+
+### Step 4 — Apply extraction rules
+
+Apply these rules to the final merged ingredient text:
+
+**Language:** If bilingual, use English ingredients only. If English is
+absent, translate to English INCI names.
+
+**Order:** Preserve the exact printed sequence. Do not sort, alphabetize, or
+reorder. Ingredient order is significant.
+
+**"May contain" / conditional ingredients:** Include in the list. Note each
+one in the issue Notes as conditional, e.g.
+`"may contain: propylene glycol — included as conditional"`.
+
+**Functional-category labels (P&G "MADE WITH:" format):** Gain liquids, Tide
+Simply, and some other P&G products list ingredients by function group:
+`"Cleaning Agents: (A; B). Stabilizers: (C). Enzymes: (D). ... Colorants. Fragrances. Water."`
+
+- Water appears last in this format but is always first by concentration.
+  **List Water first.**
+- Follow the printed category sequence for all other ingredients
+  (Cleaning Agents → Stabilizers/Process Aids → Water Softener → Enzymes →
+  Cleaning Aids → Odor Removers → Solvents → Preservative → Colorants →
+  Fragrances).
+- Conditional phrases embedded in a category apply the "may contain" rule.
+
+**OR alternatives:** Packaging sometimes lists `"A or B"` or `"A and/or B"`.
+
+- If either option is already in the existing profile, treat the OR pair as
+  satisfied — do not add or remove anything for that pair.
+- If neither option is in the profile, use the **first-listed** option and
+  discard the rest.
 
 **Colorants:**
 
-- If the packaging names a specific colorant (e.g., `CI 42090`, `Pigment Blue 15`, `FD&C Blue 1`), use that specific `Ingredient` enum entry.
-- If the packaging only lists a generic term (`Colorants`, `Dyes`, `Colorants/Colorants`), add the generic `Ingredient.Colorants` entry instead.
-- Do **not** keep a specific colorant in the profile if the current packaging source only lists a generic term. Specific colorants from prior sources should be replaced with the generic entry.
+- Specific colorant named (e.g., `CI 42090`, `Pigment Blue 15`) → use that
+  specific `Ingredient` enum entry.
+- Generic term only (`Colorants`, `Dyes`) → use `Ingredient.Colorants`.
+- Do **not** keep a specific colorant if the current source only gives a
+  generic term — replace with the generic entry.
 
-**Alketh vs. Pareth:** INCI names ending in `-alketh` and `-pareth` are distinct substances. If the packaging explicitly says `C10-16 alketh`, use `C10_16Alketh` — do not map it to `C10_16Pareth`.
+**Alketh vs. Pareth:** Distinct substances. `C10-16 alketh` →
+`C10_16Alketh`, not `C10_16Pareth`.
 
-### Check for an existing profile
+**Enzymes:** Name specific enzymes when named on packaging. If only
+"enzymes" generically, note TBD in the issue; do not guess.
 
-2. **Check whether a profile already exists** for this product.
+### Step 5 — Compare vs. existing profile (if found)
 
-   Construct the expected filename from the product details:
-   - Lowercase the brand, product name, and variant
-   - Replace spaces and special characters with hyphens
-   - Pattern: `<brand>-<product name>[-<variant>].ts` (omit variant segment if N/A)
-   - Example: brand="Tide", product="Original", variant="Liquid" → `tide-original-liquid.ts`
+Map each `Ingredient.EnumName` in the profile to its plain-text equivalent
+and compare against the extracted ingredient list, **including order**.
 
-   Check for the file at `src/components/Detergent/data/profiles/<filename>`.
+- **Identical sequence** → inform the user the profile is already up-to-date
+  and stop. Do not create an issue.
+- **Different ingredients or different order** → note added, removed, and
+  reordered ingredients; create an Update issue.
 
-   **If no match is found:** proceed to create an "Add" issue (step 3).
+If no profile exists → create an Add issue.
 
-   **If a match is found:**
-   a. Read the existing profile file and extract its ingredient list (all `Ingredient.XXX`
-   enum values in the `ingredients` array).
-   b. Compare the existing ingredients against the new ingredient list extracted from
-   the image or provided by the user. To compare, map each `Ingredient.EnumName`
-   to its plain-text equivalent by splitting on camel-case boundaries and known
-   abbreviations — an exact match including order means no change. A difference
-   in order alone (same ingredients, different sequence) is treated as a change
-   and warrants an Update issue.
-   c. **If the ingredient sets are identical:** inform the user that the profile is
-   already up to date and stop — do not create an issue.
-   d. **If the ingredient sets differ:** proceed to create an "Update" issue (step 3),
-   noting the differences in the issue body. Use "Update" in the title and add the
-   `update` label alongside `enhancement,Detergent`.
+### Step 6 — Collect ambiguities
 
-### Create the issue
+Gather all unresolved items without blocking:
 
-3. **Create the GitHub issue** using the collected data.
+- Any `[?]` or `[unreadable]` item from OCR, with its confidence reason and
+  best-guess reading
+- Ingredient names with no obvious enum match
+- Product name that may match more than one existing profile
+- Any discrepancy between multiple ingredient images that could not be
+  reconciled
 
-   For a **new** product (no existing profile):
+### Step 7 — Write the proposal file
 
-   ```
-   gh issue create \
-     --title "Add <Brand> <Product Name>" \
-     --label "enhancement,Detergent" \
-     --body "## Product details
+Write the proposed issue title and body to `ISSUE_<slug>.md` in the same
+directory as the images (e.g., `ISSUE_tide-purclean-honey-lavender.md`).
 
-   - **Brand:** <brand>
-   - **Product name:** <product name>
-   - **Product variant (if any):** <variant or 'N/A'>
-   - **Detergent type:** <type>
+**If there are no ambiguities:** write the proposal file normally.
 
-   ## Ingredient source(s)
+**If there are ambiguities:** add a `## ⚠ Needs Review` section at the top,
+before the issue body, with a table of every unresolved item:
 
-   - **Primary source:** <'packaging image' if from photo, otherwise source type>
-   - **Source URL:** <URL or 'N/A'>
-   - **Date accessed:** <today's date>
-   - **Region (if applicable):** <region or 'not specified'>
+```markdown
+## ⚠ Needs Review
 
-   ## Ingredient list (optional but recommended)
+The following items must be decided before this issue is created:
 
-   \`\`\`
-   <ingredient list, one per line>
-   \`\`\`
+| #   | Position       | OCR reading                | Uncertainty reason         | Decision needed                                |
+| --- | -------------- | -------------------------- | -------------------------- | ---------------------------------------------- |
+| 1   | Ingredient #4  | `acty/decyl glucoside [?]` | Characters blurred         | `DecylGlucoside` or `CaprylylCaprylGlucoside`? |
+| 2   | Ingredient #12 | `[unreadable]`             | Text cut off at image edge | Skip, mark TBD, or provide a better image?     |
+```
 
-   ## Notes
+The issue body below the review section uses the best-guess reading for each
+uncertain item (marked `[?]`) so the proposal is otherwise complete and
+requires only targeted edits once decisions are made.
 
-   - **Ingredient list language:** <source language, or 'English' if no translation was needed>
-   <any ambiguities noted during OCR, translation, or entry, or 'None' if no others>
-   "
-   ```
+The issue body follows the standard format:
 
-   For an **existing** product with changed ingredients (existing profile found):
+- **Add issue body:**
 
-   ```
-   gh issue create \
-     --title "Update <Brand> <Product Name>" \
-     --label "enhancement,Detergent,update" \
-     --body "## Product details
+  ```
+  ## Product details
 
-   - **Brand:** <brand>
-   - **Product name:** <product name>
-   - **Product variant (if any):** <variant or 'N/A'>
-   - **Detergent type:** <type>
-   - **Existing profile:** \`src/components/Detergent/data/profiles/<filename>.ts\`
+  - **Brand:** <brand>
+  - **Product name:** <product name>
+  - **Product variant (if any):** <variant or 'N/A'>
+  - **Detergent type:** <type>
 
-   ## Ingredient changes
+  ## Ingredient source(s)
 
-   ### Ingredients added (in new source, not in existing profile)
+  - **Primary source:** packaging image
+  - **Source URL:** N/A
+  - **Date accessed:** <today's date>
+  - **Region (if applicable):** <region or 'not specified'>
 
-   <list added ingredients, one per line, or 'None'>
+  ## Ingredient list
 
-   ### Ingredients removed (in existing profile, not in new source)
+  ```
 
-   <list removed ingredients, one per line, or 'None'>
+  <ingredient list, one per line>
 
-   ## Ingredient source(s)
+  ```
 
-   - **Primary source:** <'packaging image' if from photo, otherwise source type>
-   - **Source URL:** <URL or 'N/A'>
-   - **Date accessed:** <today's date>
-   - **Region (if applicable):** <region or 'not specified'>
+  ## Notes
 
-   ## Full ingredient list
+  - **Ingredient list language:** <source language, or 'English'>
+  <conditional ingredients, OCR uncertainties resolved, OR rules applied, etc., or 'None'>
+  ```
 
-   \`\`\`
-   <complete new ingredient list, one per line>
-   \`\`\`
+- **Update issue body:** same as above but with a `## Ingredient changes`
+  section listing added, removed, and reordered ingredients, and a reference
+  to the existing profile path.
 
-   ## Notes
+### Step 8 — Present for review and create the issue
 
-   - **Ingredient list language:** <source language, or 'English' if no translation was needed>
-   <any ambiguities noted during OCR, translation, or entry, or 'None' if no others>
-   "
-   ```
+Present a concise summary to the user:
 
-4. **Report the issue URL** to the user and remind them they can run
-   `/add-detergent <issue_number>` once they have reviewed the issue.
+- Product name and action type (Add / Update)
+- Number of ingredients; new enum entries needed
+- Any resolved OCR uncertainties and how they were resolved
+- Any remaining `## ⚠ Needs Review` items requiring a decision
+
+**Stop and wait** for the user to resolve any review items and explicitly
+confirm before creating the issue.
+
+Once confirmed, execute the appropriate command:
+
+- **New Add issue:**
+  `gh issue create --title "Add <Brand> <Product>" --label "enhancement" --label "Detergent"`
+- **New Update issue:**
+  `gh issue create --title "Update <Brand> <Product>" --label "enhancement" --label "Detergent" --label "update"`
+- **Correcting an existing issue:**
+  `gh issue edit <number> --body "<corrected body>"`
+
+Use separate `--label` flags (not comma-separated).
+
+After the GitHub action succeeds, **delete the proposal file**
+(`rm "ISSUE_<slug>.md"`).
+
+Report the issue URL and remind the user they can run
+`/add-detergent <issue_number>` once they have reviewed the issue.
+
+## If no images were provided
+
+Ask the user for the following (all at once):
+
+- Brand name
+- Product name
+- Product variant (if any)
+- Detergent type (Liquid / Powder / Pod / Other)
+- Ingredient list (paste as-is from packaging or label)
+- Region (if known)
+- Source URL (if known — leave blank if packaging only)
+
+Then apply the extraction rules from step 4 to normalize the pasted list,
+check for an existing profile (step 5), and proceed from step 6 onward.
 
 ## Notes
 
-- All issue content must be in English. If English is present on the packaging,
-  use it directly. Only translate when English is absent.
-- If English is present alongside other languages, discard the non-English
-  ingredients — do not mix languages in the output list.
-- Always deduplicate the ingredient list before writing it to the issue.
-- **Preserve ingredient order.** The sequence of ingredients in the issue must match exactly the order they appear on the packaging. Do not sort, alphabetize, or reorder.
-- Always verify the final ingredient count against the raw count from the image
-  and report any discrepancy to the user at the confirmation step.
-- Do not infer or guess missing text — note it as unknown.
-- If OCR is ambiguous (e.g., smudged text, cut-off label), note each uncertain
-  ingredient clearly rather than guessing.
-- The issue is a review checkpoint. Do not proceed to create a profile
-  automatically — always stop after creating the issue.
+- If the front image is unclear or the product cannot be identified, ask the
+  user before doing any further work.
+- Low OCR confidence (`[?]` items) must appear in the proposal file's
+  `## ⚠ Needs Review` table. Never silently accept a best-guess reading
+  without recording it as uncertain.
+- All issue content must be in English. If English is present on the
+  packaging, use it directly. Only translate when English is absent.
+- Always preserve ingredient order. Do not sort, alphabetize, or reorder.
+- The issue is a review checkpoint — do not create profiles automatically.
+  Always stop after creating the issue.
+- SmartLabel pages (`smartlabel.pg.com`) are JavaScript-rendered and
+  inaccessible via fetch. Fall back to the ingredient images.
