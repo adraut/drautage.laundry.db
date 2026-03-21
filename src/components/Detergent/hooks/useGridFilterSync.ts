@@ -21,17 +21,21 @@ export function useGridFilterSync() {
   const [searchParams, setSearchParams] = useSearchParams();
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Memoize the filter from URL to prevent unnecessary re-renders
+  // Stable key derived only from filter params. When sort (or other) params change
+  // without touching filter params, this string stays the same, so the filter memo
+  // below does not produce a new object and the Detergents useEffect does not fire.
+  const filterParamsKey = useMemo(() => searchParams.getAll(FILTER_PARAM_NAME).join('\0'), [searchParams]);
+
   const filter = useMemo((): CompositeFilterDescriptor => {
-    const filterParams = searchParams.getAll(FILTER_PARAM_NAME);
-    if (filterParams && filterParams.length > 0) {
+    const filterParams = filterParamsKey ? filterParamsKey.split('\0') : [];
+    if (filterParams.length > 0) {
       const decoded = decodeFilter(filterParams);
       if (decoded) {
         return decoded;
       }
     }
     return getDefaultFilter();
-  }, [searchParams]);
+  }, [filterParamsKey]);
 
   // Debounced function to update filter in URL
   const updateFilterInUrl = useCallback(

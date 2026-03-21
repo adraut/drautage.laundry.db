@@ -22,14 +22,19 @@ export function useGridSortSync() {
   const [searchParams, setSearchParams] = useSearchParams();
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Stable key derived only from sort params. When filter (or other) params change
+  // without touching sort params, this string stays the same, so the sort memo
+  // below does not produce a new object and the grid sort effect does not fire.
+  const sortParamsKey = useMemo(() => searchParams.getAll(SORT_PARAM_NAME).join('\0'), [searchParams]);
+
   const sortModel = useMemo((): SortModelItem[] => {
-    const sortParams = searchParams.getAll(SORT_PARAM_NAME);
+    const sortParams = sortParamsKey ? sortParamsKey.split('\0') : [];
     if (sortParams.length > 0) {
       const decoded = decodeSort(sortParams);
       if (decoded) return decoded;
     }
     return getDefaultSort();
-  }, [searchParams]);
+  }, [sortParamsKey]);
 
   const updateSortInUrl = useCallback(
     (newSort: SortModelItem[]) => {

@@ -2,8 +2,10 @@ import { renderHook, act, waitFor } from '@testing-library/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useGridSortSync } from '../hooks/useGridSortSync';
+import { useGridFilterSync } from '../hooks/useGridFilterSync';
 import { encodeSort, decodeSort, getDefaultSort } from '../utils/gridSortUtils';
 import type { SortModelItem } from '../utils/gridSortUtils';
+import type { CompositeFilterDescriptor } from '../utils/filterTypes';
 
 beforeEach(() => {
   window.history.pushState({}, '', 'http://localhost/');
@@ -191,6 +193,72 @@ describe('useGridSortSync', () => {
       });
 
       jest.useRealTimers();
+    });
+  });
+
+  describe('sort stability when unrelated params change', () => {
+    it('does not return a new sortModel object when filter params are added', () => {
+      const model: SortModelItem[] = [{ colId: 'name', sort: 'desc' }];
+      const params = new URLSearchParams();
+      encodeSort(model).forEach((p) => params.append('s', p));
+      window.history.pushState({}, '', `http://localhost/?${params.toString()}`);
+
+      const { result } = renderHook(() => ({ sort: useGridSortSync(), filter: useGridFilterSync() }), {
+        wrapper: ({ children }: { children: React.ReactNode }) => React.createElement(BrowserRouter, {}, children),
+      });
+
+      const sortBefore = result.current.sort.sortModel;
+
+      const newFilter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
+      };
+      act(() => {
+        result.current.filter.resetFilterInUrl(newFilter);
+      });
+
+      expect(result.current.sort.sortModel).toBe(sortBefore);
+    });
+
+    it('does not return a new sortModel object when filter params are removed', () => {
+      const model: SortModelItem[] = [{ colId: 'brand', sort: 'asc' }];
+      const filterParams = new URLSearchParams();
+      encodeSort(model).forEach((p) => filterParams.append('s', p));
+      filterParams.append('f', 'hasProtease');
+      window.history.pushState({}, '', `http://localhost/?${filterParams.toString()}`);
+
+      const { result } = renderHook(() => ({ sort: useGridSortSync(), filter: useGridFilterSync() }), {
+        wrapper: ({ children }: { children: React.ReactNode }) => React.createElement(BrowserRouter, {}, children),
+      });
+
+      const sortBefore = result.current.sort.sortModel;
+
+      act(() => {
+        result.current.filter.resetFilterInUrl({ logic: 'and', filters: [] });
+      });
+
+      expect(result.current.sort.sortModel).toBe(sortBefore);
+    });
+
+    it('does return a new sortModel object when sort params change', () => {
+      const model: SortModelItem[] = [{ colId: 'name', sort: 'desc' }];
+      const params = new URLSearchParams();
+      encodeSort(model).forEach((p) => params.append('s', p));
+      window.history.pushState({}, '', `http://localhost/?${params.toString()}`);
+
+      const { result } = renderHook(() => ({ sort: useGridSortSync(), filter: useGridFilterSync() }), {
+        wrapper: ({ children }: { children: React.ReactNode }) => React.createElement(BrowserRouter, {}, children),
+      });
+
+      const sortBefore = result.current.sort.sortModel;
+
+      const newSort: SortModelItem[] = [{ colId: 'brand', sort: 'asc' }];
+      act(() => {
+        result.current.sort.resetSortInUrl(newSort);
+      });
+
+      expect(result.current.sort.sortModel).not.toBe(sortBefore);
+      expect(result.current.sort.sortModel).toEqual(newSort);
     });
   });
 

@@ -2,6 +2,7 @@ import { renderHook, act, waitFor } from '@testing-library/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useGridFilterSync } from '../hooks/useGridFilterSync';
+import { useGridSortSync } from '../hooks/useGridSortSync';
 import { encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
 import { CompositeFilterDescriptor, FilterDescriptor } from '../utils/filterTypes';
 
@@ -201,6 +202,80 @@ describe('useGridFilterSync', () => {
       expect(window.location.search).toBe('');
 
       jest.useRealTimers();
+    });
+  });
+
+  describe('filter stability when unrelated params change', () => {
+    it('does not return a new filter object when sort params are added', () => {
+      const testFilter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
+      };
+      const params = new URLSearchParams();
+      encodeFilter(testFilter).forEach((p) => params.append('f', p));
+      window.history.pushState({}, '', `http://localhost/?${params.toString()}`);
+
+      const { result } = renderHook(() => ({ filter: useGridFilterSync(), sort: useGridSortSync() }), {
+        wrapper: ({ children }: { children: React.ReactNode }) => React.createElement(BrowserRouter, {}, children),
+      });
+
+      const filterBefore = result.current.filter.filter;
+
+      act(() => {
+        result.current.sort.resetSortInUrl([{ colId: 'brand', sort: 'asc' }]);
+      });
+
+      expect(result.current.filter.filter).toBe(filterBefore);
+    });
+
+    it('does not return a new filter object when sort params are removed', () => {
+      const testFilter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
+      };
+      const params = new URLSearchParams();
+      encodeFilter(testFilter).forEach((p) => params.append('f', p));
+      params.append('s', 'brand:asc');
+      window.history.pushState({}, '', `http://localhost/?${params.toString()}`);
+
+      const { result } = renderHook(() => ({ filter: useGridFilterSync(), sort: useGridSortSync() }), {
+        wrapper: ({ children }: { children: React.ReactNode }) => React.createElement(BrowserRouter, {}, children),
+      });
+
+      const filterBefore = result.current.filter.filter;
+
+      act(() => {
+        result.current.sort.resetSortInUrl([]);
+      });
+
+      expect(result.current.filter.filter).toBe(filterBefore);
+    });
+
+    it('does return a new filter object when filter params change', () => {
+      const testFilter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
+      };
+      const params = new URLSearchParams();
+      encodeFilter(testFilter).forEach((p) => params.append('f', p));
+      window.history.pushState({}, '', `http://localhost/?${params.toString()}`);
+
+      const { result } = renderHook(() => ({ filter: useGridFilterSync(), sort: useGridSortSync() }), {
+        wrapper: ({ children }: { children: React.ReactNode }) => React.createElement(BrowserRouter, {}, children),
+      });
+
+      const filterBefore = result.current.filter.filter;
+
+      const newFilter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
+      };
+      act(() => {
+        result.current.filter.resetFilterInUrl(newFilter);
+      });
+
+      expect(result.current.filter.filter).not.toBe(filterBefore);
+      expect(result.current.filter.filter).toEqual(newFilter);
     });
   });
 
