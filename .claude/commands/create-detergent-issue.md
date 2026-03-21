@@ -54,53 +54,115 @@ Check `src/components/Detergent/data/profiles/<filename>`.
 
 **Run all ingredient images in parallel.**
 
-#### Crop first (greatly improves accuracy)
+#### OCR strategy — full image first, crop only if needed
 
-Before reading, crop each ingredient image to the ingredient list panel.
-The goal is to give the model maximum resolution on just the text.
+**Step 1 — Full-image OCR (always):**
 
-**Tool detection** — check for available tools once per session, in priority order:
+Use the `Read` tool with the absolute file path for each ingredient image.
+To run multiple ingredient images in parallel, issue all `Read` calls in the
+same response. Use this prompt when reading each image:
 
-1. **Docker + ImageMagick** (`docker info`) — preferred. Use the
-   `dpokidov/imagemagick` image. Pull once: `docker pull dpokidov/imagemagick`.
-2. **Local ImageMagick** (`magick --version`) — install on Windows via
+> "Read the ingredient list from this image. Transcribe every ingredient
+> name exactly as printed, in the order printed. After any word or character
+> you are not 100% certain of, immediately append `[?]` — include your
+> best-guess reading before the marker (e.g. `laureth-6 [?]`). For any text
+> that is completely unreadable, write `[unreadable]` as a placeholder.
+> Output the list as one ingredient per line. At the end, add a Confidence
+> summary listing each flagged item with the reason for uncertainty (cut off,
+> smudged, low contrast, ambiguous character, etc.)."
+
+This pass is sufficient for most close-up shots.
+
+**Step 2 — Crop and re-OCR (only when confidence is low):**
+
+If the full-image pass produced any `[?]` or `[unreadable]` items, crop to
+the ingredient list panel and re-read using the same prompt above. Use the
+higher-confidence reading per ingredient across both passes.
+
+**Tool detection for cropping** — check once per session, in priority order:
+
+1. **Docker + ImageMagick** (`docker info`) — preferred container runtime.
+   Use the `dpokidov/imagemagick` image. Pull once: `docker pull dpokidov/imagemagick`.
+2. **Podman + ImageMagick** (`podman info`) — drop-in Docker alternative;
+   commands are identical with `podman` substituted for `docker`.
+   Pull once: `podman pull dpokidov/imagemagick`.
+3. **Local ImageMagick** (`magick --version`) — install on Windows via
    `winget install ImageMagick.Q16-HDRI`.
-3. **Python + Pillow** (`python -c "from PIL import Image"`) — install via
+4. **Python + Pillow** (`python -c "from PIL import Image"`) — install via
    `pip install Pillow`.
 
-**If a tool is available — automated crop:**
+Set `RUNTIME` to whichever is found first (`docker` or `podman`) and reuse
+it for all crop commands in this session.
 
-1. Read the full image to locate the ingredient list region (express as
-   approximate pixel coordinates or percentages from top-left).
-2. Run the crop command:
-   - Docker + ImageMagick:
+**Crop commands** (run only when step 2 is triggered):
+
+1. Note the ingredient list region from the full-image read.
+
+2. **Get image dimensions.** Use `MSYS_NO_PATHCONV=1` to prevent Git Bash
+   from rewriting container paths, and `--entrypoint magick` because the
+   `dpokidov/imagemagick` image defaults to the legacy `convert` entrypoint:
+   ```
+   MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
+     -v "C:/path/to/image dir:/img" dpokidov/imagemagick \
+     identify -format "%wx%h\n" "/img/<filename>"
+   ```
+
+3. **Generate a coordinate grid overlay** and read it to pinpoint the
+   ingredient region in one shot. Draw horizontal lines every 500 px labeled
+   with their y-value, then read the resulting image to see exactly which
+   gridlines bracket the ingredient text — no guessing required.
+
+   Generate the grid (substitute `<W>` with the image width from step 2, and
+   add/remove lines to cover the full height at 500 px intervals):
+   ```
+   MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
+     -v "C:/path/to/image dir:/img" dpokidov/imagemagick \
+     "/img/<filename>" \
+     -font DejaVu-Sans -pointsize 80 -fill red -stroke red -strokewidth 3 \
+     -draw "line 0,500 <W>,500"    -annotate +20+490  "y=500" \
+     -draw "line 0,1000 <W>,1000"  -annotate +20+990  "y=1000" \
+     -draw "line 0,1500 <W>,1500"  -annotate +20+1490 "y=1500" \
+     -draw "line 0,2000 <W>,2000"  -annotate +20+1990 "y=2000" \
+     -draw "line 0,2500 <W>,2500"  -annotate +20+2490 "y=2500" \
+     -draw "line 0,3000 <W>,3000"  -annotate +20+2990 "y=3000" \
+     -draw "line 0,3500 <W>,3500"  -annotate +20+3490 "y=3500" \
+     "/img/<stem>_grid.jpg"
+   ```
+
+   Read `<stem>_grid.jpg` with the `Read` tool. The ingredient text will be
+   visibly bracketed between two labeled gridlines — read off the y-values
+   and compute: `height = y_end - y_start`, crop = `<W>x<height>+0+<y_start>`.
+   Delete the grid file after reading it.
+
+4. Run the crop. **Paths with spaces must be quoted; use forward slashes for
+   Windows paths in container volume mounts. Always set `MSYS_NO_PATHCONV=1`
+   and `--entrypoint magick` for the `dpokidov/imagemagick` image.**
+
+   Crop geometry: `WxH+X+Y` = width × height + left offset + top offset
+   from top-left corner (all in pixels).
+
+   - Docker or Podman + ImageMagick:
      ```
-     docker run --rm -v "<image_dir>:/img" dpokidov/imagemagick \
-       magick "/img/<filename>" -crop <WxH+X+Y> +repage "/img/<stem>_cropped.jpg"
+     MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
+       -v "C:/path/to/image dir:/img" dpokidov/imagemagick \
+       "/img/<filename>" -crop <WxH+X+Y> +repage "/img/<stem>_cropped.jpg"
      ```
    - Local ImageMagick:
      `magick "<input>" -crop <WxH+X+Y> +repage "<stem>_cropped.jpg"`
    - Pillow:
      `python -c "from PIL import Image; img=Image.open('<input>'); img.crop((<x1>,<y1>,<x2>,<y2>)).save('<stem>_cropped.jpg')"`
-
-**If no tool is available — two-pass approach:**
-
-1. Pass 1: Read the full image. Note the approximate region of the ingredient
-   list (e.g., "lower 60%, right half of panel").
-2. Pass 2: Read the full image again with the explicit instruction:
-   _"Transcribe ONLY the ingredient list text in the [described region].
-   Ignore all other text. Read character by character."_
+   - **No tool available:** re-read the full image with the prompt above,
+     prefixed with: _"Focus only on the ingredient list panel in the
+     [lower half / right column / etc.]. Ignore all other text."_
 
 #### OCR with confidence annotation
 
-When reading the (cropped) image, apply these annotation rules:
+The prompt in step 1 above covers confidence annotation inline. As a reminder:
 
-- Mark any word or phrase you are not fully certain about with `[?]`.
-  Include your best-guess reading in-line, e.g., `laureth-6 [?]`.
-- Mark completely unreadable text as `[unreadable]`.
-- At the end of the transcription, output a **Confidence summary** listing
-  every `[?]` and `[unreadable]` item with the reason for uncertainty
-  (cut off, smudged, low contrast, ambiguous character, etc.).
+- Uncertain text → `best-guess reading [?]` inline
+- Completely unreadable → `[unreadable]`
+- End of transcription → **Confidence summary** with each flagged item and
+  reason (cut off, smudged, low contrast, ambiguous character, etc.)
 
 #### Multi-image reconciliation
 

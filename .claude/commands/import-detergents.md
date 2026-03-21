@@ -30,53 +30,78 @@ resumed across sessions.
 
 ## Phase 1 — Build the import log (if new or incomplete)
 
-Run this phase only when the log does not yet contain all images in the batch
-directory, or when the log does not exist.
+Run this phase whenever the log does not contain all source images in the
+batch directory, including when the log does not exist at all.
 
-### Step 1a — Inventory and classify
+### Step 1a — Create or open the log
 
-List all `.jpg` / `.jpeg` / `.png` files in the batch directory,
-sorted alphabetically. Exclude `_cropped` images (they are derived artifacts,
-not source images). Exclude any filename already recorded in the log.
+**If the log does not exist**, create it immediately with just the header row:
 
-Read the unlogged images in **parallel batches of 5** to classify each one:
+```
+| # | Front image | Ingredient image(s) | Product | Status | Notes |
+|---|-------------|---------------------|---------|--------|-------|
+```
+
+**If the log exists**, read it. Note which source images (non-`_cropped`) are
+already recorded in any row — these are already classified and will be skipped.
+Note any row whose `Status` is `classifying` — that group's classification was
+interrupted and must be completed before processing resumes (see step 1c).
+
+### Step 1b — Inventory
+
+List all `.jpg` / `.jpeg` / `.png` files in the batch directory, sorted
+alphabetically. Exclude `_cropped` images (derived artifacts, not sources).
+Exclude any filename already recorded in the log.
+
+If no unrecorded images remain, Phase 1 is complete — proceed to Phase 2.
+
+### Step 1c — Classify in batches, writing after each
+
+Process the unrecorded images in **parallel batches of 5**, strictly in
+alpha order. After each batch completes, immediately update the log before
+starting the next batch. This ensures classification can be resumed if
+interrupted.
+
+**Classify each image as one of:**
 
 - **Front image** — shows the front of the packaging (brand, product name,
-  prominent label design). Typically the first image of a product.
+  prominent label design).
 - **Ingredient image** — shows the ingredient list panel, back of package,
   or a close-up of the ingredient text.
+- **Unknown** — ambiguous (side panel without ingredients, nutrition facts,
+  completely unclear). Ask the user before assigning. Do not block — flag it
+  in the Notes of the current open group and continue.
 
-If an image is ambiguous (e.g., side panel without ingredients, nutrition
-facts only, or completely unclear), classify it as `unknown` and note it.
-Ask the user before assigning it.
+**Maintain an "open group" across batches.** Each time a front image is
+seen, the previously open group is complete; open a new one. Ingredient and
+unknown images are appended to the currently open group.
 
-### Step 1b — Form groups
+**After each batch of 5, update the log:**
 
-Walk the classified list in alpha order. Each time a **front** image is
-encountered, open a new group. Assign every subsequent non-front image to
-the current open group until the next front image is encountered.
+1. For each group that was **completed** in this batch (its closing front image
+   was found), append or update its log row with `Status = pending`.
+2. For the **currently open group** (last group, no closing front image yet),
+   upsert its log row with `Status = classifying` and whatever filenames have
+   been collected so far. This row will be updated in subsequent batches as
+   more ingredient images are found.
+
+**When all batches are done**, update the final open group's `Status` from
+`classifying` to `pending`.
 
 **Edge cases:**
 
-- First image is an ingredient image (no preceding front): open a group with
-  no front image, mark it `pending` with note `"missing front image"`, ask
-  user before processing.
-- Multiple front images in a row: the second front opens a new group; the
-  prior group had no ingredient images — mark it `pending` with note
-  `"no ingredient images found"` and ask user.
-- `unknown` images: assign to the current open group but flag them in Notes.
-
-### Step 1c — Write the log
-
-The log is a Markdown table with these columns:
-`#`, `Front image`, `Ingredient image(s)`, `Product`, `Status`, `Notes`
-
-Append one row per group. For `Ingredient image(s)`, list all filenames
-comma-separated. Set `Product` to blank and `Status` to `pending`.
+- First image ever is an ingredient image (no preceding front): open a group
+  with no front image, set `Status = pending`, `Notes = "missing front image"`.
+  Ask the user before Phase 2 processes this group.
+- Multiple front images in a row: the second front closes the prior group; if
+  that prior group had no ingredient images, set `Notes = "no ingredient images
+  found"` and ask the user before Phase 2 processes it.
+- `unknown` images: append to the current open group, flag in Notes.
 
 Status values:
 
-- `pending` — not yet started
+- `classifying` — group is being built; classification of its images is not yet complete (transient; always resolved before Phase 2)
+- `pending` — fully classified; not yet processed by Phase 2
 - `identified` — front image read, product identified, not yet processed
 - `proposal-ready` — proposal file written, no unresolved ambiguities; ready for issue creation
 - `needs-review` — proposal file written, contains unresolved items requiring a decision
@@ -132,56 +157,117 @@ Check `src/components/Detergent/data/profiles/<filename>`.
 
 **Run all ingredient images for this group in parallel.**
 
-#### Crop first (greatly improves accuracy)
+#### OCR strategy — full image first, crop only if needed
 
-Before reading, crop each ingredient image to the ingredient list panel.
-The goal is to give the model maximum resolution on just the text.
+**Step 1 — Full-image OCR (always):**
 
-**Tool detection** — check for available tools once per session, in priority order:
+Use the `Read` tool with the absolute file path for each ingredient image.
+To run multiple ingredient images in parallel, issue all `Read` calls in the
+same response. Use this prompt when reading each image:
 
-1. **Docker + ImageMagick** (`docker info`) — preferred when Docker is
-   available (no local install needed). Use the `dpokidov/imagemagick` image.
-   Pull once: `docker pull dpokidov/imagemagick`.
-2. **Local ImageMagick** (`magick --version`) — install on Windows via
+> "Read the ingredient list from this image. Transcribe every ingredient
+> name exactly as printed, in the order printed. After any word or character
+> you are not 100% certain of, immediately append `[?]` — include your
+> best-guess reading before the marker (e.g. `laureth-6 [?]`). For any text
+> that is completely unreadable, write `[unreadable]` as a placeholder.
+> Output the list as one ingredient per line. At the end, add a Confidence
+> summary listing each flagged item with the reason for uncertainty (cut off,
+> smudged, low contrast, ambiguous character, etc.)."
+
+This pass is sufficient for most close-up shots.
+
+**Step 2 — Crop and re-OCR (only when confidence is low):**
+
+If the full-image pass produced any `[?]` or `[unreadable]` items, crop to
+the ingredient list panel and re-read using the same prompt above. Use the
+higher-confidence reading per ingredient across both passes.
+
+**Tool detection for cropping** — check once per session, in priority order:
+
+1. **Docker + ImageMagick** (`docker info`) — preferred container runtime.
+   Use the `dpokidov/imagemagick` image. Pull once: `docker pull dpokidov/imagemagick`.
+2. **Podman + ImageMagick** (`podman info`) — drop-in Docker alternative;
+   commands are identical with `podman` substituted for `docker`.
+   Pull once: `podman pull dpokidov/imagemagick`.
+3. **Local ImageMagick** (`magick --version`) — install on Windows via
    `winget install ImageMagick.Q16-HDRI`.
-3. **Python + Pillow** (`python -c "from PIL import Image"`) — install via
+4. **Python + Pillow** (`python -c "from PIL import Image"`) — install via
    `pip install Pillow`.
 
-**If a tool is available — automated crop:**
+Set `RUNTIME` to whichever is found first (`docker` or `podman`) and reuse
+it for all crop commands in this session.
 
-1. Read the full image to locate the ingredient list region (express as
-   approximate pixel coordinates or percentages from top-left).
-2. Run the crop command. Use the absolute path for the batch directory and
-   mount it as `/img` in the container:
-   - Docker + ImageMagick:
+**Crop commands** (run only when step 2 is triggered):
+
+1. Note the ingredient list region from the full-image read.
+
+2. **Get image dimensions.** Use `MSYS_NO_PATHCONV=1` to prevent Git Bash
+   from rewriting container paths, and `--entrypoint magick` because the
+   `dpokidov/imagemagick` image defaults to the legacy `convert` entrypoint:
+   ```
+   MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
+     -v "C:/path/to/batch dir:/img" dpokidov/imagemagick \
+     identify -format "%wx%h\n" "/img/<filename>"
+   ```
+
+3. **Generate a coordinate grid overlay** and read it to pinpoint the
+   ingredient region in one shot. Draw horizontal lines every 500 px labeled
+   with their y-value, then read the resulting image to see exactly which
+   gridlines bracket the ingredient text — no guessing required.
+
+   Generate the grid (substitute `<W>` with the image width from step 2, and
+   add/remove lines to cover the full height at 500 px intervals):
+   ```
+   MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
+     -v "C:/path/to/batch dir:/img" dpokidov/imagemagick \
+     "/img/<filename>" \
+     -font DejaVu-Sans -pointsize 80 -fill red -stroke red -strokewidth 3 \
+     -draw "line 0,500 <W>,500"    -annotate +20+490  "y=500" \
+     -draw "line 0,1000 <W>,1000"  -annotate +20+990  "y=1000" \
+     -draw "line 0,1500 <W>,1500"  -annotate +20+1490 "y=1500" \
+     -draw "line 0,2000 <W>,2000"  -annotate +20+1990 "y=2000" \
+     -draw "line 0,2500 <W>,2500"  -annotate +20+2490 "y=2500" \
+     -draw "line 0,3000 <W>,3000"  -annotate +20+2990 "y=3000" \
+     -draw "line 0,3500 <W>,3500"  -annotate +20+3490 "y=3500" \
+     "/img/<stem>_grid.jpg"
+   ```
+
+   Read `<stem>_grid.jpg` with the `Read` tool. The ingredient text will be
+   visibly bracketed between two labeled gridlines — read off the y-values
+   and compute: `height = y_end - y_start`, crop = `<W>x<height>+0+<y_start>`.
+   Delete the grid file after reading it.
+
+4. Run the crop. **Paths with spaces must be quoted; use forward slashes for
+   Windows paths in container volume mounts. Always set `MSYS_NO_PATHCONV=1`
+   and `--entrypoint magick` for the `dpokidov/imagemagick` image.**
+
+   Crop geometry: `WxH+X+Y` = width × height + left offset + top offset
+   from top-left corner (all in pixels).
+
+   - Docker or Podman + ImageMagick:
      ```
-     docker run --rm -v "<batch_dir>:/img" dpokidov/imagemagick \
-       magick "/img/<filename>" -crop <WxH+X+Y> +repage "/img/<stem>_cropped.jpg"
+     MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
+       -v "C:/path/to/batch dir:/img" dpokidov/imagemagick \
+       "/img/<filename>" -crop <WxH+X+Y> +repage "/img/<stem>_cropped.jpg"
      ```
    - Local ImageMagick:
      `magick "<input>" -crop <WxH+X+Y> +repage "<stem>_cropped.jpg"`
    - Pillow:
      `python -c "from PIL import Image; img=Image.open('<input>'); img.crop((<x1>,<y1>,<x2>,<y2>)).save('<stem>_cropped.jpg')"`
-3. Record the cropped filename in the log's `Ingredient image(s)` column.
+   - **No tool available:** re-read the full image with the prompt above,
+     prefixed with: _"Focus only on the ingredient list panel in the
+     [lower half / right column / etc.]. Ignore all other text."_
 
-**If no tool is available — two-pass approach:**
-
-1. Pass 1: Read the full image. Note the approximate region of the ingredient
-   list in plain terms (e.g., "lower 60 %, right half of panel").
-2. Pass 2: Read the full image again with the explicit instruction:
-   _"Transcribe ONLY the ingredient list text in the [described region].
-   Ignore all other text. Read character by character."_
+4. Record the cropped filename in the log's `Ingredient image(s)` column.
 
 #### OCR with confidence annotation
 
-When reading the (cropped) image, apply the following annotation rules:
+The prompt in step 1 above covers confidence annotation inline. As a reminder:
 
-- Mark any word or phrase you are not fully certain about with `[?]`.
-  Include your best-guess reading in-line, e.g., `laureth-6 [?]`.
-- Mark completely unreadable text as `[unreadable]`.
-- At the end of the transcription, output a **Confidence summary** listing
-  every `[?]` and `[unreadable]` item with the reason for uncertainty
-  (cut off, smudged, low contrast, ambiguous character, etc.).
+- Uncertain text → `best-guess reading [?]` inline
+- Completely unreadable → `[unreadable]`
+- End of transcription → **Confidence summary** with each flagged item and
+  reason (cut off, smudged, low contrast, ambiguous character, etc.)
 
 #### Multi-image reconciliation
 
