@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumLaurylSulfate,
@@ -24,6 +25,7 @@ const ArmAndHammerPowerSheetsFreshBreeze: DetergentProfile = new DetergentProfil
   'Power Sheets Fresh Breeze',
   'Arm & Hammer',
   DetergentType.Sheet,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-14'),
 );

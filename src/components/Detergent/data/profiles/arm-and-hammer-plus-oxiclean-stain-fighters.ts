@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumCarbonate,
@@ -23,6 +24,7 @@ const ArmAndHammerPlusOxiCleanStainFighters: DetergentProfile = new DetergentPro
   'Plus OxiClean Stain Fighters',
   'Arm & Hammer',
   DetergentType.Powder,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-14'),
 );

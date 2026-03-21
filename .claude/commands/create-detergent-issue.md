@@ -36,6 +36,15 @@ before continuing.
 
 **Run this step in parallel with step 2 and step 3.**
 
+The **data source** is determined from the primary source used for ingredients:
+
+- Physical packaging (photo of the package label) → `Package`
+- Safety Data Sheet (SDS) → `SDS`
+
+Manufacturer product pages and SmartLabel pages are **not** valid primary
+sources (they are often out of date) and do not map to either value — fall
+back to packaging images or the SDS instead.
+
 ### Step 2 — Check for an existing profile
 
 Construct the expected filename:
@@ -281,6 +290,7 @@ The issue body follows the standard format:
   - **Product name:** <product name>
   - **Product variant (if any):** <variant or 'N/A'>
   - **Detergent type:** <type>
+  - **Data source:** <Package / SDS>
 
   ## Ingredient source(s)
 

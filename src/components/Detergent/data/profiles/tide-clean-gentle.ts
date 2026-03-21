@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumSulfate,
@@ -27,8 +28,9 @@ const TideCleanGentle: DetergentProfile = new DetergentProfile(
   'Clean & Gentle',
   'Tide',
   DetergentType.Powder,
+  DataSource.Package,
   ingredients,
-  new Date('2026-01-31'),
+  new Date('2026-03-14'),
 );
 TideCleanGentle.countryOfOrigin = 'USA';
 TideCleanGentle.countriesAvailable = ['USA'];

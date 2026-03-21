@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -33,6 +34,7 @@ const PersilUltraPacsAdvancedCleanOxiPower: DetergentProfile = new DetergentProf
   'Ultra Pacs Advanced Clean OXI Power',
   'Persil',
   DetergentType.Pod,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-15'),
 );

@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.C12_14AlcoholsEthoxylated,
@@ -30,6 +31,7 @@ const Dropps4In1PlusOxiFreeAndClear: DetergentProfile = new DetergentProfile(
   '4-in-1 Plus OXI Free + Clear',
   'Dropps',
   DetergentType.Pod,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-17'),
 );

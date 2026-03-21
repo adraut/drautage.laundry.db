@@ -51,10 +51,9 @@ const FILTER_FIELDS = [
   { field: 'hasTAED', title: 'TAED', type: 'boolean' as const },
   { field: 'hasAnionicSurfactants', title: 'Anionic Surfactants', type: 'boolean' as const },
   { field: 'hasNonionicSurfactants', title: 'Nonionic Surfactants', type: 'boolean' as const },
-  { field: 'isBiodegradable', title: 'Biodegradable', type: 'boolean' as const },
-  { field: 'isSepticSafe', title: 'Septic Safe', type: 'boolean' as const },
   { field: 'countriesAvailable', title: 'Countries Available', type: 'text' as const },
   { field: 'lastUpdatedFormatted', title: 'Last Updated', type: 'date' as const },
+  { field: 'dataSource', title: 'Datasource', type: 'text' as const },
 ];
 
 // Context so NameCellRenderer (module-level, stable reference) can call back into Detergents
@@ -117,10 +116,9 @@ const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
   { field: 'hasSoaps', headerName: 'Soaps', ...BOOLEAN_COL },
   { field: 'hasAnionicSurfactants', headerName: 'Anionic Surfactants', ...BOOLEAN_COL },
   { field: 'hasNonionicSurfactants', headerName: 'Nonionic Surfactants', ...BOOLEAN_COL },
-  { field: 'isBiodegradable', headerName: 'Biodegradable', ...BOOLEAN_COL },
-  { field: 'isSepticSafe', headerName: 'Septic Safe', ...BOOLEAN_COL },
   { field: 'countriesAvailable', headerName: 'Countries Available' },
   { field: 'lastUpdatedFormatted', headerName: 'Last Updated' },
+  { field: 'dataSource', headerName: 'Datasource' },
 ];
 
 function Detergents() {

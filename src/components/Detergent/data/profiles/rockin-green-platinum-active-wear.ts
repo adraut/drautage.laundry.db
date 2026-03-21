@@ -1,4 +1,5 @@
 import { Ingredient } from '../../../common/types/Ingredient';
+import { DataSource } from '../../types/DataSource';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
 
@@ -17,6 +18,7 @@ const RockinGreenPlatinumActiveWear: DetergentProfile = new DetergentProfile(
   'Platinum Active Wear',
   "Rockin' Green",
   DetergentType.Powder,
+  DataSource.Package,
   ingredients,
   new Date('2026-02-01'),
 );

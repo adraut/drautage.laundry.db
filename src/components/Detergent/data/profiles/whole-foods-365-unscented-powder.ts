@@ -1,4 +1,5 @@
 import { Ingredient } from '../../../common/types/Ingredient';
+import { DataSource } from '../../types/DataSource';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
 
@@ -19,6 +20,7 @@ const WholeFoods365UnscentedPowder: DetergentProfile = new DetergentProfile(
   '365 Unscented Powder',
   'Whole Foods',
   DetergentType.Powder,
+  DataSource.Package,
   ingredients,
   new Date('2026-01-31'),
 );

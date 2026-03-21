@@ -15,11 +15,11 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 
 ## Sources (required or optional ingredient list fallback)
 
-- Preferred: Use a single authoritative source when possible: manufacturer product page, documentation page, SmartLabel page, SDS sheet, or packaging image.
-- Blog/social sources require cross‑reference with at least one authoritative source.
-- If unable to access sources due to network restrictions, use the ingredient list provided in the GitHub issue (treat as authoritative).
-- Record: source URL, date accessed, and region (if provided).
-- **Note:** SmartLabel pages (e.g., `smartlabel.pg.com`) are JavaScript-rendered and **cannot** be fetched by agents. Always fall back to the ingredient list provided in the issue.
+- Valid sources: physical packaging (photo of the package label) or SDS sheet.
+- Manufacturer product pages and SmartLabel pages are **not** valid sources — they are often out of date.
+- Blog/social sources are **not** valid sources.
+- If unable to access sources, use the ingredient list provided in the GitHub issue (treat as authoritative).
+- Record: source URL (if applicable), date accessed, and region (if provided).
 
 ## Add a new detergent profile
 
@@ -27,6 +27,8 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 2. Implement a `DetergentProfile` with:
    - `name` and `brand` as recognized by consumers.
    - `type` using `DetergentType`.
+   - `dataSource` using `DataSource` (`Package` or `SDS`) as specified in the issue.
+   - `lastUpdated` set to the **date accessed** from the issue. Always use this date — do not leave it at a prior value.
    - `ingredients` array using `Ingredient` enum values.
 3. Export the profile in [data/profiles/index.ts](data/profiles/index.ts). Profiles should be exported in alphabetical order.
 4. Populate optional fields when available:

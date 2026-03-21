@@ -9,7 +9,7 @@ Adds a new detergent profile to the repository based on a GitHub issue.
 ## Steps
 
 1. **Read the issue** to extract brand, product name, variant, detergent type,
-   source URL(s), region, and ingredient list:
+   data source (Package / SDS), source URL(s), region, and ingredient list:
 
    ```
    gh issue view <issue_number>
@@ -39,10 +39,15 @@ Adds a new detergent profile to the repository based on a GitHub issue.
 6. **Create or update the detergent profile file** at
    `src/components/Detergent/data/profiles/<brand>-<product>-<variant>.ts`
    following the rules in `src/components/Detergent/AGENTS.md`.
-   - **Add issue:** create a new file.
+   - **Add issue:** create a new file. Import `DataSource` from
+     `'../../types/DataSource'` and pass `DataSource.Package` or
+     `DataSource.SDS` (from the issue's **Data source** field) as the 4th
+     argument to the `DetergentProfile` constructor (between `type` and
+     `ingredients`).
    - **Update issue:** the file already exists — update only the `ingredients`
-     array. Do not change the `DetergentProfile` constructor arguments or any
-     optional fields unless the issue explicitly requests it.
+     array and `dataSource` if the issue's **Data source** field differs from
+     the current value. Do not change other `DetergentProfile` constructor
+     arguments or optional fields unless the issue explicitly requests it.
 
 7. **Export the new profile** in `src/components/Detergent/data/profiles/index.ts`
    in alphabetical order. (Skip this step for Update issues — the export already

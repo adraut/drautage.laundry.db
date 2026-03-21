@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -27,9 +28,10 @@ const ingredients: Ingredient[] = [
 ];
 
 const MrsMeyersCleanDayLaundryDetergentCompassionFlower: DetergentProfile = new DetergentProfile(
-  'Laundry Detergent',
+  'Compassion Flower',
   "Mrs. Meyer's Clean Day",
   DetergentType.Liquid,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-15'),
 );

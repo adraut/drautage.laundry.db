@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -25,6 +26,7 @@ const EcostoreUltraSensitive3xConcentrateLaundryLiquidFragranceFree: DetergentPr
   'Ultra Sensitive 3X Concentrate Laundry Liquid',
   'ecostore',
   DetergentType.Liquid,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-15'),
 );

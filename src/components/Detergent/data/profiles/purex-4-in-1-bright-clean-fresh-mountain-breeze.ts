@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -21,6 +22,7 @@ const PurexFourInOneBrightCleanFreshMountainBreeze: DetergentProfile = new Deter
   '4-in-1 Bright Clean Fresh Mountain Breeze',
   'Purex',
   DetergentType.Liquid,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-14'),
 );

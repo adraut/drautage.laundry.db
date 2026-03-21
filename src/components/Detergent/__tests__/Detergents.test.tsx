@@ -7,6 +7,7 @@ import { CompositeFilterDescriptor } from '../utils/filterTypes';
 import { loadDetergents } from '../data/detergents-data';
 import { DetergentProfile } from '../types/DetergentProfile';
 import { DetergentType } from '../types/DetergentType';
+import { DataSource } from '../types/DataSource';
 import { Ingredient } from '../../common/types/Ingredient';
 
 jest.mock('../data/detergents-data');
@@ -16,6 +17,7 @@ function createMockDetergents(): Map<string, DetergentProfile> {
     'Original',
     'Tide',
     DetergentType.Liquid,
+    DataSource.Package,
     [Ingredient.Lipase, Ingredient.Cellulase, Ingredient.Protease],
     new Date('2026-01-01'),
   );
@@ -25,6 +27,7 @@ function createMockDetergents(): Map<string, DetergentProfile> {
     'Tide Clean & Gentle',
     'Tide',
     DetergentType.Liquid,
+    DataSource.Package,
     [Ingredient.Lipase, Ingredient.Protease],
     new Date('2026-01-01'),
   );

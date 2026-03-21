@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -33,6 +34,7 @@ const TidePods3in1Original: DetergentProfile = new DetergentProfile(
   'PODS 3-in-1 Original',
   'Tide',
   DetergentType.Pod,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-15'),
 );
