@@ -95,7 +95,7 @@ unknown images are appended to the currently open group.
   Ask the user before Phase 2 processes this group.
 - Multiple front images in a row: the second front closes the prior group; if
   that prior group had no ingredient images, set `Notes = "no ingredient images
-  found"` and ask the user before Phase 2 processes it.
+found"` and ask the user before Phase 2 processes it.
 - `unknown` images: append to the current open group, flag in Notes.
 
 Status values:
@@ -204,6 +204,7 @@ it for all crop commands in this session.
 2. **Get image dimensions.** Use `MSYS_NO_PATHCONV=1` to prevent Git Bash
    from rewriting container paths, and `--entrypoint magick` because the
    `dpokidov/imagemagick` image defaults to the legacy `convert` entrypoint:
+
    ```
    MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
      -v "C:/path/to/batch dir:/img" dpokidov/imagemagick \
@@ -217,6 +218,7 @@ it for all crop commands in this session.
 
    Generate the grid (substitute `<W>` with the image width from step 2, and
    add/remove lines to cover the full height at 500 px intervals):
+
    ```
    MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
      -v "C:/path/to/batch dir:/img" dpokidov/imagemagick \
@@ -243,7 +245,6 @@ it for all crop commands in this session.
 
    Crop geometry: `WxH+X+Y` = width × height + left offset + top offset
    from top-left corner (all in pixels).
-
    - Docker or Podman + ImageMagick:
      ```
      MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
@@ -258,7 +259,7 @@ it for all crop commands in this session.
      prefixed with: _"Focus only on the ingredient list panel in the
      [lower half / right column / etc.]. Ignore all other text."_
 
-4. Record the cropped filename in the log's `Ingredient image(s)` column.
+5. Record the cropped filename in the log's `Ingredient image(s)` column.
 
 #### OCR with confidence annotation
 
@@ -375,10 +376,10 @@ a table of every unresolved item:
 
 The following items must be decided before this issue is created:
 
-| # | Position | OCR reading | Uncertainty reason | Decision needed |
-|---|----------|-------------|-------------------|-----------------|
-| 1 | Ingredient #4 | `acty/decyl glucoside [?]` | Characters blurred | `DecylGlucoside` or `CaprylylCaprylGlucoside`? |
-| 2 | Ingredient #12 | `[unreadable]` | Text cut off at image edge | Skip, mark TBD, or provide a better image? |
+| #   | Position       | OCR reading                | Uncertainty reason         | Decision needed                                |
+| --- | -------------- | -------------------------- | -------------------------- | ---------------------------------------------- |
+| 1   | Ingredient #4  | `acty/decyl glucoside [?]` | Characters blurred         | `DecylGlucoside` or `CaprylylCaprylGlucoside`? |
+| 2   | Ingredient #12 | `[unreadable]`             | Text cut off at image edge | Skip, mark TBD, or provide a better image?     |
 ```
 
 The issue body below the review section should use the best-guess reading
@@ -448,14 +449,14 @@ When the user says something like _"show me the ones that need review"_:
 
 ## Parallelism summary
 
-| Phase | What runs in parallel | What runs serially |
-|---|---|---|
-| Phase 1 | Image reads (batches of 5) | Group formation (must be in order) |
-| Phase 2 | All pending groups (fully parallel) | — |
-| Step 2c | All ingredient images within a group | Crop → then OCR |
-| Steps 2b + 2c | Profile check and ingredient OCR | — (fully parallel) |
-| Phase 3 Path A | All `proposal-ready` issue creations | Log updates per issue |
-| Phase 3 Path B | — | One group at a time (user-driven) |
+| Phase          | What runs in parallel                | What runs serially                 |
+| -------------- | ------------------------------------ | ---------------------------------- |
+| Phase 1        | Image reads (batches of 5)           | Group formation (must be in order) |
+| Phase 2        | All pending groups (fully parallel)  | —                                  |
+| Step 2c        | All ingredient images within a group | Crop → then OCR                    |
+| Steps 2b + 2c  | Profile check and ingredient OCR     | — (fully parallel)                 |
+| Phase 3 Path A | All `proposal-ready` issue creations | Log updates per issue              |
+| Phase 3 Path B | —                                    | One group at a time (user-driven)  |
 
 ## Notes
 

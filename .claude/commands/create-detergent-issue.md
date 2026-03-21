@@ -101,6 +101,7 @@ it for all crop commands in this session.
 2. **Get image dimensions.** Use `MSYS_NO_PATHCONV=1` to prevent Git Bash
    from rewriting container paths, and `--entrypoint magick` because the
    `dpokidov/imagemagick` image defaults to the legacy `convert` entrypoint:
+
    ```
    MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
      -v "C:/path/to/image dir:/img" dpokidov/imagemagick \
@@ -114,6 +115,7 @@ it for all crop commands in this session.
 
    Generate the grid (substitute `<W>` with the image width from step 2, and
    add/remove lines to cover the full height at 500 px intervals):
+
    ```
    MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
      -v "C:/path/to/image dir:/img" dpokidov/imagemagick \
@@ -140,7 +142,6 @@ it for all crop commands in this session.
 
    Crop geometry: `WxH+X+Y` = width × height + left offset + top offset
    from top-left corner (all in pixels).
-
    - Docker or Podman + ImageMagick:
      ```
      MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
@@ -259,10 +260,10 @@ before the issue body, with a table of every unresolved item:
 
 The following items must be decided before this issue is created:
 
-| # | Position | OCR reading | Uncertainty reason | Decision needed |
-|---|----------|-------------|-------------------|-----------------|
-| 1 | Ingredient #4 | `acty/decyl glucoside [?]` | Characters blurred | `DecylGlucoside` or `CaprylylCaprylGlucoside`? |
-| 2 | Ingredient #12 | `[unreadable]` | Text cut off at image edge | Skip, mark TBD, or provide a better image? |
+| #   | Position       | OCR reading                | Uncertainty reason         | Decision needed                                |
+| --- | -------------- | -------------------------- | -------------------------- | ---------------------------------------------- |
+| 1   | Ingredient #4  | `acty/decyl glucoside [?]` | Characters blurred         | `DecylGlucoside` or `CaprylylCaprylGlucoside`? |
+| 2   | Ingredient #12 | `[unreadable]`             | Text cut off at image edge | Skip, mark TBD, or provide a better image?     |
 ```
 
 The issue body below the review section uses the best-guess reading for each
@@ -291,7 +292,9 @@ The issue body follows the standard format:
   ## Ingredient list
 
   ```
+
   <ingredient list, one per line>
+
   ```
 
   ## Notes
