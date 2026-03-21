@@ -8,10 +8,16 @@ assignees: ''
 
 ## Product details
 
+## Product details
+
 - **Brand:**
 - **Product name:**
 - **Product variant (if any):**
 - **Detergent type:** (Liquid / Powder / Pod / Other)
+- **Region (if applicable):**
+- **Data source:** (Package / SDS)
+- **Source URL:**
+- **Date accessed:**
 - **Existing profile file:** (e.g. `tide-original-liquid.ts`)
 
 ## Ingredient changes
@@ -28,16 +34,9 @@ assignees: ''
 [List removed ingredients here, one per line]
 ```
 
-## Ingredient source(s)
-
-- **Primary source:** (manufacturer page / SmartLabel / SDS sheet / packaging image / other)
-- **Source URL:**
-- **Date accessed:**
-- **Region (if applicable):**
-
 ## Full ingredient list (recommended)
 
-Providing the complete new ingredient list is strongly recommended, especially for SmartLabel URLs (which are JavaScript-rendered and may be inaccessible to automated agents).
+Providing the complete new ingredient list is strongly recommended.
 
 ```
 [Paste full updated ingredient list here, one per line]

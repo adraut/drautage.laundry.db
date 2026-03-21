@@ -1,4 +1,5 @@
 import { Ingredient } from '../../../common/types/Ingredient';
+import { DataSource } from '../../types/DataSource';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
 
@@ -25,6 +26,7 @@ const WholeFoods365SportFresh: DetergentProfile = new DetergentProfile(
   '365 Sport Fresh Scent',
   'Whole Foods',
   DetergentType.Liquid,
+  DataSource.SDS,
   ingredients,
   new Date('2026-01-31'),
 );

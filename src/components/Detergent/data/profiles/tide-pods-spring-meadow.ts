@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -33,8 +34,9 @@ const TidePodsSpringMeadow: DetergentProfile = new DetergentProfile(
   'PODS 3-in-1 Spring Meadow',
   'Tide',
   DetergentType.Pod,
+  DataSource.Package,
   ingredients,
-  new Date('2026-02-21'),
+  new Date('2026-03-14'),
 );
 TidePodsSpringMeadow.countryOfOrigin = 'USA';
 TidePodsSpringMeadow.countriesAvailable = ['USA'];

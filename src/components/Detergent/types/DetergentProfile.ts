@@ -12,11 +12,13 @@ import { NonionicSurfactants } from '../../common/types/NonionicSurfactants';
 import { AnionicSurfactants } from '../../common/types/AnionicSurfactants';
 import { OxygenBleaches } from '../../common/types/OxygenBleaches';
 import { DyeTransferInhibitors } from '../../common/types/DyeTransferInhibitors';
+import { DataSource } from './DataSource';
 
 export class DetergentProfile {
   name: string;
   brand: string;
   type: DetergentType;
+  dataSource: DataSource;
   lastUpdated: Date;
   ingredients: Ingredient[];
   countryOfOrigin?: Alpha3Code;
@@ -43,10 +45,18 @@ export class DetergentProfile {
   readonly isBiodegradable: boolean;
   readonly isSepticSafe: boolean;
 
-  constructor(name: string, brand: string, type: DetergentType, ingredients: Ingredient[], lastUpdated: Date) {
+  constructor(
+    name: string,
+    brand: string,
+    type: DetergentType,
+    dataSource: DataSource,
+    ingredients: Ingredient[],
+    lastUpdated: Date,
+  ) {
     this.name = name;
     this.brand = brand;
     this.type = type;
+    this.dataSource = dataSource;
     this.ingredients = ingredients;
     this.lastUpdated = lastUpdated;
     this.lastUpdatedFormatted = this.lastUpdated.toISOString().split('T')[0];

@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Glycolipids,
@@ -28,6 +29,7 @@ const GuestsOnEarthLaundryDetergentGreenHinoki: DetergentProfile = new Detergent
   'Green Hinoki',
   'Guests on Earth',
   DetergentType.Liquid,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-15'),
 );

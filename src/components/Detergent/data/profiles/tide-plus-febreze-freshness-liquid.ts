@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -34,8 +35,9 @@ const TidePlusFebrezeFreshnessLiquid: DetergentProfile = new DetergentProfile(
   'Plus Febreze Freshness',
   'Tide',
   DetergentType.Liquid,
+  DataSource.Package,
   ingredients,
-  new Date('2026-02-21'),
+  new Date('2026-03-14'),
 );
 TidePlusFebrezeFreshnessLiquid.countryOfOrigin = 'USA';
 TidePlusFebrezeFreshnessLiquid.countriesAvailable = ['USA'];

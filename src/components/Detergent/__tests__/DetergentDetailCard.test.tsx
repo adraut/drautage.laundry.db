@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { DetergentDetailCard } from '../DetergentDetailCard';
 import { DetergentProfile } from '../types/DetergentProfile';
 import { DetergentType } from '../types/DetergentType';
+import { DataSource } from '../types/DataSource';
 import { Ingredient } from '../../common/types/Ingredient';
 
 const makeDetergent = (overrides?: Partial<{ name: string; brand: string }>): DetergentProfile => {
@@ -10,6 +11,7 @@ const makeDetergent = (overrides?: Partial<{ name: string; brand: string }>): De
     overrides?.name ?? 'Clean Breeze',
     overrides?.brand ?? 'Tide',
     DetergentType.Liquid,
+    DataSource.Package,
     [Ingredient.Protease, Ingredient.Lipase, Ingredient.SodiumLaurethSulfate],
     new Date('2026-01-15'),
   );
@@ -86,6 +88,7 @@ describe('DetergentDetailCard', () => {
         'No Country',
         'Brand',
         DetergentType.Powder,
+        DataSource.Package,
         [Ingredient.Water],
         new Date('2025-06-01'),
       );

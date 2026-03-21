@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -35,8 +36,9 @@ const TideOriginalLiquid: DetergentProfile = new DetergentProfile(
   'Original',
   'Tide',
   DetergentType.Liquid,
+  DataSource.Package,
   ingredients,
-  new Date('2026-02-16'),
+  new Date('2026-03-14'),
 );
 TideOriginalLiquid.countryOfOrigin = 'USA';
 TideOriginalLiquid.countriesAvailable = ['USA'];

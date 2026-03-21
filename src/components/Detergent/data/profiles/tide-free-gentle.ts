@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -24,6 +25,7 @@ const TideFreeGentle: DetergentProfile = new DetergentProfile(
   'Free and Gentle',
   'Tide',
   DetergentType.Liquid,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-15'),
 );

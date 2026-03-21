@@ -1,6 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
 import { DetergentType } from '../../types/DetergentType';
+import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -29,6 +30,7 @@ const SeventhGenerationBiobasedDeepCleanFreshLavender: DetergentProfile = new De
   'Biobased Deep Clean',
   'Seventh Generation',
   DetergentType.Liquid,
+  DataSource.Package,
   ingredients,
   new Date('2026-03-15'),
 );

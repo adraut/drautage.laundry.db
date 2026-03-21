@@ -47,6 +47,8 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
               <dd className="detail-meta-value">{countryNames}</dd>
               <dt className="detail-meta-label">Last updated</dt>
               <dd className="detail-meta-value">{detergent.lastUpdatedFormatted}</dd>
+              <dt className="detail-meta-label">Data source</dt>
+              <dd className="detail-meta-value">{detergent.dataSource}</dd>
             </dl>
           </div>
         </>

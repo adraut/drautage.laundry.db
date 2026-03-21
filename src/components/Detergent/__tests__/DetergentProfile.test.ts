@@ -1,77 +1,176 @@
 import { DetergentProfile } from '../types/DetergentProfile';
 import { DetergentType } from '../types/DetergentType';
+import { DataSource } from '../types/DataSource';
 import { Ingredient } from '../../common/types/Ingredient';
 
 describe('DetergentProfile', () => {
   describe('readonly properties', () => {
     describe('enzyme detection properties', () => {
       it('should detect hasAmylase when Amylase ingredient is present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Amylase], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Amylase],
+          new Date(),
+        );
         expect(profile.hasAmylase).toBe(true);
       });
 
       it('should not detect hasAmylase when Amylase ingredient is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasAmylase).toBe(false);
       });
 
       it('should detect hasCellulase when Cellulase ingredient is present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Cellulase], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Cellulase],
+          new Date(),
+        );
         expect(profile.hasCellulase).toBe(true);
       });
 
       it('should not detect hasCellulase when Cellulase ingredient is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasCellulase).toBe(false);
       });
 
       it('should detect hasDNase when DNase ingredient is present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.DNase], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.DNase],
+          new Date(),
+        );
         expect(profile.hasDNase).toBe(true);
       });
 
       it('should not detect hasDNase when DNase ingredient is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasDNase).toBe(false);
       });
 
       it('should detect hasLipase when Lipase ingredient is present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Lipase], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Lipase],
+          new Date(),
+        );
         expect(profile.hasLipase).toBe(true);
       });
 
       it('should not detect hasLipase when Lipase ingredient is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasLipase).toBe(false);
       });
 
       it('should detect hasMannanase when Mannanase ingredient is present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Mannanase], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Mannanase],
+          new Date(),
+        );
         expect(profile.hasMannanase).toBe(true);
       });
 
       it('should not detect hasMannanase when Mannanase ingredient is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasMannanase).toBe(false);
       });
 
       it('should detect hasPectinase when Pectinase ingredient is present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Pectinase], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Pectinase],
+          new Date(),
+        );
         expect(profile.hasPectinase).toBe(true);
       });
 
       it('should not detect hasPectinase when Pectinase ingredient is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasPectinase).toBe(false);
       });
 
       it('should detect hasProtease when Protease ingredient is present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Protease], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Protease],
+          new Date(),
+        );
         expect(profile.hasProtease).toBe(true);
       });
 
       it('should not detect hasProtease when Protease ingredient is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasProtease).toBe(false);
       });
 
@@ -80,6 +179,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.Subtilisin],
           new Date(),
         );
@@ -87,7 +187,14 @@ describe('DetergentProfile', () => {
       });
 
       it('should not detect hasProtease when Subtilisin ingredient is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasProtease).toBe(false);
       });
 
@@ -96,6 +203,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.Protease, Ingredient.Lipase],
           new Date(),
         );
@@ -103,7 +211,14 @@ describe('DetergentProfile', () => {
       });
 
       it('should not detect hasEnzymes when no enzymes are present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasEnzymes).toBe(false);
       });
     });
@@ -114,6 +229,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.FluorescentBrightener71],
           new Date(),
         );
@@ -121,7 +237,14 @@ describe('DetergentProfile', () => {
       });
 
       it('should not detect hasOpticalBrighteners when optical brightener is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasOpticalBrighteners).toBe(false);
       });
 
@@ -130,6 +253,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.SodiumPercarbonate],
           new Date(),
         );
@@ -137,22 +261,50 @@ describe('DetergentProfile', () => {
       });
 
       it('should not detect hasOxygenBleach when Oxygen Bleaches are absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasOxygenBleach).toBe(false);
       });
 
       it('should detect hasTAED when TAED ingredient is present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.TAED], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.TAED],
+          new Date(),
+        );
         expect(profile.hasTAED).toBe(true);
       });
 
       it('should not detect hasTAED when TAED ingredient is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasTAED).toBe(false);
       });
 
       it('should not detect hasDyes when no dyes are present (Dyes set is empty)', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         // Note: Dyes set is currently empty, so hasDyes will always be false
         expect(profile.hasDyes).toBe(false);
       });
@@ -178,7 +330,14 @@ describe('DetergentProfile', () => {
       // });
 
       it('should not detect hasSoaps when no soaps are present (Soaps set is empty)', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         // Note: Soaps set is currently empty, so hasSoaps will always be false
         expect(profile.hasSoaps).toBe(false);
       });
@@ -188,6 +347,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.CelluloseGum],
           new Date(),
         );
@@ -195,7 +355,14 @@ describe('DetergentProfile', () => {
       });
 
       it('should not detect hasDyeTransferInhibitors when no dye transfer inhibitor ingredients are present', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasDyeTransferInhibitors).toBe(false);
       });
     });
@@ -206,6 +373,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.SodiumC10_16Alkylbenzenesulfonate],
           new Date(),
         );
@@ -213,7 +381,14 @@ describe('DetergentProfile', () => {
       });
 
       it('should not detect hasAnionicSurfactants when anionic surfactant is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasAnionicSurfactants).toBe(false);
       });
 
@@ -222,6 +397,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.C10_16Alketh],
           new Date(),
         );
@@ -229,7 +405,14 @@ describe('DetergentProfile', () => {
       });
 
       it('should not detect hasNonionicSurfactants when nonionic surfactant is absent', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Water], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
         expect(profile.hasNonionicSurfactants).toBe(false);
       });
     });
@@ -240,6 +423,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.Water, Ingredient.SodiumCarbonate],
           new Date(),
         );
@@ -251,6 +435,7 @@ describe('DetergentProfile', () => {
           'Test',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.FluorescentBrightener71],
           new Date(),
         );
@@ -284,6 +469,7 @@ describe('DetergentProfile', () => {
           'Comprehensive',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [
             Ingredient.Protease,
             Ingredient.Lipase,
@@ -321,6 +507,7 @@ describe('DetergentProfile', () => {
           'Problematic',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.FluorescentBrightener71, Ingredient.SodiumC10_16Alkylbenzenesulfonate],
           new Date(),
         );
@@ -334,6 +521,7 @@ describe('DetergentProfile', () => {
           'Clean',
           'Brand',
           DetergentType.Liquid,
+          DataSource.Package,
           [Ingredient.Water, Ingredient.SodiumCarbonate],
           new Date(),
         );
@@ -353,7 +541,14 @@ describe('DetergentProfile', () => {
 
     describe('readonly constraint', () => {
       it('should not allow modification of readonly properties', () => {
-        const profile = new DetergentProfile('Test', 'Brand', DetergentType.Liquid, [Ingredient.Protease], new Date());
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Protease],
+          new Date(),
+        );
 
         // All readonly properties should be initialized during construction
         expect(profile.hasProtease).toBe(true);
@@ -365,7 +560,14 @@ describe('DetergentProfile', () => {
 
   describe('mutable properties', () => {
     it('should allow modification of mutable properties', () => {
-      const profile = new DetergentProfile('Original', 'Brand', DetergentType.Liquid, [], new Date());
+      const profile = new DetergentProfile(
+        'Original',
+        'Brand',
+        DetergentType.Liquid,
+        DataSource.Package,
+        [],
+        new Date(),
+      );
 
       profile.name = 'Modified';
       profile.brand = 'NewBrand';

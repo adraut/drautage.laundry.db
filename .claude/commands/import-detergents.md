@@ -139,6 +139,15 @@ If the image is unclear or the product cannot be identified, pause and ask
 the user before continuing. Mark the row `identified` in the log once
 the product is confirmed.
 
+The **data source** is determined from the primary source used for ingredients:
+
+- Physical packaging (photo of the package label) → `Package`
+- Safety Data Sheet (SDS) → `SDS`
+
+Manufacturer product pages and SmartLabel pages are **not** valid primary
+sources (they are often out of date) and do not map to either value — fall
+back to packaging images or the SDS instead.
+
 ### Step 2b — Check for an existing profile
 
 Construct the expected filename:
@@ -385,6 +394,10 @@ The following items must be decided before this issue is created:
 The issue body below the review section should use the best-guess reading
 for each uncertain item (marked with `[?]`) so the proposal is otherwise
 complete and can be approved with minimal edits once decisions are made.
+
+The issue body's **Product details** section must include a `**Data source:**`
+field — `Package` when ingredients come from packaging images or a
+manufacturer/SmartLabel page, `SDS` when they come from a Safety Data Sheet.
 
 ### Step 2g — Update the log
 
