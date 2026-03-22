@@ -13,10 +13,9 @@ const ingredients: Ingredient[] = [
   Ingredient.Fragrance,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
   Ingredient.DenatoniumBenzoate,
-  Ingredient.Amylase,
-  Ingredient.Protease,
   Ingredient.C12_13AlcoholsEthoxylated,
   Ingredient.Ethanolamine,
+  Ingredient.Protease,
   Ingredient.Colorants,
 ];
 
@@ -26,7 +25,7 @@ const ArmAndHammerDeepCleanStainFormulaPods: DetergentProfile = new DetergentPro
   DetergentType.Pod,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-14'),
+  new Date('2026-03-21'),
 );
 ArmAndHammerDeepCleanStainFormulaPods.countriesAvailable = ['USA'];
 
