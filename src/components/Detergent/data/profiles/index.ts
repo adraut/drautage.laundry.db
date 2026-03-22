@@ -110,6 +110,7 @@ export { default as TidePodsSpringMeadow } from './tide-pods-spring-meadow';
 export { default as TidePowderMountainSpring } from './tide-powder-mountain-spring';
 export { default as TidePowerPodsOxiBoost } from './tide-power-pods-oxi-boost';
 export { default as TidePurcleanHoneyLavender } from './tide-purclean-honey-lavender';
+export { default as TideSimplyAllInOneBerryBlossom } from './tide-simply-all-in-one-berry-blossom';
 export { default as TideSimplyAllInOneDaybreakFresh } from './tide-simply-all-in-one-daybreak-fresh';
 export { default as TideSimplyFreeAndSensitiveUnscented } from './tide-simply-free-and-sensitive-unscented';
 export { default as TideSimplyOxiBoostUltraStainReleaseRefreshingBreeze } from './tide-simply-oxi-boost-ultra-stain-release-refreshing-breeze';
