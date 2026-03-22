@@ -623,6 +623,12 @@ export enum Ingredient {
    */
   ModifiedAcrylicCopolymer = 'Modified Acrylic Copolymer',
   /**
+   * Modified Starch Polymer is a soil release polymer based on hydrolyzed starch with methacrylic
+   * acid and alkenyl benzene groups, used in laundry detergents to help remove soils from fabrics.
+   * Synonyms: Syrups Hydrolyzed Starch Dehydrated Polymers With Methacrylic Acid And Alkenyl Benzene
+   */
+  ModifiedStarchPolymer = 'Modified Starch Polymer',
+  /**
    * Myroxylon Pereirae (Balsam Peru) Oil is an essential oil derived from balsam of Peru,
    * used as a fragrance ingredient in laundry detergents.
    */
