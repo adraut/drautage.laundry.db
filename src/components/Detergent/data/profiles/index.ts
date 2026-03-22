@@ -51,6 +51,7 @@ export { default as GainUltraPowderIslandFresh } from './gain-ultra-powder-islan
 export { default as GainUltraOxiWaterfallDelight } from './gain-ultra-oxi-waterfall-delight';
 export { default as GingerLilyFarmsBotanicalsPlantBasedLaundryDetergentFreeAndClear } from './ginger-lily-farms-botanicals-plant-based-laundry-detergent-free-and-clear';
 export { default as GreatValueUltimateFreshOriginalClean } from './great-value-ultimate-fresh-original-clean';
+export { default as GreatValueUltimateFreshOriginalCleanPacs } from './great-value-ultimate-fresh-original-clean-pacs';
 export { default as GuestsOnEarthLaundryDetergentGreenHinoki } from './guests-on-earth-laundry-detergent-green-hinoki';
 export { default as MethodGingerMangoLaundryDetergent } from './method-ginger-mango-laundry-detergent';
 export { default as MrsMeyersCleanDayLaundryDetergentCompassionFlower } from './mrs-meyers-clean-day-laundry-detergent-compassion-flower';
