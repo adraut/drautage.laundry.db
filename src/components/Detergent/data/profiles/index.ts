@@ -6,6 +6,7 @@ export { default as AllFreeClear } from './all-free-clear';
 export { default as AllFreeClearAdvancedOxi } from './all-free-clear-advanced-oxi';
 export { default as AllFreeClearMightyPacsTheOriginal } from './all-free-clear-mighty-pacs-the-original';
 export { default as AllFreeClearOdorRelief } from './all-free-clear-odor-relief';
+export { default as AllSensitiveFreshMightyPacsSpringBreeze } from './all-sensitive-fresh-mighty-pacs-spring-breeze';
 export { default as AllSensitiveFreshSpringBreeze } from './all-sensitive-fresh-spring-breeze';
 export { default as ArielOriginal } from './ariel-original';
 export { default as ArielTouchOfDownyPowder } from './ariel-touch-of-downy-powder';
