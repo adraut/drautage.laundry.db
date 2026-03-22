@@ -1028,6 +1028,11 @@ export enum Ingredient {
   Trimethylsiloxysilicate = 'Trimethylsiloxysilicate',
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
   /**
+   * Tromethamine (TRIS) is used in laundry detergents as a pH buffer and alkalinity agent,
+   * helping to stabilize formulas and improve cleaning performance.
+   */
+  Tromethamine = 'Tromethamine',
+  /**
    * Vanillin is a naturally occurring or synthetic aromatic aldehyde with a vanilla scent,
    * used as a fragrance ingredient in laundry detergents.
    */
