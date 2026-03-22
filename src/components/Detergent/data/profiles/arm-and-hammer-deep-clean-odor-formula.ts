@@ -13,8 +13,6 @@ const ingredients: Ingredient[] = [
   Ingredient.PalmKernelAcid,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
   Ingredient.DenatoniumBenzoate,
-  Ingredient.PolyethyleneimineAlkoxylated,
-  Ingredient.C12_13AlcoholsEthoxylated,
   Ingredient.Ethanolamine,
   Ingredient.Colorants,
 ];
@@ -25,7 +23,7 @@ const ArmAndHammerDeepCleanOdorFormula: DetergentProfile = new DetergentProfile(
   DetergentType.Pod,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-14'),
+  new Date('2026-03-21'),
 );
 ArmAndHammerDeepCleanOdorFormula.countriesAvailable = ['USA'];
 
