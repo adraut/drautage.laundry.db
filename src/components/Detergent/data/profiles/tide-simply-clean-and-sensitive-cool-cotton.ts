@@ -5,34 +5,29 @@ import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
-  Ingredient.C10_16Pareth,
-  Ingredient.SodiumC10_16Alkylbenzenesulfonate,
-  Ingredient.SodiumLaurylSulfate,
-  Ingredient.PolyethyleneimineAlkoxylated,
-  Ingredient.C12_18FattyAcidsSodiumSalt,
-  Ingredient.SodiumCitrate,
-  Ingredient.PropyleneGlycol,
+  Ingredient.C10_16Alketh,
   Ingredient.C10_16AlkyldimethylamineOxide,
-  Ingredient.Alcohol,
+  Ingredient.SodiumMEAC10_16Alkylbenzenesulfonate,
   Ingredient.SodiumCumenesulfonate,
+  Ingredient.SodiumMEACitrate,
   Ingredient.TetrasodiumGlutamateDiacetate,
   Ingredient.CalciumFormate,
-  Ingredient.Subtilisin,
-  Ingredient.Amylase,
+  Ingredient.SodiumFormate,
+  Ingredient.Ethanolamine,
+  Ingredient.PropyleneGlycol,
   Ingredient.Benzisothiazolinone,
-  Ingredient.Cellulase,
-  Ingredient.Mannanase,
+  Ingredient.Fragrance,
 ];
 
-const TideFreeGentle: DetergentProfile = new DetergentProfile(
-  'Free and Gentle',
+const TideSimplyCleanAndSensitiveCoolCotton: DetergentProfile = new DetergentProfile(
+  'Simply Clean & Sensitive Cool Cotton',
   'Tide',
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
   new Date('2026-03-21'),
 );
-TideFreeGentle.countryOfOrigin = 'USA';
-TideFreeGentle.countriesAvailable = ['USA'];
+TideSimplyCleanAndSensitiveCoolCotton.countryOfOrigin = 'USA';
+TideSimplyCleanAndSensitiveCoolCotton.countriesAvailable = ['USA'];
 
-export default TideFreeGentle;
+export default TideSimplyCleanAndSensitiveCoolCotton;
