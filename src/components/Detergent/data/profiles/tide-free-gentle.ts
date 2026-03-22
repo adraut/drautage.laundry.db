@@ -11,13 +11,16 @@ const ingredients: Ingredient[] = [
   Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.C12_18FattyAcidsSodiumSalt,
   Ingredient.SodiumCitrate,
+  Ingredient.PropyleneGlycol,
+  Ingredient.C10_16AlkyldimethylamineOxide,
+  Ingredient.Alcohol,
+  Ingredient.SodiumCumenesulfonate,
+  Ingredient.TetrasodiumGlutamateDiacetate,
   Ingredient.CalciumFormate,
   Ingredient.Subtilisin,
   Ingredient.Amylase,
-  Ingredient.Alcohol,
-  Ingredient.PropyleneGlycol,
-  Ingredient.TetrasodiumGlutamateDiacetate,
   Ingredient.Benzisothiazolinone,
+  Ingredient.Cellulase,
   Ingredient.Mannanase,
 ];
 
@@ -27,7 +30,7 @@ const TideFreeGentle: DetergentProfile = new DetergentProfile(
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-15'),
+  new Date('2026-03-21'),
 );
 TideFreeGentle.countryOfOrigin = 'USA';
 TideFreeGentle.countriesAvailable = ['USA'];
