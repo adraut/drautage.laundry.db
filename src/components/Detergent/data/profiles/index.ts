@@ -29,6 +29,7 @@ export { default as ArmAndHammerPlusOxiCleanStainFighters5In1PowerPaks } from '.
 export { default as ArmAndHammerPlusOxiCleanUltraStainFighters } from './arm-and-hammer-plus-oxiclean-ultra-stain-fighters';
 export { default as ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks } from './arm-and-hammer-plus-oxiclean-with-odor-blasters-5-in-1-power-paks';
 export { default as ArmAndHammerPowerfullyCleanCleanBurst } from './arm-and-hammer-powerfully-clean-clean-burst';
+export { default as ArmAndHammerPowerfullyCleanCleanBoost5In1PowerPaks } from './arm-and-hammer-powerfully-clean-cleanboost-5-in-1-power-paks';
 export { default as ArmAndHammerPowerSheetsFragranceFree } from './arm-and-hammer-power-sheets-fragrance-free';
 export { default as ArmAndHammerPowerSheetsFreshBreeze } from './arm-and-hammer-power-sheets-fresh-breeze';
 export { default as ArmAndHammerSensitiveSkinPlusFreshScent } from './arm-and-hammer-sensitive-skin-plus-fresh-scent';
