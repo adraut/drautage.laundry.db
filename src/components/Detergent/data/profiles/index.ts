@@ -77,6 +77,7 @@ export { default as PersilUltraPacsOriginal } from './persil-ultra-pacs-original
 export { default as PurexFourInOneAdvancedOxiColdWaterPower } from './purex-4-in-1-advanced-oxi-cold-water-power';
 export { default as PurexFourInOneBrightCleanFreshMountainBreeze } from './purex-4-in-1-bright-clean-fresh-mountain-breeze';
 export { default as PurexFourInOneFreshLavenderBlossom } from './purex-4-in-1-fresh-lavender-blossom';
+export { default as PurexFourInOneOxiPowerOdorFighterPacs } from './purex-4-in-1-oxi-power-odor-fighter-pacs';
 export { default as PurexAdvancedOxiWithOdorFighterFreshMorning } from './purex-advanced-oxi-with-odor-fighter-fresh-morning';
 export { default as PurexFreeAndClear } from './purex-free-and-clear';
 export { default as PurexFreshMountainBreeze } from './purex-fresh-mountain-breeze';
