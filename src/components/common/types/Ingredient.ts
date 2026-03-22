@@ -627,7 +627,7 @@ export enum Ingredient {
    * acid and alkenyl benzene groups, used in laundry detergents to help remove soils from fabrics.
    * Synonyms: Syrups Hydrolyzed Starch Dehydrated Polymers With Methacrylic Acid And Alkenyl Benzene
    */
-  ModifiedStarchPolymer = 'Syrups, Hydrolyzed Starch, Dehydrated, Polymers with Methacrylic Acid and Alkenyl Benzene',
+  ModifiedStarchPolymer = 'Modified Starch Polymer',
   /**
    * Myroxylon Pereirae (Balsam Peru) Oil is an essential oil derived from balsam of Peru,
    * used as a fragrance ingredient in laundry detergents.
