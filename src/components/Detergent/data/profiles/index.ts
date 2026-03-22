@@ -42,6 +42,7 @@ export { default as EraOxiBooster } from './era-oxibooster';
 export { default as EverSpringFreeAndClear } from './ever-spring-free-and-clear';
 export { default as EverSpringLavenderBergamot } from './ever-spring-lavender-bergamot';
 export { default as GainHappyHibiscusHula } from './gain-happy-hibiscus-hula';
+export { default as GainIslandFresh } from './gain-island-fresh';
 export { default as GainMoonlightBreezeWithFebrezeFreshness } from './gain-moonlight-breeze-with-febreze-freshness';
 export { default as GainOdorDefenseSuperFresh } from './gain-odor-defense-super-fresh';
 export { default as GainOriginalLiquid } from './gain-original-liquid';
