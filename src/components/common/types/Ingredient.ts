@@ -774,6 +774,12 @@ export enum Ingredient {
    */
   PolyoxyalkyleneSubstitutedChromophoreYellow = 'Polyoxyalkylene Substituted Chromophore (Yellow)',
   /**
+   * Polypropylene Terephthalate is a soil-release polymer (polyester-based, made from propylene
+   * glycol and terephthalic acid) used in laundry detergents to coat synthetic fabrics and allow
+   * soils to rinse away more easily. Distinct from PEG Terephthalate Polymer.
+   */
+  PolypropyleneTerephthalate = 'Polypropylene Terephthalate',
+  /**
    * Polyquaternium-7 is a cationic conditioning polymer used in laundry detergents with fabric
    * softener as a conditioning and softening agent, helping to improve fabric feel and reduce static.
    */
