@@ -1001,6 +1001,12 @@ export enum Ingredient {
   StyraxTonkinensisResinExtract = 'Styrax Tonkinensis Resin Extract',
   StyreneAcrylatesCopolymer = 'Styrene/Acrylates Copolymer',
   Subtilisin = 'Subtilisin',
+  /**
+   * Syrups, Hydrolyzed Starch, Dehydrated, Polymers with Methacrylic Acid and Alkenyl Benzene
+   * is a soil release polymer based on hydrolyzed starch with methacrylic acid and alkenyl benzene
+   * groups, used in laundry detergents to help prevent soil redeposition on fabrics.
+   */
+  SyrupsHydrolyzedStarchDehydratedPolymersWithMethacrylicAcidAndAlkenylBenzene = 'Syrups, Hydrolyzed Starch, Dehydrated, Polymers with Methacrylic Acid and Alkenyl Benzene',
   TAED = 'TAED',
   TeaTreeOil = 'Tea Tree Oil',
   /**
