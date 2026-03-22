@@ -100,6 +100,7 @@ export { default as TideFreeGentleOdorRefresh } from './tide-free-and-gentle-odo
 export { default as TideOriginalLiquid } from './tide-original-liquid';
 export { default as TideOriginalPowder } from './tide-original-powder';
 export { default as TidePlusFebrezeFreshnessLiquid } from './tide-plus-febreze-freshness-liquid';
+export { default as TidePlusUltraFebrezeSpringRenewal } from './tide-plus-ultra-febreze-spring-renewal';
 export { default as TidePlusUltraDownyAprilFresh } from './tide-plus-ultra-downy-april-fresh';
 export { default as TidePods3in1Original } from './tide-pods-3in1-original';
 export { default as TidePodsSpringMeadow } from './tide-pods-spring-meadow';
