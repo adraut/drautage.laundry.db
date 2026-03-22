@@ -6,15 +6,16 @@ import { DataSource } from '../../types/DataSource';
 const ingredients: Ingredient[] = [
   Ingredient.MEADedecylbenzenesulfonate,
   Ingredient.DipropyleneGlycol,
-  Ingredient.C10_16Pareth,
+  Ingredient.C10_16Alketh,
   Ingredient.Water,
-  Ingredient.C12_13Pareth_2,
+  Ingredient.C12_13AlcoholsEthoxylated,
   Ingredient.PolyvinylAlcoholFilm,
   Ingredient.PalmKernelAcid,
   Ingredient.Fragrance,
-  Ingredient.Colorants,
-  Ingredient.DenatoniumBenzoate,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
+  Ingredient.DenatoniumBenzoate,
+  Ingredient.Ethanolamine,
+  Ingredient.Colorants,
 ];
 
 const ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks: DetergentProfile = new DetergentProfile(
@@ -23,7 +24,7 @@ const ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks: DetergentProfile = 
   DetergentType.Pod,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-14'),
+  new Date('2026-03-21'),
 );
 ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks.countriesAvailable = ['USA'];
 
