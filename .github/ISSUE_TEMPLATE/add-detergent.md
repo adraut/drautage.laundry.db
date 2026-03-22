@@ -10,22 +10,24 @@ assignees: ''
 
 - **Brand:**
 - **Product name:**
-- **Product variant (if any):**
-- **Detergent type:** (Liquid / Powder / Pod / Other)
-- **Region (if applicable):**
+- **Variant(scent):** _(none)_
+- **Type:** (Liquid / Powder / Pod / Other)
 - **Data source:** (Package / SDS)
-- **Source URL:**
-- **Date accessed:**
+- **Data date:**
+- **Country:**
+- **Source images:**
 
-## Ingredient list (optional but recommended)
+## Ingredients
 
-Providing the ingredient list is strongly recommended. If you have access to the ingredient list, paste it here:
-
-```
-[Paste ingredients here, one per line]
-```
+1.
 
 ## Notes
 
-- Any known ambiguities or unknowns
-- Link to packaging image or official documentation (optional)
+- Any OR rules applied (e.g. "A and/or B" → first-listed)
+- Any "may contain" conditional ingredients
+- Any new enum entries needed
+- Any OCR uncertainty or unknowns
+
+## New enum entries needed
+
+_(none)_

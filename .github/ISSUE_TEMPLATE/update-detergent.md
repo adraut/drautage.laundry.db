@@ -6,43 +6,33 @@ labels: enhancement, Detergent, update
 assignees: ''
 ---
 
-## Product details
+## Update [Brand] [Product Name]
 
-## Product details
+**Existing profile:** `brand-product-variant.ts`
 
-- **Brand:**
-- **Product name:**
-- **Product variant (if any):**
-- **Detergent type:** (Liquid / Powder / Pod / Other)
-- **Region (if applicable):**
-- **Data source:** (Package / SDS)
-- **Source URL:**
-- **Date accessed:**
-- **Existing profile file:** (e.g. `tide-original-liquid.ts`)
+**Summary of changes:** _e.g. 2 ingredients added, 1 removed_
 
-## Ingredient changes
+**Data source:** (Package / SDS)
+**Data date:**
+**Photographed:** (Retailer, date, country)
 
-### Ingredients added (not in current profile)
+---
 
-```
-[List added ingredients here, one per line]
-```
+### Diff
 
-### Ingredients removed (in current profile but no longer listed)
+| #   | Current profile         | New (packaging)    |
+| --- | ----------------------- | ------------------ |
+| 1   | `IngredientEnum`        | `IngredientEnum` ✓ |
+| 2   | ~~`RemovedIngredient`~~ | _(removed)_        |
+| 3   | _(new)_                 | `AddedIngredient`  |
 
-```
-[List removed ingredients here, one per line]
-```
+### Updated ingredient list (N ingredients):
 
-## Full ingredient list (recommended)
-
-Providing the complete new ingredient list is strongly recommended.
-
-```
-[Paste full updated ingredient list here, one per line]
-```
+1. `Ingredient.`
 
 ## Notes
 
-- Any known ambiguities or unknowns
-- Link to packaging image or official documentation (optional)
+- Any OR rules applied
+- Any "may contain" conditional ingredients
+- Any new enum entries needed
+- Any OCR uncertainty or unknowns
