@@ -48,6 +48,7 @@ export { default as GainOdorDefenseSuperFresh } from './gain-odor-defense-super-
 export { default as GainOriginalLiquid } from './gain-original-liquid';
 export { default as GainRelaxDewdropDream } from './gain-relax-dewdrop-dream';
 export { default as GainSpringDaydream } from './gain-spring-daydream';
+export { default as GainSuperFlingsDewdropDream } from './gain-super-flings-dewdrop-dream';
 export { default as GainUltraOriginalPowder } from './gain-ultra-original-powder';
 export { default as GainUltraPowderIslandFresh } from './gain-ultra-powder-island-fresh';
 export { default as GainUltraPowderLavender } from './gain-ultra-powder-lavender';
