@@ -23,6 +23,7 @@ export { default as ArmAndHammerFreeAndClearSensitiveSkin } from './arm-and-hamm
 export { default as ArmAndHammerPlusOxiCleanOdorBlastersStainFightersFreshBotanical } from './arm-and-hammer-plus-oxiclean-odor-blasters-stain-fighters-fresh-botanical';
 export { default as ArmAndHammerPlusOxiCleanStainFighters } from './arm-and-hammer-plus-oxiclean-stain-fighters';
 export { default as ArmAndHammerPlusOxiCleanStainFightersLiquid } from './arm-and-hammer-plus-oxiclean-stain-fighters-liquid';
+export { default as ArmAndHammerPlusOxiCleanStainFighters5In1PowerPaks } from './arm-and-hammer-plus-oxiclean-stain-fighters-5-in-1-power-paks';
 export { default as ArmAndHammerPlusOxiCleanUltraStainFighters } from './arm-and-hammer-plus-oxiclean-ultra-stain-fighters';
 export { default as ArmAndHammerPlusOxiCleanWithOdorBlasters5In1PowerPaks } from './arm-and-hammer-plus-oxiclean-with-odor-blasters-5-in-1-power-paks';
 export { default as ArmAndHammerPowerfullyCleanCleanBurst } from './arm-and-hammer-powerfully-clean-clean-burst';
