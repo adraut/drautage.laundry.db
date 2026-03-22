@@ -6,25 +6,26 @@ import { DataSource } from '../../types/DataSource';
 const ingredients: Ingredient[] = [
   Ingredient.MEADedecylbenzenesulfonate,
   Ingredient.DipropyleneGlycol,
-  Ingredient.C10_16Pareth,
+  Ingredient.C10_16Alketh,
   Ingredient.Water,
-  Ingredient.C12_13Pareth_2,
+  Ingredient.C12_13AlcoholsEthoxylated,
   Ingredient.PolyvinylAlcoholFilm,
   Ingredient.PalmKernelAcid,
   Ingredient.Fragrance,
-  Ingredient.Colorants,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
   Ingredient.DenatoniumBenzoate,
+  Ingredient.Ethanolamine,
+  Ingredient.Colorants,
 ];
 
-const ArmAndHammerCleanBurst5In1PowerPaks: DetergentProfile = new DetergentProfile(
-  'Clean Burst 5-in-1 Power Paks',
+const ArmAndHammerFreshBurst5In1PowerPaks: DetergentProfile = new DetergentProfile(
+  'Fresh Burst 5-in-1 Power Paks',
   'Arm & Hammer',
   DetergentType.Pod,
   DataSource.Package,
   ingredients,
   new Date('2026-03-14'),
 );
-ArmAndHammerCleanBurst5In1PowerPaks.countriesAvailable = ['USA'];
+ArmAndHammerFreshBurst5In1PowerPaks.countriesAvailable = ['USA'];
 
-export default ArmAndHammerCleanBurst5In1PowerPaks;
+export default ArmAndHammerFreshBurst5In1PowerPaks;
