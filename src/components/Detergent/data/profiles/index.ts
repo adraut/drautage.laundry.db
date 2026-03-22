@@ -47,6 +47,7 @@ export { default as GainOriginalLiquid } from './gain-original-liquid';
 export { default as GainRelaxDewdropDream } from './gain-relax-dewdrop-dream';
 export { default as GainSpringDaydream } from './gain-spring-daydream';
 export { default as GainUltraOriginalPowder } from './gain-ultra-original-powder';
+export { default as GainUltraPowderIslandFresh } from './gain-ultra-powder-island-fresh';
 export { default as GainUltraOxiWaterfallDelight } from './gain-ultra-oxi-waterfall-delight';
 export { default as GingerLilyFarmsBotanicalsPlantBasedLaundryDetergentFreeAndClear } from './ginger-lily-farms-botanicals-plant-based-laundry-detergent-free-and-clear';
 export { default as GuestsOnEarthLaundryDetergentGreenHinoki } from './guests-on-earth-laundry-detergent-green-hinoki';
