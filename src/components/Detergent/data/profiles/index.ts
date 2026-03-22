@@ -103,6 +103,7 @@ export { default as TidePlusFebrezeFreshnessLiquid } from './tide-plus-febreze-f
 export { default as TidePlusUltraDownyAprilFresh } from './tide-plus-ultra-downy-april-fresh';
 export { default as TidePods3in1Original } from './tide-pods-3in1-original';
 export { default as TidePodsSpringMeadow } from './tide-pods-spring-meadow';
+export { default as TidePowderMountainSpring } from './tide-powder-mountain-spring';
 export { default as TidePowerPodsOxiBoost } from './tide-power-pods-oxi-boost';
 export { default as TidePurcleanHoneyLavender } from './tide-purclean-honey-lavender';
 export { default as TideSimplyAllInOneDaybreakFresh } from './tide-simply-all-in-one-daybreak-fresh';
