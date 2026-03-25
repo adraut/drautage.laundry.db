@@ -1,0 +1,51 @@
+import { Ingredient } from './Ingredient';
+import { AnionicSurfactants } from './AnionicSurfactants';
+import { NonionicSurfactants } from './NonionicSurfactants';
+import { Soaps } from './Soaps';
+import { Enzymes } from './Enzymes';
+import { OpticalBrighteners } from './OpticalBrighteners';
+import { OxygenBleaches } from './OxygenBleaches';
+import { DyeTransferInhibitors } from './DyeTransferInhibitors';
+import { Dyes } from './Dyes';
+import { Scents } from './Scents';
+import { SudsReducers } from './SudsReducers';
+import { WaterConditioners } from './WaterConditioners';
+import { Preservatives } from './Preservatives';
+import { OdorEliminators } from './OdorEliminators';
+import { SoilAntiRedeposition } from './SoilAntiRedeposition';
+import { SoilRelease } from './SoilRelease';
+
+const CATEGORY_SETS: [Set<Ingredient>, string][] = [
+  [AnionicSurfactants, 'Anionic Surfactant'],
+  [NonionicSurfactants, 'Nonionic Surfactant'],
+  [Soaps, 'Soap'],
+  [Enzymes, 'Enzyme'],
+  [OpticalBrighteners, 'Optical Brightener'],
+  [OxygenBleaches, 'Oxygen Bleach'],
+  [DyeTransferInhibitors, 'Dye Transfer Inhibitor'],
+  [Dyes, 'Dye'],
+  [Scents, 'Scent'],
+  [SudsReducers, 'Suds Reducer'],
+  [WaterConditioners, 'Water Conditioner'],
+  [Preservatives, 'Preservative'],
+  [OdorEliminators, 'Odor Eliminator'],
+  [SoilAntiRedeposition, 'Soil Anti-Redeposition'],
+  [SoilRelease, 'Soil Release'],
+];
+
+const ingredientCategoryMap = new Map<Ingredient, string[]>();
+
+for (const [set, label] of CATEGORY_SETS) {
+  for (const ingredient of set) {
+    const existing = ingredientCategoryMap.get(ingredient);
+    if (existing) {
+      existing.push(label);
+    } else {
+      ingredientCategoryMap.set(ingredient, [label]);
+    }
+  }
+}
+
+export function getIngredientCategories(ingredient: Ingredient): string[] {
+  return ingredientCategoryMap.get(ingredient) ?? [];
+}

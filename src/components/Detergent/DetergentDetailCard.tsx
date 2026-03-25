@@ -2,6 +2,7 @@ import { registerLocale, getName } from 'i18n-iso-countries';
 import enLocale from 'i18n-iso-countries/langs/en.json';
 import { Drawer } from '../common/Drawer';
 import { DetergentProfile } from './types/DetergentProfile';
+import { getIngredientCategories } from '../common/types/IngredientCategoryMap';
 import './DetergentDetailCard.css';
 
 registerLocale(enLocale);
@@ -30,12 +31,22 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
           <div className="detail-section">
             <h3 className="detail-section-title">Ingredients</h3>
             <table className="detail-table">
+              <thead>
+                <tr>
+                  <th>Ingredient</th>
+                  <th>Function</th>
+                </tr>
+              </thead>
               <tbody>
-                {detergent.ingredients.map((ingredient) => (
-                  <tr key={ingredient}>
-                    <td>{formatIngredient(ingredient)}</td>
-                  </tr>
-                ))}
+                {detergent.ingredients.map((ingredient) => {
+                  const categories = getIngredientCategories(ingredient);
+                  return (
+                    <tr key={ingredient}>
+                      <td>{formatIngredient(ingredient)}</td>
+                      <td>{categories.length > 0 ? categories.join(', ') : '—'}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
