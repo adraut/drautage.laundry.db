@@ -33,8 +33,10 @@ When adding a new ingredient, decide if it belongs in any of these sets (non‑e
 - Enzymes, Proteases, OpticalBrighteners
 - AnionicSurfactants, NonionicSurfactants, Soaps, Scents, Dyes
 - OxygenBleaches, SudsReducers, WaterConditioners
-- Preservatives, DyeTransferInhibitors, NonBiodegradable, SepticUnfriendly, OdorEliminators
-  - `DyeTransferInhibitors` is strictly for **dye** anti-redeposition agents (fiber-coating agents like CMC and dye transfer inhibitors like PEI polymers). Do **not** add soil anti-redeposition polymers (e.g. polyacrylates, maleate/acrylate copolymers) or builders (e.g. sodium carbonate, silicates) to this set.
+- Preservatives, DyeTransferInhibitors, SoilAntiRedeposition, NonBiodegradable, SepticUnfriendly, OdorEliminators
+  - `DyeTransferInhibitors` is for **dye** anti-redeposition agents: fiber-coating agents (CMC) and solution-phase dye-capture polymers (PEI family). Do **not** add purely soil anti-redeposition polymers (e.g. polyacrylates, maleate/acrylate copolymers) or builders (e.g. sodium carbonate, silicates) to this set. Some ingredients (e.g. CelluloseGum, PolyethyleneimineAlkoxylated) appear in both `DyeTransferInhibitors` and `SoilAntiRedeposition` — this overlap is intentional.
+  - `SoilAntiRedeposition` is for polymers that keep loosened soil/mineral particles suspended in wash water, preventing redeposition. **Not** for soil _release_ agents — see `SoilRelease`.
+  - `SoilRelease` is for polymers that deposit a hydrophilic coating onto synthetic fiber surfaces (primarily polyester), making soils easier to remove in subsequent washes. **Not** for soil _anti-redeposition_ agents (see `SoilAntiRedeposition`) — soil release agents modify the fiber; anti-redeposition agents modify the wash solution.
 
 Update the appropriate set file(s) so `DetergentProfile` derived flags remain accurate. Only place an ingredient into a category if the source explicitly indicates it.
 

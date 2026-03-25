@@ -891,6 +891,11 @@ export enum Ingredient {
   Silica = 'Silica',
   Simethicone = 'Simethicone',
   SimethiconeDimethicone = 'Simethicone/Dimethicone',
+  /**
+   * Sodium Acrylic Acid/MA Copolymer is a polymer dispersant and soil anti-redeposition agent
+   * used in laundry detergents to keep soils suspended in wash water and prevent them from
+   * redepositing onto fabrics. "MA" = maleic acid/maleic anhydride.
+   */
   SodiumAcrylicAcidMACopolymer = 'Sodium Acrylic Acid/MA Copolymer',
   /**
    * Sodium Benzoate is the sodium salt of benzoic acid, used in laundry detergents as an

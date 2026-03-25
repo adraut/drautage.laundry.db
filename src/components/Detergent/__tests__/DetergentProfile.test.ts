@@ -342,6 +342,54 @@ describe('DetergentProfile', () => {
         expect(profile.hasSoaps).toBe(false);
       });
 
+      it('should detect hasSoilAntiRedepositionAgents when a soil anti-redeposition ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.AcrylicAcidHomopolymer],
+          new Date(),
+        );
+        expect(profile.hasSoilAntiRedepositionAgents).toBe(true);
+      });
+
+      it('should not detect hasSoilAntiRedepositionAgents when no soil anti-redeposition agents are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
+        expect(profile.hasSoilAntiRedepositionAgents).toBe(false);
+      });
+
+      it('should detect hasSoilReleaseAgents when a soil release ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.AnionicModifiedPolyester],
+          new Date(),
+        );
+        expect(profile.hasSoilReleaseAgents).toBe(true);
+      });
+
+      it('should not detect hasSoilReleaseAgents when no soil release agents are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
+        expect(profile.hasSoilReleaseAgents).toBe(false);
+      });
+
       it('should detect hasDyeTransferInhibitors when a dye transfer inhibitor ingredient is present', () => {
         const profile = new DetergentProfile(
           'Test',
