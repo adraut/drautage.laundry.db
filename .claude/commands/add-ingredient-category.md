@@ -67,12 +67,36 @@ Examples:
    { field: 'has<CategoryName>', title: '<Human Readable Title>', type: 'boolean' as const },
    ```
 
-6. **Update `src/components/common/types/AGENTS.md`**:
+6. **Register in `IngredientCategoryMap`** at
+   `src/components/common/types/IngredientCategoryMap.ts`:
+
+   a. Add import (keep imports alphabetical):
+
+   ```ts
+   import { <CategoryName> } from './<CategoryName>';
+   ```
+
+   b. Add an entry to `CATEGORY_SETS`:
+
+   ```ts
+   [<CategoryName>, '<Human Readable Title>'],
+   ```
+
+   c. Add an entry to the `displayCategories` array in
+   `src/components/Detergent/__tests__/IngredientCategoryMap.test.ts`:
+
+   ```ts
+   [<CategoryName>, '<Human Readable Title>'],
+   ```
+
+   Also add the corresponding import at the top of that test file.
+
+7. **Update `src/components/common/types/AGENTS.md`**:
 
    Add `<CategoryName>` to the category set list and add a bullet explaining
    what belongs in it and any important exclusions.
 
-7. **Add tests** in
+8. **Add tests** in
    `src/components/Detergent/__tests__/DetergentProfile.test.ts`,
    in the `'additive detection properties'` describe block:
 
@@ -94,7 +118,7 @@ Examples:
    });
    ```
 
-8. **Run quality checks** and fix any failures:
+9. **Run quality checks** and fix any failures:
 
    ```
    npm run checks

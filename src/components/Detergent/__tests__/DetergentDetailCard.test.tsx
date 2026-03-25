@@ -64,6 +64,42 @@ describe('DetergentDetailCard', () => {
       expect(screen.getByText('Sodium Laureth Sulfate')).toBeInTheDocument();
     });
 
+    it('renders the ingredient table with Ingredient and Function column headers', () => {
+      const detergent = makeDetergent();
+      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+
+      expect(screen.getByRole('columnheader', { name: 'Ingredient' })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: 'Function' })).toBeInTheDocument();
+    });
+
+    it('shows the category label in the Function column for a categorized ingredient', () => {
+      const detergent = makeDetergent();
+      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+
+      // Protease is in Enzymes → "Enzyme"
+      const proteaseCell = screen.getByText('Protease').closest('tr');
+      expect(proteaseCell).toHaveTextContent('Enzyme');
+
+      // SodiumLaurethSulfate is in AnionicSurfactants → "Anionic Surfactant"
+      const slsCell = screen.getByText('Sodium Laureth Sulfate').closest('tr');
+      expect(slsCell).toHaveTextContent('Anionic Surfactant');
+    });
+
+    it('shows a dash in the Function column for an uncategorized ingredient', () => {
+      const d = new DetergentProfile(
+        'Uncategorized Test',
+        'Brand',
+        DetergentType.Liquid,
+        DataSource.Package,
+        [Ingredient.Water],
+        new Date('2026-01-01'),
+      );
+      render(<DetergentDetailCard detergent={d} onClose={() => {}} />);
+
+      const waterCell = screen.getByText('Water').closest('tr');
+      expect(waterCell).toHaveTextContent('—');
+    });
+
     it('shows the Details section with countries', () => {
       const detergent = makeDetergent();
       render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
@@ -94,7 +130,8 @@ describe('DetergentDetailCard', () => {
       );
       render(<DetergentDetailCard detergent={d} onClose={() => {}} />);
 
-      expect(screen.getByText('—')).toBeInTheDocument();
+      const countriesValue = screen.getByText('Countries').nextElementSibling;
+      expect(countriesValue).toHaveTextContent('—');
     });
   });
 
