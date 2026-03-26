@@ -272,7 +272,79 @@ describe('DetergentProfile', () => {
         expect(profile.hasOxygenBleach).toBe(false);
       });
 
-      it('should detect hasTAED when TAED ingredient is present', () => {
+      it('should detect hasFillers when a filler ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.SaltCake],
+          new Date(),
+        );
+        expect(profile.hasFillers).toBe(true);
+      });
+
+      it('should not detect hasFillers when no filler ingredients are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.SodiumLaurylSulfate],
+          new Date(),
+        );
+        expect(profile.hasFillers).toBe(false);
+      });
+
+      it('should detect hasFabricConditioners when a fabric conditioner ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Bentonite],
+          new Date(),
+        );
+        expect(profile.hasFabricConditioners).toBe(true);
+      });
+
+      it('should not detect hasFabricConditioners when no fabric conditioner ingredients are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.SodiumLaurylSulfate],
+          new Date(),
+        );
+        expect(profile.hasFabricConditioners).toBe(false);
+      });
+
+      it('should detect hasBuilders when a builder ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.SodiumHydroxide],
+          new Date(),
+        );
+        expect(profile.hasBuilders).toBe(true);
+      });
+
+      it('should not detect hasBuilders when no builder ingredients are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.SodiumPercarbonate],
+          new Date(),
+        );
+        expect(profile.hasBuilders).toBe(false);
+      });
+
+      it('should detect hasOxygenBleachBoosters when TAED ingredient is present', () => {
         const profile = new DetergentProfile(
           'Test',
           'Brand',
@@ -281,19 +353,19 @@ describe('DetergentProfile', () => {
           [Ingredient.TAED],
           new Date(),
         );
-        expect(profile.hasTAED).toBe(true);
+        expect(profile.hasOxygenBleachBoosters).toBe(true);
       });
 
-      it('should not detect hasTAED when TAED ingredient is absent', () => {
+      it('should not detect hasOxygenBleachBoosters when no oxygen bleach booster ingredients are present', () => {
         const profile = new DetergentProfile(
           'Test',
           'Brand',
           DetergentType.Liquid,
           DataSource.Package,
-          [Ingredient.Water],
+          [Ingredient.SodiumPercarbonate],
           new Date(),
         );
-        expect(profile.hasTAED).toBe(false);
+        expect(profile.hasOxygenBleachBoosters).toBe(false);
       });
 
       it('should not detect hasDyes when no dyes are present (Dyes set is empty)', () => {
@@ -416,6 +488,30 @@ describe('DetergentProfile', () => {
     });
 
     describe('surfactant detection properties', () => {
+      it('should detect hasAmphotericSurfactants when an amphoteric surfactant ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.CocamidopropylBetaine],
+          new Date(),
+        );
+        expect(profile.hasAmphotericSurfactants).toBe(true);
+      });
+
+      it('should not detect hasAmphotericSurfactants when no amphoteric surfactant ingredients are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.SodiumLaurylSulfate],
+          new Date(),
+        );
+        expect(profile.hasAmphotericSurfactants).toBe(false);
+      });
+
       it('should detect hasAnionicSurfactants when anionic surfactant is present', () => {
         const profile = new DetergentProfile(
           'Test',

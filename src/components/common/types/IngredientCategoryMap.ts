@@ -1,10 +1,16 @@
 import { Ingredient } from './Ingredient';
+import { AmphotericSurfactants } from './AmphotericSurfactants';
 import { AnionicSurfactants } from './AnionicSurfactants';
+import { BitteringAgents } from './BitteringAgents';
+import { Builders } from './Builders';
+import { FabricConditioners } from './FabricConditioners';
+import { Fillers } from './Fillers';
 import { NonionicSurfactants } from './NonionicSurfactants';
 import { Soaps } from './Soaps';
 import { Enzymes } from './Enzymes';
 import { OpticalBrighteners } from './OpticalBrighteners';
 import { OxygenBleaches } from './OxygenBleaches';
+import { OxygenBleachBoosters } from './OxygenBleachBoosters';
 import { DyeTransferInhibitors } from './DyeTransferInhibitors';
 import { Dyes } from './Dyes';
 import { Scents } from './Scents';
@@ -14,14 +20,23 @@ import { Preservatives } from './Preservatives';
 import { OdorEliminators } from './OdorEliminators';
 import { SoilAntiRedeposition } from './SoilAntiRedeposition';
 import { SoilRelease } from './SoilRelease';
+import { PacFilm } from './PacFilm';
+import { Solvents } from './Solvents';
+import { Thickeners } from './Thickeners';
 
 const CATEGORY_SETS: [Set<Ingredient>, string][] = [
+  [AmphotericSurfactants, 'Amphoteric Surfactant'],
   [AnionicSurfactants, 'Anionic Surfactant'],
+  [BitteringAgents, 'Bittering Agent'],
+  [Builders, 'Builder'],
+  [FabricConditioners, 'Fabric Conditioner'],
+  [Fillers, 'Filler'],
   [NonionicSurfactants, 'Nonionic Surfactant'],
   [Soaps, 'Soap'],
   [Enzymes, 'Enzyme'],
   [OpticalBrighteners, 'Optical Brightener'],
   [OxygenBleaches, 'Oxygen Bleach'],
+  [OxygenBleachBoosters, 'Oxygen Bleach Booster'],
   [DyeTransferInhibitors, 'Dye Transfer Inhibitor'],
   [Dyes, 'Dye'],
   [Scents, 'Scent'],
@@ -31,6 +46,9 @@ const CATEGORY_SETS: [Set<Ingredient>, string][] = [
   [OdorEliminators, 'Odor Eliminator'],
   [SoilAntiRedeposition, 'Soil Anti-Redeposition'],
   [SoilRelease, 'Soil Release'],
+  [PacFilm, 'Pac Film'],
+  [Solvents, 'Solvent'],
+  [Thickeners, 'Thickener'],
 ];
 
 const ingredientCategoryMap = new Map<Ingredient, string[]>();

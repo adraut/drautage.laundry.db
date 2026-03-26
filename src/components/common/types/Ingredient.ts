@@ -129,6 +129,11 @@ export enum Ingredient {
    * and thickener, helping to adjust the consistency of liquid formulations.
    */
   CalciumChloride = 'Calcium Chloride',
+  /**
+   * Calcium Formate is an inorganic salt used in laundry detergents as an enzyme stabilizer,
+   * protecting proteases and amylases from degradation in liquid formulations.
+   * @uncategorized No enzyme-stabilizer category exists yet; it is not itself an enzyme.
+   */
   CalciumFormate = 'Calcium formate',
   /**
    * Cananga Odorata (Ylang Ylang) Flower Oil is an essential oil derived from the ylang ylang
@@ -231,6 +236,8 @@ export enum Ingredient {
   /**
    * Cocos Nucifera (Coconut) Oil is the fixed oil derived from coconut, used in laundry
    * detergent formulations as an emollient and raw material for surfactant synthesis.
+   * @uncategorized Whole coconut oil is a soap precursor, not saponified soap itself;
+   * it is distinct from the saponified fatty acids already in Soaps (e.g. CoconutFattyAcid).
    */
   CocosNuciferaOil = 'Cocos Nucifera (Coconut) Oil',
   /**
@@ -457,6 +464,8 @@ export enum Ingredient {
   /**
    * Laminaria Digitata Extract is an extract derived from brown seaweed (kelp), used in laundry
    * detergents as a conditioning and film-forming agent.
+   * @uncategorized Provides antioxidant and moisturizing properties with no clear functional
+   * laundry role; no matching category exists for skin-feel additives.
    */
   LaminariaDigitataExtract = 'Laminaria Digitata Extract',
   /**
@@ -596,6 +605,8 @@ export enum Ingredient {
   /**
    * Methoxypolyoxymethylene Melamine is a polymer used in laundry detergents for fragrance
    * encapsulation, helping to release scent slowly during and after washing.
+   * @uncategorized Film former/binder used solely for fragrance encapsulation; only ingredient
+   * in this class — no matching category exists for encapsulant matrices.
    */
   MethoxypolyoxymethyleneMelamine = 'Methoxypolyoxymethylene Melamine',
   /**
@@ -645,6 +656,9 @@ export enum Ingredient {
    * Types: Styrene/Acrylates Copolymer is common, though newer options like biodegradable
    * natural opacifiers (e.g., Syensqo Miracare® Biopacify) are emerging. Titanium dioxide
    * is also used.
+   * @uncategorized Generic catch-all term for aesthetic opacity agents (e.g. TiO₂,
+   * styrene/acrylic copolymers); not a specific chemical class and cannot be assigned
+   * to a single functional category.
    */
   Opacifier = 'Opacifier',
   /**
@@ -874,6 +888,8 @@ export enum Ingredient {
   /**
    * Saccharomyces Ferment Filtrate is a yeast fermentation byproduct used in laundry detergents
    * as a conditioning and bioactive agent, contributing to fabric care and formula stability.
+   * @uncategorized Humectant/skin-soothing additive with no clear functional laundry role;
+   * no matching category exists for bioactive skin-feel ingredients.
    */
   SaccharomycesFermentFiltrate = 'Saccharomyces Ferment Filtrate',
   SaltCake = 'Salt Cake',
@@ -932,6 +948,12 @@ export enum Ingredient {
    * Note: distinct from Sodium C10-16 Alkylbenzenesulfonate, which covers a broader carbon range.
    */
   SodiumDodecylbenzenesulfonate = 'Sodium Dodecylbenzenesulfonate',
+  /**
+   * Sodium Formate is a sodium salt used in laundry detergents as an enzyme stabilizer,
+   * protecting proteases and amylases from degradation in liquid formulations.
+   * @uncategorized No enzyme-stabilizer category exists yet; it is not itself an enzyme.
+   * See also CalciumFormate, which serves the same function.
+   */
   SodiumFormate = 'Sodium Formate',
   /**
    * Sodium Gluconate is the sodium salt of gluconic acid, used in laundry detergents as a

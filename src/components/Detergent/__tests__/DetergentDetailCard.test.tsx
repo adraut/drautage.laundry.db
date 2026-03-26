@@ -47,11 +47,11 @@ describe('DetergentDetailCard', () => {
       expect(drawer).toHaveClass('drawer-right');
     });
 
-    it('shows the Ingredients section heading', () => {
+    it('renders the ingredients section', () => {
       const detergent = makeDetergent();
       render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
 
-      expect(screen.getByText('Ingredients')).toBeInTheDocument();
+      expect(document.getElementById('ingredients-section')).toBeInTheDocument();
     });
 
     it('renders ingredient names as human-readable text', () => {
@@ -100,11 +100,11 @@ describe('DetergentDetailCard', () => {
       expect(waterCell).toHaveTextContent('—');
     });
 
-    it('shows the Details section with countries', () => {
+    it('shows the details section with countries', () => {
       const detergent = makeDetergent();
       render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
 
-      expect(screen.getByText('Details')).toBeInTheDocument();
+      expect(document.getElementById('details-section')).toBeInTheDocument();
       expect(screen.getByText('Countries')).toBeInTheDocument();
       // i18n-iso-countries should resolve 'USA' → 'United States of America'
       const countriesValue = screen.getByText(/United States/);

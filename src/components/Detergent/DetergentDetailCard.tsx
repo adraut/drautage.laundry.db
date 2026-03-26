@@ -28,8 +28,7 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
     >
       {detergent && (
         <>
-          <div className="detail-section">
-            <h3 className="detail-section-title">Ingredients</h3>
+          <div id="ingredients-section" className="detail-section">
             <table className="detail-table">
               <thead>
                 <tr>
@@ -51,8 +50,10 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
             </table>
           </div>
 
-          <div className="detail-section">
-            <h3 className="detail-section-title">Details</h3>
+          <div id="details-section" className="detail-section">
+            <div style={{ marginBottom: '1em' }}>
+              <hr />
+            </div>
             <dl className="detail-meta">
               <dt className="detail-meta-label">Countries</dt>
               <dd className="detail-meta-value">{countryNames}</dd>

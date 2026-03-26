@@ -1,11 +1,17 @@
 import { getIngredientCategories } from '../../common/types/IngredientCategoryMap';
 import { Ingredient } from '../../common/types/Ingredient';
+import { AmphotericSurfactants } from '../../common/types/AmphotericSurfactants';
 import { AnionicSurfactants } from '../../common/types/AnionicSurfactants';
+import { BitteringAgents } from '../../common/types/BitteringAgents';
+import { Builders } from '../../common/types/Builders';
+import { FabricConditioners } from '../../common/types/FabricConditioners';
+import { Fillers } from '../../common/types/Fillers';
 import { NonionicSurfactants } from '../../common/types/NonionicSurfactants';
 import { Soaps } from '../../common/types/Soaps';
 import { Enzymes } from '../../common/types/Enzymes';
 import { OpticalBrighteners } from '../../common/types/OpticalBrighteners';
 import { OxygenBleaches } from '../../common/types/OxygenBleaches';
+import { OxygenBleachBoosters } from '../../common/types/OxygenBleachBoosters';
 import { DyeTransferInhibitors } from '../../common/types/DyeTransferInhibitors';
 import { Dyes } from '../../common/types/Dyes';
 import { Scents } from '../../common/types/Scents';
@@ -15,6 +21,9 @@ import { Preservatives } from '../../common/types/Preservatives';
 import { OdorEliminators } from '../../common/types/OdorEliminators';
 import { SoilAntiRedeposition } from '../../common/types/SoilAntiRedeposition';
 import { SoilRelease } from '../../common/types/SoilRelease';
+import { PacFilm } from '../../common/types/PacFilm';
+import { Solvents } from '../../common/types/Solvents';
+import { Thickeners } from '../../common/types/Thickeners';
 
 describe('getIngredientCategories', () => {
   it('returns correct label for a single-category ingredient', () => {
@@ -45,12 +54,18 @@ describe('getIngredientCategories', () => {
 // Intentionally excluded: NonBiodegradable, SepticUnfriendly (safety flags, not functional roles);
 //   Amylases, Cellulases, Proteases, Pectinases (enzyme subtypes collapsed into "Enzyme").
 const displayCategories: [Set<Ingredient>, string][] = [
+  [AmphotericSurfactants, 'Amphoteric Surfactant'],
   [AnionicSurfactants, 'Anionic Surfactant'],
+  [BitteringAgents, 'Bittering Agent'],
+  [Builders, 'Builder'],
+  [FabricConditioners, 'Fabric Conditioner'],
+  [Fillers, 'Filler'],
   [NonionicSurfactants, 'Nonionic Surfactant'],
   [Soaps, 'Soap'],
   [Enzymes, 'Enzyme'],
   [OpticalBrighteners, 'Optical Brightener'],
   [OxygenBleaches, 'Oxygen Bleach'],
+  [OxygenBleachBoosters, 'Oxygen Bleach Booster'],
   [DyeTransferInhibitors, 'Dye Transfer Inhibitor'],
   [Dyes, 'Dye'],
   [Scents, 'Scent'],
@@ -60,6 +75,9 @@ const displayCategories: [Set<Ingredient>, string][] = [
   [OdorEliminators, 'Odor Eliminator'],
   [SoilAntiRedeposition, 'Soil Anti-Redeposition'],
   [SoilRelease, 'Soil Release'],
+  [PacFilm, 'Pac Film'],
+  [Solvents, 'Solvent'],
+  [Thickeners, 'Thickener'],
 ];
 
 describe('registry completeness', () => {
