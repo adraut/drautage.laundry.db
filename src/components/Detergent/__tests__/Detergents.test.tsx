@@ -463,10 +463,10 @@ describe('Detergents', () => {
       fireEvent.click(nameButtons[0]);
 
       await waitFor(() => {
-        expect(screen.getByText('Ingredients')).toBeInTheDocument();
+        expect(document.getElementById('ingredients-section')).toBeInTheDocument();
       });
 
-      expect(screen.getByText('Details')).toBeInTheDocument();
+      expect(document.getElementById('details-section')).toBeInTheDocument();
       expect(screen.getByText('Last updated')).toBeInTheDocument();
     });
   });
