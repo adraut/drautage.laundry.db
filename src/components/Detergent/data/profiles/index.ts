@@ -68,6 +68,7 @@ export { default as GreatValueUltimateFreshOriginalCleanPacs } from './great-val
 export { default as GuestsOnEarthLaundryDetergentGreenHinoki } from './guests-on-earth-laundry-detergent-green-hinoki';
 export { default as MethodGingerMangoLaundryDetergent } from './method-ginger-mango-laundry-detergent';
 export { default as MethodLaundryDetergentBeachSage } from './method-laundry-detergent-beach-sage';
+export { default as MethodLaundryDetergentFreeClear } from './method-laundry-detergent-free-clear';
 export { default as MrsMeyersCleanDayLaundryDetergentCompassionFlower } from './mrs-meyers-clean-day-laundry-detergent-compassion-flower';
 export { default as MrsMeyersCleanDayLaundryDetergentRainWater } from './mrs-meyers-clean-day-laundry-detergent-rain-water';
 export { default as PersilActivewearClean } from './persil-activewear-clean';
