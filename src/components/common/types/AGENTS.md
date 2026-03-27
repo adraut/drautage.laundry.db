@@ -49,6 +49,8 @@ When adding a new ingredient, decide if it belongs in any of these sets (non‑e
 
 Update the appropriate set file(s) so `DetergentProfile` derived flags remain accurate. Only place an ingredient into a category if the source explicitly indicates it.
 
+> **Note:** `IngredientCategoryMap.ts` is built automatically from all category set files at runtime — you do **not** need to edit it directly. Adding an ingredient to a set file is sufficient for it to appear in the map.
+
 ## Ambiguity rules
 
 - Generic surfactant terms stay generic; do not map to specific laureth or alketh variants without explicit source confirmation.
