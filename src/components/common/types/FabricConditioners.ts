@@ -20,6 +20,7 @@ const FabricConditioners: Set<Ingredient> = new Set();
 
 FabricConditioners.add(Ingredient.AloeBarbadenisLeafPowder);
 FabricConditioners.add(Ingredient.Bentonite);
+FabricConditioners.add(Ingredient.Cyclotetrasiloxane);
 FabricConditioners.add(Ingredient.Polyquaternium7);
 FabricConditioners.add(Ingredient.Polyquaternium10);
 FabricConditioners.add(Ingredient.QuaternisedHydrolyzedWheatProteinSiliconeCopolymer);
