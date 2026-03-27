@@ -290,6 +290,12 @@ export enum Ingredient {
    */
   DipropyleneGlycol = 'Dipropylene Glycol',
   DisodiumDistyrylbiphenylDisulfonate = 'Disodium Distyrylbiphenyl Disulfonate',
+  /**
+   * Distyrylbiphenol Sulfonate is an optical brightener / fluorescent whitening agent used in
+   * liquid laundry detergents. It is a distinct class of disulfonated fluorescent whitening agent
+   * that is stable on storage and designed to avoid bleach spots.
+   */
+  DistyrylbiphenolSulfonate = 'Distyrylbiphenol Sulfonate',
   DNase = 'DNase',
   /**
    * Dodecylbenzene Sulfonic Acid (DBSA) is an anionic surfactant and a specific form of
@@ -1092,6 +1098,11 @@ export enum Ingredient {
    * laundry detergents to prevent microbial growth and extend product shelf life.
    */
   TrisNHydroxyethylHexahydrotriazine = 'Tris(N-Hydroxyethyl)Hexahydrotriazine',
+  /**
+   * Trisodium Dicarboxymethyl Alaninate (MGDA) is a chelating agent and builder used in laundry
+   * detergents to sequester calcium and magnesium ions, improving cleaning performance in hard water.
+   * Synonyms: Tetrasodium Salt Of Methyl Glycinediacetic Acid
+   */
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
   /**
    * Tromethamine (TRIS) is used in laundry detergents as a pH buffer and alkalinity agent,
