@@ -765,10 +765,20 @@ export enum Ingredient {
    */
   PolyethyleniminePolymer = 'Polyethylenimine Polymer',
   /**
+   * Polymeric Blue is a Method-specific polymeric colorant used to impart a blue hue
+   * to the detergent formula.
+   */
+  PolymericBlue = 'Polymeric Blue',
+  /**
    * Polymeric Orange is a Method-specific polymeric colorant used to impart an orange hue
    * to the detergent formula.
    */
   PolymericOrange = 'Polymeric Orange',
+  /**
+   * Polymeric Yellow is a Method-specific polymeric colorant used to impart a yellow hue
+   * to the detergent formula.
+   */
+  PolymericYellow = 'Polymeric Yellow',
   /**
    * A polymeric dye used in laundry detergents to provide a blue hue and enhance whiteness
    * perception without permanently staining fabrics.
