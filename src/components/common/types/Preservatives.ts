@@ -16,5 +16,6 @@ Preservatives.add(Ingredient.PotassiumSorbate);
 Preservatives.add(Ingredient.SodiumBenzoate);
 Preservatives.add(Ingredient.SodiumBisulfite);
 Preservatives.add(Ingredient.SodiumSulfite);
+Preservatives.add(Ingredient.TrisNHydroxyethylHexahydrotriazine);
 
 export { Preservatives };

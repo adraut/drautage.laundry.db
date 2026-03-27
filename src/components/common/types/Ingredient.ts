@@ -257,6 +257,11 @@ export enum Ingredient {
    */
   CymbopogonMartiniPalmarosaOil = 'Cymbopogon Martini (Palmarosa) Oil',
   /**
+   * Cyclotetrasiloxane (D4) is a cyclic silicone compound used in laundry detergents as a
+   * suds reducer and fabric conditioner, controlling foam and imparting a smooth feel to fabrics.
+   */
+  Cyclotetrasiloxane = 'Cyclotetrasiloxane',
+  /**
    * Decyl Glucoside is a mild nonionic surfactant derived from glucose and decanol, used in
    * laundry detergents as a gentle cleansing agent and foam booster.
    */
@@ -286,6 +291,13 @@ export enum Ingredient {
   DipropyleneGlycol = 'Dipropylene Glycol',
   DisodiumDistyrylbiphenylDisulfonate = 'Disodium Distyrylbiphenyl Disulfonate',
   DNase = 'DNase',
+  /**
+   * Dodecylbenzene Sulfonic Acid (DBSA) is an anionic surfactant and a specific form of
+   * Linear Alkylbenzene Sulfonic Acid (LABSA) with a C12 alkyl chain, used as a primary
+   * cleaning agent in laundry detergents.
+   * Note: a more specific form of Linear Alkylbenzene Sulfonic Acid (LinearAlkylbenzeneSulfonicAcid).
+   */
+  DodecylbenzeneSulfonicAcid = 'Dodecylbenzene Sulfonic Acid',
   /**
    * Essential Oil is a natural aromatic extract derived from plants, used in laundry detergents
    * as a scent ingredient. May be listed as conditional on the label (e.g. "when used"),
@@ -1065,6 +1077,11 @@ export enum Ingredient {
    */
   Triethanolamine = 'Triethanolamine',
   Trimethylsiloxysilicate = 'Trimethylsiloxysilicate',
+  /**
+   * Tris(N-Hydroxyethyl)Hexahydrotriazine is a formaldehyde-releasing preservative used in
+   * laundry detergents to prevent microbial growth and extend product shelf life.
+   */
+  TrisNHydroxyethylHexahydrotriazine = 'Tris(N-Hydroxyethyl)Hexahydrotriazine',
   TrisodiumDicarboxymethylAlaninate = 'Trisodium Dicarboxymethyl Alaninate',
   /**
    * Tromethamine (TRIS) is used in laundry detergents as a pH buffer and alkalinity agent,

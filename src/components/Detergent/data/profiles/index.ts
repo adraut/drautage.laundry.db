@@ -125,6 +125,7 @@ export { default as TideUltraOxiBoostLiquid } from './tide-ultra-oxi-boost-liqui
 export { default as TideUltraOxiPowder } from './tide-ultra-oxi-powder';
 export { default as TideUltraSport } from './tide-ultra-sport';
 export { default as TideUltraWhite } from './tide-ultra-white';
+export { default as TotalHomeLaundryDetergentFreshScent } from './total-home-laundry-detergent-fresh-scent';
 export { default as WholeFoods365SportFresh } from './whole-foods-365-sport-fresh';
 export { default as WholeFoods365UnscentedConcentrated } from './whole-foods-365-unscented-concentrated';
 export { default as WholeFoods365UnscentedPowder } from './whole-foods-365-unscented-powder';
