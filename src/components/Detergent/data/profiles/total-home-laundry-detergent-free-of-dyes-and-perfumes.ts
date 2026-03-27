@@ -14,7 +14,7 @@ const ingredients: Ingredient[] = [
 ];
 
 const TotalHomeLaundryDetergentFreeOfDyesAndPerfumes: DetergentProfile = new DetergentProfile(
-  'Laundry Detergent',
+  'Free of Dyes & Perfumes',
   'Total Home',
   DetergentType.Liquid,
   DataSource.Package,
