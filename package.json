@@ -50,7 +50,7 @@
     "style-loader": "^4.0.0",
     "ts-jest": "^29.4.6",
     "ts-loader": "^9.5.4",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "engines": {
     "node": ">=24.0.0",
