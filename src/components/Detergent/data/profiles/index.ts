@@ -122,6 +122,7 @@ export { default as TideSpringMeadowLiquid } from './tide-spring-meadow-liquid';
 export { default as TideUltraHygienicClean } from './tide-ultra-hygienic-clean';
 export { default as TideUltraOdorOxiDefense } from './tide-ultra-odor-oxi-defense';
 export { default as TideUltraOxiBoostLiquid } from './tide-ultra-oxi-boost-liquid';
+export { default as TideUltraOxiPowder } from './tide-ultra-oxi-powder';
 export { default as TideUltraSport } from './tide-ultra-sport';
 export { default as TideUltraWhite } from './tide-ultra-white';
 export { default as WholeFoods365SportFresh } from './whole-foods-365-sport-fresh';
