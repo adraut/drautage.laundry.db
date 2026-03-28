@@ -15,6 +15,7 @@ export default {
       {
         tsconfig: {
           jsx: 'react-jsx',
+          ignoreDeprecations: '6.0',
         },
       },
     ],
