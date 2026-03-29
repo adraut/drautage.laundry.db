@@ -10,6 +10,7 @@ import { Dyes } from '../../common/types/Dyes';
 import { NonBiodegradable } from '../../common/types/NonBiodegradable';
 import { AmphotericSurfactants } from '../../common/types/AmphotericSurfactants';
 import { Builders } from '../../common/types/Builders';
+import { FabricAntioxidants } from '../../common/types/FabricAntioxidants';
 import { FabricConditioners } from '../../common/types/FabricConditioners';
 import { Fillers } from '../../common/types/Fillers';
 import { NonionicSurfactants } from '../../common/types/NonionicSurfactants';
@@ -45,6 +46,7 @@ export class DetergentProfile {
   readonly hasEnzymes: boolean;
   readonly hasAmphotericSurfactants: boolean;
   readonly hasBuilders: boolean;
+  readonly hasFabricAntioxidants: boolean;
   readonly hasFabricConditioners: boolean;
   readonly hasFillers: boolean;
   readonly hasAnionicSurfactants: boolean;
@@ -88,6 +90,7 @@ export class DetergentProfile {
     this.hasEnzymes = ingredients.some((ing) => Enzymes.has(ing));
     this.hasAmphotericSurfactants = ingredients.some((ing) => AmphotericSurfactants.has(ing));
     this.hasBuilders = ingredients.some((ing) => Builders.has(ing));
+    this.hasFabricAntioxidants = ingredients.some((ing) => FabricAntioxidants.has(ing));
     this.hasFabricConditioners = ingredients.some((ing) => FabricConditioners.has(ing));
     this.hasFillers = ingredients.some((ing) => Fillers.has(ing));
     this.hasAnionicSurfactants = ingredients.some((ing) => AnionicSurfactants.has(ing));
