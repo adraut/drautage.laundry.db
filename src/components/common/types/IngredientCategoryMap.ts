@@ -3,6 +3,7 @@ import { AmphotericSurfactants } from './AmphotericSurfactants';
 import { AnionicSurfactants } from './AnionicSurfactants';
 import { BitteringAgents } from './BitteringAgents';
 import { Builders } from './Builders';
+import { FabricAntioxidants } from './FabricAntioxidants';
 import { FabricConditioners } from './FabricConditioners';
 import { Fillers } from './Fillers';
 import { NonionicSurfactants } from './NonionicSurfactants';
@@ -29,6 +30,7 @@ const CATEGORY_SETS: [Set<Ingredient>, string][] = [
   [AnionicSurfactants, 'Anionic Surfactant'],
   [BitteringAgents, 'Bittering Agent'],
   [Builders, 'Builder'],
+  [FabricAntioxidants, 'Fabric Antioxidant'],
   [FabricConditioners, 'Fabric Conditioner'],
   [Fillers, 'Filler'],
   [NonionicSurfactants, 'Nonionic Surfactant'],

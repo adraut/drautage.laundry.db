@@ -485,6 +485,30 @@ describe('DetergentProfile', () => {
         );
         expect(profile.hasDyeTransferInhibitors).toBe(false);
       });
+
+      it('should detect hasFabricAntioxidants when a fabric antioxidant ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.MethylDiTButylHydroxyhydrocinnamate],
+          new Date(),
+        );
+        expect(profile.hasFabricAntioxidants).toBe(true);
+      });
+
+      it('should not detect hasFabricAntioxidants when no fabric antioxidant ingredients are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
+        expect(profile.hasFabricAntioxidants).toBe(false);
+      });
     });
 
     describe('surfactant detection properties', () => {
