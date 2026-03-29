@@ -20,7 +20,35 @@ import { OxygenBleachBoosters } from '../../common/types/OxygenBleachBoosters';
 import { DyeTransferInhibitors } from '../../common/types/DyeTransferInhibitors';
 import { SoilAntiRedeposition } from '../../common/types/SoilAntiRedeposition';
 import { SoilRelease } from '../../common/types/SoilRelease';
+import { ProcessingAids } from '../../common/types/ProcessingAids';
+import { IngredientContextRules } from '../../common/types/IngredientContextRules';
 import { DataSource } from './DataSource';
+
+export interface DetergentProfileOptions {
+  /**
+   * Per-ingredient category exclusions that override the global category sets
+   * for this specific product. Use when an ingredient's functional role in this
+   * formulation differs from its default classification.
+   *
+   * Profile-level exclusions are merged on top of any matching context rules,
+   * with profile-level taking precedence.
+   */
+  categoryExclusions?: Partial<Record<Ingredient, string[]>>;
+}
+
+/**
+ * Returns true if at least one ingredient in the list belongs to the given
+ * category set AND is not excluded from that category's label by the effective
+ * exclusions map.
+ */
+function hasCategory(
+  ingredients: Ingredient[],
+  categorySet: Set<Ingredient>,
+  label: string,
+  exclusions: Partial<Record<Ingredient, string[]>>,
+): boolean {
+  return ingredients.some((ing) => categorySet.has(ing) && !exclusions[ing]?.includes(label));
+}
 
 export class DetergentProfile {
   name: string;
@@ -33,6 +61,12 @@ export class DetergentProfile {
   countriesAvailable?: Alpha3Code[];
 
   readonly lastUpdatedFormatted: string;
+  /**
+   * Merged category exclusions for this product, combining context rules
+   * (auto-inferred from the ingredient list) and any profile-level overrides.
+   * Used by the display layer to filter categories per ingredient.
+   */
+  readonly effectiveCategoryExclusions: Partial<Record<Ingredient, string[]>>;
   readonly hasAmylase: boolean;
   readonly hasCellulase: boolean;
   readonly hasDNase: boolean;
@@ -54,6 +88,7 @@ export class DetergentProfile {
   readonly hasDyes: boolean;
   readonly hasScents: boolean;
   readonly hasSoaps: boolean;
+  readonly hasProcessingAids: boolean;
   readonly hasDyeTransferInhibitors: boolean;
   readonly hasSoilAntiRedepositionAgents: boolean;
   readonly hasSoilReleaseAgents: boolean;
@@ -67,6 +102,7 @@ export class DetergentProfile {
     dataSource: DataSource,
     ingredients: Ingredient[],
     lastUpdated: Date,
+    options?: DetergentProfileOptions,
   ) {
     this.name = name;
     this.brand = brand;
@@ -76,31 +112,80 @@ export class DetergentProfile {
     this.lastUpdated = lastUpdated;
     this.lastUpdatedFormatted = this.lastUpdated.toISOString().split('T')[0];
 
-    // Compute all derived properties once during construction
-    this.hasAmylase = ingredients.some((ing) => Amylases.has(ing));
-    this.hasCellulase = ingredients.some((ing) => Cellulases.has(ing));
-    this.hasDNase = ingredients.includes(Ingredient.DNase);
-    this.hasLipase = ingredients.includes(Ingredient.Lipase);
-    this.hasMannanase = ingredients.includes(Ingredient.Mannanase);
-    this.hasPectinase = ingredients.some((ing) => Pectinases.has(ing));
-    this.hasProtease = ingredients.some((ing) => Proteases.has(ing));
-    this.hasOpticalBrighteners = ingredients.some((ing) => OpticalBrighteners.has(ing));
-    this.hasOxygenBleach = ingredients.some((ing) => OxygenBleaches.has(ing));
-    this.hasOxygenBleachBoosters = ingredients.some((ing) => OxygenBleachBoosters.has(ing));
-    this.hasEnzymes = ingredients.some((ing) => Enzymes.has(ing));
-    this.hasAmphotericSurfactants = ingredients.some((ing) => AmphotericSurfactants.has(ing));
-    this.hasBuilders = ingredients.some((ing) => Builders.has(ing));
-    this.hasFabricAntioxidants = ingredients.some((ing) => FabricAntioxidants.has(ing));
-    this.hasFabricConditioners = ingredients.some((ing) => FabricConditioners.has(ing));
-    this.hasFillers = ingredients.some((ing) => Fillers.has(ing));
-    this.hasAnionicSurfactants = ingredients.some((ing) => AnionicSurfactants.has(ing));
-    this.hasNonionicSurfactants = ingredients.some((ing) => NonionicSurfactants.has(ing));
-    this.hasDyes = ingredients.some((ing) => Dyes.has(ing));
-    this.hasScents = ingredients.some((ing) => Scents.has(ing));
-    this.hasSoaps = ingredients.some((ing) => Soaps.has(ing));
-    this.hasDyeTransferInhibitors = ingredients.some((ing) => DyeTransferInhibitors.has(ing));
-    this.hasSoilAntiRedepositionAgents = ingredients.some((ing) => SoilAntiRedeposition.has(ing));
-    this.hasSoilReleaseAgents = ingredients.some((ing) => SoilRelease.has(ing));
+    // Build effective exclusions: context rules first, profile-level on top.
+    const exclusions: Partial<Record<Ingredient, string[]>> = {};
+
+    for (const rule of IngredientContextRules) {
+      if (ingredients.includes(rule.ingredient) && rule.condition(ingredients)) {
+        const existing = exclusions[rule.ingredient];
+        if (existing) {
+          for (const cat of rule.excludeFromCategories) {
+            if (!existing.includes(cat)) existing.push(cat);
+          }
+        } else {
+          exclusions[rule.ingredient] = [...rule.excludeFromCategories];
+        }
+      }
+    }
+
+    if (options?.categoryExclusions) {
+      for (const key of Object.keys(options.categoryExclusions) as Ingredient[]) {
+        const extra = options.categoryExclusions[key]!;
+        const existing = exclusions[key];
+        if (existing) {
+          for (const cat of extra) {
+            if (!existing.includes(cat)) existing.push(cat);
+          }
+        } else {
+          exclusions[key] = [...extra];
+        }
+      }
+    }
+
+    this.effectiveCategoryExclusions = exclusions;
+
+    // Compute all derived properties once during construction.
+    this.hasAmylase = hasCategory(ingredients, Amylases, 'Enzyme', exclusions);
+    this.hasCellulase = hasCategory(ingredients, Cellulases, 'Enzyme', exclusions);
+    this.hasDNase = ingredients.includes(Ingredient.DNase) && !exclusions[Ingredient.DNase]?.includes('Enzyme');
+    this.hasLipase = ingredients.includes(Ingredient.Lipase) && !exclusions[Ingredient.Lipase]?.includes('Enzyme');
+    this.hasMannanase =
+      ingredients.includes(Ingredient.Mannanase) && !exclusions[Ingredient.Mannanase]?.includes('Enzyme');
+    this.hasPectinase = hasCategory(ingredients, Pectinases, 'Enzyme', exclusions);
+    this.hasProtease = hasCategory(ingredients, Proteases, 'Enzyme', exclusions);
+    this.hasOpticalBrighteners = hasCategory(ingredients, OpticalBrighteners, 'Optical Brightener', exclusions);
+    this.hasOxygenBleach = hasCategory(ingredients, OxygenBleaches, 'Oxygen Bleach', exclusions);
+    this.hasOxygenBleachBoosters = hasCategory(ingredients, OxygenBleachBoosters, 'Oxygen Bleach Booster', exclusions);
+    this.hasEnzymes = hasCategory(ingredients, Enzymes, 'Enzyme', exclusions);
+    this.hasAmphotericSurfactants = hasCategory(
+      ingredients,
+      AmphotericSurfactants,
+      'Amphoteric Surfactant',
+      exclusions,
+    );
+    this.hasBuilders = hasCategory(ingredients, Builders, 'Builder', exclusions);
+    this.hasFabricAntioxidants = hasCategory(ingredients, FabricAntioxidants, 'Fabric Antioxidant', exclusions);
+    this.hasFabricConditioners = hasCategory(ingredients, FabricConditioners, 'Fabric Conditioner', exclusions);
+    this.hasFillers = hasCategory(ingredients, Fillers, 'Filler', exclusions);
+    this.hasAnionicSurfactants = hasCategory(ingredients, AnionicSurfactants, 'Anionic Surfactant', exclusions);
+    this.hasNonionicSurfactants = hasCategory(ingredients, NonionicSurfactants, 'Nonionic Surfactant', exclusions);
+    this.hasDyes = hasCategory(ingredients, Dyes, 'Dye', exclusions);
+    this.hasScents = hasCategory(ingredients, Scents, 'Scent', exclusions);
+    this.hasSoaps = hasCategory(ingredients, Soaps, 'Soap', exclusions);
+    this.hasProcessingAids = hasCategory(ingredients, ProcessingAids, 'Processing Aid', exclusions);
+    this.hasDyeTransferInhibitors = hasCategory(
+      ingredients,
+      DyeTransferInhibitors,
+      'Dye Transfer Inhibitor',
+      exclusions,
+    );
+    this.hasSoilAntiRedepositionAgents = hasCategory(
+      ingredients,
+      SoilAntiRedeposition,
+      'Soil Anti-Redeposition',
+      exclusions,
+    );
+    this.hasSoilReleaseAgents = hasCategory(ingredients, SoilRelease, 'Soil Release', exclusions);
     this.isBiodegradable = !ingredients.some((ing) => NonBiodegradable.has(ing));
     this.isSepticSafe = !ingredients.some((ing) => SepticUnfriendly.has(ing));
   }

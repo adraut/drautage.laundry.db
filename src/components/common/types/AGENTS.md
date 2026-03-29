@@ -42,6 +42,8 @@ When adding a new ingredient, decide if it belongs in any of these sets (non‑e
   - `Fillers` is for inert bulking/anticaking agents with minimal cleaning role (sodium sulfate, silica, etc.).
   - `Builders` is for ingredients that raise or buffer formula/wash-water pH (NaOH, KOH, ethanolamine, etc.). Distinct from `WaterConditioners` which chelate metal ions.
   - `FabricConditioners` is for agents that deposit onto fiber surfaces to improve softness, reduce static, or aid ironing (cationic polymers, bentonite clay). Distinct from `WaterConditioners` which modify water chemistry.
+- ProcessingAids
+  - `ProcessingAids` is for ingredients that serve a manufacturing/processing role in the formulation rather than a cleaning or conditioning role (e.g. binders, granulation aids, flow agents). An ingredient may belong to both `ProcessingAids` and another functional category (e.g. `Soaps`) globally; context rules or profile-level exclusions narrow its effective categories for specific products.
 - Preservatives, FabricAntioxidants, DyeTransferInhibitors, SoilAntiRedeposition, NonBiodegradable, SepticUnfriendly, OdorEliminators
   - `FabricAntioxidants` is for lipid-soluble hindered phenol antioxidants that deposit onto textile fibers and inhibit oxidative degradation of residual oils between wears, preventing rancidity-derived odor formation. Distinct from `Preservatives` (which protect the detergent formula) — ingredients here typically appear in both sets. Distinct from `OdorEliminators` (which act reactively); fabric antioxidants act preventatively on the textile substrate.
   - `DyeTransferInhibitors` is for **dye** anti-redeposition agents: fiber-coating agents (CMC) and solution-phase dye-capture polymers (PEI family). Do **not** add purely soil anti-redeposition polymers (e.g. polyacrylates, maleate/acrylate copolymers) or builders (e.g. sodium carbonate, silicates) to this set. Some ingredients (e.g. CelluloseGum, PolyethyleneimineAlkoxylated) appear in both `DyeTransferInhibitors` and `SoilAntiRedeposition` — this overlap is intentional.
@@ -51,6 +53,18 @@ When adding a new ingredient, decide if it belongs in any of these sets (non‑e
 Update the appropriate set file(s) so `DetergentProfile` derived flags remain accurate. Only place an ingredient into a category if the source explicitly indicates it.
 
 > **Note:** `IngredientCategoryMap.ts` is built automatically from all category set files at runtime — you do **not** need to edit it directly. Adding an ingredient to a set file is sufficient for it to appear in the map.
+
+## Context rules
+
+Context rules in [IngredientContextRules.ts](IngredientContextRules.ts) automatically exclude an ingredient from one or more of its default categories based on the composition or ordering of the ingredient list for a specific product. They are evaluated at `DetergentProfile` construction time and do **not** modify the global category sets.
+
+- **When to add a rule**: When an ingredient reliably performs a different function in the presence of another ingredient (or based on its relative position in the list), and this pattern applies across multiple products rather than to one product specifically.
+- **Rule structure**: `ingredient` (the target), `condition(ingredients[])` (returns true when the exclusion applies), `excludeFromCategories` (array of category label strings to remove).
+- **Profile-level overrides**: For product-specific edge cases that do not fit a general rule, pass `options.categoryExclusions` to the `DetergentProfile` constructor. These are merged on top of context rules with higher priority.
+- **Label strings must match exactly** the label used in `IngredientCategoryMap.ts` (e.g. `'Soap'`, `'Processing Aid'`).
+
+Example — C16-18 fatty acid sodium salts in powder detergents with SodiumPolyacrylate:
+Ingredient lists follow highest-concentration-first convention. When `SodiumPolyacrylate` appears before `C16_18FattyAcidsSodiumSalt`, the polymer handles hard-water mineral management, so the fatty acid salt functions as a binder/processing aid rather than as an active soap surfactant. The rule excludes it from `'Soap'` in that context; it remains in `'Processing Aid'`.
 
 ## Ambiguity rules
 

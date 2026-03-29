@@ -38,7 +38,8 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
               </thead>
               <tbody>
                 {detergent.ingredients.map((ingredient) => {
-                  const categories = getIngredientCategories(ingredient);
+                  const excluded = detergent.effectiveCategoryExclusions[ingredient] ?? [];
+                  const categories = getIngredientCategories(ingredient).filter((cat) => !excluded.includes(cat));
                   return (
                     <tr key={ingredient}>
                       <td>{formatIngredient(ingredient)}</td>

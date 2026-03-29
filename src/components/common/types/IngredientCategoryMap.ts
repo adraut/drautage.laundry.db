@@ -24,6 +24,7 @@ import { SoilRelease } from './SoilRelease';
 import { PacFilm } from './PacFilm';
 import { Solvents } from './Solvents';
 import { Thickeners } from './Thickeners';
+import { ProcessingAids } from './ProcessingAids';
 
 const CATEGORY_SETS: [Set<Ingredient>, string][] = [
   [AmphotericSurfactants, 'Amphoteric Surfactant'],
@@ -49,6 +50,7 @@ const CATEGORY_SETS: [Set<Ingredient>, string][] = [
   [SoilAntiRedeposition, 'Soil Anti-Redeposition'],
   [SoilRelease, 'Soil Release'],
   [PacFilm, 'Pac Film'],
+  [ProcessingAids, 'Processing Aid'],
   [Solvents, 'Solvent'],
   [Thickeners, 'Thickener'],
 ];
