@@ -23,6 +23,7 @@ import { OdorEliminators } from '../../common/types/OdorEliminators';
 import { SoilAntiRedeposition } from '../../common/types/SoilAntiRedeposition';
 import { SoilRelease } from '../../common/types/SoilRelease';
 import { PacFilm } from '../../common/types/PacFilm';
+import { ProcessingAids } from '../../common/types/ProcessingAids';
 import { Solvents } from '../../common/types/Solvents';
 import { Thickeners } from '../../common/types/Thickeners';
 
@@ -78,6 +79,7 @@ const displayCategories: [Set<Ingredient>, string][] = [
   [SoilAntiRedeposition, 'Soil Anti-Redeposition'],
   [SoilRelease, 'Soil Release'],
   [PacFilm, 'Pac Film'],
+  [ProcessingAids, 'Processing Aid'],
   [Solvents, 'Solvent'],
   [Thickeners, 'Thickener'],
 ];

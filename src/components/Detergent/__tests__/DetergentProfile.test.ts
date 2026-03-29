@@ -401,7 +401,7 @@ describe('DetergentProfile', () => {
       //   expect(profile.hasScents).toBe(false);
       // });
 
-      it('should not detect hasSoaps when no soaps are present (Soaps set is empty)', () => {
+      it('should not detect hasSoaps when no soaps are present', () => {
         const profile = new DetergentProfile(
           'Test',
           'Brand',
@@ -410,8 +410,43 @@ describe('DetergentProfile', () => {
           [Ingredient.Water],
           new Date(),
         );
-        // Note: Soaps set is currently empty, so hasSoaps will always be false
         expect(profile.hasSoaps).toBe(false);
+      });
+
+      it('should detect hasSoaps when a soap ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Powder,
+          DataSource.Package,
+          [Ingredient.C16_18FattyAcidsSodiumSalt],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+      });
+
+      it('should detect hasProcessingAids when a processing aid ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Powder,
+          DataSource.Package,
+          [Ingredient.C16_18FattyAcidsSodiumSalt],
+          new Date(),
+        );
+        expect(profile.hasProcessingAids).toBe(true);
+      });
+
+      it('should not detect hasProcessingAids when no processing aid ingredients are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
+        expect(profile.hasProcessingAids).toBe(false);
       });
 
       it('should detect hasSoilAntiRedepositionAgents when a soil anti-redeposition ingredient is present', () => {
@@ -723,6 +758,80 @@ describe('DetergentProfile', () => {
         expect(profile.hasAmylase).toBe(false);
         expect(profile.hasEnzymes).toBe(true);
       });
+    });
+  });
+
+  describe('context rules and category exclusions', () => {
+    it('excludes C16_18FattyAcidsSodiumSalt from Soap when SodiumPolyacrylate precedes it', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.SodiumPolyacrylate, Ingredient.C16_18FattyAcidsSodiumSalt],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(false);
+      expect(profile.hasProcessingAids).toBe(true);
+      expect(profile.effectiveCategoryExclusions[Ingredient.C16_18FattyAcidsSodiumSalt]).toEqual(['Soap']);
+    });
+
+    it('keeps C16_18FattyAcidsSodiumSalt as Soap when SodiumPolyacrylate is absent', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.C16_18FattyAcidsSodiumSalt],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(true);
+      expect(profile.effectiveCategoryExclusions[Ingredient.C16_18FattyAcidsSodiumSalt]).toBeUndefined();
+    });
+
+    it('keeps C16_18FattyAcidsSodiumSalt as Soap when it precedes SodiumPolyacrylate', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.C16_18FattyAcidsSodiumSalt, Ingredient.SodiumPolyacrylate],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(true);
+      expect(profile.effectiveCategoryExclusions[Ingredient.C16_18FattyAcidsSodiumSalt]).toBeUndefined();
+    });
+
+    it('applies profile-level categoryExclusions', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Liquid,
+        DataSource.Package,
+        [Ingredient.SodiumCarbonate],
+        new Date(),
+        { categoryExclusions: { [Ingredient.SodiumCarbonate]: ['Builder'] } },
+      );
+      expect(profile.hasBuilders).toBe(false);
+      expect(profile.effectiveCategoryExclusions[Ingredient.SodiumCarbonate]).toEqual(['Builder']);
+    });
+
+    it('merges context rule and profile-level exclusions for the same ingredient', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.SodiumPolyacrylate, Ingredient.C16_18FattyAcidsSodiumSalt],
+        new Date(),
+        { categoryExclusions: { [Ingredient.C16_18FattyAcidsSodiumSalt]: ['Processing Aid'] } },
+      );
+      expect(profile.hasSoaps).toBe(false);
+      expect(profile.hasProcessingAids).toBe(false);
+      expect(profile.effectiveCategoryExclusions[Ingredient.C16_18FattyAcidsSodiumSalt]).toEqual([
+        'Soap',
+        'Processing Aid',
+      ]);
     });
   });
 
