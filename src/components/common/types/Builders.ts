@@ -11,6 +11,8 @@ import { Ingredient } from './Ingredient';
  *
  * Note: `SodiumBicarbonate` also appears in `OdorEliminators` — it neutralizes acidic odor
  * molecules through the same acid-base mechanism by which it buffers wash-water pH.
+ * `SodiumCarbonate`, `SodiumSilicate`, and `SodiumMetasilicate` also appear in `WaterConditioners`
+ * because they soften water by precipitating Ca²⁺/Mg²⁺ ions in addition to raising pH.
  */
 const Builders: Set<Ingredient> = new Set();
 
@@ -18,7 +20,10 @@ Builders.add(Ingredient.Ethanolamine);
 Builders.add(Ingredient.LacticAcid);
 Builders.add(Ingredient.PotassiumHydroxide);
 Builders.add(Ingredient.SodiumBicarbonate);
+Builders.add(Ingredient.SodiumCarbonate);
 Builders.add(Ingredient.SodiumHydroxide);
+Builders.add(Ingredient.SodiumMetasilicate);
+Builders.add(Ingredient.SodiumSilicate);
 Builders.add(Ingredient.Triethanolamine);
 Builders.add(Ingredient.Tromethamine);
 

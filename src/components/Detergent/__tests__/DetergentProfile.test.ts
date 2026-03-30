@@ -816,6 +816,125 @@ describe('DetergentProfile', () => {
       expect(profile.effectiveCategoryExclusions[Ingredient.SodiumCarbonate]).toEqual(['Builder']);
     });
 
+    it('excludes C8_18FattyAcidsSodiumSalt from Soap in a powder when an anionic surfactant precedes it', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.SodiumC10_16Alkylbenzenesulfonate, Ingredient.C8_18FattyAcidsSodiumSalt],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(false);
+      expect(profile.effectiveCategoryExclusions[Ingredient.C8_18FattyAcidsSodiumSalt]).toEqual(['Soap']);
+    });
+
+    it('keeps C8_18FattyAcidsSodiumSalt as Soap in a liquid even when an anionic surfactant precedes it', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Liquid,
+        DataSource.Package,
+        [Ingredient.SodiumC10_16Alkylbenzenesulfonate, Ingredient.C8_18FattyAcidsSodiumSalt],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(true);
+      expect(profile.effectiveCategoryExclusions[Ingredient.C8_18FattyAcidsSodiumSalt]).toBeUndefined();
+    });
+
+    it('keeps C8_18FattyAcidsSodiumSalt as Soap in a powder when no anionic surfactant precedes it', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.C8_18FattyAcidsSodiumSalt, Ingredient.SodiumC10_16Alkylbenzenesulfonate],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(true);
+      expect(profile.effectiveCategoryExclusions[Ingredient.C8_18FattyAcidsSodiumSalt]).toBeUndefined();
+    });
+
+    it('keeps C8_18FattyAcidsSodiumSalt as Suds Reducer regardless of detergent type or anionic position', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.SodiumC10_16Alkylbenzenesulfonate, Ingredient.C8_18FattyAcidsSodiumSalt],
+        new Date(),
+      );
+      const excluded = profile.effectiveCategoryExclusions[Ingredient.C8_18FattyAcidsSodiumSalt] ?? [];
+      expect(excluded).not.toContain('Suds Reducer');
+    });
+
+    it('excludes FattyAcidsC8_18AndC18UnsaturatedSodiumSalts from Soap when SodiumPolyacrylate precedes it', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.SodiumPolyacrylate, Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(false);
+      expect(profile.hasProcessingAids).toBe(true);
+      expect(profile.effectiveCategoryExclusions[Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts]).toEqual([
+        'Soap',
+      ]);
+    });
+
+    it('keeps FattyAcidsC8_18AndC18UnsaturatedSodiumSalts as Soap when SodiumPolyacrylate is absent', () => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(true);
+      expect(
+        profile.effectiveCategoryExclusions[Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts],
+      ).toBeUndefined();
+    });
+
+    it.each([
+      [Ingredient.CoconutFattyAcid, 'CoconutFattyAcid'],
+      [Ingredient.FattyAcidC8_18AndC18Unsaturated, 'FattyAcidC8_18AndC18Unsaturated'],
+      [Ingredient.LauricAcid, 'LauricAcid'],
+      [Ingredient.PalmKernelAcid, 'PalmKernelAcid'],
+    ])('excludes %s from Soap when a synthetic anionic surfactant precedes it', (fattyAcid) => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Liquid,
+        DataSource.Package,
+        [Ingredient.SodiumC10_16Alkylbenzenesulfonate, fattyAcid],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(false);
+      expect(profile.effectiveCategoryExclusions[fattyAcid]).toEqual(['Soap']);
+    });
+
+    it.each([
+      [Ingredient.CoconutFattyAcid, 'CoconutFattyAcid'],
+      [Ingredient.FattyAcidC8_18AndC18Unsaturated, 'FattyAcidC8_18AndC18Unsaturated'],
+      [Ingredient.LauricAcid, 'LauricAcid'],
+      [Ingredient.PalmKernelAcid, 'PalmKernelAcid'],
+    ])('keeps %s as Soap when no synthetic anionic surfactant precedes it', (fattyAcid) => {
+      const profile = new DetergentProfile(
+        'Test',
+        'Brand',
+        DetergentType.Liquid,
+        DataSource.Package,
+        [fattyAcid],
+        new Date(),
+      );
+      expect(profile.hasSoaps).toBe(true);
+      expect(profile.effectiveCategoryExclusions[fattyAcid]).toBeUndefined();
+    });
+
     it('merges context rule and profile-level exclusions for the same ingredient', () => {
       const profile = new DetergentProfile(
         'Test',

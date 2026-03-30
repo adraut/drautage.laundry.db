@@ -116,7 +116,7 @@ export class DetergentProfile {
     const exclusions: Partial<Record<Ingredient, string[]>> = {};
 
     for (const rule of IngredientContextRules) {
-      if (ingredients.includes(rule.ingredient) && rule.condition(ingredients)) {
+      if (ingredients.includes(rule.ingredient) && rule.condition(ingredients, type)) {
         const existing = exclusions[rule.ingredient];
         if (existing) {
           for (const cat of rule.excludeFromCategories) {
