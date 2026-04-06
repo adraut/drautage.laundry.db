@@ -13,7 +13,6 @@ const Fillers: Set<Ingredient> = new Set();
 
 Fillers.add(Ingredient.CalciumCarbonate);
 Fillers.add(Ingredient.HydratedSilica);
-Fillers.add(Ingredient.PEG136PolyvinylAlcohol);
 Fillers.add(Ingredient.SaltCake);
 Fillers.add(Ingredient.Silica);
 Fillers.add(Ingredient.SodiumSulfate);

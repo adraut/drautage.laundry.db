@@ -123,6 +123,11 @@ export enum Ingredient {
   C12_16Pareth = 'C12-16 Pareth',
   C12_18FattyAcidsSodiumSalt = 'Sodium Salts of C12-18 Fatty Acids',
   C16_18FattyAcidsSodiumSalt = 'C16-18 fatty acids sodium salt',
+  /**
+   * Calcium Carbonate is an inorganic mineral used in powder laundry detergents primarily as
+   * a bulking/filler agent. It also acts as a mild abrasive that can assist in loosening
+   * surface soils during agitation.
+   */
   CalciumCarbonate = 'Calcium Carbonate',
   /**
    * Calcium Chloride is an inorganic salt used in laundry detergents as a viscosity modifier

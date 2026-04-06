@@ -13,6 +13,7 @@ import { Ingredient } from './Ingredient';
  */
 const PacFilm: Set<Ingredient> = new Set();
 
+PacFilm.add(Ingredient.PEG136PolyvinylAlcohol);
 PacFilm.add(Ingredient.PolyvinylAlcohol);
 PacFilm.add(Ingredient.PolyvinylAlcoholFilm);
 PacFilm.add(Ingredient.PolyvinylAlcoholPolymer);
