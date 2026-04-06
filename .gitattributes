@@ -1,64 +1,18 @@
-# Cross-platform line ending normalization
-# Enforces LF line endings for all text files across Windows, macOS, and Linux developers
-# Prevents git from auto-converting LF to CRLF on Windows checkouts
+# Normalize all text files to LF on all platforms, overriding core.autocrlf
+* text=auto eol=lf
 
-# Auto detect text files and normalize line endings to LF
-* text=auto
-
-# === Source Code ===
-# TypeScript/JavaScript source files
-*.ts text eol=lf
-*.tsx text eol=lf
-*.js text eol=lf
-*.jsx text eol=lf
-
-# === Configuration & Markup ===
-# JSON configuration files
-*.json text eol=lf
-
-# YAML configuration (GitHub Actions, etc.)
-*.yml text eol=lf
-*.yaml text eol=lf
-
-# Markdown documentation
-*.md text eol=lf
-
-# CSS stylesheets
-*.css text eol=lf
-
-# Text files
-*.txt text eol=lf
-
-# === Special Files ===
-# Lock files (must be version controlled with LF)
-package-lock.json text eol=lf
-
-# Shell scripts (if added in future)
-*.sh text eol=lf
-
-# Batch files (if added in future)
-*.bat text eol=lf
-*.cmd text eol=lf
-
-# === Binary Files ===
-# Images
+# Binary files — never diff or convert
 *.ico binary
 *.png binary
 *.jpg binary
 *.jpeg binary
 *.gif binary
 *.svg binary
-
-# Fonts
 *.woff binary
 *.woff2 binary
 *.ttf binary
 *.otf binary
 *.eot binary
-
-# Archives
 *.zip binary
 *.tar binary
 *.gz binary
-
-# Keep this comment line at end of file
