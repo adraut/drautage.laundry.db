@@ -27,16 +27,64 @@ Adds a new detergent profile to the repository based on a GitHub issue.
    inaccessible (SmartLabel, network restrictions), use the ingredient list
    from the issue body as authoritative.
 
-4. **Create a new git branch**:
+4. **Normalize the ingredient list** before mapping to enum values:
+
+   **Order:** Preserve the exact printed sequence. Do not sort or reorder —
+   ingredient order is significant.
+
+   **"May contain" / conditional ingredients:** Include in the `ingredients`
+   array. Add a `// may contain` inline comment on that line. Note each one
+   in the PR body as conditional.
+
+   **OR alternatives** (`"A or B"`, `"A and/or B"`):
+
+   - If either option is already in the existing profile (Update issues), treat
+     the OR pair as satisfied — do not add or remove anything for that pair.
+   - If neither option is in the profile, use the **first-listed** option and
+     discard the rest.
+   - If a combined enum entry already exists that covers the exact OR pair (e.g.
+     `SodiumMEALaurethSulfate` for "Sodium and/or MEA laureth sulfate"), map to
+     that entry instead.
+
+   **Functional-category labels (P&G "MADE WITH:" format):** Gain liquids,
+   Tide Simply, and some other P&G products list ingredients by function group:
+   `"Cleaning Agents: (A; B). Stabilizers: (C). Enzymes: (D). ... Colorants. Fragrances. Water."`
+
+   - Water appears last in this format but is always first by concentration.
+     **List Water first.**
+   - Follow the printed category sequence for all other ingredients
+     (Cleaning Agents → Stabilizers/Process Aids → Water Softener → Enzymes →
+     Cleaning Aids → Odor Removers → Solvents → Preservative → Colorants →
+     Fragrances).
+   - Conditional phrases embedded in a category apply the "may contain" rule.
+
+   **Colorants:**
+
+   - Specific colorant named (e.g. `CI 42090`, `Pigment Blue 15`) → use that
+     specific `Ingredient` enum entry.
+   - Generic term only (`Colorants`, `Dyes`) → use `Ingredient.Colorants`.
+
+   **Enzymes:** Name specific enzymes when named in the source. If the source
+   lists "enzymes" generically, do not guess specific enzymes — note
+   "enzymes TBD" in the PR body.
+
+   **Plural vs. singular:** Source may list "Fragrances" (plural); map to
+   `Ingredient.Fragrance` (singular).
+
+   **SmartLabel "Enzyme" suffix:** Ingredients listed as "&lt;Name&gt; Enzyme"
+   (e.g. `Amylase Enzyme`) should have the suffix stripped; treat the base
+   name as the ingredient (e.g. `Amylase`).
+
+5. **Create a new git branch**:
    - For **Add** issues: `git checkout -b add/<brand>-<product>`
    - For **Update** issues: `git checkout -b update/<brand>-<product>`
 
    Use lowercase, hyphenated names.
 
-5. **Add new ingredients** to `src/components/common/types/Ingredient.ts`
+6. **Add new ingredients** to `src/components/common/types/Ingredient.ts`
    following the rules in `src/components/common/types/AGENTS.md`.
 
-6. **Create or update the detergent profile file** at
+7. **Create or update the detergent profile file** at
    `src/components/Detergent/data/profiles/<brand>-<product>-<variant>.ts`
    following the rules in `src/components/Detergent/AGENTS.md`.
    - **Add issue:** create a new file. Import `DataSource` from
@@ -49,20 +97,20 @@ Adds a new detergent profile to the repository based on a GitHub issue.
      the current value. Do not change other `DetergentProfile` constructor
      arguments or optional fields unless the issue explicitly requests it.
 
-7. **Export the new profile** in `src/components/Detergent/data/profiles/index.ts`
+8. **Export the new profile** in `src/components/Detergent/data/profiles/index.ts`
    in alphabetical order. (Skip this step for Update issues — the export already
    exists.)
 
-8. **Run quality checks** and fix any failures:
+9. **Run quality checks** and fix any failures:
 
    ```
    npm run checks
    ```
 
-9. **Verify `package-lock.json` is not modified**. If it appears in `git status`
-   or `git diff`, stop and investigate — do not commit or proceed.
+10. **Verify `package-lock.json` is not modified**. If it appears in `git status`
+    or `git diff`, stop and investigate — do not commit or proceed.
 
-10. **Commit the changes**:
+11. **Commit the changes**:
     - For **Add** issues:
       ```
       git commit -m "feat: add <Brand> <Product Name> detergent profile (#<issue_number>)"
@@ -72,7 +120,7 @@ Adds a new detergent profile to the repository based on a GitHub issue.
       git commit -m "feat: update <Brand> <Product Name> detergent profile (#<issue_number>)"
       ```
 
-11. **Open a draft PR** using the structure from `.github/PULL_REQUEST_TEMPLATE/detergent.md`:
+12. **Open a draft PR** using the structure from `.github/PULL_REQUEST_TEMPLATE/detergent.md`:
 
     For **Add** issues:
 
@@ -130,6 +178,5 @@ Adds a new detergent profile to the repository based on a GitHub issue.
 ## Notes
 
 - Do not modify `package-lock.json` under any circumstances.
-- If enzymes are listed generically, note "enzymes TBD" in the PR body.
 - List all unknowns in the PR — do not invent placeholder ingredients.
 - The PR must be a draft. Never open a ready-for-review PR.
