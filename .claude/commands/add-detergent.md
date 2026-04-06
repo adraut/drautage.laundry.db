@@ -18,16 +18,29 @@ Adds a new detergent profile to the repository based on a GitHub issue.
    Note whether the issue title starts with **"Add"** or **"Update"** — this
    determines the rest of the workflow.
 
+**Run steps 2, 3, and 4 in parallel.**
+
 2. **Read the AGENTS.md files** before doing any work:
    - `AGENTS.md` (root)
    - `src/components/Detergent/AGENTS.md`
    - `src/components/common/types/AGENTS.md`
 
-3. **Fetch ingredient sources** from the URL(s) in the issue. If sources are
+3. **Check for an existing profile.** Construct the expected filename from the
+   brand, product name, and variant (lowercase, hyphenated):
+
+   `src/components/Detergent/data/profiles/<brand>-<product>-<variant>.ts`
+   - **Add issue + file exists:** stop. Inform the user the profile already
+     exists and ask whether to treat this as an Update instead.
+   - **Add issue + no file:** proceed normally.
+   - **Update issue + file exists:** proceed normally.
+   - **Update issue + no file:** stop. Inform the user the profile is missing
+     and ask how to proceed.
+
+4. **Fetch ingredient sources** from the URL(s) in the issue. If sources are
    inaccessible (SmartLabel, network restrictions), use the ingredient list
    from the issue body as authoritative.
 
-4. **Normalize the ingredient list** before mapping to enum values:
+5. **Normalize the ingredient list** before mapping to enum values:
 
    **Order:** Preserve the exact printed sequence. Do not sort or reorder —
    ingredient order is significant.
@@ -72,16 +85,16 @@ Adds a new detergent profile to the repository based on a GitHub issue.
    (e.g. `Amylase Enzyme`) should have the suffix stripped; treat the base
    name as the ingredient (e.g. `Amylase`).
 
-5. **Create a new git branch**:
+6. **Create a new git branch**:
    - For **Add** issues: `git checkout -b add/<brand>-<product>`
    - For **Update** issues: `git checkout -b update/<brand>-<product>`
 
    Use lowercase, hyphenated names.
 
-6. **Add new ingredients** to `src/components/common/types/Ingredient.ts`
+7. **Add new ingredients** to `src/components/common/types/Ingredient.ts`
    following the rules in `src/components/common/types/AGENTS.md`.
 
-7. **Create or update the detergent profile file** at
+8. **Create or update the detergent profile file** at
    `src/components/Detergent/data/profiles/<brand>-<product>-<variant>.ts`
    following the rules in `src/components/Detergent/AGENTS.md`.
    - **Add issue:** create a new file. Import `DataSource` from
@@ -94,20 +107,20 @@ Adds a new detergent profile to the repository based on a GitHub issue.
      the current value. Do not change other `DetergentProfile` constructor
      arguments or optional fields unless the issue explicitly requests it.
 
-8. **Export the new profile** in `src/components/Detergent/data/profiles/index.ts`
+9. **Export the new profile** in `src/components/Detergent/data/profiles/index.ts`
    in alphabetical order. (Skip this step for Update issues — the export already
    exists.)
 
-9. **Run quality checks** and fix any failures:
+10. **Run quality checks** and fix any failures:
 
-   ```
-   npm run checks
-   ```
+    ```
+    npm run checks
+    ```
 
-10. **Verify `package-lock.json` is not modified**. If it appears in `git status`
+11. **Verify `package-lock.json` is not modified**. If it appears in `git status`
     or `git diff`, stop and investigate — do not commit or proceed.
 
-11. **Commit the changes**:
+12. **Commit the changes**:
     - For **Add** issues:
       ```
       git commit -m "feat: add <Brand> <Product Name> detergent profile (#<issue_number>)"
@@ -117,7 +130,7 @@ Adds a new detergent profile to the repository based on a GitHub issue.
       git commit -m "feat: update <Brand> <Product Name> detergent profile (#<issue_number>)"
       ```
 
-12. **Open a draft PR** using the structure from `.github/PULL_REQUEST_TEMPLATE/detergent.md`:
+13. **Open a draft PR** using the structure from `.github/PULL_REQUEST_TEMPLATE/detergent.md`:
 
     For **Add** issues:
 
