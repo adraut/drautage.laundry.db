@@ -721,6 +721,13 @@ export enum Ingredient {
    * suds modifier and conditioning agent that reduces excess foam while improving fabric feel.
    */
   PEG12Dimethicone = 'PEG-12 Dimethicone',
+  /**
+   * PEG-136 Polyvinyl Alcohol is a graft copolymer of polyethylene glycol (PEG, ~136 ethylene
+   * oxide units, MW ~6000) onto a polyvinyl alcohol backbone. The PEG modification improves
+   * water solubility and dissolution rate relative to plain PVA, making it suitable for
+   * unit-dose pac film applications — particularly for fast-dissolving outer layers or
+   * multi-compartment pod dividers.
+   */
   PEG136PolyvinylAlcohol = 'PEG-136 Polyvinyl Alcohol',
   /**
    * PEG Terephthalate Polymer is a polyester-based polymer used in laundry detergents
