@@ -5,7 +5,7 @@
   top: 50vh;
   transform: translateY(-50%);
   width: 30px;
-  background-color: #0078d4;
+  background-color: var(--color-action);
   color: white;
   cursor: pointer;
   display: flex;
@@ -15,13 +15,13 @@
   padding: 1rem 0;
   gap: 0.5rem;
   border-radius: 0 8px 8px 0;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 0 8px var(--color-shadow-strong);
   z-index: 998;
   transition: background-color 0.2s ease;
 }
 
 .filter-bar:hover {
-  background-color: #106ebe;
+  background-color: var(--color-action-hover);
 }
 
 .filter-bar:focus {
@@ -48,12 +48,12 @@
   padding: 0;
   margin: 0;
   font: inherit;
-  color: #0078d4;
+  color: var(--color-action);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .detergent-name-btn:hover {
-  color: #106ebe;
+  color: var(--color-action-hover);
 }
