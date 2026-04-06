@@ -37,7 +37,6 @@ Adds a new detergent profile to the repository based on a GitHub issue.
    in the PR body as conditional.
 
    **OR alternatives** (`"A or B"`, `"A and/or B"`):
-
    - If either option is already in the existing profile (Update issues), treat
      the OR pair as satisfied — do not add or remove anything for that pair.
    - If neither option is in the profile, use the **first-listed** option and
@@ -49,7 +48,6 @@ Adds a new detergent profile to the repository based on a GitHub issue.
    **Functional-category labels (P&G "MADE WITH:" format):** Gain liquids,
    Tide Simply, and some other P&G products list ingredients by function group:
    `"Cleaning Agents: (A; B). Stabilizers: (C). Enzymes: (D). ... Colorants. Fragrances. Water."`
-
    - Water appears last in this format but is always first by concentration.
      **List Water first.**
    - Follow the printed category sequence for all other ingredients
@@ -59,7 +57,6 @@ Adds a new detergent profile to the repository based on a GitHub issue.
    - Conditional phrases embedded in a category apply the "may contain" rule.
 
    **Colorants:**
-
    - Specific colorant named (e.g. `CI 42090`, `Pigment Blue 15`) → use that
      specific `Ingredient` enum entry.
    - Generic term only (`Colorants`, `Dyes`) → use `Ingredient.Colorants`.
