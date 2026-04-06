@@ -7,8 +7,10 @@ import {
   ColumnAutoSizeModule,
   GridStateModule,
   themeQuartz,
+  colorSchemeDark,
 } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
+import { useTheme } from '../../context/ThemeContext';
 import { CompositeFilterDescriptor, filterBy } from './utils/filterTypes';
 import { DetergentProfile } from './types/DetergentProfile';
 import { DetergentType } from './types/DetergentType';
@@ -24,6 +26,8 @@ import './FilterDrawer.css';
 import './FilterBar.css';
 
 ModuleRegistry.registerModules([ClientSideRowModelModule, ColumnApiModule, ColumnAutoSizeModule, GridStateModule]);
+
+const darkTheme = themeQuartz.withPart(colorSchemeDark);
 
 // Define filter fields in the same order as grid columns
 const FILTER_FIELDS = [
@@ -136,6 +140,7 @@ const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
 ];
 
 function Detergents() {
+  const { theme } = useTheme();
   const [detergents, setDetergents] = useState<Map<string, DetergentProfile>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState<CompositeFilterDescriptor | null>(null);
@@ -278,7 +283,7 @@ function Detergents() {
             <div style={{ flex: 1, minHeight: 0 }}>
               <AgGridReact<DetergentProfile>
                 ref={gridRef}
-                theme={themeQuartz}
+                theme={theme === 'dark' ? darkTheme : themeQuartz}
                 rowData={filteredData}
                 columnDefs={COLUMN_DEFS}
                 defaultColDef={DEFAULT_COL_DEF}

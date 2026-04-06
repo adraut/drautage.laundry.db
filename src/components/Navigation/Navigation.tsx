@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../context/ThemeContext';
 import './Navigation.css';
 
 function Navigation() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <nav className="navigation">
       <div className="nav-container">
@@ -25,6 +28,13 @@ function Navigation() {
             <Link to="/glossary">Glossary</Link>
           </li> */}
         </ul>
+        <button
+          className={`theme-toggle-btn ${theme === 'dark' ? 'theme-toggle-btn--sun' : 'theme-toggle-btn--moon'}`}
+          onClick={toggleTheme}
+          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {theme === 'dark' ? '☀' : '☾'}
+        </button>
       </div>
     </nav>
   );
