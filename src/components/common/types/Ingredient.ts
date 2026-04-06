@@ -136,6 +136,13 @@ export enum Ingredient {
    */
   CalciumFormate = 'Calcium formate',
   /**
+   * Calcium and/or sodium formate is a blend of calcium formate and/or sodium formate used in
+   * laundry detergents as an enzyme stabilizer, protecting proteases and amylases from degradation
+   * in liquid formulations. The exact salt form may vary between batches.
+   * @uncategorized No enzyme-stabilizer category exists yet; it is not itself an enzyme.
+   */
+  CalciumSodiumFormate = 'Calcium and/or sodium formate',
+  /**
    * Cananga Odorata (Ylang Ylang) Flower Oil is an essential oil derived from the ylang ylang
    * flower, used as a fragrance ingredient in laundry detergents.
    */
