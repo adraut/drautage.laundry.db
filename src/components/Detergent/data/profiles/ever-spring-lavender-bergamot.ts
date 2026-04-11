@@ -25,7 +25,7 @@ const ingredients: Ingredient[] = [
 
 const EverSpringLavenderBergamot: DetergentProfile = new DetergentProfile(
   'Lavender & Bergamot Laundry Detergent',
-  'Ever Spring',
+  'Everspring',
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,

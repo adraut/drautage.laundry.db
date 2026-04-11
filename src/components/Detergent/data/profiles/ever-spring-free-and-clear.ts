@@ -24,7 +24,7 @@ const ingredients: Ingredient[] = [
 
 const EverSpringFreeAndClear: DetergentProfile = new DetergentProfile(
   'Free & Clear Laundry Detergent',
-  'Ever Spring',
+  'Everspring',
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
