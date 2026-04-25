@@ -50,6 +50,7 @@ const FILTER_FIELDS = [
   { field: 'hasMannanase', title: 'Mannanase', type: 'boolean' as const },
   { field: 'hasPectinase', title: 'Pectinase', type: 'boolean' as const },
   { field: 'hasProtease', title: 'Protease', type: 'boolean' as const },
+  { field: 'hasEnzymeStabilizers', title: 'Enzyme Stabilizers', type: 'boolean' as const },
   { field: 'hasDyeTransferInhibitors', title: 'Dye Transfer Inhibitors', type: 'boolean' as const },
   { field: 'hasSoilAntiRedepositionAgents', title: 'Soil Anti-Redeposition', type: 'boolean' as const },
   { field: 'hasSoilReleaseAgents', title: 'Soil Release', type: 'boolean' as const },

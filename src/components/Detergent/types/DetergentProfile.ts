@@ -6,6 +6,7 @@ import { SepticUnfriendly } from '../../common/types/SepticUnfriendly';
 import { Scents } from '../../common/types/Scents';
 import { OpticalBrighteners } from '../../common/types/OpticalBrighteners';
 import { Enzymes, Proteases, Pectinases, Amylases, Cellulases } from '../../common/types/Enzymes';
+import { EnzymeStabilizers } from '../../common/types/EnzymeStabilizers';
 import { Dyes } from '../../common/types/Dyes';
 import { NonBiodegradable } from '../../common/types/NonBiodegradable';
 import { AmphotericSurfactants } from '../../common/types/AmphotericSurfactants';
@@ -78,6 +79,7 @@ export class DetergentProfile {
   readonly hasOxygenBleach: boolean;
   readonly hasOxygenBleachBoosters: boolean;
   readonly hasEnzymes: boolean;
+  readonly hasEnzymeStabilizers: boolean;
   readonly hasAmphotericSurfactants: boolean;
   readonly hasBuilders: boolean;
   readonly hasFabricAntioxidants: boolean;
@@ -157,6 +159,7 @@ export class DetergentProfile {
     this.hasOxygenBleach = hasCategory(ingredients, OxygenBleaches, 'Oxygen Bleach', exclusions);
     this.hasOxygenBleachBoosters = hasCategory(ingredients, OxygenBleachBoosters, 'Oxygen Bleach Booster', exclusions);
     this.hasEnzymes = hasCategory(ingredients, Enzymes, 'Enzyme', exclusions);
+    this.hasEnzymeStabilizers = hasCategory(ingredients, EnzymeStabilizers, 'Enzyme Stabilizer', exclusions);
     this.hasAmphotericSurfactants = hasCategory(
       ingredients,
       AmphotericSurfactants,

@@ -10,6 +10,7 @@ import { Fillers } from '../../common/types/Fillers';
 import { NonionicSurfactants } from '../../common/types/NonionicSurfactants';
 import { Soaps } from '../../common/types/Soaps';
 import { Enzymes } from '../../common/types/Enzymes';
+import { EnzymeStabilizers } from '../../common/types/EnzymeStabilizers';
 import { OpticalBrighteners } from '../../common/types/OpticalBrighteners';
 import { OxygenBleaches } from '../../common/types/OxygenBleaches';
 import { OxygenBleachBoosters } from '../../common/types/OxygenBleachBoosters';
@@ -66,6 +67,7 @@ const displayCategories: [Set<Ingredient>, string][] = [
   [NonionicSurfactants, 'Nonionic Surfactant'],
   [Soaps, 'Soap'],
   [Enzymes, 'Enzyme'],
+  [EnzymeStabilizers, 'Enzyme Stabilizer'],
   [OpticalBrighteners, 'Optical Brightener'],
   [OxygenBleaches, 'Oxygen Bleach'],
   [OxygenBleachBoosters, 'Oxygen Bleach Booster'],

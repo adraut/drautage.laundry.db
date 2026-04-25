@@ -135,9 +135,8 @@ export enum Ingredient {
    */
   CalciumChloride = 'Calcium Chloride',
   /**
-   * Calcium Formate is an inorganic salt used in laundry detergents as an enzyme stabilizer,
+   * Calcium Formate is an organic calcium salt used in laundry detergents as an enzyme stabilizer,
    * protecting proteases and amylases from degradation in liquid formulations.
-   * @uncategorized No enzyme-stabilizer category exists yet; it is not itself an enzyme.
    */
   CalciumFormate = 'Calcium formate',
   /**
@@ -991,7 +990,6 @@ export enum Ingredient {
   /**
    * Sodium Formate is a sodium salt used in laundry detergents as an enzyme stabilizer,
    * protecting proteases and amylases from degradation in liquid formulations.
-   * @uncategorized No enzyme-stabilizer category exists yet; it is not itself an enzyme.
    * See also CalciumFormate, which serves the same function.
    */
   SodiumFormate = 'Sodium Formate',
