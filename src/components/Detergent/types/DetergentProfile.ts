@@ -21,6 +21,7 @@ import { OxygenBleachBoosters } from '../../common/types/OxygenBleachBoosters';
 import { DyeTransferInhibitors } from '../../common/types/DyeTransferInhibitors';
 import { SoilAntiRedeposition } from '../../common/types/SoilAntiRedeposition';
 import { SoilRelease } from '../../common/types/SoilRelease';
+import { Sulfates } from '../../common/types/Sulfates';
 import { ProcessingAids } from '../../common/types/ProcessingAids';
 import { IngredientContextRules } from '../../common/types/IngredientContextRules';
 import { DataSource } from './DataSource';
@@ -87,6 +88,7 @@ export class DetergentProfile {
   readonly hasFillers: boolean;
   readonly hasAnionicSurfactants: boolean;
   readonly hasNonionicSurfactants: boolean;
+  readonly hasSulfates: boolean;
   readonly hasDyes: boolean;
   readonly hasScents: boolean;
   readonly hasSoaps: boolean;
@@ -172,6 +174,7 @@ export class DetergentProfile {
     this.hasFillers = hasCategory(ingredients, Fillers, 'Filler', exclusions);
     this.hasAnionicSurfactants = hasCategory(ingredients, AnionicSurfactants, 'Anionic Surfactant', exclusions);
     this.hasNonionicSurfactants = hasCategory(ingredients, NonionicSurfactants, 'Nonionic Surfactant', exclusions);
+    this.hasSulfates = hasCategory(ingredients, Sulfates, 'Sulfate', exclusions);
     this.hasDyes = hasCategory(ingredients, Dyes, 'Dye', exclusions);
     this.hasScents = hasCategory(ingredients, Scents, 'Scent', exclusions);
     this.hasSoaps = hasCategory(ingredients, Soaps, 'Soap', exclusions);

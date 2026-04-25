@@ -642,6 +642,30 @@ describe('DetergentProfile', () => {
         );
         expect(profile.hasNonionicSurfactants).toBe(false);
       });
+
+      it('should detect hasSulfates when a sulfate ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.SodiumLaurylSulfate],
+          new Date(),
+        );
+        expect(profile.hasSulfates).toBe(true);
+      });
+
+      it('should not detect hasSulfates when no sulfate ingredients are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
+        expect(profile.hasSulfates).toBe(false);
+      });
     });
 
     describe('biodegradability and septic safety properties', () => {

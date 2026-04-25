@@ -58,6 +58,7 @@ const FILTER_FIELDS = [
   { field: 'hasDyes', title: 'Dyes', type: 'boolean' as const },
   { field: 'hasAmphotericSurfactants', title: 'Amphoteric Surfactants', type: 'boolean' as const },
   { field: 'hasAnionicSurfactants', title: 'Anionic Surfactants', type: 'boolean' as const },
+  { field: 'hasSulfates', title: 'Sulfates', type: 'boolean' as const },
   { field: 'hasNonionicSurfactants', title: 'Nonionic Surfactants', type: 'boolean' as const },
   { field: 'hasBuilders', title: 'Builders', type: 'boolean' as const },
   { field: 'hasFabricConditioners', title: 'Fabric Conditioners', type: 'boolean' as const },

@@ -34,8 +34,9 @@ When adding a new ingredient, decide if it belongs in any of these sets (non‑e
   - `EnzymeStabilizers` is for additives that protect hydrolytic enzymes (proteases, amylases, etc.)
     from degradation in liquid formulations (e.g. formate salts). Distinct from `Enzymes` (functional
     cleaning agents) and `Preservatives` (which protect against microbial growth).
-- AmphotericSurfactants, AnionicSurfactants, NonionicSurfactants, Soaps, Scents, Dyes
+- AmphotericSurfactants, AnionicSurfactants, NonionicSurfactants, Soaps, Scents, Dyes, Sulfates
   - `AmphotericSurfactants` is for zwitterionic surfactants (e.g. betaines, amphopropionates) that carry both positive and negative charges. Do **not** add purely anionic or nonionic surfactants here.
+  - `Sulfates` is for any ingredient that is a sulfate compound (contains SO₄²⁻ or the ester-sulfate -OSO₃⁻ group). This includes surfactant sulfates such as SLS and SLES (which also appear in `AnionicSurfactants`) as well as non-surfactant inorganic sulfates used as fillers (e.g. sodium sulfate). Do **not** add sulfonates (alkylbenzene sulfonates, LAS) or carboxylate/fatty-acid salts — they are chemically distinct from sulfates.
 - OxygenBleaches, OxygenBleachBoosters, SudsReducers, WaterConditioners
 - Solvents, Thickeners, BitteringAgents, PacFilm, Fillers, Builders, FabricConditioners
   - `Solvents` is for liquid carriers and humectants (water, glycols, alcohols). Informational only — no grid column or filter.

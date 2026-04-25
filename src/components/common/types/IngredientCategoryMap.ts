@@ -22,6 +22,7 @@ import { Preservatives } from './Preservatives';
 import { OdorEliminators } from './OdorEliminators';
 import { SoilAntiRedeposition } from './SoilAntiRedeposition';
 import { SoilRelease } from './SoilRelease';
+import { Sulfates } from './Sulfates';
 import { PacFilm } from './PacFilm';
 import { Solvents } from './Solvents';
 import { Thickeners } from './Thickeners';
@@ -51,6 +52,7 @@ const CATEGORY_SETS: [Set<Ingredient>, string][] = [
   [OdorEliminators, 'Odor Eliminator'],
   [SoilAntiRedeposition, 'Soil Anti-Redeposition'],
   [SoilRelease, 'Soil Release'],
+  [Sulfates, 'Sulfate'],
   [PacFilm, 'Pac Film'],
   [ProcessingAids, 'Processing Aid'],
   [Solvents, 'Solvent'],
