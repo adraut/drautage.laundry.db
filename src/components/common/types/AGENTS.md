@@ -30,7 +30,10 @@ When adding a new ingredient to a category set file, insert it in **alphabetical
 
 When adding a new ingredient, decide if it belongs in any of these sets (non‑exhaustive):
 
-- Enzymes, Proteases, OpticalBrighteners
+- Enzymes, Proteases, OpticalBrighteners, EnzymeStabilizers
+  - `EnzymeStabilizers` is for additives that protect hydrolytic enzymes (proteases, amylases, etc.)
+    from degradation in liquid formulations (e.g. formate salts). Distinct from `Enzymes` (functional
+    cleaning agents) and `Preservatives` (which protect against microbial growth).
 - AmphotericSurfactants, AnionicSurfactants, NonionicSurfactants, Soaps, Scents, Dyes
   - `AmphotericSurfactants` is for zwitterionic surfactants (e.g. betaines, amphopropionates) that carry both positive and negative charges. Do **not** add purely anionic or nonionic surfactants here.
 - OxygenBleaches, OxygenBleachBoosters, SudsReducers, WaterConditioners

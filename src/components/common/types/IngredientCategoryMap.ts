@@ -9,6 +9,7 @@ import { Fillers } from './Fillers';
 import { NonionicSurfactants } from './NonionicSurfactants';
 import { Soaps } from './Soaps';
 import { Enzymes } from './Enzymes';
+import { EnzymeStabilizers } from './EnzymeStabilizers';
 import { OpticalBrighteners } from './OpticalBrighteners';
 import { OxygenBleaches } from './OxygenBleaches';
 import { OxygenBleachBoosters } from './OxygenBleachBoosters';
@@ -37,6 +38,7 @@ const CATEGORY_SETS: [Set<Ingredient>, string][] = [
   [NonionicSurfactants, 'Nonionic Surfactant'],
   [Soaps, 'Soap'],
   [Enzymes, 'Enzyme'],
+  [EnzymeStabilizers, 'Enzyme Stabilizer'],
   [OpticalBrighteners, 'Optical Brightener'],
   [OxygenBleaches, 'Oxygen Bleach'],
   [OxygenBleachBoosters, 'Oxygen Bleach Booster'],

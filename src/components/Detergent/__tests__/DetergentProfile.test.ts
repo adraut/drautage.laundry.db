@@ -544,6 +544,30 @@ describe('DetergentProfile', () => {
         );
         expect(profile.hasFabricAntioxidants).toBe(false);
       });
+
+      it('should detect hasEnzymeStabilizers when an enzyme stabilizer ingredient is present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.CalciumFormate],
+          new Date(),
+        );
+        expect(profile.hasEnzymeStabilizers).toBe(true);
+      });
+
+      it('should not detect hasEnzymeStabilizers when no enzyme stabilizer ingredients are present', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water],
+          new Date(),
+        );
+        expect(profile.hasEnzymeStabilizers).toBe(false);
+      });
     });
 
     describe('surfactant detection properties', () => {
