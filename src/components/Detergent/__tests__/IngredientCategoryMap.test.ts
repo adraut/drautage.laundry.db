@@ -23,6 +23,7 @@ import { Preservatives } from '../../common/types/Preservatives';
 import { OdorEliminators } from '../../common/types/OdorEliminators';
 import { SoilAntiRedeposition } from '../../common/types/SoilAntiRedeposition';
 import { SoilRelease } from '../../common/types/SoilRelease';
+import { Sulfates } from '../../common/types/Sulfates';
 import { PacFilm } from '../../common/types/PacFilm';
 import { ProcessingAids } from '../../common/types/ProcessingAids';
 import { Solvents } from '../../common/types/Solvents';
@@ -30,7 +31,7 @@ import { Thickeners } from '../../common/types/Thickeners';
 
 describe('getIngredientCategories', () => {
   it('returns correct label for a single-category ingredient', () => {
-    expect(getIngredientCategories(Ingredient.SodiumLaurylSulfate)).toEqual(['Anionic Surfactant']);
+    expect(getIngredientCategories(Ingredient.SodiumC10_16Alkylbenzenesulfonate)).toEqual(['Anionic Surfactant']);
   });
 
   it('returns both labels for an ingredient in multiple categories', () => {
@@ -80,6 +81,7 @@ const displayCategories: [Set<Ingredient>, string][] = [
   [OdorEliminators, 'Odor Eliminator'],
   [SoilAntiRedeposition, 'Soil Anti-Redeposition'],
   [SoilRelease, 'Soil Release'],
+  [Sulfates, 'Sulfate'],
   [PacFilm, 'Pac Film'],
   [ProcessingAids, 'Processing Aid'],
   [Solvents, 'Solvent'],
