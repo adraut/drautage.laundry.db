@@ -551,6 +551,7 @@ export enum Ingredient {
    * Linear Alkylbenzene Sulfonic Acid (LABSA) is an anionic surfactant and the free acid form
    * of linear alkylbenzene sulfonate (LAS), used in laundry detergents as a primary cleaning
    * agent. Distinct from its sodium salt (Sodium C10-16 Alkylbenzenesulfonate).
+   * Synonyms: Alkylbenzene Sulfonic Acid
    */
   LinearAlkylbenzeneSulfonicAcid = 'Linear Alkylbenzene Sulfonic Acid',
   Lipase = 'Lipase',
