@@ -44,6 +44,7 @@ export { default as EcostoreUltraSensitive3xConcentrateLaundryLiquidFragranceFre
 export { default as EraOxiBooster } from './era-oxibooster';
 export { default as EverSpringFreeAndClear } from './ever-spring-free-and-clear';
 export { default as EverSpringLavenderBergamot } from './ever-spring-lavender-bergamot';
+export { default as FieldAndFutureLaundryDetergentFreeAndClear } from './field-and-future-laundry-detergent-free-and-clear';
 export { default as GainFlingsMoonlightBreeze } from './gain-flings-moonlight-breeze';
 export { default as GainFlingsOriginal } from './gain-flings-original';
 export { default as GainHappyHibiscusHula } from './gain-happy-hibiscus-hula';
@@ -66,6 +67,7 @@ export { default as GreatValuePremiumCleanOriginalPacs } from './great-value-pre
 export { default as GreatValueUltimateFreshOriginalClean } from './great-value-ultimate-fresh-original-clean';
 export { default as GreatValueUltimateFreshOriginalCleanPacs } from './great-value-ultimate-fresh-original-clean-pacs';
 export { default as GuestsOnEarthLaundryDetergentGreenHinoki } from './guests-on-earth-laundry-detergent-green-hinoki';
+export { default as KirklandSignatureMultipurposePowderFreshScent } from './kirkland-signature-multipurpose-powder-fresh-scent';
 export { default as KirklandSignatureUltraCleanFreeAndClear } from './kirkland-signature-ultraclean-free-and-clear';
 export { default as MethodGingerMangoLaundryDetergent } from './method-ginger-mango-laundry-detergent';
 export { default as MethodLaundryDetergentBeachSage } from './method-laundry-detergent-beach-sage';
