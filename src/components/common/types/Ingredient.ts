@@ -233,6 +233,13 @@ export enum Ingredient {
   CitrusLimonPeelOil = 'Citrus Limon (Lemon) Peel Oil',
   CocamidopropylBetaine = 'Cocamidopropyl Betaine',
   /**
+   * Coco Glucoside is a mild nonionic surfactant derived from coconut fatty alcohols (C8-C16)
+   * and glucose, used in laundry detergents as a gentle cleansing agent and foam booster.
+   * Same alkyl glucoside family as Decyl Glucoside (C10) and Lauryl Glucoside (C12).
+   * Synonyms: C8-16 Fatty Alcohol Glucoside, Cocoyl Glucoside, Coconut Alkyl Glucoside
+   */
+  CocoGlucoside = 'Coco Glucoside',
+  /**
    * Coconut Fatty Acid is a mixture of fatty acids derived from coconut oil, used in laundry
    * detergents as a soap precursor and surfactant.
    */
