@@ -67,6 +67,7 @@ export { default as GreatValuePremiumCleanOriginalPacs } from './great-value-pre
 export { default as GreatValueUltimateFreshOriginalClean } from './great-value-ultimate-fresh-original-clean';
 export { default as GreatValueUltimateFreshOriginalCleanPacs } from './great-value-ultimate-fresh-original-clean-pacs';
 export { default as GuestsOnEarthLaundryDetergentGreenHinoki } from './guests-on-earth-laundry-detergent-green-hinoki';
+export { default as KirklandSignatureMultipurposePowderFreshScent } from './kirkland-signature-multipurpose-powder-fresh-scent';
 export { default as KirklandSignatureUltraCleanFreeAndClear } from './kirkland-signature-ultraclean-free-and-clear';
 export { default as MethodGingerMangoLaundryDetergent } from './method-ginger-mango-laundry-detergent';
 export { default as MethodLaundryDetergentBeachSage } from './method-laundry-detergent-beach-sage';

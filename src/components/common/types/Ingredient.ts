@@ -287,7 +287,7 @@ export enum Ingredient {
   /**
    * Dimethicone (polydimethylsiloxane) is a silicone polymer used in laundry detergents as a
    * suds reducer and defoamer, controlling foam levels during the wash cycle.
-   * Synonyms: Dimethicone Defoamer
+   * Synonyms: Dimethicone Defoamer, Silicon emulsion
    */
   Dimethicone = 'Dimethicone',
   /**
