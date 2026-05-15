@@ -6,17 +6,15 @@ updates:
     schedule:
       interval: 'weekly'
       day: 'friday'
-      time: '22:00'
     cooldown:
-      default-days: 5
+      default-days: 7
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
       interval: 'weekly'
       day: 'friday'
-      time: '22:00'
     cooldown:
-      default-days: 5
+      default-days: 7
     groups:
       dev-dependencies-major:
         dependency-type: 'development'
