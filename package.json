@@ -23,12 +23,12 @@
     "checks": "npm run lint && npm run type-check && npm run test && npm run format"
   },
   "dependencies": {
-    "ag-grid-community": "^35.2.1",
-    "ag-grid-react": "^35.2.1",
+    "ag-grid-community": "^35.3.0",
+    "ag-grid-react": "^35.3.0",
     "i18n-iso-countries": "^7.14.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.15.0"
+    "react-router-dom": "^7.15.1"
   },
   "devDependencies": {
     "@rsbuild/core": "^2.0.6",
