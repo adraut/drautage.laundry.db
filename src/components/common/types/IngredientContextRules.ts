@@ -1,7 +1,7 @@
 import { Ingredient } from './Ingredient';
 import { IngredientContextRule } from './IngredientContextRule';
-import { AnionicSurfactants } from './AnionicSurfactants';
-import { DetergentType } from '../../Detergent/types/DetergentType';
+import { FoamingSurfactants } from './FoamingSurfactants';
+import { Surfactants } from './Surfactants';
 
 /**
  * Global context rules that adjust ingredient category membership based on
@@ -37,17 +37,19 @@ export const IngredientContextRules: IngredientContextRule[] = [
   {
     /**
      * C8-18 fatty acid sodium salt appears in both Soaps and SudsReducers.
-     * When a primary synthetic anionic surfactant (LAS, laureth sulfate, etc.)
-     * appears earlier in the list (higher concentration), the fatty acid salt's
-     * role shifts from active soap surfactant to suds suppressor: the synthetic
-     * surfactant generates foam that the fatty acid salt then dampens, which is
-     * a well-established mechanism in HE powder and liquid formulations.
+     * It is a suds reducer when a foaming surfactant (sulfate, sulfonate, or ether
+     * sulfate) precedes it with at least one non-surfactant ingredient as a gap
+     * (indicating lower concentration). If it sits immediately adjacent to a
+     * surfactant, or only non-foaming surfactants precede it, it remains a soap.
      */
     ingredient: Ingredient.C8_18FattyAcidsSodiumSalt,
-    condition: (ingredients, type) => {
-      if (type !== DetergentType.Powder) return false;
+    condition: (ingredients, _type) => {
       const fattyIdx = ingredients.indexOf(Ingredient.C8_18FattyAcidsSodiumSalt);
-      return ingredients.slice(0, fattyIdx).some((ing) => AnionicSurfactants.has(ing));
+      return (
+        fattyIdx > 0 &&
+        !Surfactants.has(ingredients[fattyIdx - 1]) &&
+        ingredients.slice(0, fattyIdx).some((ing) => FoamingSurfactants.has(ing))
+      );
     },
     excludeFromCategories: ['Soap'],
   },
@@ -56,17 +58,19 @@ export const IngredientContextRules: IngredientContextRule[] = [
      * Free fatty acids (CoconutFattyAcid, LauricAcid, PalmKernelAcid,
      * FattyAcidC8_18AndC18Unsaturated) are thermodynamically 100% deprotonated
      * at laundry wash-water pH (≥8), so they always technically co-surf as soap.
-     * However, when a synthetic anionic surfactant precedes them in the list
-     * (higher concentration), their formulation intent is suds suppression via
-     * insoluble calcium fatty acid particle formation — not cleaning. The anionic
-     * surfactant handles primary cleaning and generates foam; the fatty acid damps
-     * that foam. This is the standard HE-formula mechanism. In a soap-primary
-     * formula with no synthetic anionic, the rule correctly leaves them as Soap.
+     * They shift to suds suppressors when a foaming surfactant (sulfate, sulfonate,
+     * or ether sulfate) precedes them with a non-surfactant gap (indicating a lower
+     * concentration). If they sit immediately adjacent to a surfactant, or only
+     * non-foaming surfactants precede them, the rule leaves them correctly as Soap.
      */
     ingredient: Ingredient.CoconutFattyAcid,
     condition: (ingredients, _type) => {
       const idx = ingredients.indexOf(Ingredient.CoconutFattyAcid);
-      return ingredients.slice(0, idx).some((ing) => AnionicSurfactants.has(ing));
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
     },
     excludeFromCategories: ['Soap'],
   },
@@ -74,7 +78,11 @@ export const IngredientContextRules: IngredientContextRule[] = [
     ingredient: Ingredient.FattyAcidC8_18AndC18Unsaturated,
     condition: (ingredients, _type) => {
       const idx = ingredients.indexOf(Ingredient.FattyAcidC8_18AndC18Unsaturated);
-      return ingredients.slice(0, idx).some((ing) => AnionicSurfactants.has(ing));
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
     },
     excludeFromCategories: ['Soap'],
   },
@@ -82,7 +90,11 @@ export const IngredientContextRules: IngredientContextRule[] = [
     ingredient: Ingredient.LauricAcid,
     condition: (ingredients, _type) => {
       const idx = ingredients.indexOf(Ingredient.LauricAcid);
-      return ingredients.slice(0, idx).some((ing) => AnionicSurfactants.has(ing));
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
     },
     excludeFromCategories: ['Soap'],
   },
@@ -90,7 +102,11 @@ export const IngredientContextRules: IngredientContextRule[] = [
     ingredient: Ingredient.PalmKernelAcid,
     condition: (ingredients, _type) => {
       const idx = ingredients.indexOf(Ingredient.PalmKernelAcid);
-      return ingredients.slice(0, idx).some((ing) => AnionicSurfactants.has(ing));
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
     },
     excludeFromCategories: ['Soap'],
   },
@@ -107,6 +123,90 @@ export const IngredientContextRules: IngredientContextRule[] = [
       const polyIdx = ingredients.indexOf(Ingredient.SodiumPolyacrylate);
       const fattyIdx = ingredients.indexOf(Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts);
       return polyIdx !== -1 && polyIdx < fattyIdx;
+    },
+    excludeFromCategories: ['Soap'],
+  },
+  {
+    ingredient: Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts,
+    condition: (ingredients, _type) => {
+      const idx = ingredients.indexOf(Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts);
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
+    },
+    excludeFromCategories: ['Soap'],
+  },
+  {
+    ingredient: Ingredient.C12_18FattyAcidsSodiumSalt,
+    condition: (ingredients, _type) => {
+      const idx = ingredients.indexOf(Ingredient.C12_18FattyAcidsSodiumSalt);
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
+    },
+    excludeFromCategories: ['Soap'],
+  },
+  {
+    ingredient: Ingredient.MEAC12_18FattyAcidsSalt,
+    condition: (ingredients, _type) => {
+      const idx = ingredients.indexOf(Ingredient.MEAC12_18FattyAcidsSalt);
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
+    },
+    excludeFromCategories: ['Soap'],
+  },
+  {
+    ingredient: Ingredient.MEACocoate,
+    condition: (ingredients, _type) => {
+      const idx = ingredients.indexOf(Ingredient.MEACocoate);
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
+    },
+    excludeFromCategories: ['Soap'],
+  },
+  {
+    ingredient: Ingredient.PotassiumCocoate,
+    condition: (ingredients, _type) => {
+      const idx = ingredients.indexOf(Ingredient.PotassiumCocoate);
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
+    },
+    excludeFromCategories: ['Soap'],
+  },
+  {
+    ingredient: Ingredient.SodiumCocoate,
+    condition: (ingredients, _type) => {
+      const idx = ingredients.indexOf(Ingredient.SodiumCocoate);
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
+    },
+    excludeFromCategories: ['Soap'],
+  },
+  {
+    ingredient: Ingredient.SodiumOleate,
+    condition: (ingredients, _type) => {
+      const idx = ingredients.indexOf(Ingredient.SodiumOleate);
+      return (
+        idx > 0 &&
+        !Surfactants.has(ingredients[idx - 1]) &&
+        ingredients.slice(0, idx).some((ing) => FoamingSurfactants.has(ing))
+      );
     },
     excludeFromCategories: ['Soap'],
   },
