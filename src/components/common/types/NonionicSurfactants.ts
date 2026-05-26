@@ -17,6 +17,7 @@ NonionicSurfactants.add(Ingredient.CocoGlucoside);
 NonionicSurfactants.add(Ingredient.DecylGlucoside);
 NonionicSurfactants.add(Ingredient.EthoxylatedAlcohol);
 NonionicSurfactants.add(Ingredient.Glycolipids);
+NonionicSurfactants.add(Ingredient.OrganicSoapberryJuice);
 NonionicSurfactants.add(Ingredient.LauramineOxide);
 NonionicSurfactants.add(Ingredient.Laureth_6);
 NonionicSurfactants.add(Ingredient.Laureth_7);

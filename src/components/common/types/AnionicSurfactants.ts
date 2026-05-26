@@ -6,6 +6,7 @@ AnionicSurfactants.add(Ingredient.C12_18FattyAcidsSodiumSalt);
 AnionicSurfactants.add(Ingredient.DodecylbenzeneSulfonicAcid);
 AnionicSurfactants.add(Ingredient.LinearAlkylbenzeneSulfonicAcid);
 AnionicSurfactants.add(Ingredient.MEAC10_16Alkylbenzenesulfonate);
+AnionicSurfactants.add(Ingredient.MEACocoate);
 AnionicSurfactants.add(Ingredient.MEAC12_15AlkylEtherSulfate);
 AnionicSurfactants.add(Ingredient.MEAC12_18FattyAcidsSalt);
 AnionicSurfactants.add(Ingredient.MEADedecylbenzenesulfonate);
