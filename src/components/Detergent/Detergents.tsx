@@ -17,6 +17,8 @@ import { DetergentType } from './types/DetergentType';
 import { loadDetergents } from './data/detergents-data';
 import { useGridFilterSync } from './hooks/useGridFilterSync';
 import { useGridSortSync } from './hooks/useGridSortSync';
+import { useDetergentUrlSync } from './hooks/useDetergentUrlSync';
+import { toDetergentSlug, findDetergentBySlug } from './utils/detergentSlug';
 import { getDefaultSort } from './utils/gridSortUtils';
 import { Drawer } from '../common/Drawer';
 import { FilterDrawerContent } from './FilterDrawerContent';
@@ -150,8 +152,10 @@ function Detergents() {
   const [selectedDetergent, setSelectedDetergent] = useState<DetergentProfile | null>(null);
   const { filter: urlFilter, updateFilterInUrl, resetFilterInUrl } = useGridFilterSync();
   const { sortModel, updateSortInUrl, resetSortInUrl } = useGridSortSync();
+  const { slug: detergentSlug, setDetergentSlug } = useDetergentUrlSync();
   const gridRef = useRef<AgGridReact<DetergentProfile>>(null);
   const isFirstSortRender = useRef(true);
+  const detergentUrlInitialized = useRef(false);
 
   // Store the initial filter from URL for reset functionality
   const initialFilterRef = useRef<CompositeFilterDescriptor | null>(null);
@@ -182,6 +186,27 @@ function Detergents() {
       }
     }
   }, [urlFilter]);
+
+  // Restore selected detergent from URL on initial data load
+  useEffect(() => {
+    if (detergents.size === 0 || detergentUrlInitialized.current) return;
+    detergentUrlInitialized.current = true;
+    if (!detergentSlug) return;
+    const found = findDetergentBySlug(detergentSlug, detergents);
+    if (found) setSelectedDetergent(found);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detergents]);
+
+  // Sync URL slug → selectedDetergent for back/forward navigation
+  useEffect(() => {
+    if (!detergentUrlInitialized.current) return;
+    if (!detergentSlug) {
+      setSelectedDetergent(null);
+      return;
+    }
+    const found = findDetergentBySlug(detergentSlug, detergents);
+    setSelectedDetergent(found);
+  }, [detergentSlug, detergents]);
 
   // Handle filter changes from FilterDrawer and update URL
   const handleFilterChange = useCallback(
@@ -218,9 +243,13 @@ function Detergents() {
     updateSortInUrl(sorted);
   }, [updateSortInUrl]);
 
-  const handleNameClick = useCallback((detergent: DetergentProfile) => {
-    setSelectedDetergent(detergent);
-  }, []);
+  const handleNameClick = useCallback(
+    (detergent: DetergentProfile) => {
+      setSelectedDetergent(detergent);
+      setDetergentSlug(toDetergentSlug(detergent));
+    },
+    [setDetergentSlug],
+  );
 
   const resetFilter = useCallback(() => {
     // Reset to the initial filter from URL — use immediate variant to avoid debounce race with sort reset
@@ -267,7 +296,13 @@ function Detergents() {
           <FilterBar onClick={() => setIsDrawerOpen(true)} isVisible={!isDrawerOpen} />
 
           {/* Detail Card */}
-          <DetergentDetailCard detergent={selectedDetergent} onClose={() => setSelectedDetergent(null)} />
+          <DetergentDetailCard
+            detergent={selectedDetergent}
+            onClose={() => {
+              setSelectedDetergent(null);
+              setDetergentSlug(null);
+            }}
+          />
 
           {/* Filter Drawer */}
           <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} title="Filter Detergents">

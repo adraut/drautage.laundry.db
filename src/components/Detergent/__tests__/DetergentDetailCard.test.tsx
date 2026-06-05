@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { DetergentDetailCard } from '../DetergentDetailCard';
 import { DetergentProfile } from '../types/DetergentProfile';
@@ -132,6 +132,48 @@ describe('DetergentDetailCard', () => {
 
       const countriesValue = screen.getByText('Countries').nextElementSibling;
       expect(countriesValue).toHaveTextContent('—');
+    });
+  });
+
+  describe('copy link button', () => {
+    it('renders the copy link button when a detergent is provided', () => {
+      const detergent = makeDetergent();
+      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+
+      expect(screen.getByRole('button', { name: 'Copy link to this product' })).toBeInTheDocument();
+    });
+
+    it('does not render the copy link button when detergent is null', () => {
+      render(<DetergentDetailCard detergent={null} onClose={() => {}} />);
+
+      expect(screen.queryByRole('button', { name: 'Copy link to this product' })).not.toBeInTheDocument();
+    });
+
+    it('copies window.location.href to clipboard when clicked', async () => {
+      // userEvent.setup() automatically stubs navigator.clipboard
+      const user = userEvent.setup();
+      const detergent = makeDetergent();
+      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+
+      const copyBtn = screen.getByRole('button', { name: 'Copy link to this product' });
+      await user.click(copyBtn);
+
+      const expectedUrl = new URL(window.location.pathname, window.location.origin);
+      expectedUrl.searchParams.set('d', 'tide-clean-breeze');
+      expect(await navigator.clipboard.readText()).toBe(expectedUrl.toString());
+    });
+
+    it('shows the copied state briefly after clicking', async () => {
+      const user = userEvent.setup();
+      const detergent = makeDetergent();
+      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+
+      const copyBtn = screen.getByRole('button', { name: 'Copy link to this product' });
+      expect(copyBtn).toHaveTextContent('⎘');
+
+      await user.click(copyBtn);
+
+      await waitFor(() => expect(copyBtn).toHaveTextContent('✓'));
     });
   });
 

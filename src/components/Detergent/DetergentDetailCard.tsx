@@ -1,8 +1,10 @@
+import { useState, useCallback } from 'react';
 import { registerLocale, getName } from 'i18n-iso-countries';
 import enLocale from 'i18n-iso-countries/langs/en.json';
 import { Drawer } from '../common/Drawer';
 import { DetergentProfile } from './types/DetergentProfile';
 import { getIngredientCategories } from '../common/types/IngredientCategoryMap';
+import { toDetergentSlug } from './utils/detergentSlug';
 import './DetergentDetailCard.css';
 
 registerLocale(enLocale);
@@ -17,7 +19,18 @@ function formatIngredient(name: string): string {
 }
 
 export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardProps) {
+  const [copied, setCopied] = useState(false);
   const countryNames = detergent?.countriesAvailable?.map((code) => getName(code, 'en') ?? code).join(', ') ?? '—';
+
+  const handleCopyLink = useCallback(() => {
+    if (!navigator.clipboard || !detergent) return;
+    const url = new URL(window.location.pathname, window.location.origin);
+    url.searchParams.set('d', toDetergentSlug(detergent));
+    void navigator.clipboard.writeText(url.toString()).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, [detergent]);
 
   return (
     <Drawer
@@ -25,6 +38,18 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
       onClose={onClose}
       title={`${detergent?.brand} ${detergent?.name ?? ''}`}
       side="right"
+      headerActions={
+        detergent && (
+          <button
+            className="detail-copy-link-btn"
+            onClick={handleCopyLink}
+            aria-label="Copy link to this product"
+            title="Copy link"
+          >
+            {copied ? '✓' : '⎘'}
+          </button>
+        )
+      }
     >
       {detergent && (
         <>

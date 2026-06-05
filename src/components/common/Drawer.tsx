@@ -7,12 +7,13 @@ interface DrawerProps {
   children: ReactNode;
   title?: string;
   side?: 'left' | 'right';
+  headerActions?: ReactNode;
 }
 
 /**
  * A simple drawer component that slides in from the left side of the screen
  */
-export function Drawer({ isOpen, onClose, children, title, side = 'left' }: DrawerProps) {
+export function Drawer({ isOpen, onClose, children, title, side = 'left', headerActions }: DrawerProps) {
   const titleId = useId();
   // Handle escape key to close drawer
   useEffect(() => {
@@ -48,6 +49,7 @@ export function Drawer({ isOpen, onClose, children, title, side = 'left' }: Draw
       >
         <div className="drawer-header">
           {title && <h2 id={titleId}>{title}</h2>}
+          {headerActions}
           <button className="drawer-close-btn" onClick={onClose} aria-label="Close drawer">
             ✕
           </button>
