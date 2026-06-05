@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 const Detergents = lazy(() => import('./components/Detergent/Detergents'));
+const CompareView = lazy(() => import('./components/Detergent/CompareView'));
 const Boosters = lazy(() => import('./components/Booster/Boosters'));
 const Pretreaters = lazy(() => import('./components/Pretreater/Pretreaters'));
 const Glossary = lazy(() => import('./components/Glossary/Glossary'));
@@ -20,6 +21,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/detergents" element={<Detergents />} />
+                <Route path="/detergents/compare" element={<CompareView />} />
                 <Route path="/boosters" element={<Boosters />} />
                 <Route path="/pretreaters" element={<Pretreaters />} />
                 <Route path="/glossary" element={<Glossary />} />

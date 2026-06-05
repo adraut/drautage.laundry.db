@@ -1,0 +1,205 @@
+.compare-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.compare-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.compare-toolbar h1 {
+  margin: 0;
+  flex: 1;
+}
+
+.compare-back-btn {
+  color: var(--color-action);
+  text-decoration: none;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.compare-back-btn:hover {
+  color: var(--color-action-hover);
+  text-decoration: underline;
+}
+
+.compare-copy-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+
+.compare-copy-btn:hover {
+  color: var(--color-text-primary);
+  background: none;
+}
+
+.compare-status {
+  color: var(--color-text-secondary);
+  padding: 2rem 0;
+}
+
+/* Scroll container — both axes */
+.compare-scroll {
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Table */
+.compare-table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  min-width: max-content;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--color-border-light);
+  border-right: 1px solid var(--color-border-light);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.compare-table th:last-child,
+.compare-table td:last-child {
+  border-right: none;
+}
+
+/* Sticky header row */
+.compare-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg-primary);
+  z-index: 2;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-bottom: 2px solid var(--color-border-medium);
+}
+
+/* Sticky ingredient column */
+.compare-col-ingredient {
+  position: sticky;
+  left: 0;
+  background-color: var(--color-bg-primary);
+  z-index: 1;
+  /* Scales from 140px on small screens up to 240px on large screens */
+  min-width: clamp(140px, 38vw, 240px);
+  max-width: clamp(140px, 38vw, 240px);
+  border-right: 2px solid var(--color-border-medium) !important;
+  font-size: 0.8rem;
+}
+
+/* Override the global nowrap rule — needs higher specificity (0,2,1) vs (0,1,1) */
+.compare-table td.compare-col-ingredient {
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Top-left corner cell — above both sticky axes */
+.compare-col-header-corner {
+  z-index: 3;
+}
+
+/* Product column headers */
+.compare-col-product {
+  min-width: 120px;
+  text-align: center;
+  vertical-align: top;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.compare-product-brand {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.compare-product-name {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.compare-product-type {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+/* Category section headers — extra top spacing + divider lines, full-width */
+.compare-category-row td {
+  background-color: var(--color-bg-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-text-secondary);
+  padding-top: 1.25rem;
+  padding-bottom: 0.4rem;
+  border-top: 2px solid var(--color-border-medium);
+  border-bottom: 2px solid var(--color-border-medium);
+  position: sticky;
+  left: 0;
+}
+
+/* Ingredient name + function subtitle */
+.compare-ingredient-name {
+  display: block;
+  color: var(--color-text-primary);
+}
+
+.compare-ingredient-fn {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+
+/* Checkmark cells */
+.compare-cell {
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.compare-check {
+  color: var(--color-action);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Metadata rows */
+.compare-meta-cell {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+/* Alternating row tint on ingredient rows */
+.compare-table tbody tr:not(.compare-category-row):nth-child(even) .compare-col-ingredient,
+.compare-table tbody tr:not(.compare-category-row):nth-child(even) td:not(.compare-col-ingredient) {
+  background-color: var(--color-bg-tertiary);
+}
+
+/* Override sticky bg on alternating rows for the ingredient column */
+.compare-table tbody tr:not(.compare-category-row):nth-child(even) .compare-col-ingredient {
+  background-color: var(--color-bg-tertiary);
+}
