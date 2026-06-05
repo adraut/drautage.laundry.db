@@ -66,3 +66,18 @@
 .detail-meta-value {
   color: var(--color-text-value);
 }
+
+.detail-copy-link-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  color: var(--color-text-muted);
+  line-height: 1;
+  margin-left: auto;
+}
+
+.detail-copy-link-btn:hover {
+  color: var(--color-text-primary);
+}
