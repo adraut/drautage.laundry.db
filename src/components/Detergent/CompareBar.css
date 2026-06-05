@@ -1,0 +1,46 @@
+.compare-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border-medium);
+  flex-shrink: 0;
+}
+
+.compare-bar-count {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-left: auto;
+}
+
+.compare-bar-btn {
+  background-color: var(--color-action);
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.compare-bar-btn:hover {
+  background-color: var(--color-action-hover);
+}
+
+.compare-bar-clear {
+  background: none;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-input);
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.compare-bar-clear:hover {
+  color: var(--color-text-primary);
+  background: none;
+  border-color: var(--color-text-secondary);
+}

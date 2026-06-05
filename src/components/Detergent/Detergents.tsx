@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, useRef, createContext, useContext } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import type { ColDef, ICellRendererParams } from 'ag-grid-community';
 import {
   ModuleRegistry,
@@ -26,6 +27,7 @@ import { FilterBar } from './FilterBar';
 import { DetergentDetailCard } from './DetergentDetailCard';
 import './FilterDrawer.css';
 import './FilterBar.css';
+import './CompareBar.css';
 
 ModuleRegistry.registerModules([ClientSideRowModelModule, ColumnApiModule, ColumnAutoSizeModule, GridStateModule]);
 
@@ -86,6 +88,27 @@ function NameCellRenderer(params: ICellRendererParams<DetergentProfile>) {
   );
 }
 
+interface CompareContextValue {
+  compareSet: Set<string>;
+  onCompareToggle: (detergent: DetergentProfile) => void;
+}
+const CompareContext = createContext<CompareContextValue>({ compareSet: new Set(), onCompareToggle: () => {} });
+
+function CompareCellRenderer(params: ICellRendererParams<DetergentProfile>) {
+  const { compareSet, onCompareToggle } = useContext(CompareContext);
+  const { data } = params;
+  if (!data) return null;
+  const slug = toDetergentSlug(data);
+  return (
+    <input
+      type="checkbox"
+      checked={compareSet.has(slug)}
+      onChange={() => onCompareToggle(data)}
+      aria-label={`Select ${data.brand} ${data.name} for comparison`}
+    />
+  );
+}
+
 function BooleanCellRenderer(params: ICellRendererParams<DetergentProfile>) {
   return (
     <input
@@ -112,6 +135,7 @@ const TEXT_COL: Partial<ColDef<DetergentProfile>> = {
 };
 
 const COLUMN_DEFS: ColDef<DetergentProfile>[] = [
+  { headerName: '', width: 50, cellRenderer: CompareCellRenderer, sortable: false, resizable: false },
   { field: 'brand', headerName: 'Brand', ...TEXT_COL },
   { field: 'name', headerName: 'Product Name', cellRenderer: NameCellRenderer, ...TEXT_COL },
   { field: 'type', headerName: 'Type', ...TEXT_COL },
@@ -150,6 +174,9 @@ function Detergents() {
   const [filter, setFilter] = useState<CompositeFilterDescriptor | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedDetergent, setSelectedDetergent] = useState<DetergentProfile | null>(null);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [compareSet, setCompareSet] = useState<Set<string>>(new Set());
   const { filter: urlFilter, updateFilterInUrl, resetFilterInUrl } = useGridFilterSync();
   const { sortModel, updateSortInUrl, resetSortInUrl } = useGridSortSync();
   const { slug: detergentSlug, setDetergentSlug } = useDetergentUrlSync();
@@ -276,6 +303,29 @@ function Detergents() {
     resetSortInUrl([]);
   }, [resetFilterInUrl, resetSortInUrl]);
 
+  const handleCompareToggle = useCallback((detergent: DetergentProfile) => {
+    const slug = toDetergentSlug(detergent);
+    setCompareSet((prev) => {
+      const next = new Set(prev);
+      if (next.has(slug)) {
+        next.delete(slug);
+      } else {
+        next.add(slug);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleCompare = useCallback(() => {
+    const params = new URLSearchParams();
+    for (const slug of compareSet) {
+      params.append('c', slug);
+    }
+    navigate(`/detergents/compare?${params.toString()}`, {
+      state: { returnTo: searchParams.toString() },
+    });
+  }, [compareSet, navigate, searchParams]);
+
   const detergentArray = useMemo(() => Array.from(detergents.values()), [detergents]);
   const filteredData = useMemo(
     () => (filter ? filterBy(detergentArray, filter) : detergentArray),
@@ -316,22 +366,39 @@ function Detergents() {
           </Drawer>
 
           {/* AG Grid */}
-          <DetergentClickContext.Provider value={handleNameClick}>
-            <div style={{ flex: 1, minHeight: 0 }}>
-              <AgGridReact<DetergentProfile>
-                ref={gridRef}
-                theme={theme === 'dark' ? darkTheme : themeQuartz}
-                rowData={filteredData}
-                columnDefs={COLUMN_DEFS}
-                defaultColDef={DEFAULT_COL_DEF}
-                suppressCellFocus={true}
-                initialState={{ sort: { sortModel } }}
-                onSortChanged={handleSortChanged}
-                autoSizeStrategy={{ type: 'fitCellContents' }}
-                suppressColumnVirtualisation={true}
-              />
+          <CompareContext.Provider value={{ compareSet, onCompareToggle: handleCompareToggle }}>
+            <DetergentClickContext.Provider value={handleNameClick}>
+              <div style={{ flex: 1, minHeight: 0 }}>
+                <AgGridReact<DetergentProfile>
+                  ref={gridRef}
+                  theme={theme === 'dark' ? darkTheme : themeQuartz}
+                  rowData={filteredData}
+                  columnDefs={COLUMN_DEFS}
+                  defaultColDef={DEFAULT_COL_DEF}
+                  suppressCellFocus={true}
+                  initialState={{ sort: { sortModel } }}
+                  onSortChanged={handleSortChanged}
+                  autoSizeStrategy={{ type: 'fitCellContents' }}
+                  suppressColumnVirtualisation={true}
+                />
+              </div>
+            </DetergentClickContext.Provider>
+          </CompareContext.Provider>
+
+          {/* Compare action bar */}
+          {compareSet.size > 0 && (
+            <div className="compare-bar">
+              <button className="compare-bar-btn" onClick={handleCompare}>
+                Compare
+              </button>
+              <button className="compare-bar-clear" onClick={() => setCompareSet(new Set())}>
+                Clear
+              </button>
+              <span className="compare-bar-count">
+                {compareSet.size} {compareSet.size === 1 ? 'product' : 'products'} selected
+              </span>
             </div>
-          </DetergentClickContext.Provider>
+          )}
         </div>
       )}
     </div>
