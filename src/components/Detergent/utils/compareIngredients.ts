@@ -1,7 +1,6 @@
 import { Ingredient } from '../../common/types/Ingredient';
 import { DetergentProfile } from '../types/DetergentProfile';
 import { getIngredientCategories } from '../../common/types/IngredientCategoryMap';
-import { toDetergentSlug } from './detergentSlug';
 
 export interface CompareIngredientEntry {
   ingredient: Ingredient;
@@ -54,7 +53,7 @@ export function buildCompareMatrix(profiles: DetergentProfile[]): CompareMatrix 
   const presence = new Map<Ingredient, Set<string>>();
 
   for (const profile of profiles) {
-    const slug = toDetergentSlug(profile);
+    const slug = profile.slug;
     for (const ingredient of profile.ingredients) {
       if (!presence.has(ingredient)) presence.set(ingredient, new Set());
       presence.get(ingredient)!.add(slug);

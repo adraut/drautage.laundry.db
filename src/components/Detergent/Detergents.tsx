@@ -19,7 +19,7 @@ import { loadDetergents } from './data/detergents-data';
 import { useGridFilterSync } from './hooks/useGridFilterSync';
 import { useGridSortSync } from './hooks/useGridSortSync';
 import { useDetergentUrlSync } from './hooks/useDetergentUrlSync';
-import { toDetergentSlug, findDetergentBySlug } from './utils/detergentSlug';
+import { findDetergentBySlug } from './utils/detergentSlug';
 import { getDefaultSort } from './utils/gridSortUtils';
 import { Drawer } from '../common/Drawer';
 import { FilterDrawerContent } from './FilterDrawerContent';
@@ -98,7 +98,7 @@ function CompareCellRenderer(params: ICellRendererParams<DetergentProfile>) {
   const { compareSet, onCompareToggle } = useContext(CompareContext);
   const { data } = params;
   if (!data) return null;
-  const slug = toDetergentSlug(data);
+  const slug = data.slug;
   return (
     <input
       type="checkbox"
@@ -273,7 +273,7 @@ function Detergents() {
   const handleNameClick = useCallback(
     (detergent: DetergentProfile) => {
       setSelectedDetergent(detergent);
-      setDetergentSlug(toDetergentSlug(detergent));
+      setDetergentSlug(detergent.slug);
     },
     [setDetergentSlug],
   );
@@ -304,7 +304,7 @@ function Detergents() {
   }, [resetFilterInUrl, resetSortInUrl]);
 
   const handleCompareToggle = useCallback((detergent: DetergentProfile) => {
-    const slug = toDetergentSlug(detergent);
+    const slug = detergent.slug;
     setCompareSet((prev) => {
       const next = new Set(prev);
       if (next.has(slug)) {

@@ -34,8 +34,8 @@ function createMockDetergents(): Map<string, DetergentProfile> {
   withoutCellulase.countriesAvailable = ['USA'];
 
   return new Map([
-    ['tide-original', withCellulase],
-    ['tide-clean-gentle', withoutCellulase],
+    ['tide-original-liquid', withCellulase],
+    ['tide-clean-gentle-liquid', withoutCellulase],
   ]);
 }
 

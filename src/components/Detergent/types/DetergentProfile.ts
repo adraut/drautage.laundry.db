@@ -62,6 +62,7 @@ export class DetergentProfile {
   countryOfOrigin?: Alpha3Code;
   countriesAvailable?: Alpha3Code[];
 
+  readonly slug: string;
   readonly lastUpdatedFormatted: string;
   /**
    * Merged category exclusions for this product, combining context rules
@@ -115,6 +116,10 @@ export class DetergentProfile {
     this.ingredients = ingredients;
     this.lastUpdated = lastUpdated;
     this.lastUpdatedFormatted = this.lastUpdated.toISOString().split('T')[0];
+    this.slug = `${brand} ${name} ${type}`
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
 
     // Build effective exclusions: context rules first, profile-level on top.
     const exclusions: Partial<Record<Ingredient, string[]>> = {};

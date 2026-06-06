@@ -159,7 +159,7 @@ describe('DetergentDetailCard', () => {
       await user.click(copyBtn);
 
       const expectedUrl = new URL(window.location.pathname, window.location.origin);
-      expectedUrl.searchParams.set('d', 'tide-clean-breeze');
+      expectedUrl.searchParams.set('d', 'tide-clean-breeze-liquid');
       expect(await navigator.clipboard.readText()).toBe(expectedUrl.toString());
     });
 

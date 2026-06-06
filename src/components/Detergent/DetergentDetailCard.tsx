@@ -4,7 +4,7 @@ import enLocale from 'i18n-iso-countries/langs/en.json';
 import { Drawer } from '../common/Drawer';
 import { DetergentProfile } from './types/DetergentProfile';
 import { getIngredientCategories } from '../common/types/IngredientCategoryMap';
-import { toDetergentSlug } from './utils/detergentSlug';
+
 import './DetergentDetailCard.css';
 
 registerLocale(enLocale);
@@ -25,7 +25,7 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
   const handleCopyLink = useCallback(() => {
     if (!navigator.clipboard || !detergent) return;
     const url = new URL(window.location.pathname, window.location.origin);
-    url.searchParams.set('d', toDetergentSlug(detergent));
+    url.searchParams.set('d', detergent.slug);
     void navigator.clipboard.writeText(url.toString()).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);

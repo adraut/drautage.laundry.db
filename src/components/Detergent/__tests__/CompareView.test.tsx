@@ -27,8 +27,8 @@ function makeDetergents(): Map<string, DetergentProfile> {
     new Date('2026-01-01'),
   );
   return new Map([
-    ['tide-original', tide],
-    ['persil-proclean', persil],
+    ['tide-original-liquid-liquid', tide],
+    ['persil-proclean-liquid-liquid', persil],
   ]);
 }
 
@@ -58,7 +58,7 @@ describe('CompareView', () => {
   });
 
   it('renders product headers for matched slugs', async () => {
-    renderCompare('?c=tide-original&c=persil-proclean');
+    renderCompare('?c=tide-original-liquid&c=persil-proclean-liquid');
     await waitFor(() => {
       expect(screen.getByText('Tide')).toBeInTheDocument();
       expect(screen.getByText('Persil')).toBeInTheDocument();
@@ -66,7 +66,7 @@ describe('CompareView', () => {
   });
 
   it('renders category section headers', async () => {
-    renderCompare('?c=tide-original&c=persil-proclean');
+    renderCompare('?c=tide-original-liquid&c=persil-proclean-liquid');
     await waitFor(() => {
       expect(screen.getByText('Enzymes')).toBeInTheDocument();
       expect(screen.getByText('Surfactants')).toBeInTheDocument();
@@ -74,7 +74,7 @@ describe('CompareView', () => {
   });
 
   it('renders ingredient names in the table', async () => {
-    renderCompare('?c=tide-original&c=persil-proclean');
+    renderCompare('?c=tide-original-liquid&c=persil-proclean-liquid');
     await waitFor(() => {
       expect(screen.getByText(Ingredient.Amylase)).toBeInTheDocument();
       expect(screen.getByText(Ingredient.SodiumLaurylSulfate)).toBeInTheDocument();
@@ -82,7 +82,7 @@ describe('CompareView', () => {
   });
 
   it('renders Details section with data source and last updated rows', async () => {
-    renderCompare('?c=tide-original');
+    renderCompare('?c=tide-original-liquid');
     await waitFor(() => {
       expect(screen.getByText('Details')).toBeInTheDocument();
       expect(screen.getByText('Data source')).toBeInTheDocument();

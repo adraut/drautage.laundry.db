@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, Fragment } from 'react';
 import { useSearchParams, useLocation, Link } from 'react-router-dom';
 import { DetergentProfile } from './types/DetergentProfile';
 import { loadDetergents } from './data/detergents-data';
-import { toDetergentSlug, findDetergentBySlug } from './utils/detergentSlug';
+import { findDetergentBySlug } from './utils/detergentSlug';
 import { buildCompareMatrix } from './utils/compareIngredients';
 import './CompareView.css';
 
@@ -64,7 +64,7 @@ export function CompareView() {
   }
 
   const matrix = buildCompareMatrix(profiles);
-  const profileSlugs = profiles.map(toDetergentSlug);
+  const profileSlugs = profiles.map((p) => p.slug);
 
   return (
     <div className="compare-page">
