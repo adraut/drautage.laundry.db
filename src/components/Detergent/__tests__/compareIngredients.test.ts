@@ -75,4 +75,17 @@ describe('buildCompareMatrix', () => {
     expect(entry!.functions.length).toBeGreaterThan(0);
     expect(entry!.functions).toContain('Enzyme');
   });
+
+  it('includes context-rule-added categories in the functions field', () => {
+    const profile = makeProfile('Test', 'Brand', [
+      Ingredient.SodiumPolyacrylate,
+      Ingredient.C16_18FattyAcidsSodiumSalt,
+    ]);
+    const { groups } = buildCompareMatrix([profile]);
+    const allEntries = groups.flatMap((g) => g.ingredients);
+    const entry = allEntries.find((e) => e.ingredient === Ingredient.C16_18FattyAcidsSodiumSalt);
+    expect(entry).toBeDefined();
+    expect(entry!.functions).toContain('Soap');
+    expect(entry!.functions).toContain('Suds Reducer');
+  });
 });

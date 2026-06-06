@@ -60,10 +60,27 @@ export function buildCompareMatrix(profiles: DetergentProfile[]): CompareMatrix 
     }
   }
 
+  // Union of context-rule additions across all profiles, keyed by ingredient.
+  const additionsMap = new Map<Ingredient, Set<string>>();
+  for (const profile of profiles) {
+    for (const ingredient of profile.ingredients) {
+      const added = profile.effectiveCategoryAdditions.get(ingredient);
+      if (added) {
+        const existing = additionsMap.get(ingredient);
+        if (existing) {
+          for (const cat of added) existing.add(cat);
+        } else {
+          additionsMap.set(ingredient, new Set(added));
+        }
+      }
+    }
+  }
+
   // category label → ingredients in that category (that appear in at least one selected profile)
   const categoryToIngredients = new Map<string, Set<Ingredient>>();
   for (const ingredient of presence.keys()) {
-    for (const cat of getIngredientCategories(ingredient)) {
+    const cats = [...getIngredientCategories(ingredient), ...(additionsMap.get(ingredient) ?? [])];
+    for (const cat of new Set(cats)) {
       if (!categoryToIngredients.has(cat)) categoryToIngredients.set(cat, new Set());
       categoryToIngredients.get(cat)!.add(ingredient);
     }
@@ -93,7 +110,7 @@ export function buildCompareMatrix(profiles: DetergentProfile[]): CompareMatrix 
       display: group.display,
       ingredients: ingredientsInGroup.map((ingredient) => ({
         ingredient,
-        functions: getIngredientCategories(ingredient),
+        functions: [...new Set([...getIngredientCategories(ingredient), ...(additionsMap.get(ingredient) ?? [])])],
       })),
     });
 

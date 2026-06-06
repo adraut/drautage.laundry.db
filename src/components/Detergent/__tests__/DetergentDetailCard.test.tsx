@@ -85,6 +85,24 @@ describe('DetergentDetailCard', () => {
       expect(slsCell).toHaveTextContent('Anionic Surfactant');
     });
 
+    it('shows context-rule-added categories alongside base categories in the Function column', () => {
+      // C16_18FattyAcidsSodiumSalt is Soap + Processing Aid by default.
+      // With SodiumPolyacrylate preceding it, the context rule adds Suds Reducer.
+      const d = new DetergentProfile(
+        'Powder Test',
+        'Brand',
+        DetergentType.Powder,
+        DataSource.Package,
+        [Ingredient.SodiumPolyacrylate, Ingredient.C16_18FattyAcidsSodiumSalt],
+        new Date('2026-01-01'),
+      );
+      render(<DetergentDetailCard detergent={d} onClose={() => {}} />);
+
+      const fattyAcidRow = screen.getByText('C16-18 fatty acids sodium salt').closest('tr');
+      expect(fattyAcidRow).toHaveTextContent('Soap');
+      expect(fattyAcidRow).toHaveTextContent('Suds Reducer');
+    });
+
     it('shows a dash in the Function column for an uncategorized ingredient', () => {
       const d = new DetergentProfile(
         'Uncategorized Test',

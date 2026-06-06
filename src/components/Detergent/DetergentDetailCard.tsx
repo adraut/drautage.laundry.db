@@ -64,7 +64,9 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
               <tbody>
                 {detergent.ingredients.map((ingredient) => {
                   const excluded = detergent.effectiveCategoryExclusions[ingredient] ?? [];
-                  const categories = getIngredientCategories(ingredient).filter((cat) => !excluded.includes(cat));
+                  const added = detergent.effectiveCategoryAdditions.get(ingredient) ?? [];
+                  const base = getIngredientCategories(ingredient);
+                  const categories = [...new Set([...base, ...added])].filter((cat) => !excluded.includes(cat));
                   return (
                     <tr key={ingredient}>
                       <td>{formatIngredient(ingredient)}</td>

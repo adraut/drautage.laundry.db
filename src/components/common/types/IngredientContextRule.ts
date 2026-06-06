@@ -11,5 +11,7 @@ export type IngredientContextRule = {
    */
   condition: (ingredients: Ingredient[], type: DetergentType) => boolean;
   /** Categories to remove from this ingredient's display and flag evaluation when the condition is met. */
-  excludeFromCategories: string[];
+  excludeFromCategories?: string[];
+  /** Categories to add to this ingredient's display when the condition is met. */
+  addToCategories?: string[];
 };

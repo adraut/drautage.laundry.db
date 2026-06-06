@@ -70,6 +70,8 @@ export class DetergentProfile {
    * Used by the display layer to filter categories per ingredient.
    */
   readonly effectiveCategoryExclusions: Partial<Record<Ingredient, string[]>>;
+  /** Context-rule-driven category additions for this product. Used by the display layer. */
+  readonly effectiveCategoryAdditions: ReadonlyMap<Ingredient, string[]>;
   readonly hasAmylase: boolean;
   readonly hasCellulase: boolean;
   readonly hasDNase: boolean;
@@ -121,18 +123,31 @@ export class DetergentProfile {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
 
-    // Build effective exclusions: context rules first, profile-level on top.
+    // Build effective exclusions and additions: context rules first, profile-level exclusions on top.
     const exclusions: Partial<Record<Ingredient, string[]>> = {};
+    const additions = new Map<Ingredient, string[]>();
 
     for (const rule of IngredientContextRules) {
       if (ingredients.includes(rule.ingredient) && rule.condition(ingredients, type)) {
-        const existing = exclusions[rule.ingredient];
-        if (existing) {
-          for (const cat of rule.excludeFromCategories) {
-            if (!existing.includes(cat)) existing.push(cat);
+        if (rule.excludeFromCategories) {
+          const existing = exclusions[rule.ingredient];
+          if (existing) {
+            for (const cat of rule.excludeFromCategories) {
+              if (!existing.includes(cat)) existing.push(cat);
+            }
+          } else {
+            exclusions[rule.ingredient] = [...rule.excludeFromCategories];
           }
-        } else {
-          exclusions[rule.ingredient] = [...rule.excludeFromCategories];
+        }
+        if (rule.addToCategories) {
+          const existing = additions.get(rule.ingredient);
+          if (existing) {
+            for (const cat of rule.addToCategories) {
+              if (!existing.includes(cat)) existing.push(cat);
+            }
+          } else {
+            additions.set(rule.ingredient, [...rule.addToCategories]);
+          }
         }
       }
     }
@@ -152,6 +167,7 @@ export class DetergentProfile {
     }
 
     this.effectiveCategoryExclusions = exclusions;
+    this.effectiveCategoryAdditions = additions;
 
     // Compute all derived properties once during construction.
     this.hasAmylase = hasCategory(ingredients, Amylases, 'Enzyme', exclusions);

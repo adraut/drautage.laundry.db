@@ -96,4 +96,28 @@ describe('CompareView', () => {
       expect(screen.getByText(/No products selected/i)).toBeInTheDocument();
     });
   });
+
+  it('shows context-rule-added categories in the function span', async () => {
+    const mockedLoad = loadDetergents as jest.MockedFunction<typeof loadDetergents>;
+    const profile = new DetergentProfile(
+      'Suds Test',
+      'Brand',
+      DetergentType.Liquid,
+      DataSource.Package,
+      [Ingredient.SodiumPolyacrylate, Ingredient.C16_18FattyAcidsSodiumSalt],
+      new Date('2026-01-01'),
+    );
+    mockedLoad.mockResolvedValue(new Map([['brand-suds-test-liquid', profile]]));
+    render(
+      <MemoryRouter initialEntries={['/detergents/compare?c=brand-suds-test-liquid']}>
+        <CompareView />
+      </MemoryRouter>,
+    );
+    await waitFor(() => {
+      const nameEls = screen.getAllByText(Ingredient.C16_18FattyAcidsSodiumSalt);
+      const td = nameEls[0].closest('td');
+      expect(td).toHaveTextContent('Soap');
+      expect(td).toHaveTextContent('Suds Reducer');
+    });
+  });
 });

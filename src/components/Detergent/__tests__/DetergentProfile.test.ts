@@ -841,6 +841,202 @@ describe('DetergentProfile', () => {
         'Processing Aid',
       ]);
     });
+
+    describe('C16_18FattyAcidsSodiumSalt suds reducer rule', () => {
+      it('adds Suds Reducer when SodiumPolyacrylate precedes it', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Powder,
+          DataSource.Package,
+          [Ingredient.SodiumPolyacrylate, Ingredient.C16_18FattyAcidsSodiumSalt],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+        expect(profile.effectiveCategoryAdditions.get(Ingredient.C16_18FattyAcidsSodiumSalt)).toEqual(['Suds Reducer']);
+      });
+
+      it('does not add Suds Reducer when SodiumPolyacrylate is absent', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Powder,
+          DataSource.Package,
+          [Ingredient.C16_18FattyAcidsSodiumSalt],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+        expect(profile.effectiveCategoryAdditions.get(Ingredient.C16_18FattyAcidsSodiumSalt)).toBeUndefined();
+      });
+
+      it('does not add Suds Reducer when C16_18FattyAcidsSodiumSalt precedes SodiumPolyacrylate', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Powder,
+          DataSource.Package,
+          [Ingredient.C16_18FattyAcidsSodiumSalt, Ingredient.SodiumPolyacrylate],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+        expect(profile.effectiveCategoryAdditions.get(Ingredient.C16_18FattyAcidsSodiumSalt)).toBeUndefined();
+      });
+    });
+
+    describe.each(Object.values(DetergentType))('C8_18FattyAcidsSodiumSalt in a %s detergent', (type) => {
+      it.each([
+        [Ingredient.SodiumLaurylSulfate, 'alkyl sulfate'],
+        [Ingredient.SodiumLaurethSulfate, 'ether sulfate'],
+        [Ingredient.SodiumC10_16Alkylbenzenesulfonate, 'sulfonate'],
+      ])('adds Suds Reducer when %s (foaming surfactant) precedes it with non-surfactant gap', (surfactant) => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          type,
+          DataSource.Package,
+          [surfactant, Ingredient.SodiumCarbonate, Ingredient.C8_18FattyAcidsSodiumSalt],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+        expect(profile.effectiveCategoryAdditions.get(Ingredient.C8_18FattyAcidsSodiumSalt)).toEqual(['Suds Reducer']);
+      });
+
+      it('keeps as Soap only when only a non-foaming surfactant precedes with non-surfactant gap', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          type,
+          DataSource.Package,
+          [Ingredient.C12_15AlcoholsEthoxylated, Ingredient.SodiumCarbonate, Ingredient.C8_18FattyAcidsSodiumSalt],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+        expect(profile.effectiveCategoryAdditions.get(Ingredient.C8_18FattyAcidsSodiumSalt)).toBeUndefined();
+      });
+
+      it('keeps as Soap only when immediately preceded by a surfactant', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          type,
+          DataSource.Package,
+          [Ingredient.SodiumLaurethSulfate, Ingredient.C8_18FattyAcidsSodiumSalt],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+        expect(profile.effectiveCategoryAdditions.get(Ingredient.C8_18FattyAcidsSodiumSalt)).toBeUndefined();
+      });
+
+      it('keeps as Soap only when no surfactant precedes it', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          type,
+          DataSource.Package,
+          [Ingredient.C8_18FattyAcidsSodiumSalt],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+        expect(profile.effectiveCategoryAdditions.get(Ingredient.C8_18FattyAcidsSodiumSalt)).toBeUndefined();
+      });
+    });
+
+    describe('FattyAcidsC8_18AndC18UnsaturatedSodiumSalts suds reducer rules', () => {
+      it('adds Suds Reducer when SodiumPolyacrylate precedes it', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Powder,
+          DataSource.Package,
+          [Ingredient.SodiumPolyacrylate, Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+        expect(profile.effectiveCategoryAdditions.get(Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts)).toEqual([
+          'Suds Reducer',
+        ]);
+      });
+
+      it('does not add Suds Reducer when SodiumPolyacrylate is absent', () => {
+        const profile = new DetergentProfile(
+          'Test',
+          'Brand',
+          DetergentType.Powder,
+          DataSource.Package,
+          [Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts],
+          new Date(),
+        );
+        expect(profile.hasSoaps).toBe(true);
+        expect(
+          profile.effectiveCategoryAdditions.get(Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts),
+        ).toBeUndefined();
+      });
+    });
+
+    describe.each([
+      [Ingredient.C12_18FattyAcidsSodiumSalt, 'C12_18FattyAcidsSodiumSalt'],
+      [Ingredient.CoconutFattyAcid, 'CoconutFattyAcid'],
+      [Ingredient.FattyAcidC8_18AndC18Unsaturated, 'FattyAcidC8_18AndC18Unsaturated'],
+      [Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts, 'FattyAcidsC8_18AndC18UnsaturatedSodiumSalts'],
+      [Ingredient.LauricAcid, 'LauricAcid'],
+      [Ingredient.MEAC12_18FattyAcidsSalt, 'MEAC12_18FattyAcidsSalt'],
+      [Ingredient.MEACocoate, 'MEACocoate'],
+      [Ingredient.PalmKernelAcid, 'PalmKernelAcid'],
+      [Ingredient.PotassiumCocoate, 'PotassiumCocoate'],
+      [Ingredient.SodiumCocoate, 'SodiumCocoate'],
+      [Ingredient.SodiumOleate, 'SodiumOleate'],
+    ])('foaming-surfactant suds reducer rule for %s', (fattyAcid) => {
+      describe.each(Object.values(DetergentType))('in a %s detergent', (type) => {
+        it.each([
+          [Ingredient.SodiumLaurylSulfate, 'alkyl sulfate'],
+          [Ingredient.SodiumLaurethSulfate, 'ether sulfate'],
+          [Ingredient.SodiumC10_16Alkylbenzenesulfonate, 'sulfonate'],
+        ])('adds Suds Reducer when %s (foaming surfactant) precedes it with non-surfactant gap', (surfactant) => {
+          const profile = new DetergentProfile(
+            'Test',
+            'Brand',
+            type,
+            DataSource.Package,
+            [surfactant, Ingredient.SodiumCarbonate, fattyAcid],
+            new Date(),
+          );
+          expect(profile.hasSoaps).toBe(true);
+          expect(profile.effectiveCategoryAdditions.get(fattyAcid)).toEqual(['Suds Reducer']);
+        });
+
+        it('keeps as Soap only when only a non-foaming surfactant precedes with non-surfactant gap', () => {
+          const profile = new DetergentProfile(
+            'Test',
+            'Brand',
+            type,
+            DataSource.Package,
+            [Ingredient.C12_15AlcoholsEthoxylated, Ingredient.SodiumCarbonate, fattyAcid],
+            new Date(),
+          );
+          expect(profile.hasSoaps).toBe(true);
+          expect(profile.effectiveCategoryAdditions.get(fattyAcid)).toBeUndefined();
+        });
+
+        it('keeps as Soap only when immediately preceded by a surfactant', () => {
+          const profile = new DetergentProfile(
+            'Test',
+            'Brand',
+            type,
+            DataSource.Package,
+            [Ingredient.SodiumLaurethSulfate, fattyAcid],
+            new Date(),
+          );
+          expect(profile.hasSoaps).toBe(true);
+          expect(profile.effectiveCategoryAdditions.get(fattyAcid)).toBeUndefined();
+        });
+
+        it('keeps as Soap only when no surfactant precedes it', () => {
+          const profile = new DetergentProfile('Test', 'Brand', type, DataSource.Package, [fattyAcid], new Date());
+          expect(profile.hasSoaps).toBe(true);
+          expect(profile.effectiveCategoryAdditions.get(fattyAcid)).toBeUndefined();
+        });
+      });
+    });
   });
 
   describe('mutable properties', () => {
