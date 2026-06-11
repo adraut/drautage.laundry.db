@@ -7,7 +7,7 @@ import { Scents } from '../../common/types/Scents';
 import { OpticalBrighteners } from '../../common/types/OpticalBrighteners';
 import { Enzymes, Proteases, Pectinases, Amylases, Cellulases } from '../../common/types/Enzymes';
 import { EnzymeStabilizers } from '../../common/types/EnzymeStabilizers';
-import { Dyes } from '../../common/types/Dyes';
+import { Colorants } from '../../common/types/Colorants';
 import { NonBiodegradable } from '../../common/types/NonBiodegradable';
 import { AmphotericSurfactants } from '../../common/types/AmphotericSurfactants';
 import { Builders } from '../../common/types/Builders';
@@ -92,7 +92,7 @@ export class DetergentProfile {
   readonly hasAnionicSurfactants: boolean;
   readonly hasNonionicSurfactants: boolean;
   readonly hasSulfates: boolean;
-  readonly hasDyes: boolean;
+  readonly hasColorants: boolean;
   readonly hasScents: boolean;
   readonly hasSoaps: boolean;
   readonly hasProcessingAids: boolean;
@@ -196,7 +196,7 @@ export class DetergentProfile {
     this.hasAnionicSurfactants = hasCategory(ingredients, AnionicSurfactants, 'Anionic Surfactant', exclusions);
     this.hasNonionicSurfactants = hasCategory(ingredients, NonionicSurfactants, 'Nonionic Surfactant', exclusions);
     this.hasSulfates = hasCategory(ingredients, Sulfates, 'Sulfate', exclusions);
-    this.hasDyes = hasCategory(ingredients, Dyes, 'Dye', exclusions);
+    this.hasColorants = hasCategory(ingredients, Colorants, 'Product Colorant', exclusions);
     this.hasScents = hasCategory(ingredients, Scents, 'Scent', exclusions);
     this.hasSoaps = hasCategory(ingredients, Soaps, 'Soap', exclusions);
     this.hasProcessingAids = hasCategory(ingredients, ProcessingAids, 'Processing Aid', exclusions);

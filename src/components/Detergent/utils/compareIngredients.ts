@@ -32,7 +32,7 @@ const CATEGORY_GROUPS: { display: string; categories: string[] }[] = [
   { display: 'Optical Brighteners', categories: ['Optical Brightener'] },
   { display: 'Dye Transfer Inhibitors', categories: ['Dye Transfer Inhibitor'] },
   { display: 'Anti-Redeposition', categories: ['Soil Anti-Redeposition', 'Soil Release'] },
-  { display: 'Dyes', categories: ['Dye'] },
+  { display: 'Colorants', categories: ['Product Colorant'] },
   { display: 'Preservatives', categories: ['Preservative'] },
   {
     display: 'Misc',

@@ -15,7 +15,7 @@ import { OpticalBrighteners } from '../../common/types/OpticalBrighteners';
 import { OxygenBleaches } from '../../common/types/OxygenBleaches';
 import { OxygenBleachBoosters } from '../../common/types/OxygenBleachBoosters';
 import { DyeTransferInhibitors } from '../../common/types/DyeTransferInhibitors';
-import { Dyes } from '../../common/types/Dyes';
+import { Colorants } from '../../common/types/Colorants';
 import { Scents } from '../../common/types/Scents';
 import { SudsReducers } from '../../common/types/SudsReducers';
 import { WaterConditioners } from '../../common/types/WaterConditioners';
@@ -73,7 +73,7 @@ const displayCategories: [Set<Ingredient>, string][] = [
   [OxygenBleaches, 'Oxygen Bleach'],
   [OxygenBleachBoosters, 'Oxygen Bleach Booster'],
   [DyeTransferInhibitors, 'Dye Transfer Inhibitor'],
-  [Dyes, 'Dye'],
+  [Colorants, 'Product Colorant'],
   [Scents, 'Scent'],
   [SudsReducers, 'Suds Reducer'],
   [WaterConditioners, 'Water Conditioner'],

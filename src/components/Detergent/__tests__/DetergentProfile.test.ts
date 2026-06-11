@@ -368,7 +368,7 @@ describe('DetergentProfile', () => {
         expect(profile.hasOxygenBleachBoosters).toBe(false);
       });
 
-      it('should not detect hasDyes when no dyes are present (Dyes set is empty)', () => {
+      it('should not detect hasColorants when no colorant ingredients are present', () => {
         const profile = new DetergentProfile(
           'Test',
           'Brand',
@@ -377,8 +377,7 @@ describe('DetergentProfile', () => {
           [Ingredient.Water],
           new Date(),
         );
-        // Note: Dyes set is currently empty, so hasDyes will always be false
-        expect(profile.hasDyes).toBe(false);
+        expect(profile.hasColorants).toBe(false);
       });
 
       // it('should detect hasScents when scent ingredient is present', () => {
@@ -742,7 +741,7 @@ describe('DetergentProfile', () => {
         // Additives
         expect(profile.hasOpticalBrighteners).toBe(true);
         expect(profile.hasOxygenBleach).toBe(true);
-        expect(profile.hasDyes).toBe(false);
+        expect(profile.hasColorants).toBe(false);
         expect(profile.hasSoaps).toBe(false);
 
         // Surfactants
@@ -782,7 +781,7 @@ describe('DetergentProfile', () => {
         expect(profile.hasEnzymes).toBe(false);
         expect(profile.hasOpticalBrighteners).toBe(false);
         expect(profile.hasOxygenBleach).toBe(false);
-        expect(profile.hasDyes).toBe(false);
+        expect(profile.hasColorants).toBe(false);
         expect(profile.hasScents).toBe(false);
         expect(profile.hasSoaps).toBe(false);
         expect(profile.hasAnionicSurfactants).toBe(false);
