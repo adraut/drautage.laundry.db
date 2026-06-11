@@ -63,7 +63,7 @@ describe('buildCompareMatrix', () => {
   it('omits groups where no selected profile has any ingredient', () => {
     const profile = makeProfile('Test', 'Brand', [Ingredient.Amylase]);
     const { groups } = buildCompareMatrix([profile]);
-    const dyes = groups.find((g) => g.display === 'Dyes');
+    const dyes = groups.find((g) => g.display === 'Colorants');
     expect(dyes).toBeUndefined();
   });
 

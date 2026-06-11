@@ -14,7 +14,7 @@ import { OpticalBrighteners } from './OpticalBrighteners';
 import { OxygenBleaches } from './OxygenBleaches';
 import { OxygenBleachBoosters } from './OxygenBleachBoosters';
 import { DyeTransferInhibitors } from './DyeTransferInhibitors';
-import { Dyes } from './Dyes';
+import { Colorants } from './Colorants';
 import { Scents } from './Scents';
 import { SudsReducers } from './SudsReducers';
 import { WaterConditioners } from './WaterConditioners';
@@ -44,7 +44,7 @@ const CATEGORY_SETS: [Set<Ingredient>, string][] = [
   [OxygenBleaches, 'Oxygen Bleach'],
   [OxygenBleachBoosters, 'Oxygen Bleach Booster'],
   [DyeTransferInhibitors, 'Dye Transfer Inhibitor'],
-  [Dyes, 'Dye'],
+  [Colorants, 'Product Colorant'],
   [Scents, 'Scent'],
   [SudsReducers, 'Suds Reducer'],
   [WaterConditioners, 'Water Conditioner'],
