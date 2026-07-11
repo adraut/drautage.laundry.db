@@ -35,7 +35,8 @@ jobs:
 
   deploy:
     environment: production
-    runs-on: ubuntu-slim
+    # Cannot use slim.  Needs docker server to run a container to do the deploy.
+    runs-on: ubuntu-latest
     name: Deploy to Azure Static Web Apps
     needs: build-and-test
     permissions:
