@@ -31,6 +31,7 @@ jobs:
         with:
           name: build-output
           path: dist
+          if-no-files-found: error
 
   deploy:
     environment: production
