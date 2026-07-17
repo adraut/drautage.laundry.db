@@ -52,7 +52,7 @@
     "style-loader": "^4.0.0",
     "ts-jest": "^29.4.11",
     "ts-loader": "^9.6.2",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "overrides": {
     "ts-jest": {
