@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat oxlint.config.*)",
+      "Bash(npx oxfmt:*)",
+      "Bash(npx jest:*)",
+      "PowerShell(npm run:*)",
+      "Bash(gh issue:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh run view:*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" || exit 0; M=.claude/.checks-ok; if [ ! -f \"$M\" ] || find src .claude package.json tsconfig.json *.md -newer \"$M\" -type f 2>/dev/null | grep -q .; then npm run checks || exit 2; touch \"$M\"; fi",
+            "timeout": 300,
+            "statusMessage": "Running checks..."
+          }
+        ]
+      }
+    ]
+  }
+}
