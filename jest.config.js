@@ -1,5 +1,4 @@
 export default {
-  preset: 'ts-jest',
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
@@ -11,11 +10,12 @@ export default {
   },
   transform: {
     '^.+\\.tsx?$': [
-      'ts-jest',
+      '@swc/jest',
       {
-        tsconfig: {
-          jsx: 'react-jsx',
-          ignoreDeprecations: '6.0',
+        jsc: {
+          target: 'es2020',
+          parser: { syntax: 'typescript', tsx: true },
+          transform: { react: { runtime: 'automatic' } },
         },
       },
     ],
