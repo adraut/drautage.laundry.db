@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat oxlint.config.*)",
+      "Bash(npx oxfmt:*)",
+      "Bash(npx jest:*)",
+      "PowerShell(npm run:*)",
+      "Bash(gh issue:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh run view:*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" || exit 0; M=.claude/.checks-ok; H=$(git status --porcelain -uall -z | cut -z -c4- | xargs -0 -r stat -c '%n|%s|%y' 2>/dev/null | git hash-object --stdin); [ -f \"$M\" ] && [ \"$(cat \"$M\")\" = \"$H\" ] && exit 0; npm run checks || exit 2; printf %s \"$H\" > \"$M\"",
+            "timeout": 300,
+            "statusMessage": "Running checks..."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -47,4 +47,5 @@ Read and follow these — do not duplicate content from them:
 - Use `Closes #<issue_number>` in the PR body to auto-link the issue.
 - Run `npm run checks` before opening a PR and fix all failures.
 - Do not open ready-for-review PRs, merge PRs, or push to `main` directly.
+  - Exception: `/merge-dependabot` may approve Dependabot-authored PRs, letting the existing auto-merge workflow complete them. It must never use `--admin`, never close PRs, and never modify code.
 - SmartLabel pages (`smartlabel.pg.com`) are JavaScript-rendered and inaccessible via fetch. Fall back to the ingredient list in the issue.
