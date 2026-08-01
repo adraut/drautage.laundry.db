@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_PROJECT_DIR\" || exit 0; M=.claude/.checks-ok; if [ ! -f \"$M\" ] || find src .claude package.json tsconfig.json *.md -newer \"$M\" -type f 2>/dev/null | grep -q .; then npm run checks || exit 2; touch \"$M\"; fi",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" || exit 0; M=.claude/.checks-ok; H=$( { git diff HEAD; git ls-files -o --exclude-standard -z | xargs -0 -r sha1sum; } 2>/dev/null | git hash-object --stdin ); [ -f \"$M\" ] && [ \"$(cat \"$M\")\" = \"$H\" ] && exit 0; npm run checks || exit 2; printf %s \"$H\" > \"$M\"",
             "timeout": 300,
             "statusMessage": "Running checks..."
           }

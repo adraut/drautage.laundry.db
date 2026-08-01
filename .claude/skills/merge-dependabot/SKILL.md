@@ -76,7 +76,7 @@ Decide. Evaluate rows top-down and take the first match:
 | `autoMergeRequest` is null                              | Record `BLOCKED:no-auto-merge` (workflow path filter)          |
 | unresolved threads > 0                                  | Record `BLOCKED:unresolved-threads` — a human must resolve     |
 | `mergeStateStatus: BEHIND`                              | Arm the waiter (step 3)                                        |
-| `mergeable: CONFLICTING` / `DIRTY`                      | Post `@dependabot recreate` once, then arm the waiter          |
+| `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`   | Post `@dependabot recreate` once, then arm the waiter          |
 | required checks `PENDING`                               | Wait for checks, below → else `BLOCKED:checks-pending`         |
 | any required check failed                               | Delegate triage (step 5); record `BLOCKED:check-failed:<name>` |
 | `BLOCKED` + `MERGEABLE` + checks green                  | Approve, below                                                 |
