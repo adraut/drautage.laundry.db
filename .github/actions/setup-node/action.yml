@@ -13,6 +13,5 @@ runs:
     - name: Install npm
       shell: bash
       run: |
-        node -v
-        npm install -g "npm@>=12.0.1"
+        npm install --no-fund -g "npm@>=12.0.1"
         npm -v
