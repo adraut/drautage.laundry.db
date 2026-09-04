@@ -9,7 +9,12 @@
       "Bash(gh pr list:*)",
       "Bash(gh pr view:*)",
       "Bash(gh pr checks:*)",
-      "Bash(gh run view:*)"
+      "Bash(gh run view:*)",
+      "Bash(.claude/skills/merge-dependabot/scripts/settle-unknown.sh:*)",
+      "Bash(.claude/skills/merge-dependabot/scripts/wait-checks.sh:*)",
+      "Bash(.claude/skills/merge-dependabot/scripts/wait-rebase.sh:*)",
+      "Bash(.claude/skills/merge-dependabot/scripts/approve-and-confirm.sh:*)",
+      "Bash(.claude/skills/merge-dependabot/scripts/unresolved-threads.sh:*)"
     ]
   },
   "hooks": {
