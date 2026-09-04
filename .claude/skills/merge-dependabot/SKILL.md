@@ -61,9 +61,7 @@ gh pr view <N> --json statusCheckRollup \
 Unresolved review threads are **not** a `gh pr view` field — they need GraphQL:
 
 ```bash
-gh api graphql -f query='query($o:String!,$r:String!,$n:Int!){repository(owner:$o,name:$r){pullRequest(number:$n){reviewThreads(first:100){nodes{isResolved}}}}}' \
-  -F o='{owner}' -F r='{repo}' -F n=<N> \
-  --jq '[.data.repository.pullRequest.reviewThreads.nodes[]|select(.isResolved==false)]|length'
+.claude/skills/merge-dependabot/scripts/unresolved-threads.sh {owner} {repo} <N>
 ```
 
 Decide. Evaluate rows top-down and take the first match:
@@ -89,14 +87,7 @@ approve an unsettled PR.** `BEHIND` frequently hides under `UNKNOWN`, and approv
 `BEHIND` PR gets the approval silently discarded by `require_last_push_approval`.
 
 ```bash
-PR=<N>; DEADLINE=$((SECONDS+180))
-while [ $SECONDS -lt $DEADLINE ]; do
-  read -r MSS MRG < <(gh pr view "$PR" --json mergeStateStatus,mergeable \
-    -q '"\(.mergeStateStatus) \(.mergeable)"')
-  [ "$MSS" != "UNKNOWN" ] && [ "$MRG" != "UNKNOWN" ] && { echo "SETTLED $PR $MSS $MRG"; exit 0; }
-  sleep 20
-done
-echo "UNSETTLED $PR — still UNKNOWN after 180s"
+.claude/skills/merge-dependabot/scripts/settle-unknown.sh <N>
 ```
 
 On `SETTLED`, re-run the decision table with the new values. On `UNSETTLED`, record
@@ -105,36 +96,22 @@ On `SETTLED`, re-run the decision table with the new values. On `UNSETTLED`, rec
 #### Wait for pending required checks
 
 ```bash
-PR=<N>; DEADLINE=$((SECONDS+600))
-while [ $SECONDS -lt $DEADLINE ]; do
-  PENDING=$(gh pr view "$PR" --json statusCheckRollup \
-    -q '[.statusCheckRollup[] | select(.name=="lint-and-build" or .name=="CodeQL")
-         | select((.conclusion // "") == "")] | length')
-  [ "$PENDING" = "0" ] && { echo "CHECKS_DONE $PR"; exit 0; }
-  sleep 30
-done
-echo "CHECKS_PENDING $PR — still running after 600s"
+.claude/skills/merge-dependabot/scripts/wait-checks.sh <N>
 ```
+
+On `CHECKS_DONE`, re-run the decision table. On `CHECKS_PENDING`, record
+`BLOCKED:checks-pending`.
 
 #### Approve
 
 ```bash
-gh pr review <N> --approve --body "Required checks green; approving to release auto-merge."
-gh pr view <N> --json reviewDecision -q .reviewDecision    # expect APPROVED
+.claude/skills/merge-dependabot/scripts/approve-and-confirm.sh <N>
 ```
 
-Confirm the merge, bounded:
+Expect `APPROVED` followed by `MERGE_STATE=MERGED`. On `MERGE_PENDING`, record
+`BLOCKED:merge-pending` — the workflow may still complete it later.
 
-```bash
-DEADLINE=$((SECONDS+300))
-while [ $SECONDS -lt $DEADLINE ]; do
-  STATE=$(gh pr view <N> --json state -q .state)
-  [ "$STATE" != "OPEN" ] && { echo "MERGE_STATE=$STATE"; break; }
-  sleep 20
-done
-```
-
-On `MERGED`, re-inventory and advance to the next PR. The rest of the queue will have
+On `MERGE_STATE=MERGED`, re-inventory and advance to the next PR. The rest of the queue will have
 flipped to `BEHIND`; leave it alone. Act on **only that one PR** — never arm a waiter for,
 comment on, or rebase the others. Each subsequent merge re-stales everything behind it, so
 rebasing the queue in bulk costs a redundant `lint-and-build` + `CodeQL` run per PR per
@@ -158,23 +135,7 @@ so watch two independent signals instead.
 Run the waiter with `Bash(run_in_background: true)` so it emits one notification and exits:
 
 ```bash
-PR=<N>
-BASE_OID=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
-DEADLINE=$((SECONDS+240)); ACKED=0
-while [ $SECONDS -lt $DEADLINE ]; do
-  sleep 30
-  OID=$(gh pr view "$PR" --json headRefOid -q .headRefOid) || continue
-  [ -n "$OID" ] && [ "$OID" != "$BASE_OID" ] && { echo "REBASED $PR"; exit 0; }
-  # Test positively: GitHub returns UNKNOWN while recomputing mergeability.
-  MSS=$(gh pr view "$PR" --json mergeStateStatus -q .mergeStateStatus)
-  case "$MSS" in
-    BLOCKED|CLEAN|HAS_HOOKS) echo "READY $PR"; exit 0 ;;
-  esac
-  if [ $ACKED -eq 0 ] && gh pr view "$PR" --json body -q .body | grep -q "Dependabot is rebasing this PR"; then
-    ACKED=1; DEADLINE=$((SECONDS+600)); echo "ACK $PR — dependabot working"
-  fi
-done
-echo "NUDGE $PR — no rebase activity"
+.claude/skills/merge-dependabot/scripts/wait-rebase.sh <N>
 ```
 
 Escalation:
@@ -219,3 +180,7 @@ commit, so repeated runs never accumulate comments on a dead PR.
 - **`references/repo-context.md`** — ruleset settings, check-name gotchas, the auto-merge
   path filter, anti-spam rules.
 - **`references/triage-prompt.md`** — verbatim prompt for the failed-check subagent.
+- **`scripts/`** — the polling/mutating one-liners above, as standalone scripts so they can
+  be allowlisted once instead of re-approved per PR: `settle-unknown.sh <N>`,
+  `wait-checks.sh <N>`, `wait-rebase.sh <N>`, `approve-and-confirm.sh <N>`,
+  `unresolved-threads.sh <owner> <repo> <N>`.
