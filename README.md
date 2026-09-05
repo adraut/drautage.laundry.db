@@ -1,5 +1,8 @@
 # drautage.laundry.db
 
+[![CI](https://github.com/adraut/drautage.laundry.db/actions/workflows/ci.yml/badge.svg?branch=release-please--branches--main--components--drautage.laundry.db)](https://github.com/adraut/drautage.laundry.db/actions/workflows/ci.yml)
+[![CD](https://github.com/adraut/drautage.laundry.db/actions/workflows/azure-deploy.yml/badge.svg)](https://github.com/adraut/drautage.laundry.db/actions/workflows/azure-deploy.yml)
+
 A database of laundry products
 
 ## Overview
