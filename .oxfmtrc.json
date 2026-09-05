@@ -5,7 +5,7 @@
   "printWidth": 120,
   "semi": true,
   "experimentalSortPackageJson": true,
-  "ignorePatterns": ["/node_modules", "/dist", "/build", "/coverage"],
+  "ignorePatterns": ["/node_modules", "/dist", "/build", "/coverage", "/CHANGELOG.md"],
   "useTabs": false,
   "tabWidth": 2
 }
