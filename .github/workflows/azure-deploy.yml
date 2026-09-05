@@ -1,6 +1,9 @@
 name: Azure Static Web Apps - Deploy
 
 on:
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 jobs:
@@ -58,30 +61,3 @@ jobs:
           app_location: 'dist'
           skip_app_build: true
           skip_api_build: true
-
-  release:
-    if: success()
-    name: Create Tag and Release
-    needs: deploy
-    runs-on: ubuntu-slim
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # actions/checkout@v7.0.1
-
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@a22cf08638b34d5badda920f9daf6e72c477b07b # mathieudutour/github-tag-action@v6.2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create GitHub Release
-        if: steps.tag_version.outputs.new_tag
-        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # ncipollo/release-action@v1
-        with:
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          generateReleaseNotes: true
-          generateReleaseNotesPreviousTag: ${{ steps.tag_version.outputs.previous_tag }}
