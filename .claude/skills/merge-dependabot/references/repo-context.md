@@ -69,16 +69,22 @@ that legitimately needs rebasing twice still get help, while a dead one stops ac
 comments across `/loop` iterations.
 
 ```bash
-gh pr view <N> --json comments,headRefOid,commits
+.claude/skills/merge-dependabot/scripts/count-nudges.sh <N>
 ```
 
-Count comments matching `@dependabot rebase`/`@dependabot recreate` whose `createdAt` is
-after `.commits[-1].committedDate` (i.e., posted since the PR was last actually pushed to
-— comments from before that push targeted a now-superseded head and don't count). Post
-the nudge only if that count is **0 or 1**; skip once it reaches 2. The skill's own
-two-nudge escalation (an immediate nudge on first seeing `BEHIND`, then one retry after 4
-minutes of silence — see `SKILL.md` step 3) is exactly this budget: the retry is the
-second nudge, not a third, so it is expected to pass this check, not be suppressed by it.
+This counts comments matching `@dependabot rebase`/`@dependabot recreate` whose `createdAt`
+is after `.commits[-1].committedDate` (i.e., posted since the PR was last actually pushed to
+— comments from before that push targeted a now-superseded head and don't count). Post the
+nudge only if that count is **0 or 1**; skip once it reaches 2 and record
+`BLOCKED:no-rebase-response` instead.
+
+Run this check before **every** nudge, including the first one for a `BEHIND` PR — never
+assume the count based on where you are in the skill's own flow. A prior `/loop` invocation
+may have already posted one or both nudges for this exact head commit (it never changed, so
+the count carries over); the skill's two-nudge escalation (an immediate nudge on first
+seeing `BEHIND`, then one retry after 4 minutes of silence — see `SKILL.md` step 3) is
+_designed_ to fit this budget, but only an actual count check confirms it hasn't already
+been spent by an earlier run.
 
 ### 30-day staleness
 

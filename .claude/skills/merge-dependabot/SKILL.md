@@ -151,14 +151,21 @@ depends on which row matched: `@dependabot rebase` for a plain `BEHIND`, `@depen
 recreate` for `CONFLICTING`/`DIRTY` **and** for a `BEHIND` PR untouched ≥30 days (Dependabot
 won't respond to `rebase` there either — see `references/repo-context.md`).
 
-Before the _first_ nudge for a given head commit, the count of matching nudge comments is
-necessarily 0, so the anti-spam check in `references/repo-context.md` always passes here —
-it exists to guard the second nudge (below) and repeat `/loop` passes, not this one.
+Do not assume this is the first nudge for the current head commit — a prior `/loop` pass
+may already have posted one or two matching comments for it (nothing about landing on this
+row this time proves otherwise). Always check the count from `references/repo-context.md`
+before posting:
 
-Capture `headRefOid` **before** posting the comment, not after — Dependabot can land the
-update in the gap between the comment and the waiter starting, and a waiter that snapshots
-its own baseline would miss that transition (the body marker may already be gone too) and
-run out its full timeout for an update that already happened:
+```bash
+.claude/skills/merge-dependabot/scripts/count-nudges.sh <N>
+```
+
+If it's already `2`, skip the comment and record `BLOCKED:no-rebase-response` directly —
+do not post and do not arm the waiter. Otherwise, capture `headRefOid` **before** posting,
+not after — Dependabot can land the update in the gap between the comment and the waiter
+starting, and a waiter that snapshots its own baseline would miss that transition (the body
+marker may already be gone too) and run out its full timeout for an update that already
+happened:
 
 ```bash
 BASE_OID=$(gh pr view <N> --json headRefOid -q .headRefOid)
@@ -185,13 +192,14 @@ exits, passing the pre-comment baseline as the second argument:
 Escalation:
 
 - **0–4 min** — poll every 30s for a `headRefOid` change or the rebasing marker.
-- **`NUDGE` at 4 min** — this is nudge **2 of the 2-per-head-commit cap**, not a third: the
-  anti-spam count in `references/repo-context.md` is 1 at this point (only the first nudge
-  above), so it is expected to pass, not be suppressed. Re-capture `BASE_OID` (the same
-  race applies here: don't reuse the first one), post the same comment again, then re-arm
-  the waiter with that fresh baseline and a 10-minute window.
-- **Second timeout** — record `BLOCKED:no-rebase-response`. Do not nudge a third time —
-  the count is now 2 and the anti-spam check will correctly suppress it anyway.
+- **`NUDGE` at 4 min** — re-run `count-nudges.sh <N>`. It's normally `1` here (just the
+  nudge above), making this nudge 2 of the cap — but don't assume that: if an earlier
+  `/loop` pass already pushed it to `2` (this waiter can start mid-cap, not just at 0),
+  skip the comment and record `BLOCKED:no-rebase-response` instead of posting a third.
+  Otherwise re-capture `BASE_OID`
+  (the same race applies here: don't reuse the first one), post the same comment again,
+  then re-arm the waiter with that fresh baseline and a 10-minute window.
+- **Second timeout** — record `BLOCKED:no-rebase-response`.
 
 Every exit path prints a line, so a `/loop` run never hangs on a job that never started.
 
@@ -235,4 +243,4 @@ on a dead PR.
 - **`scripts/`** — the polling/mutating one-liners above, as standalone scripts so they can
   be allowlisted once instead of re-approved per PR: `settle-unknown.sh <N>`,
   `wait-checks.sh <N>`, `wait-rebase.sh <N> [BASE_OID]`, `approve-and-confirm.sh <N>`,
-  `unresolved-threads.sh <owner> <repo> <N>`.
+  `unresolved-threads.sh <owner> <repo> <N>`, `count-nudges.sh <N>`.
