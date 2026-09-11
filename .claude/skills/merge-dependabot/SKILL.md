@@ -73,7 +73,7 @@ Decide. Evaluate rows top-down and take the first match:
 | `reviewDecision: APPROVED`, auto-merge on, checks green | Nothing — re-entrancy guard                                    |
 | `autoMergeRequest` is null                              | Record `BLOCKED:no-auto-merge` (workflow path filter)          |
 | unresolved threads > 0                                  | Record `BLOCKED:unresolved-threads` — a human must resolve     |
-| `mergeStateStatus: BEHIND`                              | Arm the waiter (step 3)                                        |
+| `mergeStateStatus: BEHIND`                              | Post `@dependabot rebase` once, then arm the waiter (step 3)   |
 | `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`   | Post `@dependabot recreate` once, then arm the waiter          |
 | required checks `PENDING`                               | Wait for checks, below → else `BLOCKED:checks-pending`         |
 | any required check failed                               | Delegate triage (step 5); record `BLOCKED:check-failed:<name>` |
@@ -122,15 +122,21 @@ merge (~21 runs to drain six PRs, against six done sequentially) and ends in the
 **Exactly one waiter runs at a time**, for the PR currently being processed. Other
 `BEHIND` PRs are not monitored and not nudged — their turn comes after this one merges.
 
-Dependabot often rebases stale PRs unprompted, but not reliably. Never assume it picked
-up the work: `mergeStateStatus` reads `BEHIND` for both an idle PR and one mid-rebase,
-so watch two independent signals instead.
+Dependabot's automatic branch-update only fires on an actual merge conflict. A plain
+`BEHIND` from an unrelated merge to `main` (no file overlap) will **never** self-resolve —
+Dependabot does not proactively rebase just because the base moved. So `BEHIND` always
+gets an immediate `@dependabot rebase` nudge (subject to the anti-spam check in
+`references/repo-context.md`) before arming the waiter — do not wait-and-see first.
+`CONFLICTING`/`DIRTY` gets `@dependabot recreate` instead, same immediate-then-wait shape.
+
+Once nudged, watch two independent signals — `mergeStateStatus` reads `BEHIND` for both
+an idle PR and one mid-rebase, so it alone doesn't tell you anything happened:
 
 | Signal                                         | Meaning                                        |
 | ---------------------------------------------- | ---------------------------------------------- |
 | `headRefOid` changed from baseline             | Rebase **landed** — terminal success           |
 | Body contains `Dependabot is rebasing this PR` | **Acknowledged**, still working — keep waiting |
-| Neither, past threshold                        | **Stalled** — needs a nudge                    |
+| Neither, past threshold                        | **Stalled** — needs a second nudge             |
 
 Run the waiter with `Bash(run_in_background: true)` so it emits one notification and exits:
 
@@ -141,8 +147,8 @@ Run the waiter with `Bash(run_in_background: true)` so it emits one notification
 Escalation:
 
 - **0–4 min** — poll every 30s for a `headRefOid` change or the rebasing marker.
-- **`NUDGE` at 4 min** — post `@dependabot rebase` (subject to the anti-spam check in
-  `references/repo-context.md`), then re-arm the waiter with a 10-minute window.
+- **`NUDGE` at 4 min** — post `@dependabot rebase` again (subject to the anti-spam cap of
+  two per head commit), then re-arm the waiter with a 10-minute window.
 - **Second timeout** — record `BLOCKED:no-rebase-response`. Do not nudge a third time.
 
 Every exit path prints a line, so a `/loop` run never hangs on a job that never started.
