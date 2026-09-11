@@ -70,17 +70,19 @@ Decide. Evaluate rows top-down and take the first match:
 | ------------------------------------------------------- | -------------------------------------------------------------- |
 | `state` is `MERGED` / `CLOSED`                          | Drop — superseded by a newer group PR                          |
 | `mergeStateStatus` **or** `mergeable` is `UNKNOWN`      | **Unsettled** — settle first, below, then re-decide            |
+| `autoMergeRequest` is null                              | Record `BLOCKED:no-auto-merge` (workflow path filter)          |
+| unresolved threads > 0                                  | Record `BLOCKED:unresolved-threads` — a human must resolve     |
 | `mergeStateStatus: BEHIND`                              | Post `@dependabot rebase` once, then arm the waiter (step 3)   |
 | `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`   | Post `@dependabot recreate` once, then arm the waiter          |
 | `reviewDecision: APPROVED`, auto-merge on, checks green | Nothing — re-entrancy guard                                    |
-| `autoMergeRequest` is null                              | Record `BLOCKED:no-auto-merge` (workflow path filter)          |
-| unresolved threads > 0                                  | Record `BLOCKED:unresolved-threads` — a human must resolve     |
 | required checks `PENDING`                               | Wait for checks, below → else `BLOCKED:checks-pending`         |
 | any required check failed                               | Delegate triage (step 5); record `BLOCKED:check-failed:<name>` |
 | `BLOCKED` + `MERGEABLE` + checks green                  | Approve, below                                                 |
 
-`BEHIND`/`CONFLICTING`/`DIRTY` are checked **before** the re-entrancy guard: a PR that
-merged ahead of an already-`APPROVED`, auto-merge-on, checks-green PR makes it stale
+The `no-auto-merge` and `unresolved-threads` blockers run **before** the stale-state rows
+— a PR that can never merge shouldn't get a Dependabot update or trigger a needless CI
+run. `BEHIND`/`CONFLICTING`/`DIRTY` in turn run **before** the re-entrancy guard: a PR
+that merged ahead of an already-`APPROVED`, auto-merge-on, checks-green PR makes it stale
 without touching its `reviewDecision` (no push happened to it, so nothing dismissed the
 review) — it would match the guard and be silently skipped forever if the guard ran first.
 
