@@ -136,8 +136,19 @@ gets an immediate `@dependabot rebase` nudge (subject to the anti-spam check in
 `references/repo-context.md`) before arming the waiter — do not wait-and-see first.
 `CONFLICTING`/`DIRTY` gets `@dependabot recreate` instead, same immediate-then-wait shape.
 
-Once nudged, watch two independent signals — `mergeStateStatus` reads `BEHIND` for both
-an idle PR and one mid-rebase, so it alone doesn't tell you anything happened:
+Capture `headRefOid` **before** posting the comment, not after — Dependabot can land the
+rebase in the gap between the comment and the waiter starting, and a waiter that snapshots
+its own baseline would miss that transition (the body marker may already be gone too) and
+run out its full timeout for a rebase that already happened:
+
+```bash
+BASE_OID=$(gh pr view <N> --json headRefOid -q .headRefOid)
+gh pr comment <N> --body "@dependabot rebase"
+```
+
+Once nudged, watch two independent signals against that baseline — `mergeStateStatus`
+reads `BEHIND` for both an idle PR and one mid-rebase, so it alone doesn't tell you
+anything happened:
 
 | Signal                                         | Meaning                                        |
 | ---------------------------------------------- | ---------------------------------------------- |
@@ -145,10 +156,11 @@ an idle PR and one mid-rebase, so it alone doesn't tell you anything happened:
 | Body contains `Dependabot is rebasing this PR` | **Acknowledged**, still working — keep waiting |
 | Neither, past threshold                        | **Stalled** — needs a second nudge             |
 
-Run the waiter with `Bash(run_in_background: true)` so it emits one notification and exits:
+Run the waiter with `Bash(run_in_background: true)` so it emits one notification and
+exits, passing the pre-comment baseline as the second argument:
 
 ```bash
-.claude/skills/merge-dependabot/scripts/wait-rebase.sh <N>
+.claude/skills/merge-dependabot/scripts/wait-rebase.sh <N> "$BASE_OID"
 ```
 
 Escalation:
@@ -197,5 +209,5 @@ are capped at two per head commit, so repeated runs never accumulate comments on
 - **`references/triage-prompt.md`** — verbatim prompt for the failed-check subagent.
 - **`scripts/`** — the polling/mutating one-liners above, as standalone scripts so they can
   be allowlisted once instead of re-approved per PR: `settle-unknown.sh <N>`,
-  `wait-checks.sh <N>`, `wait-rebase.sh <N>`, `approve-and-confirm.sh <N>`,
+  `wait-checks.sh <N>`, `wait-rebase.sh <N> [BASE_OID]`, `approve-and-confirm.sh <N>`,
   `unresolved-threads.sh <owner> <repo> <N>`.
