@@ -14,7 +14,8 @@
       "Bash(.claude/skills/merge-dependabot/scripts/wait-checks.sh:*)",
       "Bash(.claude/skills/merge-dependabot/scripts/wait-rebase.sh:*)",
       "Bash(.claude/skills/merge-dependabot/scripts/approve-and-confirm.sh:*)",
-      "Bash(.claude/skills/merge-dependabot/scripts/unresolved-threads.sh:*)"
+      "Bash(.claude/skills/merge-dependabot/scripts/unresolved-threads.sh:*)",
+      "Bash(.claude/skills/merge-dependabot/scripts/count-nudges.sh:*)"
     ]
   },
   "hooks": {
