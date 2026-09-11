@@ -62,21 +62,32 @@ Acknowledgement can take several minutes when it is busy. Treat the marker as
 
 ### Anti-spam (critical for `/loop`)
 
-Before posting `@dependabot rebase`:
+The cap is a **count**, not a "does one already exist" check: at most **two** nudge
+comments (`@dependabot rebase` or `@dependabot recreate`, combined) are allowed per head
+commit. A push resets `headRefOid`, which resets the count to zero — that's what lets a PR
+that legitimately needs rebasing twice still get help, while a dead one stops accumulating
+comments across `/loop` iterations.
 
 ```bash
-gh pr view <N> --json comments,headRefOid
+gh pr view <N> --json comments,headRefOid,commits
 ```
 
-Skip the comment if a rebase comment already exists that is **newer than the current head
-commit**. Cap at **two nudges per head commit** — a new `headRefOid` resets the count, so
-a PR that legitimately rebases twice still gets help, while a dead one stops accumulating
-comments across `/loop` iterations.
+Count comments matching `@dependabot rebase`/`@dependabot recreate` whose `createdAt` is
+after `.commits[-1].committedDate` (i.e., posted since the PR was last actually pushed to
+— comments from before that push targeted a now-superseded head and don't count). Post
+the nudge only if that count is **0 or 1**; skip once it reaches 2. The skill's own
+two-nudge escalation (an immediate nudge on first seeing `BEHIND`, then one retry after 4
+minutes of silence — see `SKILL.md` step 3) is exactly this budget: the retry is the
+second nudge, not a third, so it is expected to pass this check, not be suppressed by it.
 
 ### 30-day staleness
 
 Dependabot stops auto-rebasing PRs untouched for 30 days. Flag those for a manual
-`@dependabot recreate` rather than waiting on the normal rebase path.
+`@dependabot recreate` rather than waiting on the normal rebase path. Measure "untouched"
+from the PR's **last commit** (`.commits[-1].committedDate`), not `updatedAt` — posting a
+nudge comment or any other activity bumps `updatedAt` without Dependabot having touched
+the branch, which would make an old PR look fresh again on the very next `/loop` pass and
+flip it back to the `rebase` path it will never respond to.
 
 ## Cadence
 
