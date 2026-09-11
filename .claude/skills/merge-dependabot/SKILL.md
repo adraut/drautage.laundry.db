@@ -72,7 +72,7 @@ Decide. Evaluate rows top-down and take the first match:
 | `mergeStateStatus` **or** `mergeable` is `UNKNOWN`      | **Unsettled** — settle first, below, then re-decide            |
 | `autoMergeRequest` is null                              | Record `BLOCKED:no-auto-merge` (workflow path filter)          |
 | unresolved threads > 0                                  | Record `BLOCKED:unresolved-threads` — a human must resolve     |
-| `mergeStateStatus: BEHIND` and `updatedAt` ≥30 days ago | Post `@dependabot recreate` once (30-day exception), then arm |
+| `mergeStateStatus: BEHIND` and `updatedAt` ≥30 days ago | Post `@dependabot recreate` once (30-day exception), then arm  |
 | `mergeStateStatus: BEHIND`                              | Post `@dependabot rebase` once, then arm the waiter (step 3)   |
 | `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`   | Post `@dependabot recreate` once, then arm the waiter          |
 | `reviewDecision: APPROVED`, auto-merge on, checks green | Nothing — re-entrancy guard                                    |
