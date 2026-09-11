@@ -82,7 +82,7 @@ Run this check before **every** nudge, including the first one for a `BEHIND` PR
 assume the count based on where you are in the skill's own flow. A prior `/loop` invocation
 may have already posted one or both nudges for this exact head commit (it never changed, so
 the count carries over); the skill's two-nudge escalation (an immediate nudge on first
-seeing `BEHIND`, then one retry after 4 minutes of silence — see `SKILL.md` step 3) is
+seeing `BEHIND`, then one retry after 5 minutes of silence — see `SKILL.md` step 3) is
 _designed_ to fit this budget, but only an actual count check confirms it hasn't already
 been spent by an earlier run.
 
