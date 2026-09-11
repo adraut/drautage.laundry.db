@@ -70,35 +70,49 @@ Unresolved review threads are **not** a `gh pr view` field — they need GraphQL
 
 Decide. Evaluate rows top-down and take the first match:
 
-| Observed state                                          | Action                                                         |
-| ------------------------------------------------------- | -------------------------------------------------------------- |
-| `state` is `MERGED` / `CLOSED`                          | Drop — superseded by a newer group PR                          |
-| `mergeStateStatus` **or** `mergeable` is `UNKNOWN`      | **Unsettled** — settle first, below, then re-decide            |
-| `autoMergeRequest` is null                              | Record `BLOCKED:no-auto-merge` (workflow path filter)          |
-| unresolved threads > 0                                  | Record `BLOCKED:unresolved-threads` — a human must resolve     |
-| `mergeStateStatus: BEHIND` and last commit ≥30 days old | Post `@dependabot recreate` once (30-day exception), then arm  |
-| `mergeStateStatus: BEHIND`                              | Post `@dependabot rebase` once, then arm the waiter (step 3)   |
-| `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`   | Post `@dependabot recreate` once, then arm the waiter          |
-| `reviewDecision: APPROVED`, auto-merge on, checks green | Nothing — re-entrancy guard                                    |
-| required checks `PENDING`                               | Wait for checks, below → else `BLOCKED:checks-pending`         |
-| any required check failed                               | Delegate triage (step 5); record `BLOCKED:check-failed:<name>` |
-| `BLOCKED` + `MERGEABLE` + checks green                  | Approve, below                                                 |
+| Observed state                                               | Action                                                         |
+| ------------------------------------------------------------ | -------------------------------------------------------------- |
+| `state` is `MERGED` / `CLOSED`                               | Drop — superseded by a newer group PR                          |
+| `mergeStateStatus` **or** `mergeable` is `UNKNOWN`           | **Unsettled** — settle first, below, then re-decide            |
+| `autoMergeRequest` is null                                   | Record `BLOCKED:no-auto-merge` (workflow path filter)          |
+| unresolved threads > 0                                       | Record `BLOCKED:unresolved-threads` — a human must resolve     |
+| `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`        | Post `@dependabot recreate` once, then arm the waiter          |
+| `mergeStateStatus: BEHIND` and last commit ≥30 days old      | Post `@dependabot recreate` once (30-day exception), then arm  |
+| `mergeStateStatus: BEHIND`                                   | Post `@dependabot rebase` once, then arm the waiter (step 3)   |
+| `reviewDecision: APPROVED`, auto-merge on, checks green      | Nothing — re-entrancy guard                                    |
+| required checks `PENDING`                                    | Wait for checks, below → else `BLOCKED:checks-pending`         |
+| any required check failed                                    | Delegate triage (step 5); record `BLOCKED:check-failed:<name>` |
+| `mergeable: MERGEABLE` + checks green (`BLOCKED`/`UNSTABLE`) | Approve, below                                                 |
 
 The `no-auto-merge` and `unresolved-threads` blockers run **before** the stale-state rows
 — a PR that can never merge shouldn't get a Dependabot update or trigger a needless CI
-run. `BEHIND`/`CONFLICTING`/`DIRTY` in turn run **before** the re-entrancy guard: a PR
+run. `CONFLICTING`/`DIRTY`/`BEHIND` in turn run **before** the re-entrancy guard: a PR
 that merged ahead of an already-`APPROVED`, auto-merge-on, checks-green PR makes it stale
 without touching its `reviewDecision` (no push happened to it, so nothing dismissed the
 review) — it would match the guard and be silently skipped forever if the guard ran first.
 
-The 30-day row comes first because it changes which command to send: per
-`references/repo-context.md`, Dependabot stops auto-rebasing PRs untouched for 30 days,
-so a plain `BEHIND` PR that old would never respond to `@dependabot rebase` — it needs
-`@dependabot recreate` instead, same as a real conflict. Measure staleness from the last
-**commit** (`commits[-1].committedDate` from the fetch above), not the PR's `updatedAt` —
-posting our own nudge comment bumps `updatedAt` without Dependabot touching the branch,
-which would make an old PR look fresh again on the next `/loop` pass and misroute it back
-to `rebase`.
+`CONFLICTING`/`DIRTY` is checked **before** either `BEHIND` row, not after: `mergeable` and
+`mergeStateStatus` are independent GitHub computations, and a PR can report
+`mergeStateStatus: BEHIND` while `mergeable: CONFLICTING` — a real conflict, not just a
+stale base. `@dependabot rebase` cannot resolve an actual conflict, so if a `BEHIND` row
+matched first here, the PR would burn a nudge on a command that can't work and eventually
+get misreported as `BLOCKED:no-rebase-response` instead of the conflict it actually is.
+
+Within the `BEHIND` rows, the 30-day exception comes first because it changes which command
+to send: per `references/repo-context.md`, Dependabot stops auto-rebasing PRs untouched for
+30 days, so a plain `BEHIND` PR that old would never respond to `@dependabot rebase` — it
+needs `@dependabot recreate` instead, same as a real conflict. Measure staleness from the
+last **commit** (`commits[-1].committedDate` from the fetch above), not the PR's
+`updatedAt` — posting our own nudge comment bumps `updatedAt` without Dependabot touching
+the branch, which would make an old PR look fresh again on the next `/loop` pass and
+misroute it back to `rebase`.
+
+The approve row matches `mergeStateStatus: BLOCKED` **or** `UNSTABLE`, not just `BLOCKED`:
+per `references/repo-context.md`, a non-required check can be red or still pending without
+blocking the merge, and GitHub reports that combination (required checks green, some
+non-required check not green) as `UNSTABLE` — a PR sitting in exactly the state
+`repo-context.md` says is fine to approve would otherwise match no row and fall through
+undecided.
 
 #### Settle an `UNKNOWN` state before classifying
 
@@ -191,14 +205,21 @@ exits, passing the pre-comment baseline as the second argument:
 
 Escalation:
 
-- **0–4 min** — poll every 30s for a `headRefOid` change or the rebasing marker.
-- **`NUDGE` at 4 min** — re-run `count-nudges.sh <N>`. It's normally `1` here (just the
+- **0–5 min** (the script's default window) — poll every ~50s for a `headRefOid` change or
+  the rebasing marker.
+- **`NUDGE` at 5 min** — re-run `count-nudges.sh <N>`. It's normally `1` here (just the
   nudge above), making this nudge 2 of the cap — but don't assume that: if an earlier
   `/loop` pass already pushed it to `2` (this waiter can start mid-cap, not just at 0),
   skip the comment and record `BLOCKED:no-rebase-response` instead of posting a third.
-  Otherwise re-capture `BASE_OID`
-  (the same race applies here: don't reuse the first one), post the same comment again,
-  then re-arm the waiter with that fresh baseline and a 10-minute window.
+  Otherwise re-capture `BASE_OID` (the same race applies here: don't reuse the first one),
+  post the same comment again, then re-arm the waiter with a fresh baseline and a
+  **10-minute window** — pass it explicitly, the script doesn't widen the window on its own
+  for a bare re-arm (only an in-run acknowledgement extends it):
+
+  ```bash
+  .claude/skills/merge-dependabot/scripts/wait-rebase.sh <N> "$BASE_OID" 600
+  ```
+
 - **Second timeout** — record `BLOCKED:no-rebase-response`.
 
 Every exit path prints a line, so a `/loop` run never hangs on a job that never started.
