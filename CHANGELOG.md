@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/adraut/drautage.laundry.db/compare/v1.1.0...v1.2.0) (2026-09-26)
+
+
+### Features
+
+* update Tide Free and Gentle ([#676](https://github.com/adraut/drautage.laundry.db/issues/676)) ([4cc62dd](https://github.com/adraut/drautage.laundry.db/commit/4cc62dd0a0e9936e4a3896c80620b04b2fc31ae9))
+
 ## [1.1.0](https://github.com/adraut/drautage.laundry.db/compare/v1.0.2...v1.1.0) (2026-09-26)
 
 
