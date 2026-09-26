@@ -1,10 +1,5 @@
 import { CompositeFilterDescriptor, FilterDescriptor } from './filterTypes';
 
-const DEFAULT_FILTER: CompositeFilterDescriptor = {
-  logic: 'and',
-  filters: [{ field: 'hasLipase', operator: 'eq', value: true }],
-};
-
 /**
  * Map of field names to their operators
  * Text fields use 'contains', others use 'eq'
@@ -142,17 +137,9 @@ function isFilterDescriptor(obj: any): obj is FilterDescriptor {
 }
 
 /**
- * Gets the default filter
- * @returns The default filter object
+ * Creates an empty filter (no filters applied).
+ * Returns a new object on each call so callers can safely mutate their copy.
  */
-export function getDefaultFilter(): CompositeFilterDescriptor {
-  return JSON.parse(JSON.stringify(DEFAULT_FILTER));
-}
-
-/**
- * Returns true if the given filter is equivalent to the default filter,
- * meaning no URL params should be written for it.
- */
-export function isFilterDefault(filter: CompositeFilterDescriptor): boolean {
-  return JSON.stringify(encodeFilter(filter).sort()) === JSON.stringify(encodeFilter(DEFAULT_FILTER).sort());
+export function createEmptyFilter(): CompositeFilterDescriptor {
+  return { logic: 'and', filters: [] };
 }

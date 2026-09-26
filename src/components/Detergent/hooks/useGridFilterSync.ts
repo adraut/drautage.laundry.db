@@ -1,20 +1,31 @@
 import { useEffect, useRef, useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CompositeFilterDescriptor } from '../utils/filterTypes';
-import { encodeFilter, decodeFilter, getDefaultFilter, isFilterDefault } from '../utils/gridFilterUtils';
+import { encodeFilter, decodeFilter, createEmptyFilter } from '../utils/gridFilterUtils';
 
 const FILTER_PARAM_NAME = 'f';
 const DEBOUNCE_DELAY = 500;
 
 /**
+ * Applies a filter to a URLSearchParams instance, replacing any existing f params.
+ * An empty (or unencodable) filter results in no f params, i.e. "no filter".
+ */
+function applyFilterParams(prev: URLSearchParams, filter: CompositeFilterDescriptor): URLSearchParams {
+  const params = new URLSearchParams(prev.toString());
+  params.delete(FILTER_PARAM_NAME);
+  encodeFilter(filter).forEach((param) => params.append(FILTER_PARAM_NAME, param));
+  return params;
+}
+
+/**
  * Custom hook to sync Grid filter state with URL query parameters
- * - Reads filter from URL on mount, falls back to default if not present
+ * - Reads filter from URL on mount; no params (or an undecodable param) means no filter
  * - Debounces URL updates when filter changes (500ms)
  * - Enables shareable URLs with filter state
  * - Uses repeating f parameters: ?f=hasLipase&f=brand:Tide
  *
  * @returns Object containing:
- *   - filter: Current filter state from URL or default
+ *   - filter: Current filter state from URL, or empty if no params are present
  *   - updateFilterInUrl: Function to update the filter in URL (automatically debounced)
  */
 export function useGridFilterSync() {
@@ -34,7 +45,7 @@ export function useGridFilterSync() {
         return decoded;
       }
     }
-    return getDefaultFilter();
+    return createEmptyFilter();
   }, [filterParamsKey]);
 
   // Debounced function to update filter in URL
@@ -47,16 +58,7 @@ export function useGridFilterSync() {
 
       // Set new timer
       debounceTimerRef.current = setTimeout(() => {
-        const encoded = encodeFilter(newFilter);
-        setSearchParams(
-          (prev) => {
-            const params = new URLSearchParams(prev.toString());
-            params.delete(FILTER_PARAM_NAME);
-            encoded.forEach((param) => params.append(FILTER_PARAM_NAME, param));
-            return params;
-          },
-          { replace: false },
-        );
+        setSearchParams((prev) => applyFilterParams(prev, newFilter), { replace: false });
         debounceTimerRef.current = null;
       }, DEBOUNCE_DELAY);
     },
@@ -79,17 +81,7 @@ export function useGridFilterSync() {
         clearTimeout(debounceTimerRef.current);
         debounceTimerRef.current = null;
       }
-      setSearchParams(
-        (prev) => {
-          const params = new URLSearchParams(prev.toString());
-          params.delete(FILTER_PARAM_NAME);
-          if (!isFilterDefault(newFilter)) {
-            encodeFilter(newFilter).forEach((param) => params.append(FILTER_PARAM_NAME, param));
-          }
-          return params;
-        },
-        { replace: false },
-      );
+      setSearchParams((prev) => applyFilterParams(prev, newFilter), { replace: false });
     },
     [setSearchParams],
   );

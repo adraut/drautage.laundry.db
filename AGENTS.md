@@ -26,6 +26,7 @@ Before submitting:
 - [ ] New ingredients added to [src/components/common/types/Ingredient.ts](src/components/common/types/Ingredient.ts) with categorization
 - [ ] `package-lock.json` is **not** modified (no dependency changes should occur)
 - [ ] PR is in **draft** state
+- [ ] PR title starts with a Conventional Commits prefix (e.g. `feat:`, `fix:`, `chore:`) — required by PR Title Lint and by release-please to version the change correctly
 - [ ] PR description includes:
   - `Closes #<issue_number>` to auto-link and close the issue
   - Source link(s) with date accessed and region
