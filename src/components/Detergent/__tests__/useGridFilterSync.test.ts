@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useGridFilterSync } from '../hooks/useGridFilterSync';
 import { useGridSortSync } from '../hooks/useGridSortSync';
-import { encodeFilter, decodeFilter, getDefaultFilter } from '../utils/gridFilterUtils';
+import { encodeFilter, decodeFilter } from '../utils/gridFilterUtils';
 import { CompositeFilterDescriptor, FilterDescriptor } from '../utils/filterTypes';
 
 beforeEach(() => {
@@ -26,10 +26,10 @@ const renderHookWithRouter = (callback: () => ReturnType<typeof useGridFilterSyn
 
 describe('useGridFilterSync', () => {
   describe('initialization', () => {
-    it('should return default filter when no URL params present', () => {
+    it('should return an empty filter when no URL params present', () => {
       const { result } = renderHookWithRouter(() => useGridFilterSync());
 
-      expect(result.current.filter).toEqual(getDefaultFilter());
+      expect(result.current.filter).toEqual({ logic: 'and', filters: [] });
     });
 
     it('should load filter from URL param on mount', () => {
@@ -56,13 +56,22 @@ describe('useGridFilterSync', () => {
       expect(result.current.filter).toEqual(testFilter);
     });
 
-    it('should fall back to default filter when no f params present', () => {
+    it('should fall back to an empty filter when no f params present', () => {
       const testUrl = 'http://localhost/?other=value';
       window.history.pushState({}, '', testUrl);
 
       const { result } = renderHookWithRouter(() => useGridFilterSync());
 
-      expect(result.current.filter).toEqual(getDefaultFilter());
+      expect(result.current.filter).toEqual({ logic: 'and', filters: [] });
+    });
+
+    it('should fall back to an empty filter when the f param is undecodable', () => {
+      const testUrl = 'http://localhost/?f=brand:';
+      window.history.pushState({}, '', testUrl);
+
+      const { result } = renderHookWithRouter(() => useGridFilterSync());
+
+      expect(result.current.filter).toEqual({ logic: 'and', filters: [] });
     });
   });
 
@@ -173,6 +182,32 @@ describe('useGridFilterSync', () => {
       });
 
       jest.useRealTimers();
+    });
+  });
+
+  describe('resetFilterInUrl', () => {
+    it('clears the filter permanently, surviving a reload from the resulting URL', () => {
+      // Start with a filter applied
+      const initialFilter: CompositeFilterDescriptor = {
+        logic: 'and',
+        filters: [{ field: 'hasProtease', operator: 'eq', value: true }],
+      };
+      const params = new URLSearchParams();
+      encodeFilter(initialFilter).forEach((p) => params.append('f', p));
+      window.history.pushState({}, '', `http://localhost/?${params.toString()}`);
+
+      const { result } = renderHookWithRouter(() => useGridFilterSync());
+
+      act(() => {
+        result.current.resetFilterInUrl({ logic: 'and', filters: [] });
+      });
+
+      // No f params should remain in the URL
+      expect(new URL(window.location.href).searchParams.getAll('f')).toEqual([]);
+
+      // Simulate a reload: a fresh hook instance reading the same URL
+      const { result: reloaded } = renderHookWithRouter(() => useGridFilterSync());
+      expect(reloaded.current.filter).toEqual({ logic: 'and', filters: [] });
     });
   });
 

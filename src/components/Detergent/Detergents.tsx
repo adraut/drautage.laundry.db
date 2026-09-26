@@ -21,6 +21,7 @@ import { useGridSortSync } from './hooks/useGridSortSync';
 import { useDetergentUrlSync } from './hooks/useDetergentUrlSync';
 import { findDetergentBySlug } from './utils/detergentSlug';
 import { getDefaultSort } from './utils/gridSortUtils';
+import { createEmptyFilter } from './utils/gridFilterUtils';
 import { Drawer } from '../common/Drawer';
 import { FilterDrawerContent } from './FilterDrawerContent';
 import { FilterBar } from './FilterBar';
@@ -204,13 +205,11 @@ function Detergents() {
 
   // Initialize filter from URL on mount and store as initial filter
   useEffect(() => {
-    if (urlFilter) {
-      setFilter(urlFilter);
-      // Store the initial filter from URL for reset functionality
-      if (initialFilterRef.current === null) {
-        // Deep clone the filter to avoid reference issues
-        initialFilterRef.current = JSON.parse(JSON.stringify(urlFilter));
-      }
+    setFilter(urlFilter);
+    // Store the initial filter from URL for reset functionality
+    if (initialFilterRef.current === null) {
+      // Deep clone the filter to avoid reference issues
+      initialFilterRef.current = JSON.parse(JSON.stringify(urlFilter));
     }
   }, [urlFilter]);
 
@@ -278,30 +277,39 @@ function Detergents() {
     [setDetergentSlug],
   );
 
-  const resetFilter = useCallback(() => {
-    // Reset to the initial filter from URL — use immediate variant to avoid debounce race with sort reset
-    const resetToFilter = initialFilterRef.current || { logic: 'and' as const, filters: [] };
-    setFilter(resetToFilter);
-    resetFilterInUrl(resetToFilter);
-
-    // Reset sort to default — immediate so both URL updates compose in the same React batch
+  // Applies the default sort to the grid immediately and writes it to the URL.
+  // Shared by resetFilter and clearFilter so both leave the grid in a stably-sorted
+  // (not raw insertion-order) state — see the "Clear Filters" bug this fixed:
+  // clearing to no sort at all fell back to the compiled module's insertion order,
+  // which is not brand-alphabetical, so some brands (e.g. "9 Elements") ended up far
+  // from the top of the (virtualized) grid instead of near it.
+  const applyDefaultSort = useCallback(() => {
     const defaultSort = getDefaultSort();
     gridRef.current?.api.applyColumnState({
       state: defaultSort.map((item, idx) => ({ colId: item.colId, sort: item.sort, sortIndex: idx })),
       defaultState: { sort: null },
     });
     resetSortInUrl(defaultSort);
-  }, [resetFilterInUrl, resetSortInUrl]);
+  }, [resetSortInUrl]);
+
+  const resetFilter = useCallback(() => {
+    // Reset to the initial filter from URL — use immediate variant to avoid debounce race with sort reset
+    const resetToFilter = initialFilterRef.current || createEmptyFilter();
+    setFilter(resetToFilter);
+    resetFilterInUrl(resetToFilter);
+
+    // Reset sort to default — immediate so both URL updates compose in the same React batch
+    applyDefaultSort();
+  }, [resetFilterInUrl, applyDefaultSort]);
 
   const clearFilter = useCallback(() => {
-    // Always clear all filters and sort
-    const emptyFilter = { logic: 'and' as const, filters: [] };
+    // Always clear all filters, but keep the grid in its default sort order
+    const emptyFilter = createEmptyFilter();
     setFilter(emptyFilter);
     resetFilterInUrl(emptyFilter);
 
-    gridRef.current?.api.applyColumnState({ defaultState: { sort: null } });
-    resetSortInUrl([]);
-  }, [resetFilterInUrl, resetSortInUrl]);
+    applyDefaultSort();
+  }, [resetFilterInUrl, applyDefaultSort]);
 
   const handleCompareToggle = useCallback((detergent: DetergentProfile) => {
     const slug = detergent.slug;

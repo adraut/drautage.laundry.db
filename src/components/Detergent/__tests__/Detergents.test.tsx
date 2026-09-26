@@ -28,7 +28,7 @@ function createMockDetergents(): Map<string, DetergentProfile> {
     'Tide',
     DetergentType.Liquid,
     DataSource.Package,
-    [Ingredient.Lipase, Ingredient.Protease],
+    [Ingredient.Protease],
     new Date('2026-01-01'),
   );
   withoutCellulase.countriesAvailable = ['USA'];
@@ -65,7 +65,7 @@ describe('Detergents', () => {
   });
 
   describe('URL filter persistence', () => {
-    it('should apply default filter when no URL params present', async () => {
+    it('shows all detergents when no URL params present', async () => {
       // Reset URL
       window.history.pushState({}, '', 'http://localhost/');
 
@@ -77,7 +77,9 @@ describe('Detergents', () => {
 
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
-      expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
+      // Tide Clean & Gentle has no Lipase — if a hasLipase default filter came back, it would be excluded here.
+      expect(screen.getByText('Original')).toBeInTheDocument();
+      expect(screen.getByText('Tide Clean & Gentle')).toBeInTheDocument();
     });
 
     it('should load and apply filter from URL param on mount', async () => {
@@ -105,7 +107,7 @@ describe('Detergents', () => {
       // Grid should render with filters applied from URL
     });
 
-    it('should fall back to default filter on invalid URL param', async () => {
+    it('should fall back to an empty filter when the URL param is not a recognized filter param', async () => {
       const testUrl = 'http://localhost/?filter=INVALID_ENCODED_STRING';
       window.history.pushState({}, '', testUrl);
 
@@ -118,6 +120,8 @@ describe('Detergents', () => {
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
       expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
+      expect(screen.getByText('Original')).toBeInTheDocument();
+      expect(screen.getByText('Tide Clean & Gentle')).toBeInTheDocument();
     });
 
     it('should have Grid component that can be filtered', async () => {
@@ -231,12 +235,32 @@ describe('Detergents', () => {
 
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
-      // Grid should render with default sort (ascending name) and default filter (hasLipase = true)
+      // Grid should render with default sort (ascending name) and no filter applied
       const header = screen.getByRole('columnheader', { name: 'Product Name' });
       expect(header).toHaveAttribute('aria-sort', 'ascending');
 
       // Grid should be visible and rendered
       expect(screen.getByRole('columnheader', { name: 'Brand' })).toBeInTheDocument();
+    });
+
+    it('should keep the default sort applied after clicking Clear Filters', async () => {
+      // Regression test: Clear Filters used to remove sorting entirely, leaving the
+      // grid in raw insertion order instead of the default brand-ascending sort.
+      const user = userEvent.setup();
+
+      render(
+        <BrowserRouter>
+          <Detergents />
+        </BrowserRouter>,
+      );
+
+      await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
+
+      await user.click(screen.getByRole('button', { name: 'Open filters' }));
+      await user.click(screen.getByText('Clear Filters'));
+
+      const header = screen.getByRole('columnheader', { name: 'Product Name' });
+      await waitFor(() => expect(header).toHaveAttribute('aria-sort', 'ascending'));
     });
   });
 
