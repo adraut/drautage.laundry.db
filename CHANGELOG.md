@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/adraut/drautage.laundry.db/compare/v1.0.2...v1.1.0) (2026-09-26)
+
+
+### Features
+
+* remove default lipase filter; keep sort on Clear Filters ([#673](https://github.com/adraut/drautage.laundry.db/issues/673)) ([9a37330](https://github.com/adraut/drautage.laundry.db/commit/9a37330c9cc6a12acf5d8d3f8f6d234016860dff))
+
 ## [1.0.2](https://github.com/adraut/drautage.laundry.db/compare/v1.0.1...v1.0.2) (2026-09-26)
 
 
