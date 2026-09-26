@@ -5,7 +5,7 @@ import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
-  Ingredient.C10_16Pareth,
+  Ingredient.C10_16Alketh,
   Ingredient.SodiumC10_16Alkylbenzenesulfonate,
   Ingredient.SodiumLaurylSulfate,
   Ingredient.PolyethyleneimineAlkoxylated,
@@ -15,13 +15,14 @@ const ingredients: Ingredient[] = [
   Ingredient.C10_16AlkyldimethylamineOxide,
   Ingredient.Alcohol,
   Ingredient.SodiumCumenesulfonate,
+  Ingredient.PEGTerephthalatePolymer,
   Ingredient.TetrasodiumGlutamateDiacetate,
   Ingredient.CalciumFormate,
   Ingredient.Subtilisin,
   Ingredient.Amylase,
-  Ingredient.Benzisothiazolinone,
   Ingredient.Cellulase,
   Ingredient.Mannanase,
+  Ingredient.Benzisothiazolinone,
 ];
 
 const TideFreeGentle: DetergentProfile = new DetergentProfile(
@@ -30,7 +31,7 @@ const TideFreeGentle: DetergentProfile = new DetergentProfile(
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-21'),
+  new Date('2026-09-21'),
 );
 TideFreeGentle.countryOfOrigin = 'USA';
 TideFreeGentle.countriesAvailable = ['USA'];
