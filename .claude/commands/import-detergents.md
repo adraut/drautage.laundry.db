@@ -1,29 +1,49 @@
 # Import Detergents from Image Groups
 
-Processes a batch of detergent packaging photos stored in `import/detergents/`,
-creating or updating GitHub issues for each product. Progress is tracked in
-`import/detergents/IMPORT_LOG.md`.
+Processes a batch of detergent packaging photos, creating or updating GitHub
+issues for each product. Progress is tracked in an `IMPORT_LOG.md` alongside
+the images.
 
-> **Sync note:** The image-processing rules in this skill (cropping, OCR
-> confidence, multi-image reconciliation, extraction rules, profile comparison,
-> proposal file format) must be kept in sync with the equivalent steps in
-> `/create-detergent-issue`. If you update one, update the other.
+> OCR, cropping, multi-image reconciliation, and the ingredient extraction
+> rules are shared with `/create-detergent-issue` via the
+> `detergent-label-ocr` skill — see step 2c below.
 
 ## Usage
 
 ```
-/import-detergents [log_path]
+/import-detergents [path]
 ```
 
-- **With log path** — uses that file as the tracking log
-- **Without argument** — defaults to `import/detergents/IMPORT_LOG.md`
+- **`path` is a directory** — treated as the batch directory (where the
+  images live). The log is always `<path>/IMPORT_LOG.md`.
+- **`path` is a `.md` file** — treated as the log file directly; its parent
+  directory is the batch directory.
+- **No argument** — defaults to batch directory `import/detergents/`.
 
 ## Overview
 
-Images are sorted alphabetically by filename. A **front-of-package** image
-starts a new group. All subsequent images up to (but not including) the next
-front image are **ingredient list images** for that group. A group therefore
-has exactly 1 front image and 1 or more ingredient images.
+A batch directory can be organized either way — detect which one you've got
+before building the log (step 1b):
+
+- **Flat** — all images sit directly in the batch directory. Sort them
+  alphabetically by filename; a **front-of-package** image starts a new
+  group, and every image up to (but not including) the next front image is
+  an **ingredient image** for that group.
+- **Pre-grouped** — the batch directory contains only subdirectories, one
+  per product, each already holding that product's photos (this is a common
+  way people organize photos as they take them — e.g. one folder per bottle).
+  Each subdirectory is one group already; don't apply the alphabetical
+  front/ingredient heuristic across the whole batch. Instead, classify the
+  images _within_ each subdirectory independently — read them to determine
+  which one is the front image rather than assuming filename order reflects
+  that (phone camera filenames rarely do).
+- **Mixed** — some loose images plus some subdirectories: treat the loose
+  images as their own flat-mode group set, and each subdirectory as its own
+  pre-formed group.
+
+Whichever structure it is, don't stop to ask the user about it unless a
+specific group is genuinely ambiguous (see the edge cases below) — the
+directory layout itself is not something to confirm up front.
 
 The log file tracks which groups have been processed so the batch can be
 resumed across sessions.
@@ -47,20 +67,41 @@ already recorded in any row — these are already classified and will be skipped
 Note any row whose `Status` is `classifying` — that group's classification was
 interrupted and must be completed before processing resumes (see step 1c).
 
-### Step 1b — Inventory
+Record image filenames as paths **relative to the batch directory** (e.g.
+`{Brand} {Product Name} {Type}/*.jpg` in pre-grouped
+mode, not just the bare filename) — otherwise two subdirectories with
+similarly-named photos (common with phone camera filenames) will collide in
+the "already recorded" check.
 
-List all `.jpg` / `.jpeg` / `.png` files in the batch directory, sorted
-alphabetically. Exclude `_cropped` images (derived artifacts, not sources).
-Exclude any filename already recorded in the log.
+### Step 1b — Detect structure and inventory
 
-If no unrecorded images remain, Phase 1 is complete — proceed to Phase 2.
+List the batch directory's immediate contents to determine which structure
+it is (flat, pre-grouped, or mixed — see Overview above).
+
+For the **flat** portion: list all `.jpg` / `.jpeg` / `.png` files directly
+in the batch directory, sorted alphabetically. Exclude `_cropped` images
+(derived artifacts, not sources) and any filename already recorded in the
+log.
+
+For the **pre-grouped** portion: each subdirectory with unrecorded images is
+one group to classify (step 1c still applies within it — you still need to
+work out which image is the front).
+
+If no unrecorded images remain anywhere, Phase 1 is complete — proceed to
+Phase 2.
 
 ### Step 1c — Classify in batches, writing after each
 
-Process the unrecorded images in **parallel batches of 5**, strictly in
-alpha order. After each batch completes, immediately update the log before
-starting the next batch. This ensures classification can be resumed if
-interrupted.
+For the flat portion, process unrecorded images in **parallel batches of 5**,
+strictly in alpha order, maintaining an "open group" the same way as always
+(see below). For the pre-grouped portion, process each subdirectory as its
+own unit — read all its images together (a subdirectory rarely has more than
+a handful of photos, so there's no need to sub-batch it) and determine which
+one is the front image directly from its content.
+
+After each batch (or each pre-grouped subdirectory) completes, immediately
+update the log before moving on. This ensures classification can be resumed
+if interrupted.
 
 **Classify each image as one of:**
 
@@ -72,11 +113,11 @@ interrupted.
   completely unclear). Ask the user before assigning. Do not block — flag it
   in the Notes of the current open group and continue.
 
-**Maintain an "open group" across batches.** Each time a front image is
-seen, the previously open group is complete; open a new one. Ingredient and
-unknown images are appended to the currently open group.
+**In flat mode, maintain an "open group" across batches.** Each time a front
+image is seen, the previously open group is complete; open a new one.
+Ingredient and unknown images are appended to the currently open group.
 
-**After each batch of 5, update the log:**
+**After each batch of 5 (flat mode), update the log:**
 
 1. For each group that was **completed** in this batch (its closing front image
    was found), append or update its log row with `Status = pending`.
@@ -85,17 +126,26 @@ unknown images are appended to the currently open group.
    been collected so far. This row will be updated in subsequent batches as
    more ingredient images are found.
 
-**When all batches are done**, update the final open group's `Status` from
-`classifying` to `pending`.
+**When all flat-mode batches are done**, update the final open group's
+`Status` from `classifying` to `pending`.
+
+**After each pre-grouped subdirectory, update the log:** one row per
+subdirectory, `Status = pending`, front/ingredient images split by what you
+determined from reading them.
 
 **Edge cases:**
 
 - First image ever is an ingredient image (no preceding front): open a group
   with no front image, set `Status = pending`, `Notes = "missing front image"`.
   Ask the user before Phase 2 processes this group.
-- Multiple front images in a row: the second front closes the prior group; if
-  that prior group had no ingredient images, set `Notes = "no ingredient images
-found"` and ask the user before Phase 2 processes it.
+- Multiple front images in a row (flat mode): the second front closes the
+  prior group; if that prior group had no ingredient images, set
+  `Notes = "no ingredient images found"` and ask the user before Phase 2
+  processes it.
+- A pre-grouped subdirectory with no image that reads as a front (e.g. all
+  ingredient close-ups) or with more than one plausible front image: set
+  `Notes` describing the ambiguity and ask the user before Phase 2 processes
+  it — same as the flat-mode edge cases above.
 - `unknown` images: append to the current open group, flag in Notes.
 
 Status values:
@@ -162,184 +212,25 @@ Check `src/components/Detergent/data/profiles/<filename>`.
 
 **Run this check in parallel with step 2c.**
 
-### Step 2c — Crop and OCR each ingredient image
+### Step 2c — OCR each ingredient image
 
-**Run all ingredient images for this group in parallel.**
+**Run all ingredient images for this group in parallel.** Use the
+`detergent-label-ocr` skill for the full-image OCR prompt, cropping (via its
+bundled script — never hand-write a docker/podman ImageMagick invocation),
+multi-image reconciliation, and the extraction rules (language, order, "may
+contain", P&G "MADE WITH" category unpacking, OR-alternatives, colorants,
+alketh vs. pareth, enzymes). That skill's output is the final, ordered
+ingredient list for this group, with uncertain items flagged `[?]` or
+`[unreadable]`.
 
-#### OCR strategy — full image first, crop only if needed
-
-**Step 1 — Full-image OCR (always):**
-
-Use the `Read` tool with the absolute file path for each ingredient image.
-To run multiple ingredient images in parallel, issue all `Read` calls in the
-same response. Use this prompt when reading each image:
-
-> "Read the ingredient list from this image. Transcribe every ingredient
-> name exactly as printed, in the order printed. After any word or character
-> you are not 100% certain of, immediately append `[?]` — include your
-> best-guess reading before the marker (e.g. `laureth-6 [?]`). For any text
-> that is completely unreadable, write `[unreadable]` as a placeholder.
-> Output the list as one ingredient per line. At the end, add a Confidence
-> summary listing each flagged item with the reason for uncertainty (cut off,
-> smudged, low contrast, ambiguous character, etc.)."
-
-This pass is sufficient for most close-up shots.
-
-**Step 2 — Crop and re-OCR (only when confidence is low):**
-
-If the full-image pass produced any `[?]` or `[unreadable]` items, crop to
-the ingredient list panel and re-read using the same prompt above. Use the
-higher-confidence reading per ingredient across both passes.
-
-**Tool detection for cropping** — check once per session, in priority order:
-
-1. **Docker + ImageMagick** (`docker info`) — preferred container runtime.
-   Use the `dpokidov/imagemagick` image. Pull once: `docker pull dpokidov/imagemagick`.
-2. **Podman + ImageMagick** (`podman info`) — drop-in Docker alternative;
-   commands are identical with `podman` substituted for `docker`.
-   Pull once: `podman pull dpokidov/imagemagick`.
-3. **Local ImageMagick** (`magick --version`) — install on Windows via
-   `winget install ImageMagick.Q16-HDRI`.
-4. **Python + Pillow** (`python -c "from PIL import Image"`) — install via
-   `pip install Pillow`.
-
-Set `RUNTIME` to whichever is found first (`docker` or `podman`) and reuse
-it for all crop commands in this session.
-
-**Crop commands** (run only when step 2 is triggered):
-
-1. Note the ingredient list region from the full-image read.
-
-2. **Get image dimensions.** Use `MSYS_NO_PATHCONV=1` to prevent Git Bash
-   from rewriting container paths, and `--entrypoint magick` because the
-   `dpokidov/imagemagick` image defaults to the legacy `convert` entrypoint:
-
-   ```
-   MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
-     -v "C:/path/to/batch dir:/img" dpokidov/imagemagick \
-     identify -format "%wx%h\n" "/img/<filename>"
-   ```
-
-3. **Generate a coordinate grid overlay** and read it to pinpoint the
-   ingredient region in one shot. Draw horizontal lines every 500 px labeled
-   with their y-value, then read the resulting image to see exactly which
-   gridlines bracket the ingredient text — no guessing required.
-
-   Generate the grid (substitute `<W>` with the image width from step 2, and
-   add/remove lines to cover the full height at 500 px intervals):
-
-   ```
-   MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
-     -v "C:/path/to/batch dir:/img" dpokidov/imagemagick \
-     "/img/<filename>" \
-     -font DejaVu-Sans -pointsize 80 -fill red -stroke red -strokewidth 3 \
-     -draw "line 0,500 <W>,500"    -annotate +20+490  "y=500" \
-     -draw "line 0,1000 <W>,1000"  -annotate +20+990  "y=1000" \
-     -draw "line 0,1500 <W>,1500"  -annotate +20+1490 "y=1500" \
-     -draw "line 0,2000 <W>,2000"  -annotate +20+1990 "y=2000" \
-     -draw "line 0,2500 <W>,2500"  -annotate +20+2490 "y=2500" \
-     -draw "line 0,3000 <W>,3000"  -annotate +20+2990 "y=3000" \
-     -draw "line 0,3500 <W>,3500"  -annotate +20+3490 "y=3500" \
-     "/img/<stem>_grid.jpg"
-   ```
-
-   Read `<stem>_grid.jpg` with the `Read` tool. The ingredient text will be
-   visibly bracketed between two labeled gridlines — read off the y-values
-   and compute: `height = y_end - y_start`, crop = `<W>x<height>+0+<y_start>`.
-   Delete the grid file after reading it.
-
-4. Run the crop. **Paths with spaces must be quoted; use forward slashes for
-   Windows paths in container volume mounts. Always set `MSYS_NO_PATHCONV=1`
-   and `--entrypoint magick` for the `dpokidov/imagemagick` image.**
-
-   Crop geometry: `WxH+X+Y` = width × height + left offset + top offset
-   from top-left corner (all in pixels).
-   - Docker or Podman + ImageMagick:
-     ```
-     MSYS_NO_PATHCONV=1 <RUNTIME> run --rm --entrypoint magick \
-       -v "C:/path/to/batch dir:/img" dpokidov/imagemagick \
-       "/img/<filename>" -crop <WxH+X+Y> +repage "/img/<stem>_cropped.jpg"
-     ```
-   - Local ImageMagick:
-     `magick "<input>" -crop <WxH+X+Y> +repage "<stem>_cropped.jpg"`
-   - Pillow:
-     `python -c "from PIL import Image; img=Image.open('<input>'); img.crop((<x1>,<y1>,<x2>,<y2>)).save('<stem>_cropped.jpg')"`
-   - **No tool available:** re-read the full image with the prompt above,
-     prefixed with: _"Focus only on the ingredient list panel in the
-     [lower half / right column / etc.]. Ignore all other text."_
-
-5. Record the cropped filename in the log's `Ingredient image(s)` column.
-
-#### OCR with confidence annotation
-
-The prompt in step 1 above covers confidence annotation inline. As a reminder:
-
-- Uncertain text → `best-guess reading [?]` inline
-- Completely unreadable → `[unreadable]`
-- End of transcription → **Confidence summary** with each flagged item and
-  reason (cut off, smudged, low contrast, ambiguous character, etc.)
-
-#### Multi-image reconciliation
-
-When a group has more than one ingredient image, merge the OCR results:
-
-- Use each image's transcription independently.
-- Where they agree, accept the reading as high-confidence.
-- Where they disagree or one is missing text the other has, note the
-  discrepancy and flag it as `[?]`.
-- Prefer the clearest read of any individual ingredient across all images.
-
-#### Extraction rules
-
-Apply the following rules after collecting the final ingredient text:
-
-**Language:** If bilingual, use English ingredients only. If English is
-absent, translate to English INCI names.
-
-**Order:** Preserve the exact printed sequence. Do not sort, alphabetize, or
-reorder. Ingredient order is significant.
-
-**"May contain" / conditional ingredients:** Include in the list. Note each
-one in the issue Notes as conditional, e.g.
-`"may contain: propylene glycol — included as conditional"`.
-
-**Functional-category labels (P&G "MADE WITH:" format):** Gain liquids, Tide
-Simply, and some other P&G products list ingredients by function group:
-`"Cleaning Agents: (A; B). Stabilizers: (C). Enzymes: (D). ... Colorants. Fragrances. Water."`
-
-- Water appears last in this format but is always first by concentration.
-  **List Water first.**
-- Follow the printed category sequence for all other ingredients
-  (Cleaning Agents → Stabilizers/Process Aids → Water Softener → Enzymes →
-  Cleaning Aids → Odor Removers → Solvents → Preservative → Colorants →
-  Fragrances).
-- Conditional phrases embedded in a category apply the "may contain" rule.
-
-**OR alternatives:** Packaging sometimes lists `"A or B"` or `"A and/or B"`.
-
-- If either option is already in the existing profile, treat the OR pair as
-  satisfied — do not add or remove anything for that pair.
-- If neither option is in the profile, use the **first-listed** option and
-  discard the rest.
-
-**Colorants:**
-
-- Specific colorant named (e.g., `CI 42090`, `Pigment Blue 15`) → use that
-  specific `Ingredient` enum entry.
-- Generic term only (`Colorants`, `Dyes`) → use `Ingredient.Colorants`.
-- Do **not** keep a specific colorant if the current source only gives a
-  generic term — replace with the generic entry.
-
-**Alketh vs. Pareth:** Distinct substances. `C10-16 alketh` →
-`C10_16Alketh`, not `C10_16Pareth`.
-
-**Enzymes:** Name specific enzymes when named on packaging. If only
-"enzymes" generically, note TBD in the issue; do not guess.
+If the skill's crop step produces a `_cropped` file, record its filename in
+the log's `Ingredient image(s)` column.
 
 ### Step 2d — Compare vs. existing profile (if found)
 
-Map each `Ingredient.EnumName` in the profile to its plain-text equivalent
-and compare against the extracted ingredient list, **including order**.
+Use the `detergent-label-ocr` skill's profile-comparison approach: map each
+`Ingredient.EnumName` in the profile to its plain-text equivalent and
+compare against the extracted ingredient list, **including order**.
 
 - **Identical sequence** → mark as `up-to-date`, no issue needed.
 - **Different ingredients or different order** → note added, removed, and
@@ -376,28 +267,15 @@ import directory immediately — do not wait for ambiguities to be resolved.
 
 **If there are no ambiguities:** write the proposal file normally.
 
-**If there are ambiguities:** write the proposal file with a
-`## ⚠ Needs Review` section at the top, before the issue body, containing
-a table of every unresolved item:
+**If there are ambiguities:** write the proposal file with the
+`## ⚠ Needs Review` table described in the `detergent-label-ocr` skill
+(section 5) at the top, before the issue body. The issue body below it
+should still use the best-guess reading for each uncertain item (marked
+`[?]`) so the proposal is otherwise complete and can be approved with
+minimal edits once decisions are made.
 
-```markdown
-## ⚠ Needs Review
-
-The following items must be decided before this issue is created:
-
-| #   | Position       | OCR reading                | Uncertainty reason         | Decision needed                                |
-| --- | -------------- | -------------------------- | -------------------------- | ---------------------------------------------- |
-| 1   | Ingredient #4  | `acty/decyl glucoside [?]` | Characters blurred         | `DecylGlucoside` or `CaprylylCaprylGlucoside`? |
-| 2   | Ingredient #12 | `[unreadable]`             | Text cut off at image edge | Skip, mark TBD, or provide a better image?     |
-```
-
-The issue body below the review section should use the best-guess reading
-for each uncertain item (marked with `[?]`) so the proposal is otherwise
-complete and can be approved with minimal edits once decisions are made.
-
-The issue body's **Product details** section must include a `**Data source:**`
-field — `Package` when ingredients come from packaging images or a
-manufacturer/SmartLabel page, `SDS` when they come from a Safety Data Sheet.
+The issue body's **Product details** section must include the skill's
+`**Data source:**` field.
 
 ### Step 2g — Update the log
 
