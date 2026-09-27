@@ -574,6 +574,11 @@ export enum Ingredient {
    */
   MagnesiumChloride = 'Magnesium Chloride',
   /**
+   * Maltodextrin is a polysaccharide derived from starch, used in liquid laundry detergents
+   * as a carrier/stabilizer (commonly for enzymes) and processing aid.
+   */
+  Maltodextrin = 'Maltodextrin',
+  /**
    * Mannanase is an enzyme that breaks down mannans (polysaccharides), helping to remove food stains
    * containing guar gum, locust bean gum, or similar thickeners.
    * Synonyms: Mannanase Enzyme, Mannanase Enzyme Blend
