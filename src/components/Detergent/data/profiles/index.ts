@@ -107,6 +107,7 @@ export { default as TideFreeGentle } from './tide-free-gentle';
 export { default as TideFreeGentleOdorRefresh } from './tide-free-and-gentle-odor-refresh';
 export { default as TideOriginalLiquid } from './tide-original-liquid';
 export { default as TideOriginalPowder } from './tide-original-powder';
+export { default as TidePlusBleachAlternativeOriginalLiquid } from './tide-plus-bleach-alternative-original-liquid';
 export { default as TidePlusBleachOriginalPowder } from './tide-plus-bleach-original-powder';
 export { default as TidePlusFebrezeFreshnessLiquid } from './tide-plus-febreze-freshness-liquid';
 export { default as TidePlusUltraFebrezeSpringRenewal } from './tide-plus-ultra-febreze-spring-renewal';
