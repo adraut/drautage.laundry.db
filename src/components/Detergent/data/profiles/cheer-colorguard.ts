@@ -28,7 +28,7 @@ const CheerColorGuard: DetergentProfile = new DetergentProfile(
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-21'),
+  new Date('2026-09-27'),
 );
 CheerColorGuard.countriesAvailable = ['USA', 'CAN'];
 
