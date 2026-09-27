@@ -4,17 +4,18 @@ import { DetergentType } from '../../types/DetergentType';
 import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
+  Ingredient.Water,
   Ingredient.SodiumLaurylSulfate,
   Ingredient.C10_16Alketh,
-  Ingredient.MEAC10_16Alkylbenzenesulfonate,
-  Ingredient.MEALaurethSulfate,
+  Ingredient.SodiumMEAC10_16Alkylbenzenesulfonate,
   Ingredient.CalciumFormate,
+  Ingredient.MEALaurethSulfate,
   Ingredient.HydrogenatedCastorOil,
-  Ingredient.C12_18FattyAcidsSodiumSalt,
+  Ingredient.SodiumMEAC12_18FattyAcidsSalt,
   Ingredient.PhenylpropylEthylMethicone,
   Ingredient.Trimethylsiloxysilicate,
   Ingredient.Simethicone,
-  Ingredient.MEACitrate,
+  Ingredient.SodiumMEACitrate,
   Ingredient.Subtilisin,
   Ingredient.Amylase,
   Ingredient.Cellulase,
@@ -28,7 +29,8 @@ const ingredients: Ingredient[] = [
   Ingredient.Benzisothiazolinone,
   Ingredient.Colorants,
   Ingredient.Fragrance,
-  Ingredient.Water,
+  Ingredient.PropyleneGlycol, // may contain
+  Ingredient.SodiumCumenesulfonate, // may contain
 ];
 
 const TideUltraSport: DetergentProfile = new DetergentProfile(
@@ -37,7 +39,7 @@ const TideUltraSport: DetergentProfile = new DetergentProfile(
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-15'),
+  new Date('2026-09-27'),
 );
 TideUltraSport.countriesAvailable = ['USA', 'CAN'];
 
