@@ -37,7 +37,7 @@ const TidePowerPodsOxiBoost: DetergentProfile = new DetergentProfile(
   DetergentType.Pod,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-15'),
+  new Date('2026-09-27'),
 );
 TidePowerPodsOxiBoost.countryOfOrigin = 'USA';
 TidePowerPodsOxiBoost.countriesAvailable = ['USA'];
