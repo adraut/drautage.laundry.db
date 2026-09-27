@@ -58,7 +58,7 @@ const ingredients: Ingredient[] = [
   Ingredient.ArtemisiaPallensFlowerOil,
   Ingredient.DimethylHeptenal,
   Ingredient.BoswelliaCarteriOil,
-  Ingredient.LaminariaDigitataExtract,
+  Ingredient.FucusVesiculosusExtract,
 ];
 
 const SeventhGenerationEasyDoseUltraPowerPlusCleanScent: DetergentProfile = new DetergentProfile(
@@ -67,7 +67,7 @@ const SeventhGenerationEasyDoseUltraPowerPlusCleanScent: DetergentProfile = new 
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-17'),
+  new Date('2026-09-27'),
 );
 SeventhGenerationEasyDoseUltraPowerPlusCleanScent.countriesAvailable = ['USA'];
 export default SeventhGenerationEasyDoseUltraPowerPlusCleanScent;
