@@ -38,7 +38,7 @@ const TidePodsSpringMeadow: DetergentProfile = new DetergentProfile(
   DetergentType.Pod,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-14'),
+  new Date('2026-09-27'),
 );
 TidePodsSpringMeadow.countryOfOrigin = 'USA';
 TidePodsSpringMeadow.countriesAvailable = ['USA'];
