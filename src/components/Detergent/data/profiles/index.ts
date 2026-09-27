@@ -101,6 +101,7 @@ export { default as SeventhGenerationSensitiveSkinLaundryDetergentPacksFreeAndCl
 export { default as SeventhGenerationUltraPowerPlusLaundryDetergentPacksCleanScent } from './seventh-generation-ultra-power-plus-laundry-detergent-packs-clean-scent';
 export { default as SimpleTruthOrganicFreeAndClearLaundryDetergent } from './simple-truth-organic-free-and-clear-laundry-detergent';
 export { default as SimpleTruthOrganicSweetLavenderLaundryDetergent } from './simple-truth-organic-sweet-lavender-laundry-detergent';
+export { default as TheLaundressDreamSleepwearDetergentRichTranquil } from './the-laundress-dream-sleepwear-detergent-rich-tranquil';
 export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
 export { default as TideCleanGentle } from './tide-clean-gentle';
 export { default as TideFreeGentle } from './tide-free-gentle';
