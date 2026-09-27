@@ -27,9 +27,12 @@ const ingredients: Ingredient[] = [
   Ingredient.MethylDiTButylHydroxyhydrocinnamate,
   Ingredient.Alcohol,
   Ingredient.Ethanolamine,
+  Ingredient.PropyleneGlycol,
   Ingredient.Benzisothiazolinone,
   Ingredient.Colorants,
   Ingredient.Fragrance,
+  Ingredient.PEGTerephthalatePolymer, // may contain
+  Ingredient.SodiumCumenesulfonate, // may contain
 ];
 
 const TideOriginalLiquid: DetergentProfile = new DetergentProfile(
