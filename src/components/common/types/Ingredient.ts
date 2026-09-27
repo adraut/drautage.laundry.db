@@ -961,6 +961,11 @@ export enum Ingredient {
    */
   SodiumAcrylicAcidMACopolymer = 'Sodium Acrylic Acid/MA Copolymer',
   /**
+   * Sodium Alkyl Arysulfonate is an anionic surfactant (alkyl aryl sulfonate salt) used in
+   * laundry detergents as a primary cleaning agent. Spelling kept as printed on the source.
+   */
+  SodiumAlkylArysulfonate = 'Sodium Alkyl Arysulfonate',
+  /**
    * Sodium Benzoate is the sodium salt of benzoic acid, used in laundry detergents as an
    * antifungal agent and preservative to inhibit microbial growth and extend shelf life.
    */

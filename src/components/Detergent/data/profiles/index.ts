@@ -35,6 +35,7 @@ export { default as ArmAndHammerPowerSheetsFreshBreeze } from './arm-and-hammer-
 export { default as ArmAndHammerSensitiveSkinPlusFreshScent } from './arm-and-hammer-sensitive-skin-plus-fresh-scent';
 export { default as CheerColorGuard } from './cheer-colorguard';
 export { default as CommonGoodBergamot } from './common-good-bergamot';
+export { default as CountrySavePlus } from './country-save-plus';
 export { default as CountrySavePowderLaundryDetergent } from './country-save-powder-laundry-detergent';
 export { default as DreftStage1Newborn } from './dreft-stage-1-newborn';
 export { default as DreftStage2ActiveBaby } from './dreft-stage-2-active-baby';
