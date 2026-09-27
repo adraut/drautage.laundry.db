@@ -53,6 +53,8 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 - **SmartLabel “DL” suffix:** Ingredients suffixed with “DL” (e.g., `SubtilisinDL`, `Sodium BorateDL`) are SmartLabel notation meaning “Declared on Label”. Strip the suffix and treat the remainder as the ingredient name.
 - **SmartLabel “Enzyme” suffix:** Ingredients listed as “&lt;Name&gt; EnzymeDL” (e.g., `Amylase EnzymeDL`) should have the suffix stripped; treat the base name as the ingredient (e.g., `Amylase`).
 - **Plural vs. singular:** Source may list “Fragrances” (plural); map to the `Fragrance` enum value (singular).
+- **Follow the label's wording for salt forms.** Pick the enum that matches what is printed, unless a web search shows a more standard industry term. MEA, sodium, and "sodium and MEA" salts are distinct ingredients, not synonyms (e.g., "sodium and MEA C10-16 alkylbenzenesulfonate" → `SodiumMEAC10_16Alkylbenzenesulfonate`, not `MEAC10_16Alkylbenzenesulfonate`).
+- **No oxygen bleach in liquids or pods.** Peroxide is not stable in liquid or pod formulas, so an "OXI" product name does not imply sodium percarbonate or similar. Only add an oxygen bleach to a liquid/pod profile if it is explicitly listed.
 
 ## Tests
 

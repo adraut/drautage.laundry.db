@@ -46,6 +46,10 @@ Prompt to use for each image:
 This is sufficient for most close-up shots. Only move to cropping if the
 full-image pass produced `[?]` or `[unreadable]` items.
 
+A rotated, sideways, or small-but-legible label is not a review item — read
+it in whatever orientation it is in (rotate it if needed). Only flag text
+that is genuinely unreadable or cut off.
+
 ## 2. Crop and re-read (only when confidence is low)
 
 Use `scripts/crop_ingredient_image.sh` for every crop/grid operation — it
