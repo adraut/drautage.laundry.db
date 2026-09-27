@@ -109,6 +109,7 @@ export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
 export { default as TideCleanGentle } from './tide-clean-gentle';
 export { default as TideEvoFreeGentle } from './tide-evo-free-and-gentle';
 export { default as TideEvoOriginalScent } from './tide-evo-original-scent';
+export { default as TideEvoSpringBlastScent } from './tide-evo-spring-blast-scent';
 export { default as TideFreeGentle } from './tide-free-gentle';
 export { default as TideFreeGentleOdorRefresh } from './tide-free-and-gentle-odor-refresh';
 export { default as TideOriginalLiquid } from './tide-original-liquid';
