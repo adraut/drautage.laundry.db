@@ -19,8 +19,8 @@ const ingredients: Ingredient[] = [
   Ingredient.TetrasodiumGlutamateDiacetate,
   Ingredient.Subtilisin,
   Ingredient.CalciumFormate,
-  Ingredient.Benzisothiazolinone,
   Ingredient.Amylase,
+  Ingredient.Benzisothiazolinone,
   Ingredient.Cellulase,
   Ingredient.Mannanase,
 ];
