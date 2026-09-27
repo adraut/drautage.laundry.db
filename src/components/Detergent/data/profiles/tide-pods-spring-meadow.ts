@@ -14,10 +14,12 @@ const ingredients: Ingredient[] = [
   Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.PEG136PolyvinylAlcohol,
   Ingredient.TetrasodiumGlutamateDiacetate,
+  Ingredient.PEGTerephthalatePolymer, // may contain
   Ingredient.MEACitrate,
   Ingredient.SodiumBisulfite,
   Ingredient.HydrogenatedCastorOil,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
+  Ingredient.Zeolite, // may contain
   Ingredient.MethylDiTButylHydroxyhydrocinnamate,
   Ingredient.Subtilisin,
   Ingredient.Amylase,
