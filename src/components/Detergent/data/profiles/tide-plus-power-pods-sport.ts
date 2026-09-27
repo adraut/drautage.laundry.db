@@ -30,7 +30,7 @@ const ingredients: Ingredient[] = [
   Ingredient.Fragrance,
 ];
 
-const TidePowerPodsSport: DetergentProfile = new DetergentProfile(
+const TidePlusPowerPodsSport: DetergentProfile = new DetergentProfile(
   'Power PODS Sport',
   'Tide',
   DetergentType.Pod,
@@ -38,6 +38,6 @@ const TidePowerPodsSport: DetergentProfile = new DetergentProfile(
   ingredients,
   new Date('2026-09-27'),
 );
-TidePowerPodsSport.countriesAvailable = ['USA'];
+TidePlusPowerPodsSport.countriesAvailable = ['USA'];
 
-export default TidePowerPodsSport;
+export default TidePlusPowerPodsSport;
