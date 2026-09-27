@@ -31,7 +31,7 @@ const ingredients: Ingredient[] = [
   Ingredient.Fragrance,
 ];
 
-const TidePowerPodsOdorOxiDefense: DetergentProfile = new DetergentProfile(
+const TidePlusPowerPodsOdorOxiDefense: DetergentProfile = new DetergentProfile(
   'Power PODS Odor + OXI Defense',
   'Tide',
   DetergentType.Pod,
@@ -39,7 +39,7 @@ const TidePowerPodsOdorOxiDefense: DetergentProfile = new DetergentProfile(
   ingredients,
   new Date('2026-09-27'),
 );
-TidePowerPodsOdorOxiDefense.countryOfOrigin = 'USA';
-TidePowerPodsOdorOxiDefense.countriesAvailable = ['USA'];
+TidePlusPowerPodsOdorOxiDefense.countryOfOrigin = 'USA';
+TidePlusPowerPodsOdorOxiDefense.countriesAvailable = ['USA'];
 
-export default TidePowerPodsOdorOxiDefense;
+export default TidePlusPowerPodsOdorOxiDefense;
