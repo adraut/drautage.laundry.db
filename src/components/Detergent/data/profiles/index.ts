@@ -123,6 +123,7 @@ export { default as TidePods3in1Original } from './tide-pods-3in1-original';
 export { default as TidePodsFreeAndGentle } from './tide-pods-free-and-gentle';
 export { default as TidePodsSpringMeadow } from './tide-pods-spring-meadow';
 export { default as TidePowderMountainSpring } from './tide-powder-mountain-spring';
+export { default as TidePowerPodsOdorOxiDefense } from './tide-power-pods-odor-oxi-defense';
 export { default as TidePowerPodsOxiBoost } from './tide-power-pods-oxi-boost';
 export { default as TidePowerPodsPlusDownyAprilFresh } from './tide-power-pods-plus-downy-april-fresh';
 export { default as TidePurcleanHoneyLavender } from './tide-purclean-honey-lavender';
