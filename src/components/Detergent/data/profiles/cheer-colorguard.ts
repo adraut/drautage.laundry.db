@@ -8,18 +8,18 @@ const ingredients: Ingredient[] = [
   Ingredient.C10_16Alketh,
   Ingredient.C10_16AlkyldimethylamineOxide,
   Ingredient.SodiumMEAC10_16Alkylbenzenesulfonate,
-  Ingredient.SodiumCumenesulfonate,
+  Ingredient.SodiumLaurethSulfate, // may contain
+  Ingredient.CalciumFormate,
   Ingredient.SodiumMEACitrate,
   Ingredient.Amylase,
   Ingredient.Cellulase,
   Ingredient.TetrasodiumGlutamateDiacetate,
-  Ingredient.CalciumFormate,
   Ingredient.Ethanolamine,
   Ingredient.PropyleneGlycol,
+  Ingredient.SodiumCumenesulfonate,
   Ingredient.Benzisothiazolinone,
   Ingredient.Colorants,
   Ingredient.Fragrance,
-  Ingredient.SodiumLaurethSulfate,
 ];
 
 const CheerColorGuard: DetergentProfile = new DetergentProfile(
