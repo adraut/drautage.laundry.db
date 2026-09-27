@@ -103,6 +103,7 @@ export { default as SimpleTruthOrganicFreeAndClearLaundryDetergent } from './sim
 export { default as SimpleTruthOrganicSweetLavenderLaundryDetergent } from './simple-truth-organic-sweet-lavender-laundry-detergent';
 export { default as TideCleanBreezeLiquid } from './tide-clean-breeze-liquid';
 export { default as TideCleanGentle } from './tide-clean-gentle';
+export { default as TideEvoOriginalScent } from './tide-evo-original-scent';
 export { default as TideFreeGentle } from './tide-free-gentle';
 export { default as TideFreeGentleOdorRefresh } from './tide-free-and-gentle-odor-refresh';
 export { default as TideOriginalLiquid } from './tide-original-liquid';
