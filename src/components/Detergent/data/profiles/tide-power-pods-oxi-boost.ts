@@ -4,30 +4,31 @@ import { DetergentType } from '../../types/DetergentType';
 import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
+  Ingredient.Water,
   Ingredient.MEAC10_16Alkylbenzenesulfonate,
-  Ingredient.MEALaurethSulfate,
   Ingredient.C10_16Alketh,
+  Ingredient.MEALaurethSulfate,
   Ingredient.PropyleneGlycol,
   Ingredient.Glycerin,
   Ingredient.MEAC12_18FattyAcidsSalt,
   Ingredient.PolyethyleneimineAlkoxylated,
-  Ingredient.PEG136PolyvinylAlcohol,
   Ingredient.TetrasodiumGlutamateDiacetate,
+  Ingredient.PEG136PolyvinylAlcohol,
   Ingredient.MEACitrate,
   Ingredient.SodiumBisulfite,
   Ingredient.HydrogenatedCastorOil,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
+  Ingredient.Zeolite, // may contain
   Ingredient.MethylDiTButylHydroxyhydrocinnamate,
   Ingredient.Subtilisin,
   Ingredient.Amylase,
-  Ingredient.Mannanase,
   Ingredient.Cellulase,
+  Ingredient.Mannanase,
   Ingredient.StyreneAcrylatesCopolymer,
-  Ingredient.Colorants,
-  Ingredient.Fragrance,
-  Ingredient.Water,
   Ingredient.DenatoniumBenzoate,
   Ingredient.PolyvinylAlcoholPolymer,
+  Ingredient.Colorants,
+  Ingredient.Fragrance,
 ];
 
 const TidePowerPodsOxiBoost: DetergentProfile = new DetergentProfile(
@@ -36,7 +37,7 @@ const TidePowerPodsOxiBoost: DetergentProfile = new DetergentProfile(
   DetergentType.Pod,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-15'),
+  new Date('2026-09-27'),
 );
 TidePowerPodsOxiBoost.countryOfOrigin = 'USA';
 TidePowerPodsOxiBoost.countriesAvailable = ['USA'];

@@ -5,20 +5,21 @@ import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
-  Ingredient.C12_15AlcoholsEthoxylated,
-  Ingredient.SodiumC10_16Alkylbenzenesulfonate,
-  Ingredient.SodiumLaurethSulfate,
   Ingredient.MEALAS,
-  Ingredient.PropyleneGlycol,
-  Ingredient.PolyethyleneimineAlkoxylated,
-  Ingredient.FattyAcidsC8_18AndC18UnsaturatedSodiumSalts,
-  Ingredient.MEABorate,
-  Ingredient.Fragrance,
+  Ingredient.C12_15AlcoholsEthoxylated,
+  Ingredient.SodiumLaurethSulfate,
+  Ingredient.C8_18FattyAcidAmideMEA,
   Ingredient.Ethanol,
+  Ingredient.MEABorate,
+  Ingredient.MEACitrate,
+  Ingredient.PolypropyleneTerephthalate,
+  Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.TetrasodiumIminodisuccinate,
-  Ingredient.HydrophobicallyModifiedAcrylateStyreneCopolymer,
-  Ingredient.Protease,
-  Ingredient.SodiumMetaborate,
+  Ingredient.Fragrance,
+  Ingredient.SodiumCitrate,
+  Ingredient.SodiumC10_16Alkylbenzenesulfonate,
+  Ingredient.SodiumChloride,
+  Ingredient.SodiumPolyacrylate,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
   Ingredient.Amylase,
   Ingredient.Methylisothiazolinone,
@@ -28,14 +29,14 @@ const ingredients: Ingredient[] = [
   Ingredient.Methylchloroisothiazolinone,
 ];
 
-const PersilAdvancedCleanOxiPower: DetergentProfile = new DetergentProfile(
-  'Advanced Clean OXI Power Odor Fighting',
+const PersilOxiPlusOdorFighter: DetergentProfile = new DetergentProfile(
+  'OXI + Odor Fighter',
   'Persil',
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
   new Date('2026-09-27'),
 );
-PersilAdvancedCleanOxiPower.countriesAvailable = ['USA'];
+PersilOxiPlusOdorFighter.countriesAvailable = ['USA'];
 
-export default PersilAdvancedCleanOxiPower;
+export default PersilOxiPlusOdorFighter;

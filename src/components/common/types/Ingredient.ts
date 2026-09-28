@@ -397,6 +397,11 @@ export enum Ingredient {
    **/
   Fragrance = 'Fragrance',
   /**
+   * Fucus Vesiculosus Extract is an extract derived from bladderwrack, a brown seaweed, listed
+   * among fragrance components in laundry detergents.
+   */
+  FucusVesiculosusExtract = 'Fucus Vesiculosus Extract',
+  /**
    * Gamma-Decalactone is a naturally occurring lactone with a peachy, fruity aroma, used as a
    * fragrance ingredient in laundry detergents.
    */

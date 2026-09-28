@@ -14,10 +14,12 @@ const ingredients: Ingredient[] = [
   Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.PEG136PolyvinylAlcohol,
   Ingredient.TetrasodiumGlutamateDiacetate,
+  Ingredient.PEGTerephthalatePolymer, // may contain
   Ingredient.MEACitrate,
   Ingredient.SodiumBisulfite,
   Ingredient.HydrogenatedCastorOil,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
+  Ingredient.Zeolite, // may contain
   Ingredient.MethylDiTButylHydroxyhydrocinnamate,
   Ingredient.Subtilisin,
   Ingredient.Amylase,
@@ -36,7 +38,7 @@ const TidePodsSpringMeadow: DetergentProfile = new DetergentProfile(
   DetergentType.Pod,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-14'),
+  new Date('2026-09-27'),
 );
 TidePodsSpringMeadow.countryOfOrigin = 'USA';
 TidePodsSpringMeadow.countriesAvailable = ['USA'];
