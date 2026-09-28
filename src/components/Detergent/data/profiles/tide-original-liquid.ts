@@ -27,9 +27,12 @@ const ingredients: Ingredient[] = [
   Ingredient.MethylDiTButylHydroxyhydrocinnamate,
   Ingredient.Alcohol,
   Ingredient.Ethanolamine,
+  Ingredient.PropyleneGlycol,
   Ingredient.Benzisothiazolinone,
   Ingredient.Colorants,
   Ingredient.Fragrance,
+  Ingredient.PEGTerephthalatePolymer, // may contain
+  Ingredient.SodiumCumenesulfonate, // may contain
 ];
 
 const TideOriginalLiquid: DetergentProfile = new DetergentProfile(
@@ -38,7 +41,7 @@ const TideOriginalLiquid: DetergentProfile = new DetergentProfile(
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-14'),
+  new Date('2026-09-27'),
 );
 TideOriginalLiquid.countryOfOrigin = 'USA';
 TideOriginalLiquid.countriesAvailable = ['USA'];
