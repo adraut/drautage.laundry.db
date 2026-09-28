@@ -78,6 +78,7 @@ export { default as PersilActivewearClean } from './persil-activewear-clean';
 export { default as PersilAdvancedCleanOxiPower } from './persil-advanced-clean-oxi-power';
 export { default as PersilIntenseFresh } from './persil-intense-fresh';
 export { default as PersilOriginalLiquid } from './persil-original-liquid';
+export { default as PersilOxiPlusOdorFighter } from './persil-oxi-plus-odor-fighter';
 export { default as PersilUltraPacsAdvancedCleanOxiPower } from './persil-ultra-pacs-advanced-clean-oxi-power';
 export { default as PersilUltraPacsOriginal } from './persil-ultra-pacs-original';
 export { default as PurexFourInOneAdvancedOxiColdWaterPower } from './purex-4-in-1-advanced-oxi-cold-water-power';
