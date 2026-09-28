@@ -1,6 +1,6 @@
-import { Ingredient } from '../../common/types/Ingredient';
-import { DetergentProfile } from '../types/DetergentProfile';
-import { getIngredientCategories } from '../../common/types/IngredientCategoryMap';
+import { Ingredient } from '../../types/Ingredient';
+import { ProductProfile } from '../types/ProductProfile';
+import { getIngredientCategories } from '../../types/IngredientCategoryMap';
 
 export interface CompareIngredientEntry {
   ingredient: Ingredient;
@@ -49,7 +49,7 @@ const CATEGORY_GROUPS: { display: string; categories: string[] }[] = [
   },
 ];
 
-export function buildCompareMatrix(profiles: DetergentProfile[]): CompareMatrix {
+export function buildCompareMatrix(profiles: ProductProfile[]): CompareMatrix {
   const presence = new Map<Ingredient, Set<string>>();
 
   for (const profile of profiles) {

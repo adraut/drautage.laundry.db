@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
-import { DataSource } from '../../types/DataSource';
+import { ProductType } from '../../../common/product/types/ProductType';
+import { DataSource } from '../../../common/product/types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumCarbonate,
@@ -25,7 +25,7 @@ const ingredients: Ingredient[] = [
 const ArielTouchOfDownyPowder: DetergentProfile = new DetergentProfile(
   'Touch of Downy',
   'Ariel',
-  DetergentType.Powder,
+  ProductType.Powder,
   DataSource.Package,
   ingredients,
   new Date('2026-03-14'),

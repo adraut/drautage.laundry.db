@@ -34,7 +34,7 @@ export function useGridFilterSync() {
 
   // Stable key derived only from filter params. When sort (or other) params change
   // without touching filter params, this string stays the same, so the filter memo
-  // below does not produce a new object and the Detergents useEffect does not fire.
+  // below does not produce a new object and the ProductGrid useEffect does not fire.
   const filterParamsKey = useMemo(() => searchParams.getAll(FILTER_PARAM_NAME).join('\0'), [searchParams]);
 
   const filter = useMemo((): CompositeFilterDescriptor => {

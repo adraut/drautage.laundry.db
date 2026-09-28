@@ -1,6 +1,6 @@
 # Add Ingredient Category
 
-Adds a new ingredient category set to the repository, wires it into `DetergentProfile`,
+Adds a new ingredient category set to the repository, wires it into `ProductProfile`,
 exposes it as a grid column and filter, and adds tests.
 
 ## Usage
@@ -29,13 +29,13 @@ Examples:
      important distinctions from related categories
    - Export the set: `export { <CategoryName> };`
 
-3. **Update `DetergentProfile`** at
-   `src/components/Detergent/types/DetergentProfile.ts`:
+3. **Update `ProductProfile`** at
+   `src/components/common/product/types/ProductProfile.ts`:
 
    a. Add import (keep imports alphabetical):
 
    ```ts
-   import { <CategoryName> } from '../../common/types/<CategoryName>';
+   import { <CategoryName> } from '../../types/<CategoryName>';
    ```
 
    b. Add readonly field declaration (place it logically near related fields):
@@ -50,17 +50,17 @@ Examples:
    this.has<CategoryName> = ingredients.some((ing) => <CategoryName>.has(ing));
    ```
 
-4. **Add grid column** in `src/components/Detergent/Detergents.tsx`:
+4. **Add grid column** in `src/components/common/product/productGridColumns.tsx`:
 
-   In `COLUMN_DEFS`, add a boolean column in a logical position near related columns:
+   In `PRODUCT_COLUMN_DEFS`, add a boolean column in a logical position near related columns:
 
    ```ts
    { field: 'has<CategoryName>', headerName: '<Human Readable Title>', ...BOOLEAN_COL },
    ```
 
-5. **Add filter field** in `src/components/Detergent/Detergents.tsx`:
+5. **Add filter field** in `src/components/common/product/productGridColumns.tsx`:
 
-   In `FILTER_FIELDS`, add a matching entry in the **same position** as the column above
+   In `PRODUCT_FILTER_FIELDS`, add a matching entry in the **same position** as the column above
    (filter order should mirror column order):
 
    ```ts
@@ -97,21 +97,21 @@ Examples:
    what belongs in it and any important exclusions.
 
 8. **Add tests** in
-   `src/components/Detergent/__tests__/DetergentProfile.test.ts`,
+   `src/components/common/product/__tests__/ProductProfile.test.ts`,
    in the `'additive detection properties'` describe block:
 
    ```ts
    it('should detect has<CategoryName> when a <category> ingredient is present', () => {
-     const profile = new DetergentProfile(
-       'Test', 'Brand', DetergentType.Liquid, DataSource.Package,
+     const profile = new ProductProfile(
+       'Test', 'Brand', ProductType.Liquid, DataSource.Package,
        [Ingredient.<RepresentativeIngredient>], new Date(),
      );
      expect(profile.has<CategoryName>).toBe(true);
    });
 
    it('should not detect has<CategoryName> when no <category> ingredients are present', () => {
-     const profile = new DetergentProfile(
-       'Test', 'Brand', DetergentType.Liquid, DataSource.Package,
+     const profile = new ProductProfile(
+       'Test', 'Brand', ProductType.Liquid, DataSource.Package,
        [Ingredient.Water], new Date(),
      );
      expect(profile.has<CategoryName>).toBe(false);
@@ -126,7 +126,7 @@ Examples:
 
 ## Notes
 
-- Filter field order in `FILTER_FIELDS` should match column order in `COLUMN_DEFS`.
+- Filter field order in `PRODUCT_FILTER_FIELDS` should match column order in `PRODUCT_COLUMN_DEFS`.
 - An ingredient may belong to more than one category set — document the overlap
   in both set files' JSDoc comments.
 - Only add ingredients whose membership is scientifically established, not inferred.

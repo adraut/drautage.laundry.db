@@ -26,8 +26,8 @@ These instructions apply to detergent profiles under [src/components/Detergent](
 1. Create a new profile file in [data/profiles](data/profiles) named: <brand>-<product>-<variant>.ts (lowercase, hyphenated).
 2. Implement a `DetergentProfile` with:
    - `name` and `brand` as recognized by consumers.
-   - `type` using `DetergentType`.
-   - `dataSource` using `DataSource` (`Package` or `SDS`) as specified in the issue.
+   - `type` using `ProductType` ([common/product/types/ProductType.ts](../common/product/types/ProductType.ts)).
+   - `dataSource` using `DataSource` ([common/product/types/DataSource.ts](../common/product/types/DataSource.ts)) (`Package` or `SDS`) as specified in the issue.
    - `lastUpdated` set to the **date accessed** from the issue. Always use this date — do not leave it at a prior value.
    - `ingredients` array using `Ingredient` enum values.
 3. Export the profile in [data/profiles/index.ts](data/profiles/index.ts). Profiles should be exported in alphabetical order.

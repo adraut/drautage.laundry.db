@@ -42,7 +42,7 @@
   letter-spacing: 0.1em;
 }
 
-.detergent-name-btn {
+.product-name-btn {
   background: none;
   border: none;
   padding: 0;
@@ -54,6 +54,6 @@
   text-underline-offset: 2px;
 }
 
-.detergent-name-btn:hover {
+.product-name-btn:hover {
   color: var(--color-action-hover);
 }

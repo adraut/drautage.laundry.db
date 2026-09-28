@@ -2,12 +2,12 @@ import { render, screen, waitFor, within, fireEvent } from '@testing-library/rea
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Detergents from '../Detergents';
-import { encodeFilter } from '../utils/gridFilterUtils';
-import { CompositeFilterDescriptor } from '../utils/filterTypes';
+import { encodeFilter } from '../../common/product/utils/gridFilterUtils';
+import { CompositeFilterDescriptor } from '../../common/product/utils/filterTypes';
 import { loadDetergents } from '../data/detergents-data';
 import { DetergentProfile } from '../types/DetergentProfile';
-import { DetergentType } from '../types/DetergentType';
-import { DataSource } from '../types/DataSource';
+import { ProductType } from '../../common/product/types/ProductType';
+import { DataSource } from '../../common/product/types/DataSource';
 import { Ingredient } from '../../common/types/Ingredient';
 
 jest.mock('../data/detergents-data');
@@ -16,7 +16,7 @@ function createMockDetergents(): Map<string, DetergentProfile> {
   const withCellulase = new DetergentProfile(
     'Original',
     'Tide',
-    DetergentType.Liquid,
+    ProductType.Liquid,
     DataSource.Package,
     [Ingredient.Lipase, Ingredient.Cellulase, Ingredient.Protease],
     new Date('2026-01-01'),
@@ -26,7 +26,7 @@ function createMockDetergents(): Map<string, DetergentProfile> {
   const withoutCellulase = new DetergentProfile(
     'Tide Clean & Gentle',
     'Tide',
-    DetergentType.Liquid,
+    ProductType.Liquid,
     DataSource.Package,
     [Ingredient.Protease],
     new Date('2026-01-01'),
@@ -413,7 +413,7 @@ describe('Detergents', () => {
       // Product name cells should be buttons
       const detergentNameButtons = screen
         .getAllByRole('button')
-        .filter((btn) => btn.classList.contains('detergent-name-btn'));
+        .filter((btn) => btn.classList.contains('product-name-btn'));
       expect(detergentNameButtons.length).toBeGreaterThan(0);
     });
 
@@ -426,7 +426,7 @@ describe('Detergents', () => {
 
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
-      const nameButtons = screen.getAllByRole('button').filter((btn) => btn.classList.contains('detergent-name-btn'));
+      const nameButtons = screen.getAllByRole('button').filter((btn) => btn.classList.contains('product-name-btn'));
       expect(nameButtons.length).toBeGreaterThan(0);
 
       const firstButton = nameButtons[0];
@@ -450,7 +450,7 @@ describe('Detergents', () => {
 
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
-      const nameButtons = screen.getAllByRole('button').filter((btn) => btn.classList.contains('detergent-name-btn'));
+      const nameButtons = screen.getAllByRole('button').filter((btn) => btn.classList.contains('product-name-btn'));
       const firstButton = nameButtons[0];
 
       fireEvent.click(firstButton);
@@ -482,7 +482,7 @@ describe('Detergents', () => {
 
       await waitFor(() => expect(screen.queryByText('Loading detergents...')).not.toBeInTheDocument());
 
-      const nameButtons = screen.getAllByRole('button').filter((btn) => btn.classList.contains('detergent-name-btn'));
+      const nameButtons = screen.getAllByRole('button').filter((btn) => btn.classList.contains('product-name-btn'));
 
       fireEvent.click(nameButtons[0]);
 

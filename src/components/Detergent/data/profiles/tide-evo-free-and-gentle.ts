@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
-import { DataSource } from '../../types/DataSource';
+import { ProductType } from '../../../common/product/types/ProductType';
+import { DataSource } from '../../../common/product/types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumLaurylSulfate,
@@ -29,7 +29,7 @@ const ingredients: Ingredient[] = [
 const TideEvoFreeGentle: DetergentProfile = new DetergentProfile(
   'evo Free & Gentle',
   'Tide',
-  DetergentType.Tile,
+  ProductType.Tile,
   DataSource.Package,
   ingredients,
   new Date('2026-09-27'),

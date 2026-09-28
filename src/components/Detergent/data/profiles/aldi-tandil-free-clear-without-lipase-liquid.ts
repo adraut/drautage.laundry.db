@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
-import { DataSource } from '../../types/DataSource';
+import { ProductType } from '../../../common/product/types/ProductType';
+import { DataSource } from '../../../common/product/types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water, // listed as 'Soft Water' on packaging
@@ -27,7 +27,7 @@ const ingredients: Ingredient[] = [
 const AldiTandiFreeClearWithoutLipaseLiquid: DetergentProfile = new DetergentProfile(
   'Tandil Free Clear Without Lipase',
   'Aldi',
-  DetergentType.Liquid,
+  ProductType.Liquid,
   DataSource.Package,
   ingredients,
   new Date('2026-03-15'),

@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
-import { DataSource } from '../../types/DataSource';
+import { DataSource } from '../../../common/product/types/DataSource';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
+import { ProductType } from '../../../common/product/types/ProductType';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumCarbonate,
@@ -13,7 +13,7 @@ const ingredients: Ingredient[] = [
 const CountrySavePowderLaundryDetergent: DetergentProfile = new DetergentProfile(
   'Powder Laundry Detergent',
   'Country Save',
-  DetergentType.Powder,
+  ProductType.Powder,
   DataSource.SDS,
   ingredients,
   new Date('2026-02-08'),

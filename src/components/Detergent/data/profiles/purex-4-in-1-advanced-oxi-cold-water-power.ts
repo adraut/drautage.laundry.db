@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
-import { DataSource } from '../../types/DataSource';
+import { ProductType } from '../../../common/product/types/ProductType';
+import { DataSource } from '../../../common/product/types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
@@ -27,7 +27,7 @@ const ingredients: Ingredient[] = [
 const PurexFourInOneAdvancedOxiColdWaterPower: DetergentProfile = new DetergentProfile(
   '4-in-1 Advanced OXI Cold Water Power',
   'Purex',
-  DetergentType.Liquid,
+  ProductType.Liquid,
   DataSource.Package,
   ingredients,
   new Date('2026-03-21'),

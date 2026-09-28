@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
-import { DataSource } from '../../types/DataSource';
+import { ProductType } from '../../../common/product/types/ProductType';
+import { DataSource } from '../../../common/product/types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumLaurylSulfate,
@@ -17,7 +17,7 @@ const ingredients: Ingredient[] = [
 const SeventhGenerationFreeAndClearLaundryDetergentSheets: DetergentProfile = new DetergentProfile(
   'Free & Clear Laundry Detergent Sheets',
   'Seventh Generation',
-  DetergentType.Sheet,
+  ProductType.Sheet,
   DataSource.Package,
   ingredients,
   new Date('2026-03-15'),
