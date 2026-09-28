@@ -113,6 +113,7 @@ export { default as TideOriginalPowder } from './tide-original-powder';
 export { default as TidePlusBleachAlternativeOriginalLiquid } from './tide-plus-bleach-alternative-original-liquid';
 export { default as TidePlusBleachOriginalPowder } from './tide-plus-bleach-original-powder';
 export { default as TidePlusFebrezeFreshnessLiquid } from './tide-plus-febreze-freshness-liquid';
+export { default as TidePlusPowerPodsOdorOxiDefense } from './tide-plus-power-pods-odor-oxi-defense';
 export { default as TidePlusPowerPodsSport } from './tide-plus-power-pods-sport';
 export { default as TidePlusUltraFebrezeSpringRenewal } from './tide-plus-ultra-febreze-spring-renewal';
 export { default as TidePlusUltraDownyAprilFresh } from './tide-plus-ultra-downy-april-fresh';
