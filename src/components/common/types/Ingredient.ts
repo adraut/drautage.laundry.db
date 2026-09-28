@@ -531,6 +531,12 @@ export enum Ingredient {
    * soil removal and wetting.
    */
   LaurylAlcoholEthoxylate = 'Lauryl Alcohol Ethoxylate',
+  /**
+   * Lauryl Betaine is an amphoteric (zwitterionic) surfactant derived from lauryl (C12)
+   * alcohol, used in laundry detergents as a mild co-surfactant and foam booster.
+   * Synonyms: Lauryl dimethyl betaine
+   */
+  LaurylBetaine = 'Lauryl Betaine',
   LaurylGlucoside = 'Lauryl Glucoside',
   /**
    * Lavandula Angustifolia (Lavender) Oil is an essential oil derived from true lavender flowers,

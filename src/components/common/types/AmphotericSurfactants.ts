@@ -15,6 +15,7 @@ import { Ingredient } from './Ingredient';
 const AmphotericSurfactants: Set<Ingredient> = new Set();
 
 AmphotericSurfactants.add(Ingredient.CocamidopropylBetaine);
+AmphotericSurfactants.add(Ingredient.LaurylBetaine);
 AmphotericSurfactants.add(Ingredient.SodiumCocoamphopropionate);
 
 export { AmphotericSurfactants };
