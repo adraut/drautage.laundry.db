@@ -1,6 +1,6 @@
 # Agent Instructions
 
-This file provides guidance for AI agents adding new detergent products to this repository.
+This file provides guidance for AI agents adding new detergent and booster products to this repository.
 
 ## Quick start
 
@@ -15,14 +15,15 @@ When an issue is opened with a product request (brand + product name), agents sh
 ## Folder-specific instructions
 
 - [src/components/Detergent/AGENTS.md](src/components/Detergent/AGENTS.md) – Adding detergent profiles
+- [src/components/Booster/AGENTS.md](src/components/Booster/AGENTS.md) – Adding booster profiles
 - [src/components/common/types/AGENTS.md](src/components/common/types/AGENTS.md) – Ingredient enum and category management
 
 ## PR checklist
 
 Before submitting:
 
-- [ ] Profile file created in [src/components/Detergent/data/profiles](src/components/Detergent/data/profiles)
-- [ ] Profile exported in [src/components/Detergent/data/profiles/index.ts](src/components/Detergent/data/profiles/index.ts)
+- [ ] Profile file created in the category's `data/profiles` folder ([Detergent](src/components/Detergent/data/profiles) or [Booster](src/components/Booster/data/profiles))
+- [ ] Profile exported in that folder's `index.ts` in alphabetical order
 - [ ] New ingredients added to [src/components/common/types/Ingredient.ts](src/components/common/types/Ingredient.ts) with categorization
 - [ ] `package-lock.json` is **not** modified (no dependency changes should occur)
 - [ ] PR is in **draft** state

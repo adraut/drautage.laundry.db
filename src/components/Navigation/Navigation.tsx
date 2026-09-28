@@ -18,10 +18,10 @@ function Navigation() {
           <li>
             <Link to="/detergents">Detergents</Link>
           </li>
-          {/* <li>
+          <li>
             <Link to="/boosters">Boosters</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/pretreaters">Pretreaters</Link>
           </li>
           <li>

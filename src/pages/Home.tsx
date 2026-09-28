@@ -18,18 +18,15 @@ function Home() {
           </Link>
         </div>
 
-        {/* <div className="product-card">
+        <div className="product-card">
           <h3>Boosters</h3>
-          <p>
-            Discover laundry boosters that enhance your wash and provide extra cleaning 
-            power for tough stains.
-          </p>
+          <p>Discover laundry boosters that add extra cleaning power to your detergent for tough stains and odors.</p>
           <Link to="/boosters">
             <button style={{ marginTop: '1rem' }}>View Boosters</button>
           </Link>
         </div>
 
-        <div className="product-card">
+        {/* <div className="product-card">
           <h3>Pretreaters</h3>
           <p>
             Find the best pretreaters for targeting stubborn stains before washing.
