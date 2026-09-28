@@ -14,10 +14,12 @@ const ingredients: Ingredient[] = [
   Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.PEG136PolyvinylAlcohol,
   Ingredient.TetrasodiumGlutamateDiacetate,
+  Ingredient.PEGTerephthalatePolymer, // may contain
   Ingredient.MEACitrate,
   Ingredient.SodiumBisulfite,
   Ingredient.HydrogenatedCastorOil,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
+  Ingredient.Zeolite, // may contain
   Ingredient.MethylDiTButylHydroxyhydrocinnamate,
   Ingredient.Subtilisin,
   Ingredient.Amylase,
@@ -36,7 +38,7 @@ const TidePods3in1Original: DetergentProfile = new DetergentProfile(
   DetergentType.Pod,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-15'),
+  new Date('2026-09-27'),
 );
 TidePods3in1Original.countryOfOrigin = 'USA';
 TidePods3in1Original.countriesAvailable = ['USA', 'CAN'];
