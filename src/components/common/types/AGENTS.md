@@ -54,17 +54,17 @@ When adding a new ingredient, decide if it belongs in any of these sets (non‑e
   - `SoilAntiRedeposition` is for polymers that keep loosened soil/mineral particles suspended in wash water, preventing redeposition. **Not** for soil _release_ agents — see `SoilRelease`.
   - `SoilRelease` is for polymers that deposit a hydrophilic coating onto synthetic fiber surfaces (primarily polyester), making soils easier to remove in subsequent washes. **Not** for soil _anti-redeposition_ agents (see `SoilAntiRedeposition`) — soil release agents modify the fiber; anti-redeposition agents modify the wash solution.
 
-Update the appropriate set file(s) so `DetergentProfile` derived flags remain accurate. Only place an ingredient into a category if the source explicitly indicates it.
+Update the appropriate set file(s) so `ProductProfile` derived flags remain accurate. Only place an ingredient into a category if the source explicitly indicates it.
 
 > **Note:** `IngredientCategoryMap.ts` is built automatically from all category set files at runtime — you do **not** need to edit it directly. Adding an ingredient to a set file is sufficient for it to appear in the map.
 
 ## Context rules
 
-Context rules in [IngredientContextRules.ts](IngredientContextRules.ts) automatically exclude an ingredient from one or more of its default categories based on the composition or ordering of the ingredient list for a specific product. They are evaluated at `DetergentProfile` construction time and do **not** modify the global category sets.
+Context rules in [IngredientContextRules.ts](IngredientContextRules.ts) automatically exclude an ingredient from one or more of its default categories based on the composition or ordering of the ingredient list for a specific product. They are evaluated at `ProductProfile` construction time and do **not** modify the global category sets.
 
 - **When to add a rule**: When an ingredient reliably performs a different function in the presence of another ingredient (or based on its relative position in the list), and this pattern applies across multiple products rather than to one product specifically.
 - **Rule structure**: `ingredient` (the target), `condition(ingredients[])` (returns true when the exclusion applies), `excludeFromCategories` (array of category label strings to remove).
-- **Profile-level overrides**: For product-specific edge cases that do not fit a general rule, pass `options.categoryExclusions` to the `DetergentProfile` constructor. These are merged on top of context rules with higher priority.
+- **Profile-level overrides**: For product-specific edge cases that do not fit a general rule, pass `options.categoryExclusions` to the profile constructor. These are merged on top of context rules with higher priority.
 - **Label strings must match exactly** the label used in `IngredientCategoryMap.ts` (e.g. `'Soap'`, `'Processing Aid'`).
 
 Example — C16-18 fatty acid sodium salts in powder detergents with SodiumPolyacrylate:

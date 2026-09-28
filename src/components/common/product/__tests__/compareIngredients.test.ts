@@ -1,11 +1,11 @@
 import { buildCompareMatrix } from '../utils/compareIngredients';
-import { DetergentProfile } from '../types/DetergentProfile';
-import { DetergentType } from '../types/DetergentType';
+import { ProductProfile } from '../types/ProductProfile';
+import { ProductType } from '../types/ProductType';
 import { DataSource } from '../types/DataSource';
-import { Ingredient } from '../../common/types/Ingredient';
+import { Ingredient } from '../../types/Ingredient';
 
-function makeProfile(name: string, brand: string, ingredients: Ingredient[]): DetergentProfile {
-  return new DetergentProfile(name, brand, DetergentType.Liquid, DataSource.Package, ingredients, new Date());
+function makeProfile(name: string, brand: string, ingredients: Ingredient[]): ProductProfile {
+  return new ProductProfile(name, brand, ProductType.Liquid, DataSource.Package, ingredients, new Date());
 }
 
 describe('buildCompareMatrix', () => {

@@ -1,22 +1,22 @@
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-const DETERGENT_PARAM = 'd';
+const PRODUCT_PARAM = 'd';
 
-export function useDetergentUrlSync() {
+export function useProductUrlSync() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const slug = searchParams.get(DETERGENT_PARAM);
+  const slug = searchParams.get(PRODUCT_PARAM);
 
-  const setDetergentSlug = useCallback(
+  const setProductSlug = useCallback(
     (newSlug: string | null) => {
       setSearchParams(
         (prev) => {
           const params = new URLSearchParams(prev.toString());
           if (newSlug) {
-            params.set(DETERGENT_PARAM, newSlug);
+            params.set(PRODUCT_PARAM, newSlug);
           } else {
-            params.delete(DETERGENT_PARAM);
+            params.delete(PRODUCT_PARAM);
           }
           return params;
         },
@@ -26,5 +26,5 @@ export function useDetergentUrlSync() {
     [setSearchParams],
   );
 
-  return { slug, setDetergentSlug };
+  return { slug, setProductSlug };
 }

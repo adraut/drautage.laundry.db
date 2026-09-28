@@ -3,8 +3,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { CompareView } from '../CompareView';
 import { loadDetergents } from '../data/detergents-data';
 import { DetergentProfile } from '../types/DetergentProfile';
-import { DetergentType } from '../types/DetergentType';
-import { DataSource } from '../types/DataSource';
+import { ProductType } from '../../common/product/types/ProductType';
+import { DataSource } from '../../common/product/types/DataSource';
 import { Ingredient } from '../../common/types/Ingredient';
 
 jest.mock('../data/detergents-data');
@@ -13,7 +13,7 @@ function makeDetergents(): Map<string, DetergentProfile> {
   const tide = new DetergentProfile(
     'Original',
     'Tide',
-    DetergentType.Liquid,
+    ProductType.Liquid,
     DataSource.Package,
     [Ingredient.Amylase, Ingredient.SodiumLaurylSulfate],
     new Date('2026-01-01'),
@@ -21,7 +21,7 @@ function makeDetergents(): Map<string, DetergentProfile> {
   const persil = new DetergentProfile(
     'ProClean',
     'Persil',
-    DetergentType.Liquid,
+    ProductType.Liquid,
     DataSource.Package,
     [Ingredient.Amylase, Ingredient.Protease],
     new Date('2026-01-01'),
@@ -102,7 +102,7 @@ describe('CompareView', () => {
     const profile = new DetergentProfile(
       'Suds Test',
       'Brand',
-      DetergentType.Liquid,
+      ProductType.Liquid,
       DataSource.Package,
       [Ingredient.SodiumPolyacrylate, Ingredient.C16_18FattyAcidsSodiumSalt],
       new Date('2026-01-01'),

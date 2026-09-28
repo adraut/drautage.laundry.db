@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
-import { DataSource } from '../../types/DataSource';
+import { ProductType } from '../../../common/product/types/ProductType';
+import { DataSource } from '../../../common/product/types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.C12_15AlcoholsEthoxylated,
@@ -28,7 +28,7 @@ const ingredients: Ingredient[] = [
 const AholdDelhaizePremiumLaundryDetergent3In1OriginalScent: DetergentProfile = new DetergentProfile(
   'Premium Laundry Detergent 3-in-1 Original Scent',
   'Ahold Delhaize',
-  DetergentType.Pod,
+  ProductType.Pod,
   DataSource.Package,
   ingredients,
   new Date('2026-03-15'),

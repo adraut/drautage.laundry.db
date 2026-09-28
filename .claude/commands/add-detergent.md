@@ -103,7 +103,7 @@ Adds a new detergent profile to the repository based on a GitHub issue.
    `src/components/Detergent/data/profiles/<brand>-<product>-<variant>.ts`
    following the rules in `src/components/Detergent/AGENTS.md`.
    - **Add issue:** create a new file. Import `DataSource` from
-     `'../../types/DataSource'` and pass `DataSource.Package` or
+     `'../../../common/product/types/DataSource'` (and `ProductType` from `'../../../common/product/types/ProductType'`) and pass `DataSource.Package` or
      `DataSource.SDS` (from the issue's **Data source** field) as the 4th
      argument to the `DetergentProfile` constructor (between `type` and
      `ingredients`).

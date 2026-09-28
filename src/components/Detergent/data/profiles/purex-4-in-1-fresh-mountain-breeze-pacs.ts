@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
-import { DataSource } from '../../types/DataSource';
+import { ProductType } from '../../../common/product/types/ProductType';
+import { DataSource } from '../../../common/product/types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.C12_15AlcoholsEthoxylated,
@@ -25,7 +25,7 @@ const ingredients: Ingredient[] = [
 const PurexFourInOneFreshMountainBreezePacs: DetergentProfile = new DetergentProfile(
   '4-in-1 Fresh Mountain Breeze Pacs',
   'Purex',
-  DetergentType.Pod,
+  ProductType.Pod,
   DataSource.Package,
   ingredients,
   new Date('2026-03-21'),

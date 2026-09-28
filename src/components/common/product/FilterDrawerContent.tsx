@@ -2,7 +2,7 @@ import { useState, useMemo, ChangeEvent } from 'react';
 import { CompositeFilterDescriptor, FilterDescriptor } from './utils/filterTypes';
 import './FilterDrawer.css';
 
-interface FilterField {
+export interface FilterField {
   field: string;
   title: string;
   // Note: 'date' type uses text input for filtering formatted date strings (e.g., "2026-01-31")

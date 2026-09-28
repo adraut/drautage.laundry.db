@@ -1,16 +1,16 @@
 import { useState, useCallback } from 'react';
 import { registerLocale, getName } from 'i18n-iso-countries';
 import enLocale from 'i18n-iso-countries/langs/en.json';
-import { Drawer } from '../common/Drawer';
-import { DetergentProfile } from './types/DetergentProfile';
-import { getIngredientCategories } from '../common/types/IngredientCategoryMap';
+import { Drawer } from '../Drawer';
+import { ProductProfile } from './types/ProductProfile';
+import { getIngredientCategories } from '../types/IngredientCategoryMap';
 
-import './DetergentDetailCard.css';
+import './ProductDetailCard.css';
 
 registerLocale(enLocale);
 
-interface DetergentDetailCardProps {
-  detergent: DetergentProfile | null;
+interface ProductDetailCardProps {
+  product: ProductProfile | null;
   onClose: () => void;
 }
 
@@ -18,28 +18,28 @@ function formatIngredient(name: string): string {
   return name.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2');
 }
 
-export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardProps) {
+export function ProductDetailCard({ product, onClose }: ProductDetailCardProps) {
   const [copied, setCopied] = useState(false);
-  const countryNames = detergent?.countriesAvailable?.map((code) => getName(code, 'en') ?? code).join(', ') ?? '—';
+  const countryNames = product?.countriesAvailable?.map((code) => getName(code, 'en') ?? code).join(', ') ?? '—';
 
   const handleCopyLink = useCallback(() => {
-    if (!navigator.clipboard || !detergent) return;
+    if (!navigator.clipboard || !product) return;
     const url = new URL(window.location.pathname, window.location.origin);
-    url.searchParams.set('d', detergent.slug);
+    url.searchParams.set('d', product.slug);
     void navigator.clipboard.writeText(url.toString()).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
-  }, [detergent]);
+  }, [product]);
 
   return (
     <Drawer
-      isOpen={detergent !== null}
+      isOpen={product !== null}
       onClose={onClose}
-      title={`${detergent?.brand} ${detergent?.name ?? ''}`}
+      title={`${product?.brand} ${product?.name ?? ''}`}
       side="right"
       headerActions={
-        detergent && (
+        product && (
           <button
             className="detail-copy-link-btn"
             onClick={handleCopyLink}
@@ -51,7 +51,7 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
         )
       }
     >
-      {detergent && (
+      {product && (
         <>
           <div id="ingredients-section" className="detail-section">
             <table className="detail-table">
@@ -62,9 +62,9 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
                 </tr>
               </thead>
               <tbody>
-                {detergent.ingredients.map((ingredient) => {
-                  const excluded = detergent.effectiveCategoryExclusions[ingredient] ?? [];
-                  const added = detergent.effectiveCategoryAdditions.get(ingredient) ?? [];
+                {product.ingredients.map((ingredient) => {
+                  const excluded = product.effectiveCategoryExclusions[ingredient] ?? [];
+                  const added = product.effectiveCategoryAdditions.get(ingredient) ?? [];
                   const base = getIngredientCategories(ingredient);
                   const categories = [...new Set([...base, ...added])].filter((cat) => !excluded.includes(cat));
                   return (
@@ -86,9 +86,9 @@ export function DetergentDetailCard({ detergent, onClose }: DetergentDetailCardP
               <dt className="detail-meta-label">Countries</dt>
               <dd className="detail-meta-value">{countryNames}</dd>
               <dt className="detail-meta-label">Last updated</dt>
-              <dd className="detail-meta-value">{detergent.lastUpdatedFormatted}</dd>
+              <dd className="detail-meta-value">{product.lastUpdatedFormatted}</dd>
               <dt className="detail-meta-label">Data source</dt>
-              <dd className="detail-meta-value">{detergent.dataSource}</dd>
+              <dd className="detail-meta-value">{product.dataSource}</dd>
             </dl>
           </div>
         </>

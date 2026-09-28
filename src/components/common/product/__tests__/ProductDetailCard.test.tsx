@@ -1,16 +1,16 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { DetergentDetailCard } from '../DetergentDetailCard';
-import { DetergentProfile } from '../types/DetergentProfile';
-import { DetergentType } from '../types/DetergentType';
+import { ProductDetailCard } from '../ProductDetailCard';
+import { ProductProfile } from '../types/ProductProfile';
+import { ProductType } from '../types/ProductType';
 import { DataSource } from '../types/DataSource';
-import { Ingredient } from '../../common/types/Ingredient';
+import { Ingredient } from '../../types/Ingredient';
 
-const makeDetergent = (overrides?: Partial<{ name: string; brand: string }>): DetergentProfile => {
-  const d = new DetergentProfile(
+const makeProduct = (overrides?: Partial<{ name: string; brand: string }>): ProductProfile => {
+  const d = new ProductProfile(
     overrides?.name ?? 'Clean Breeze',
     overrides?.brand ?? 'Tide',
-    DetergentType.Liquid,
+    ProductType.Liquid,
     DataSource.Package,
     [Ingredient.Protease, Ingredient.Lipase, Ingredient.SodiumLaurethSulfate],
     new Date('2026-01-15'),
@@ -19,44 +19,44 @@ const makeDetergent = (overrides?: Partial<{ name: string; brand: string }>): De
   return d;
 };
 
-describe('DetergentDetailCard', () => {
-  describe('when detergent is null', () => {
+describe('ProductDetailCard', () => {
+  describe('when product is null', () => {
     it('renders a closed drawer', () => {
       const onClose = jest.fn();
-      render(<DetergentDetailCard detergent={null} onClose={onClose} />);
+      render(<ProductDetailCard product={null} onClose={onClose} />);
 
       const drawer = screen.getByRole('dialog');
       expect(drawer).not.toHaveClass('drawer-open');
     });
   });
 
-  describe('when detergent is provided', () => {
+  describe('when product is provided', () => {
     it('renders an open drawer with the product name as title', () => {
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       const drawer = screen.getByRole('dialog', { name: 'Tide Clean Breeze' });
       expect(drawer).toHaveClass('drawer-open');
     });
 
     it('renders the drawer on the right side', () => {
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       const drawer = screen.getByRole('dialog');
       expect(drawer).toHaveClass('drawer-right');
     });
 
     it('renders the ingredients section', () => {
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       expect(document.getElementById('ingredients-section')).toBeInTheDocument();
     });
 
     it('renders ingredient names as human-readable text', () => {
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       // 'Protease' stays as-is (single capital word)
       expect(screen.getByText('Protease')).toBeInTheDocument();
@@ -65,16 +65,16 @@ describe('DetergentDetailCard', () => {
     });
 
     it('renders the ingredient table with Ingredient and Function column headers', () => {
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       expect(screen.getByRole('columnheader', { name: 'Ingredient' })).toBeInTheDocument();
       expect(screen.getByRole('columnheader', { name: 'Function' })).toBeInTheDocument();
     });
 
     it('shows the category label in the Function column for a categorized ingredient', () => {
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       // Protease is in Enzymes → "Enzyme"
       const proteaseCell = screen.getByText('Protease').closest('tr');
@@ -88,15 +88,15 @@ describe('DetergentDetailCard', () => {
     it('shows context-rule-added categories alongside base categories in the Function column', () => {
       // C16_18FattyAcidsSodiumSalt is Soap + Processing Aid by default.
       // With SodiumPolyacrylate preceding it, the context rule adds Suds Reducer.
-      const d = new DetergentProfile(
+      const d = new ProductProfile(
         'Powder Test',
         'Brand',
-        DetergentType.Powder,
+        ProductType.Powder,
         DataSource.Package,
         [Ingredient.SodiumPolyacrylate, Ingredient.C16_18FattyAcidsSodiumSalt],
         new Date('2026-01-01'),
       );
-      render(<DetergentDetailCard detergent={d} onClose={() => {}} />);
+      render(<ProductDetailCard product={d} onClose={() => {}} />);
 
       const fattyAcidRow = screen.getByText('C16-18 fatty acids sodium salt').closest('tr');
       expect(fattyAcidRow).toHaveTextContent('Soap');
@@ -104,23 +104,23 @@ describe('DetergentDetailCard', () => {
     });
 
     it('shows a dash in the Function column for an uncategorized ingredient', () => {
-      const d = new DetergentProfile(
+      const d = new ProductProfile(
         'Uncategorized Test',
         'Brand',
-        DetergentType.Liquid,
+        ProductType.Liquid,
         DataSource.Package,
         [Ingredient.Water],
         new Date('2026-01-01'),
       );
-      render(<DetergentDetailCard detergent={d} onClose={() => {}} />);
+      render(<ProductDetailCard product={d} onClose={() => {}} />);
 
       const waterCell = screen.getByText('Water').closest('tr');
       expect(waterCell).toHaveTextContent('—');
     });
 
     it('shows the details section with countries', () => {
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       expect(document.getElementById('details-section')).toBeInTheDocument();
       expect(screen.getByText('Countries')).toBeInTheDocument();
@@ -130,23 +130,23 @@ describe('DetergentDetailCard', () => {
     });
 
     it('shows the last updated date', () => {
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       expect(screen.getByText('Last updated')).toBeInTheDocument();
       expect(screen.getByText('2026-01-15')).toBeInTheDocument();
     });
 
     it('shows a dash for countries when none are set', () => {
-      const d = new DetergentProfile(
+      const d = new ProductProfile(
         'No Country',
         'Brand',
-        DetergentType.Powder,
+        ProductType.Powder,
         DataSource.Package,
         [Ingredient.Water],
         new Date('2025-06-01'),
       );
-      render(<DetergentDetailCard detergent={d} onClose={() => {}} />);
+      render(<ProductDetailCard product={d} onClose={() => {}} />);
 
       const countriesValue = screen.getByText('Countries').nextElementSibling;
       expect(countriesValue).toHaveTextContent('—');
@@ -154,15 +154,15 @@ describe('DetergentDetailCard', () => {
   });
 
   describe('copy link button', () => {
-    it('renders the copy link button when a detergent is provided', () => {
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+    it('renders the copy link button when a product is provided', () => {
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       expect(screen.getByRole('button', { name: 'Copy link to this product' })).toBeInTheDocument();
     });
 
-    it('does not render the copy link button when detergent is null', () => {
-      render(<DetergentDetailCard detergent={null} onClose={() => {}} />);
+    it('does not render the copy link button when product is null', () => {
+      render(<ProductDetailCard product={null} onClose={() => {}} />);
 
       expect(screen.queryByRole('button', { name: 'Copy link to this product' })).not.toBeInTheDocument();
     });
@@ -170,8 +170,8 @@ describe('DetergentDetailCard', () => {
     it('copies window.location.href to clipboard when clicked', async () => {
       // userEvent.setup() automatically stubs navigator.clipboard
       const user = userEvent.setup();
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       const copyBtn = screen.getByRole('button', { name: 'Copy link to this product' });
       await user.click(copyBtn);
@@ -183,8 +183,8 @@ describe('DetergentDetailCard', () => {
 
     it('shows the copied state briefly after clicking', async () => {
       const user = userEvent.setup();
-      const detergent = makeDetergent();
-      render(<DetergentDetailCard detergent={detergent} onClose={() => {}} />);
+      const product = makeProduct();
+      render(<ProductDetailCard product={product} onClose={() => {}} />);
 
       const copyBtn = screen.getByRole('button', { name: 'Copy link to this product' });
       expect(copyBtn).toHaveTextContent('⎘');
@@ -199,9 +199,9 @@ describe('DetergentDetailCard', () => {
     it('calls onClose when the close button is clicked', async () => {
       const user = userEvent.setup();
       const onClose = jest.fn();
-      const detergent = makeDetergent();
+      const product = makeProduct();
 
-      render(<DetergentDetailCard detergent={detergent} onClose={onClose} />);
+      render(<ProductDetailCard product={product} onClose={onClose} />);
 
       const closeButton = screen.getByRole('button', { name: 'Close drawer' });
       await user.click(closeButton);
@@ -212,9 +212,9 @@ describe('DetergentDetailCard', () => {
     it('calls onClose when the backdrop is clicked', async () => {
       const user = userEvent.setup();
       const onClose = jest.fn();
-      const detergent = makeDetergent();
+      const product = makeProduct();
 
-      render(<DetergentDetailCard detergent={detergent} onClose={onClose} />);
+      render(<ProductDetailCard product={product} onClose={onClose} />);
 
       const backdrop = document.querySelector('.drawer-backdrop') as Element;
       expect(backdrop).toBeInTheDocument();
@@ -226,9 +226,9 @@ describe('DetergentDetailCard', () => {
     it('calls onClose when Escape is pressed', async () => {
       const user = userEvent.setup();
       const onClose = jest.fn();
-      const detergent = makeDetergent();
+      const product = makeProduct();
 
-      render(<DetergentDetailCard detergent={detergent} onClose={onClose} />);
+      render(<ProductDetailCard product={product} onClose={onClose} />);
 
       await user.keyboard('{Escape}');
 

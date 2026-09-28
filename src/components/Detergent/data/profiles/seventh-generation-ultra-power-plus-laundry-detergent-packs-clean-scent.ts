@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
-import { DataSource } from '../../types/DataSource';
+import { ProductType } from '../../../common/product/types/ProductType';
+import { DataSource } from '../../../common/product/types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumCarbonate,
@@ -27,7 +27,7 @@ const ingredients: Ingredient[] = [
 const SeventhGenerationUltraPowerPlusLaundryDetergentPacksCleanScent: DetergentProfile = new DetergentProfile(
   'Ultra Power+ Laundry Detergent Packs Clean Scent',
   'Seventh Generation',
-  DetergentType.Pod,
+  ProductType.Pod,
   DataSource.Package,
   ingredients,
   new Date('2026-03-17'),

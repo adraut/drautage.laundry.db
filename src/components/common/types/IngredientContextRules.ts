@@ -11,7 +11,7 @@ import { Surfactants } from './Surfactants';
  * so relative position is a reliable proxy for functional role when two
  * ingredients are co-present.
  *
- * Rules are evaluated at DetergentProfile construction time. Each matching rule
+ * Rules are evaluated at ProductProfile construction time. Each matching rule
  * contributes to effectiveCategoryAdditions (categories to add) or
  * effectiveCategoryExclusions (categories to remove); profile-level
  * categoryExclusions are merged on top with higher priority.

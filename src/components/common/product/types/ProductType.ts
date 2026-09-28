@@ -1,4 +1,4 @@
-export enum DetergentType {
+export enum ProductType {
   Gel = 'Gel',
   Liquid = 'Liquid',
   Pod = 'Pod',

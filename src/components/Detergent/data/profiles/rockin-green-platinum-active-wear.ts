@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
-import { DataSource } from '../../types/DataSource';
+import { DataSource } from '../../../common/product/types/DataSource';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
+import { ProductType } from '../../../common/product/types/ProductType';
 
 const ingredients: Ingredient[] = [
   Ingredient.SodiumCarbonate,
@@ -17,7 +17,7 @@ const ingredients: Ingredient[] = [
 const RockinGreenPlatinumActiveWear: DetergentProfile = new DetergentProfile(
   'Platinum Active Wear',
   "Rockin' Green",
-  DetergentType.Powder,
+  ProductType.Powder,
   DataSource.Package,
   ingredients,
   new Date('2026-02-01'),

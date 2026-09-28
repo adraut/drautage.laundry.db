@@ -1,7 +1,7 @@
 import { Ingredient } from '../../../common/types/Ingredient';
 import { DetergentProfile } from '../../types/DetergentProfile';
-import { DetergentType } from '../../types/DetergentType';
-import { DataSource } from '../../types/DataSource';
+import { ProductType } from '../../../common/product/types/ProductType';
+import { DataSource } from '../../../common/product/types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.C10_16Alketh,
@@ -37,7 +37,7 @@ const ingredients: Ingredient[] = [
 const TidePlusUltraOxiHeavyDutyOriginal: DetergentProfile = new DetergentProfile(
   '+ Ultra Oxi Heavy Duty',
   'Tide',
-  DetergentType.Liquid,
+  ProductType.Liquid,
   DataSource.Package,
   ingredients,
   new Date('2026-04-06'),

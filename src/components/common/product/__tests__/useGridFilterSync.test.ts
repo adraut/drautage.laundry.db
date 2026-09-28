@@ -395,4 +395,34 @@ describe('useGridFilterSync', () => {
       expect(firstFilter.operator).toBe('contains');
     });
   });
+
+  describe('operators from field definitions', () => {
+    const fields = [
+      { field: 'scent', title: 'Scent', type: 'text' as const },
+      { field: 'lastUpdatedFormatted', title: 'Last Updated', type: 'date' as const },
+      { field: 'hasLipase', title: 'Lipase', type: 'boolean' as const },
+      { field: 'type', title: 'Type', type: 'enum' as const },
+    ];
+
+    it('decodes a category-specific text field with contains', () => {
+      const decoded = decodeFilter(['scent:lav'], fields);
+      expect(decoded?.filters[0]).toEqual({ field: 'scent', operator: 'contains', value: 'lav' });
+    });
+
+    it('decodes date fields with contains to match the drawer text input', () => {
+      const decoded = decodeFilter(['lastUpdatedFormatted:2026-01'], fields);
+      expect(decoded?.filters[0]?.operator).toBe('contains');
+    });
+
+    it('decodes boolean and enum fields with eq', () => {
+      const decoded = decodeFilter(['hasLipase', 'type:Pod'], fields);
+      expect(decoded?.filters.map((f) => (f as FilterDescriptor).operator)).toEqual(['eq', 'eq']);
+    });
+
+    it('keeps a category-specific text filter as contains after reload', () => {
+      window.history.pushState({}, '', 'http://localhost/?f=scent:lav');
+      const { result } = renderHookWithRouter(() => useGridFilterSync(fields));
+      expect(result.current.filter.filters[0]).toEqual({ field: 'scent', operator: 'contains', value: 'lav' });
+    });
+  });
 });
