@@ -25,8 +25,8 @@ const DyeTransferInhibitors: Set<Ingredient> = new Set();
 
 DyeTransferInhibitors.add(Ingredient.AnionicModifiedPolyester);
 DyeTransferInhibitors.add(Ingredient.CelluloseGum);
-DyeTransferInhibitors.add(Ingredient.PolyethyleneimineAlkoxylated);
 DyeTransferInhibitors.add(Ingredient.PolyethlyleneImineEthoxylate);
+DyeTransferInhibitors.add(Ingredient.PolyethyleneimineAlkoxylated);
 DyeTransferInhibitors.add(Ingredient.PolyethyleniminePolymer);
 
 export { DyeTransferInhibitors };
