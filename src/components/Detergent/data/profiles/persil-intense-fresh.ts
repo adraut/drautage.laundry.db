@@ -5,26 +5,28 @@ import { DataSource } from '../../types/DataSource';
 
 const ingredients: Ingredient[] = [
   Ingredient.Water,
+  Ingredient.MEALAS,
   Ingredient.C12_15AlcoholsEthoxylated,
   Ingredient.SodiumLaurethSulfate,
-  Ingredient.SodiumC10_16Alkylbenzenesulfonate,
+  Ingredient.MEABorate,
   Ingredient.MEACitrate,
-  Ingredient.PolyethyleneimineAlkoxylated,
-  Ingredient.PropyleneGlycol,
-  Ingredient.Fragrance,
-  Ingredient.Ethanol,
   Ingredient.C8_18FattyAcidAmideMEA,
-  Ingredient.SodiumMetaborate,
+  Ingredient.Fragrance,
+  Ingredient.PolypropyleneTerephthalate,
+  Ingredient.PolyethyleneimineAlkoxylated,
   Ingredient.TetrasodiumIminodisuccinate,
-  Ingredient.HydrophobicallyModifiedAcrylateStyreneCopolymer,
+  Ingredient.SodiumCitrate,
+  Ingredient.SodiumC10_16Alkylbenzenesulfonate,
+  Ingredient.SodiumChloride,
+  Ingredient.SodiumPolyacrylate,
   Ingredient.DisodiumDistyrylbiphenylDisulfonate,
-  Ingredient.Protease,
   Ingredient.Methylisothiazolinone,
   Ingredient.Amylase,
   Ingredient.Colorants,
-  Ingredient.Methylchloroisothiazolinone,
-  Ingredient.Mannanase,
   Ingredient.Cellulase,
+  Ingredient.Mannanase,
+  Ingredient.Methylchloroisothiazolinone,
+  Ingredient.Ethanol,
 ];
 
 const PersilIntenseFresh: DetergentProfile = new DetergentProfile(
@@ -33,7 +35,7 @@ const PersilIntenseFresh: DetergentProfile = new DetergentProfile(
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-15'),
+  new Date('2026-09-27'),
 );
 PersilIntenseFresh.countriesAvailable = ['USA'];
 
