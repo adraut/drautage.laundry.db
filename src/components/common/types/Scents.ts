@@ -30,6 +30,7 @@ Scents.add(Ingredient.EugeniaCaryphyllusLeafOil);
 Scents.add(Ingredient.FerulGalbaniferaResinOil);
 Scents.add(Ingredient.FoeniculumVulgareOil);
 Scents.add(Ingredient.Fragrance);
+Scents.add(Ingredient.FucusVesiculosusExtract);
 Scents.add(Ingredient.GammaDecalactone);
 Scents.add(Ingredient.GammaNonalactone);
 Scents.add(Ingredient.Geraniol);

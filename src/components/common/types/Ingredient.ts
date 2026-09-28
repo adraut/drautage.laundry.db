@@ -399,8 +399,6 @@ export enum Ingredient {
   /**
    * Fucus Vesiculosus Extract is an extract derived from bladderwrack, a brown seaweed, listed
    * among fragrance components in laundry detergents.
-   * @uncategorized Botanical seaweed extract with no clear functional laundry role; no matching
-   * category exists for skin-feel additives.
    */
   FucusVesiculosusExtract = 'Fucus Vesiculosus Extract',
   /**
