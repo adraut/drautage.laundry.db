@@ -24,8 +24,8 @@ const ingredients: Ingredient[] = [
   Ingredient.Methylisothiazolinone,
   Ingredient.Mannanase,
   Ingredient.Colorants,
-  Ingredient.Methylchloroisothiazolinone,
   Ingredient.Cellulase,
+  Ingredient.Methylchloroisothiazolinone,
 ];
 
 const PersilAdvancedCleanOxiPower: DetergentProfile = new DetergentProfile(
@@ -34,7 +34,7 @@ const PersilAdvancedCleanOxiPower: DetergentProfile = new DetergentProfile(
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-15'),
+  new Date('2026-09-27'),
 );
 PersilAdvancedCleanOxiPower.countriesAvailable = ['USA'];
 
