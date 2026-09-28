@@ -26,7 +26,8 @@ Adds a new detergent profile to the repository based on a GitHub issue.
    - `src/components/common/types/AGENTS.md`
 
 3. **Check for an existing profile.** Construct the expected filename from the
-   brand, product name, and variant (lowercase, hyphenated):
+   brand, product name, and variant (lowercase, hyphenated, with `+` spelled
+   out as `plus` and `&` as `and`, e.g. `tide-plus-power-pods-sport`):
 
    `src/components/Detergent/data/profiles/<brand>-<product>-<variant>.ts`
    - **Add issue + file exists:** stop. Inform the user the profile already
@@ -44,6 +45,10 @@ Adds a new detergent profile to the repository based on a GitHub issue.
 
    **Order:** Preserve the exact printed sequence. Do not sort or reorder —
    ingredient order is significant.
+
+   **Missing or unreadable ingredients:** Use only ingredients stated in the
+   issue or source. Do not fill gaps from similar products unless the issue
+   explicitly says to; list any gap in the PR body.
 
    **"May contain" / conditional ingredients:** Include in the `ingredients`
    array. Add a `// may contain` inline comment on that line. Note each one
@@ -102,9 +107,10 @@ Adds a new detergent profile to the repository based on a GitHub issue.
      `DataSource.SDS` (from the issue's **Data source** field) as the 4th
      argument to the `DetergentProfile` constructor (between `type` and
      `ingredients`).
-   - **Update issue:** the file already exists — update only the `ingredients`
-     array and `dataSource` if the issue's **Data source** field differs from
-     the current value. Do not change other `DetergentProfile` constructor
+   - **Update issue:** the file already exists — update the `ingredients`
+     array, set `lastUpdated` to the issue's photographed/accessed date, and
+     update `dataSource` if the issue's **Data source** field differs from the
+     current value. Do not change other `DetergentProfile` constructor
      arguments or optional fields unless the issue explicitly requests it.
 
 9. **Export the new profile** in `src/components/Detergent/data/profiles/index.ts`
@@ -130,14 +136,19 @@ Adds a new detergent profile to the repository based on a GitHub issue.
       git commit -m "feat: update <Brand> <Product Name> detergent profile (#<issue_number>)"
       ```
 
-13. **Open a draft PR** using the structure from `.github/PULL_REQUEST_TEMPLATE/detergent.md`:
+    If the product name already ends in "Detergent", drop that word so the
+    message doesn't read "Detergent detergent profile".
+
+13. **Open a draft PR** using the structure from `.github/PULL_REQUEST_TEMPLATE/detergent.md`.
+    The title must be the commit message without the issue number — the
+    `lint-pr-title` check requires a Conventional Commits prefix.
 
     For **Add** issues:
 
     ```
     gh pr create \
       --draft \
-      --title "Add <Brand> <Product Name>" \
+      --title "feat: add <Brand> <Product Name> detergent profile" \
       --body "## Description
 
     Closes #<issue_number>
@@ -161,7 +172,7 @@ Adds a new detergent profile to the repository based on a GitHub issue.
     ```
     gh pr create \
       --draft \
-      --title "Update <Brand> <Product Name>" \
+      --title "feat: update <Brand> <Product Name> detergent profile" \
       --body "## Description
 
     Closes #<issue_number>
@@ -190,3 +201,5 @@ Adds a new detergent profile to the repository based on a GitHub issue.
 - Do not modify `package-lock.json` under any circumstances.
 - List all unknowns in the PR — do not invent placeholder ingredients.
 - The PR must be a draft. Never open a ready-for-review PR.
+- If asked to mark the PR ready, first confirm every check passed
+  (`gh pr checks <pr>`); do not chain `gh pr ready` onto `gh pr checks --watch`.
