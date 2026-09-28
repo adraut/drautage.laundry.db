@@ -64,6 +64,18 @@ describe('Detergents', () => {
     expect(screen.getByRole('heading', { name: 'Detergents' })).toBeInTheDocument();
   });
 
+  it('shows the empty-state message when there are no detergents', async () => {
+    (loadDetergents as jest.Mock).mockResolvedValue(new Map());
+    render(
+      <BrowserRouter>
+        <Detergents />
+      </BrowserRouter>,
+    );
+
+    expect(await screen.findByText('No detergents yet.')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Open filters' })).not.toBeInTheDocument();
+  });
+
   describe('URL filter persistence', () => {
     it('shows all detergents when no URL params present', async () => {
       // Reset URL
