@@ -47,13 +47,15 @@ export function ProductGrid({ config }: ProductGridProps) {
   const { theme } = useTheme();
   const [products, setProducts] = useState<Map<string, ProductProfile>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [filter, setFilter] = useState<CompositeFilterDescriptor | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ProductProfile | null>(null);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [compareSet, setCompareSet] = useState<Set<string>>(new Set());
-  const { filter: urlFilter, updateFilterInUrl, resetFilterInUrl } = useGridFilterSync();
+  const filterFields = config.filterFields ?? PRODUCT_FILTER_FIELDS;
+  const { filter: urlFilter, updateFilterInUrl, resetFilterInUrl } = useGridFilterSync(filterFields);
   const { sortModel, updateSortInUrl, resetSortInUrl } = useGridSortSync();
   const { slug: productSlug, setProductSlug } = useProductUrlSync();
   const gridRef = useRef<AgGridReact<ProductProfile>>(null);
@@ -70,6 +72,7 @@ export function ProductGrid({ config }: ProductGridProps) {
         setProducts(data);
       } catch (error) {
         console.error(`Error loading ${config.pluralLower}:`, error);
+        setLoadError(true);
       } finally {
         setIsLoading(false);
       }
@@ -220,6 +223,10 @@ export function ProductGrid({ config }: ProductGridProps) {
         <div style={{ textAlign: 'center', padding: '2rem' }}>
           <p>Loading {config.pluralLower}...</p>
         </div>
+      ) : loadError ? (
+        <div role="alert" style={{ textAlign: 'center', padding: '2rem' }}>
+          <p>Couldn't load {config.pluralLower}. Try refreshing the page.</p>
+        </div>
       ) : products.size === 0 ? (
         <div style={{ textAlign: 'center', padding: '2rem' }}>
           <p>No {config.pluralLower} yet.</p>
@@ -241,7 +248,7 @@ export function ProductGrid({ config }: ProductGridProps) {
           {/* Filter Drawer */}
           <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} title={`Filter ${config.title}`}>
             <FilterDrawerContent
-              fields={config.filterFields ?? PRODUCT_FILTER_FIELDS}
+              fields={filterFields}
               filter={filter}
               onFilterChange={handleFilterChange}
               onReset={resetFilter}

@@ -1,7 +1,8 @@
 import { CompositeFilterDescriptor, FilterDescriptor } from './filterTypes';
+import type { FilterField } from '../FilterDrawerContent';
 
 /**
- * Map of field names to their operators
+ * Fallback map of field names to their operators, used when no field definitions are supplied.
  * Text fields use 'contains', others use 'eq'
  */
 const FIELD_OPERATOR_MAP: Record<string, string> = {
@@ -16,9 +17,15 @@ const FIELD_OPERATOR_MAP: Record<string, string> = {
 /**
  * Gets the appropriate operator for a given field name
  * @param fieldName - The name of the field to filter on
+ * @param fields - Optional filter field definitions; when a field is defined, its type decides the operator
  * @returns The operator ('eq' or 'contains')
  */
-function getOperatorForField(fieldName: string): string {
+function getOperatorForField(fieldName: string, fields?: Pick<FilterField, 'field' | 'type'>[]): string {
+  const fieldDef = fields?.find((f) => f.field === fieldName);
+  if (fieldDef) {
+    // Match FilterDrawerContent: free-text inputs (text and date) filter with 'contains', selects with 'eq'
+    return fieldDef.type === 'text' || fieldDef.type === 'date' ? 'contains' : 'eq';
+  }
   return FIELD_OPERATOR_MAP[fieldName] ?? 'eq';
 }
 
@@ -57,9 +64,13 @@ export function encodeFilter(filter: CompositeFilterDescriptor): string[] {
 /**
  * Decodes an array of parameter strings back to a filter object
  * @param encoded - An array of encoded parameter strings, or null
+ * @param fields - Optional filter field definitions used to pick each field's operator
  * @returns The decoded filter object, or null if decoding fails
  */
-export function decodeFilter(encoded: string[] | null): CompositeFilterDescriptor | null {
+export function decodeFilter(
+  encoded: string[] | null,
+  fields?: Pick<FilterField, 'field' | 'type'>[],
+): CompositeFilterDescriptor | null {
   try {
     if (!encoded || encoded.length === 0) {
       return null;
@@ -109,7 +120,7 @@ export function decodeFilter(encoded: string[] | null): CompositeFilterDescripto
 
       filters.push({
         field,
-        operator: getOperatorForField(field),
+        operator: getOperatorForField(field, fields),
         value,
       });
     }

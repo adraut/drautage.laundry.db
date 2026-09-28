@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CompositeFilterDescriptor } from '../utils/filterTypes';
 import { encodeFilter, decodeFilter, createEmptyFilter } from '../utils/gridFilterUtils';
+import type { FilterField } from '../FilterDrawerContent';
 
 const FILTER_PARAM_NAME = 'f';
 const DEBOUNCE_DELAY = 500;
@@ -28,7 +29,7 @@ function applyFilterParams(prev: URLSearchParams, filter: CompositeFilterDescrip
  *   - filter: Current filter state from URL, or empty if no params are present
  *   - updateFilterInUrl: Function to update the filter in URL (automatically debounced)
  */
-export function useGridFilterSync() {
+export function useGridFilterSync(fields?: FilterField[]) {
   const [searchParams, setSearchParams] = useSearchParams();
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -40,13 +41,13 @@ export function useGridFilterSync() {
   const filter = useMemo((): CompositeFilterDescriptor => {
     const filterParams = filterParamsKey ? filterParamsKey.split('\0') : [];
     if (filterParams.length > 0) {
-      const decoded = decodeFilter(filterParams);
+      const decoded = decodeFilter(filterParams, fields);
       if (decoded) {
         return decoded;
       }
     }
     return createEmptyFilter();
-  }, [filterParamsKey]);
+  }, [filterParamsKey, fields]);
 
   // Debounced function to update filter in URL
   const updateFilterInUrl = useCallback(

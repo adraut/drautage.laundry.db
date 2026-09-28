@@ -76,6 +76,20 @@ describe('Detergents', () => {
     expect(screen.queryByRole('button', { name: 'Open filters' })).not.toBeInTheDocument();
   });
 
+  it('shows an error message instead of the empty state when loading fails', async () => {
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    (loadDetergents as jest.Mock).mockRejectedValue(new Error('network'));
+    render(
+      <BrowserRouter>
+        <Detergents />
+      </BrowserRouter>,
+    );
+
+    expect(await screen.findByRole('alert')).toHaveTextContent("Couldn't load detergents. Try refreshing the page.");
+    expect(screen.queryByText('No detergents yet.')).not.toBeInTheDocument();
+    errorSpy.mockRestore();
+  });
+
   describe('URL filter persistence', () => {
     it('shows all detergents when no URL params present', async () => {
       // Reset URL
