@@ -117,6 +117,7 @@ export { default as TidePlusUltraFebrezeSpringRenewal } from './tide-plus-ultra-
 export { default as TidePlusUltraDownyAprilFresh } from './tide-plus-ultra-downy-april-fresh';
 export { default as TidePlusPodsUltraOxi4in1 } from './tide-plus-pods-ultra-oxi-4-in-1';
 export { default as TidePlusUltraOxiHeavyDutyOriginal } from './tide-plus-ultra-oxi-heavy-duty-original';
+export { default as TidePodsFreeAndGentleColdwaterClean } from './tide-pods-free-and-gentle-coldwater-clean';
 export { default as TidePods3in1Original } from './tide-pods-3in1-original';
 export { default as TidePodsFreeAndGentle } from './tide-pods-free-and-gentle';
 export { default as TidePodsSpringMeadow } from './tide-pods-spring-meadow';
