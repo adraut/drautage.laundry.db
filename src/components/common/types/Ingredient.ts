@@ -263,15 +263,15 @@ export enum Ingredient {
    */
   CoriandrumSativumFruitOil = 'Coriandrum Sativum (Coriander) Fruit Oil',
   /**
-   * Cymbopogon Martini (Palmarosa) Oil is an essential oil derived from palmarosa grass,
-   * used as a fragrance ingredient in laundry detergents.
-   */
-  CymbopogonMartiniPalmarosaOil = 'Cymbopogon Martini (Palmarosa) Oil',
-  /**
    * Cyclotetrasiloxane (D4) is a cyclic silicone compound used in laundry detergents as a
    * suds reducer and fabric conditioner, controlling foam and imparting a smooth feel to fabrics.
    */
   Cyclotetrasiloxane = 'Cyclotetrasiloxane',
+  /**
+   * Cymbopogon Martini (Palmarosa) Oil is an essential oil derived from palmarosa grass,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  CymbopogonMartiniPalmarosaOil = 'Cymbopogon Martini (Palmarosa) Oil',
   /**
    * Decyl Glucoside is a mild nonionic surfactant derived from glucose and decanol, used in
    * laundry detergents as a gentle cleansing agent and foam booster.
@@ -539,11 +539,6 @@ export enum Ingredient {
   LaurylBetaine = 'Lauryl Betaine',
   LaurylGlucoside = 'Lauryl Glucoside',
   /**
-   * Lavandula Angustifolia (Lavender) Oil is an essential oil derived from true lavender flowers,
-   * used as a fragrance ingredient in laundry detergents.
-   */
-  LavandulAngustifoliaOil = 'Lavandula Angustifolia (Lavender) Oil',
-  /**
    * Lavandula Hybrida (Lavandin) Oil is an essential oil from the lavandin hybrid plant
    * (Lavandula × intermedia), used as a fragrance ingredient in laundry detergents.
    */
@@ -554,6 +549,11 @@ export enum Ingredient {
    * Also listed on labels as: Lavandula (Organic Lavender) Hybrida Oil
    */
   LavandulaHybridaOil = 'Lavandula Hybrida Oil',
+  /**
+   * Lavandula Angustifolia (Lavender) Oil is an essential oil derived from true lavender flowers,
+   * used as a fragrance ingredient in laundry detergents.
+   */
+  LavandulAngustifoliaOil = 'Lavandula Angustifolia (Lavender) Oil',
   /**
    * Limonene is a naturally occurring cyclic monoterpene found in citrus peel oils, used as a
    * fragrance component and fragrance allergen in laundry detergents.
@@ -735,11 +735,6 @@ export enum Ingredient {
    */
   PEG7GlycerylCocoate = 'PEG-7 Glyceryl Cocoate',
   /**
-   * PEG-10 (Polyethylene Glycol-10) is a low molecular weight polyethylene glycol used as a
-   * solvent and humectant in laundry detergent pods to help dissolve and stabilize the formula.
-   */
-  PEG_10 = 'PEG-10',
-  /**
    * PEG-12 Dimethicone is a PEGylated dimethicone silicone used in laundry detergents as a
    * suds modifier and conditioning agent that reduces excess foam while improving fabric feel.
    */
@@ -752,6 +747,11 @@ export enum Ingredient {
    * multi-compartment pod dividers.
    */
   PEG136PolyvinylAlcohol = 'PEG-136 Polyvinyl Alcohol',
+  /**
+   * PEG-10 (Polyethylene Glycol-10) is a low molecular weight polyethylene glycol used as a
+   * solvent and humectant in laundry detergent pods to help dissolve and stabilize the formula.
+   */
+  PEG_10 = 'PEG-10',
   /**
    * PEG Terephthalate Polymer is a polyester-based polymer used in laundry detergents
    * as a soil release agent and fabric protective ingredient, helping to prevent stains
@@ -803,14 +803,14 @@ export enum Ingredient {
    */
   PogostemonCablinOil = 'Pogostemon Cablin (Patchouli) Oil',
   /**
+   * This is a specific type of Polyethyleneimine Alkoxylated.
+   */
+  PolyethlyleneImineEthoxylate = 'Polyethylene Imine Ethoxylate',
+  /**
    * Polyethyleneimine Alkoxylated is a polymer used primarily as a soil anti-redeposition agent in laundry detergents, with secondary dye transfer inhibition properties.
    * Synonyms: Polyethyleneimines Alkoxylated, Polyethylenimine Alkoxylated
    */
   PolyethyleneimineAlkoxylated = 'Polyethyleneimine Alkoxylated',
-  /**
-   * This is a specific type of Polyethyleneimine Alkoxylated.
-   */
-  PolyethlyleneImineEthoxylate = 'Polyethylene Imine Ethoxylate',
   /**
    * Polyethylenimine Polymer (PEI) is a non-alkoxylated polymer used in laundry detergents
    * as a soil release agent and dye transfer inhibitor. Distinct from the alkoxylated form
@@ -984,14 +984,14 @@ export enum Ingredient {
   SodiumBicarbonate = 'Sodium Bicarbonate',
   SodiumBisulfite = 'Sodium Bisulfite',
   SodiumBorate = 'Sodium Borate',
+  SodiumC10_16Alkylbenzenesulfonate = 'Sodium C10-16 Alkylbenzenesulfonate',
+  SodiumCarbonate = 'Sodium Carbonate',
   /**
    * Sodium Carboxymethyl Inulin is a plant-derived (inulin-based) polymer used in laundry
    * detergents as a biodegradable anti-redeposition and dispersing agent, helping to keep soils
    * suspended in wash water and prevent them from redepositing onto fabrics.
    */
   SodiumCarboxymethylInulin = 'Sodium Carboxymethyl Inulin',
-  SodiumC10_16Alkylbenzenesulfonate = 'Sodium C10-16 Alkylbenzenesulfonate',
-  SodiumCarbonate = 'Sodium Carbonate',
   SodiumChloride = 'Sodium Chloride',
   SodiumCitrate = 'Sodium Citrate',
   /**

@@ -39,7 +39,7 @@ export { Proteases };
 
 const Pectinases: Set<Ingredient> = new Set();
 
-Pectinases.add(Ingredient.Pectinase);
 Pectinases.add(Ingredient.PectateLyase);
+Pectinases.add(Ingredient.Pectinase);
 
 export { Pectinases };
