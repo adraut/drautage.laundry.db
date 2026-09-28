@@ -19,8 +19,8 @@ const ingredients: Ingredient[] = [
   Ingredient.TetrasodiumGlutamateDiacetate,
   Ingredient.Subtilisin,
   Ingredient.CalciumFormate,
-  Ingredient.Benzisothiazolinone,
   Ingredient.Amylase,
+  Ingredient.Benzisothiazolinone,
   Ingredient.Cellulase,
   Ingredient.Mannanase,
 ];
@@ -31,7 +31,7 @@ const TidePurcleanHoneyLavender: DetergentProfile = new DetergentProfile(
   DetergentType.Liquid,
   DataSource.Package,
   ingredients,
-  new Date('2026-03-20'),
+  new Date('2026-09-27'),
 );
 TidePurcleanHoneyLavender.countryOfOrigin = 'USA';
 TidePurcleanHoneyLavender.countriesAvailable = ['USA'];
