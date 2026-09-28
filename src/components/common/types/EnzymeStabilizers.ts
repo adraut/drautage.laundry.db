@@ -13,6 +13,7 @@ import { Ingredient } from './Ingredient';
 const EnzymeStabilizers: Set<Ingredient> = new Set();
 
 EnzymeStabilizers.add(Ingredient.CalciumFormate);
+EnzymeStabilizers.add(Ingredient.Maltodextrin);
 EnzymeStabilizers.add(Ingredient.SodiumFormate);
 
 export { EnzymeStabilizers };
