@@ -1,3 +1,8 @@
+---
+description: Run lint, type-check, tests, and format checks
+allowed-tools: Bash(npm run:*)
+---
+
 # Run All Quality Checks
 
 Runs the full suite of quality checks for this repository.

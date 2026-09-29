@@ -1,24 +1,34 @@
-# Import Detergents from Image Groups
+---
+description: Batch-import product photos into GitHub issues
+argument-hint: [path] [detergent|booster]
+allowed-tools: Read, Write, Edit, Glob, Grep, Skill, AskUserQuestion, Bash(gh:*), Bash(rm:*), Bash(ls:*), Bash(bash:*)
+---
 
-Processes a batch of detergent packaging photos, creating or updating GitHub
-issues for each product. Progress is tracked in an `IMPORT_LOG.md` alongside
-the images.
+<!--
+Usage:   /import-products [path] [type]
+Example: /import-products "C:/Users/me/import/detergents/2026-09"
+         /import-products ./import/boosters booster
+-->
 
-> OCR, cropping, multi-image reconciliation, and the ingredient extraction
-> rules are shared with `/create-detergent-issue` via the
-> `detergent-label-ocr` skill — see step 2c below.
+Process a batch of laundry product packaging photos (detergents, boosters,
+…), creating or updating a GitHub issue for each product. Track progress in
+an `IMPORT_LOG.md` alongside the images. Arguments: `$ARGUMENTS`
 
-## Usage
+OCR, cropping, multi-image reconciliation, and the ingredient extraction
+rules come from the `product-label-ocr` skill, shared with
+`/create-product-issue` — see step 2c. Category-specific paths, classes,
+and labels come from
+@.claude/skills/product-label-ocr/references/product-types.md
 
-```
-/import-detergents [path]
-```
+## Arguments
 
-- **`path` is a directory** — treated as the batch directory (where the
-  images live). The log is always `<path>/IMPORT_LOG.md`.
-- **`path` is a `.md` file** — treated as the log file directly; its parent
-  directory is the batch directory.
-- **No argument** — defaults to batch directory `import/detergents/`.
+- **`path` is a directory** — the batch directory (where the images live).
+  The log is always `<path>/IMPORT_LOG.md`.
+- **`path` is a `.md` file** — the log file itself; its parent directory is
+  the batch directory.
+- **No path** — ask the user for the batch directory.
+- **Type key** (optional, any position) — forces that product type for every
+  group in the batch. Without it, resolve the type per group in step 2a.
 
 ## Overview
 
@@ -58,11 +68,13 @@ batch directory, including when the log does not exist at all.
 **If the log does not exist**, create it immediately with just the header row:
 
 ```
-| # | Front image | Ingredient image(s) | Product | Status | Notes |
-|---|-------------|---------------------|---------|--------|-------|
+| # | Front image | Ingredient image(s) | Type | Product | Status | Notes |
+|---|-------------|---------------------|------|---------|--------|-------|
 ```
 
-**If the log exists**, read it. Note which source images (non-`_cropped`) are
+**If the log exists**, read it. If it predates the `Type` column, insert the
+column (after `Ingredient image(s)`) and leave existing rows blank — step 2a
+fills it for any row still being processed. Note which source images (non-`_cropped`) are
 already recorded in any row — these are already classified and will be skipped.
 Note any row whose `Status` is `classifying` — that group's classification was
 interrupted and must be completed before processing resumes (see step 1c).
@@ -182,12 +194,18 @@ Read the front image. Extract:
 - Brand name
 - Product name
 - Variant (if any)
-- Detergent type (Liquid / Powder / Pod / Other)
+- Product form (Liquid / Powder / Pod / …)
 - Region/country (if visible)
+- **Product type** — the forced type if one was passed; otherwise resolve it
+  from the packaging using the rules in `product-types.md`. If unsure, treat
+  it like an unidentifiable product and ask.
 
 If the image is unclear or the product cannot be identified, pause and ask
-the user before continuing. Mark the row `identified` in the log once
-the product is confirmed.
+the user before continuing. Mark the row `identified` in the log, with the
+`Type` column filled, once the product is confirmed.
+
+If the resolved type is **not supported** in `product-types.md`, mark the
+row `skipped` with a Notes entry `unsupported type: <type>` and move on.
 
 The **data source** is determined from the primary source used for ingredients:
 
@@ -208,14 +226,15 @@ Construct the expected filename:
 - Example: brand="Tide", product="Original", variant="Liquid" →
   `tide-original-liquid.ts`
 
-Check `src/components/Detergent/data/profiles/<filename>`.
+Check `<profiles dir>/<filename>`, using the group's type row in
+`product-types.md`.
 
 **Run this check in parallel with step 2c.**
 
 ### Step 2c — OCR each ingredient image
 
 **Run all ingredient images for this group in parallel.** Use the
-`detergent-label-ocr` skill for the full-image OCR prompt, cropping (via its
+`product-label-ocr` skill for the full-image OCR prompt, cropping (via its
 bundled script — never hand-write a docker/podman ImageMagick invocation),
 multi-image reconciliation, and the extraction rules (language, order, "may
 contain", P&G "MADE WITH" category unpacking, OR-alternatives, colorants,
@@ -228,7 +247,7 @@ the log's `Ingredient image(s)` column.
 
 ### Step 2d — Compare vs. existing profile (if found)
 
-Use the `detergent-label-ocr` skill's profile-comparison approach: map each
+Use the `product-label-ocr` skill's profile-comparison approach: map each
 `Ingredient.EnumName` in the profile to its plain-text equivalent and
 compare against the extracted ingredient list, **including order**.
 
@@ -268,14 +287,15 @@ import directory immediately — do not wait for ambiguities to be resolved.
 **If there are no ambiguities:** write the proposal file normally.
 
 **If there are ambiguities:** write the proposal file with the
-`## ⚠ Needs Review` table described in the `detergent-label-ocr` skill
+`## ⚠ Needs Review` table described in the `product-label-ocr` skill
 (section 5) at the top, before the issue body. The issue body below it
 should still use the best-guess reading for each uncertain item (marked
 `[?]`) so the proposal is otherwise complete and can be approved with
 minimal edits once decisions are made.
 
-The issue body's **Product details** section must include the skill's
-`**Data source:**` field.
+The issue body follows the group type's issue template
+(`.github/ISSUE_TEMPLATE/add-<type>.md` or `update-<type>.md`) and its
+**Product details** section must include the `**Data source:**` field.
 
 ### Step 2g — Update the log
 
@@ -305,13 +325,15 @@ When the user says something like _"create issues for all proposal-ready
 groups"_:
 
 1. Read all `proposal-ready` rows from the log.
-2. For each, read its proposal file and execute the appropriate command:
+2. For each, read its proposal file and execute the appropriate command,
+   where `<Label>` is the GitHub label for the row's `Type` in
+   `product-types.md`:
    - **New Add issue:**
-     `gh issue create --title "Add <Brand> <Product>" --label "enhancement" --label "Detergent"`
+     `gh issue create --title "Add <Brand> <Product>" --label "enhancement" --label "<Label>" --body-file <proposal>`
    - **New Update issue:**
-     `gh issue create --title "Update <Brand> <Product>" --label "enhancement" --label "Detergent" --label "update"`
+     `gh issue create --title "Update <Brand> <Product>" --label "enhancement" --label "<Label>" --label "update" --body-file <proposal>`
    - **Correcting an existing issue:**
-     `gh issue edit <number> --body "<corrected body>"`
+     `gh issue edit <number> --body-file <proposal>`
 3. Use separate `--label` flags (not comma-separated).
 4. After each GitHub action succeeds:
    - Delete the proposal file (`rm "ISSUE_GROUP_<##>_<slug>.md"`)
