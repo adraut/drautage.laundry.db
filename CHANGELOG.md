@@ -8,13 +8,6 @@
 * add boosters category ([#737](https://github.com/adraut/drautage.laundry.db/issues/737)) ([ca12b84](https://github.com/adraut/drautage.laundry.db/commit/ca12b84efe45ba9c7ba51be32a181bfd35488fdd))
 
 
-### Miscellaneous Chores
-
-* release 2.0.0 ([#743](https://github.com/adraut/drautage.laundry.db/issues/743)) ([db4d9d0](https://github.com/adraut/drautage.laundry.db/commit/db4d9d06f93b8396fb57051eae2b59b626421e04))
-
-## [1.3.0](https://github.com/adraut/drautage.laundry.db/compare/v1.2.0...v1.3.0) (2026-09-28)
-
-
 ### Features
 
 * add Persil OXI + Odor Fighter detergent profile ([#729](https://github.com/adraut/drautage.laundry.db/issues/729)) ([2a55d34](https://github.com/adraut/drautage.laundry.db/commit/2a55d34c8b6ac5db8e463875952007a8f3588881))
