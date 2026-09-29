@@ -95,10 +95,19 @@ Summarize for the user: product, type, Add/Update, ingredient count, new enum
 entries needed, resolved OCR uncertainties, and open review items.
 
 **Stop and wait** until the user resolves review items and explicitly
-confirms. Then run, using the table's **label** and separate `--label` flags:
+confirms. Then create the issue with these labels, one `--label` flag each
+(never comma-separated):
+
+| Issue  | Detergent                            | Booster                            |
+| ------ | ------------------------------------ | ---------------------------------- |
+| Add    | `enhancement`, `Detergent`           | `enhancement`, `Booster`           |
+| Update | `enhancement`, `Detergent`, `update` | `enhancement`, `Booster`, `update` |
+
+These mirror the `labels:` in each type's issue template; for a type not
+listed here, use the **label** column in `product-types.md`.
 
 - Add: `gh issue create --title "Add <Brand> <Product>" --label "enhancement" --label "<Label>" --body-file <proposal>`
-- Update: same with `--title "Update <Brand> <Product>"` and an extra `--label "update"`
+- Update: `gh issue create --title "Update <Brand> <Product>" --label "enhancement" --label "<Label>" --label "update" --body-file <proposal>`
 - Correcting an existing issue: `gh issue edit <number> --body-file <proposal>`
 
 Strip the Needs Review section from the body before submitting. After the
