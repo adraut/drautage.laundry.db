@@ -1,6 +1,11 @@
 # Changelog
 
-## [1.3.0](https://github.com/adraut/drautage.laundry.db/compare/v1.2.0...v1.3.0) (2026-09-28)
+## [2.0.0](https://github.com/adraut/drautage.laundry.db/compare/v1.3.0...v2.0.0) (2026-09-29)
+
+
+### Features
+
+* add boosters category ([#737](https://github.com/adraut/drautage.laundry.db/issues/737)) ([ca12b84](https://github.com/adraut/drautage.laundry.db/commit/ca12b84efe45ba9c7ba51be32a181bfd35488fdd))
 
 
 ### Features
