@@ -8,14 +8,14 @@ const ingredients: Ingredient[] = [
   Ingredient.SodiumPercarbonate,
   Ingredient.SodiumCitrate,
   Ingredient.SodiumZincPolyitaconate,
-  Ingredient.Protease,
-  Ingredient.Lipase,
+  Ingredient.Deoxyribonuclease,
   Ingredient.Amylase,
   Ingredient.Cellulase,
+  Ingredient.Lipase,
   Ingredient.Mannanase,
   Ingredient.PectateLyase,
-  Ingredient.Deoxyribonuclease,
-  Ingredient.SodiumSilicate,
+  Ingredient.Protease,
+  Ingredient.SodiumSilicate, // not on SDS; listed on current package
 ];
 
 const FebuEnzymeOxygenLaundryBoosterFragranceFree: BoosterProfile = new BoosterProfile(
