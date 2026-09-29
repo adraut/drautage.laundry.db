@@ -279,6 +279,12 @@ export enum Ingredient {
   DecylGlucoside = 'Decyl Glucoside',
   DenatoniumBenzoate = 'Denatonium Benzoate',
   /**
+   * Deoxyribonuclease is an enzyme that breaks down DNA in extracellular biofilm on fabrics, releasing
+   * trapped soils and odors.
+   * Synonyms: DNase
+   */
+  Deoxyribonuclease = 'DNase',
+  /**
    * Diethylene Glycol is a solvent and humectant used in laundry detergents to help dissolve
    * other ingredients, improve product stability, and regulate viscosity.
    */
@@ -307,7 +313,6 @@ export enum Ingredient {
    * that is stable on storage and designed to avoid bleach spots.
    */
   DistyrylbiphenolSulfonate = 'Distyrylbiphenol Sulfonate',
-  DNase = 'DNase',
   /**
    * Dodecylbenzene Sulfonic Acid (DBSA) is an anionic surfactant and a specific form of
    * Linear Alkylbenzene Sulfonic Acid (LABSA) with a C12 alkyl chain, used as a primary

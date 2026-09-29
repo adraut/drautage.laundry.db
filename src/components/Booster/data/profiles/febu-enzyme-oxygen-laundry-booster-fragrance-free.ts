@@ -14,7 +14,7 @@ const ingredients: Ingredient[] = [
   Ingredient.Cellulase,
   Ingredient.Mannanase,
   Ingredient.PectateLyase,
-  Ingredient.DNase,
+  Ingredient.Deoxyribonuclease,
   Ingredient.SodiumSilicate,
 ];
 

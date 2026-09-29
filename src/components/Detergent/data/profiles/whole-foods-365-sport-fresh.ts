@@ -9,7 +9,7 @@ const ingredients: Ingredient[] = [
   Ingredient.SodiumLaurethSulfate,
   Ingredient.SodiumCitrate,
   Ingredient.SodiumChloride,
-  Ingredient.DNase,
+  Ingredient.Deoxyribonuclease,
   Ingredient.LaurylGlucoside,
   Ingredient.Protease,
   Ingredient.Amylase,
