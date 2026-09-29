@@ -309,7 +309,10 @@ up-to-date), update the log row:
   - `skipped` — intentional duplicate or out-of-scope
   - `up-to-date` — profile matches packaging exactly
 - `Notes` — proposal filename, ingredient count, new enum entries needed,
-  OCR uncertainty summary, OR rules applied, crop notes, etc.
+  OCR uncertainty summary, OR rules applied, crop notes, etc. If the group
+  meets the `product-label-ocr` skill's section 5a criteria (OCR unusable
+  after cropping, or a generic ingredient list with no SDS), start Notes
+  with `invalid: <reason>`.
 
 After all pending groups are processed, print a one-line summary:
 `N proposal-ready, M needs-review, K skipped, J up-to-date`
@@ -332,6 +335,8 @@ groups"_:
      `gh issue create --title "Add <Brand> <Product>" --label "enhancement" --label "<Label>" --body-file <proposal>`
    - **New Update issue:**
      `gh issue create --title "Update <Brand> <Product>" --label "enhancement" --label "<Label>" --label "update" --body-file <proposal>`
+   - **Invalid group** (Notes start with `invalid:`): either of the above
+     plus `--label "invalid"`.
    - **Correcting an existing issue:**
      `gh issue edit <number> --body-file <proposal>`
 3. Use separate `--label` flags (not comma-separated).

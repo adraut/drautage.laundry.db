@@ -26,6 +26,10 @@ list.
 Note whether the title starts with **"Add"** or **"Update"** — this decides
 the rest of the workflow.
 
+If the issue has the `invalid` label (bad OCR, or a generic ingredient list
+with no SDS), stop: tell the user the issue is marked invalid and don't build
+a profile unless they explicitly say to.
+
 Resolve the product type using the order in
 @.claude/skills/product-label-ocr/references/product-types.md
 (the explicit argument `$2` if given, otherwise the issue's `Detergent` /

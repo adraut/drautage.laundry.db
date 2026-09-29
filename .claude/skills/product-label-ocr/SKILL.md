@@ -211,6 +211,26 @@ each uncertain item (marked `[?]`) so it's otherwise complete and can be
 approved with minimal edits once the open items are resolved. Never silently
 accept a best-guess reading without recording it as uncertain somewhere.
 
+## 5a. Invalid data (the `invalid` label)
+
+Some sources can't support a usable profile. The issue is still created —
+it records that the product was looked at — but it also gets the GitHub
+`invalid` label (lowercase) so `/add-product` won't build a profile from it.
+Mark a product invalid when **either** applies:
+
+1. **Bad OCR** — after cropping and re-reading (section 2), the ingredient
+   list is still too unreadable to transcribe: large `[unreadable]` spans,
+   or so many `[?]` items that the list can't be trusted. A few flagged
+   items that a reviewer can resolve are a Needs Review case, not invalid.
+2. **Generic list with no SDS** — the packaging only names ingredients by
+   function (`surfactants`, `enzymes`, `preservative`, `fragrance`,
+   `stabilizers`, …) rather than specific chemical/INCI names, **and** no
+   Safety Data Sheet gives the specific ingredients. If an SDS exists, use it
+   as the source (`Data source: SDS`) and the issue is not invalid.
+
+Add a line to the issue's Notes giving the reason, e.g.
+`**Invalid:** generic ingredient list ("surfactants, enzymes, fragrance"); no SDS available.`
+
 ## 6. Comparing against an existing profile
 
 If a profile file (the type's profile class, e.g. `DetergentProfile` or

@@ -106,8 +106,14 @@ confirms. Then create the issue with these labels, one `--label` flag each
 These mirror the `labels:` in each type's issue template; for a type not
 listed here, use the **label** column in `product-types.md`.
 
+**Also add `invalid`** (lowercase) when the product meets the skill's
+section 5a criteria: OCR still unusable after cropping, or a generic
+ingredient list (`surfactants`, `enzymes`, …) with no SDS available. Mention
+this in the step 7 summary so the user can confirm it.
+
 - Add: `gh issue create --title "Add <Brand> <Product>" --label "enhancement" --label "<Label>" --body-file <proposal>`
 - Update: `gh issue create --title "Update <Brand> <Product>" --label "enhancement" --label "<Label>" --label "update" --body-file <proposal>`
+- Invalid: either of the above plus `--label "invalid"`
 - Correcting an existing issue: `gh issue edit <number> --body-file <proposal>`
 
 Strip the Needs Review section from the body before submitting. After the
