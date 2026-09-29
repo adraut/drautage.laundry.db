@@ -1,8 +1,27 @@
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
 import Home from '../Home';
 
 describe('Home', () => {
+  it.each([
+    ['View Detergents', '/detergents'],
+    ['View Boosters', '/boosters'],
+  ])('%s navigates to %s without nesting the button in a link', (label, path) => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path={path} element={<div>arrived at {path}</div>} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const button = screen.getByRole('button', { name: label });
+    expect(button.closest('a')).toBeNull();
+    fireEvent.click(button);
+    expect(screen.getByText(`arrived at ${path}`)).toBeInTheDocument();
+  });
+
   it('renders the welcome heading', () => {
     render(
       <BrowserRouter>

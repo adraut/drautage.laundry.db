@@ -14,6 +14,7 @@ Add booster product: **[Brand] [Product Name]**
 
 - **Primary source:** [link]
 - **Date accessed:** [date]
+- **Region:** [region, or "Ingredient list from issue" if the source was inaccessible]
 
 <!--
 Agent Instructions:
