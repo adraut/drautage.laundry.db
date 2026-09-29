@@ -39,5 +39,6 @@ const FebuEnzymeOxygenLaundryBoosterFragranceFree: BoosterProfile = new BoosterP
   ingredients,
   new Date('2026-09-29'),
 );
+FebuEnzymeOxygenLaundryBoosterFragranceFree.countriesAvailable = ['USA', 'CAN'];
 
 export default FebuEnzymeOxygenLaundryBoosterFragranceFree;
