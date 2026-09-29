@@ -1091,6 +1091,11 @@ export enum Ingredient {
    */
   SodiumSulfite = 'Sodium Sulfite',
   /**
+   * Sodium Zinc Polyitaconate is a bio-based polymeric zinc compound used as an odor neutralizer;
+   * the zinc binds volatile odor molecules and neutralizes them rather than masking them.
+   */
+  SodiumZincPolyitaconate = 'Sodium Zinc Polyitaconate',
+  /**
    * Soft Water is water that has been treated to remove hardness minerals (calcium and magnesium
    * ions), used as the base solvent in liquid laundry detergents. Listed as "Soft Water" on some
    * product labels instead of plain "Water".
