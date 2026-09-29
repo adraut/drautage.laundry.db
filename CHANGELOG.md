@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/adraut/drautage.laundry.db/compare/v2.0.0...v2.1.0) (2026-09-29)
+
+
+### Features
+
+* add FEBU Enzyme Oxygen Laundry booster profile ([#742](https://github.com/adraut/drautage.laundry.db/issues/742)) ([fae5b9e](https://github.com/adraut/drautage.laundry.db/commit/fae5b9e05e448cf3f0758c4ab4c0a5aeb25abe69))
+
 ## [2.0.0](https://github.com/adraut/drautage.laundry.db/compare/v1.3.0...v2.0.0) (2026-09-29)
 
 
