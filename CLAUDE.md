@@ -38,11 +38,12 @@ Read and follow these — do not duplicate content from them:
 
 - [AGENTS.md](AGENTS.md) — Quick start and PR checklist for all agent work
 - [src/components/Detergent/AGENTS.md](src/components/Detergent/AGENTS.md) — Detergent profile creation rules
+- [src/components/Booster/AGENTS.md](src/components/Booster/AGENTS.md) — Booster profile creation rules
 - [src/components/common/types/AGENTS.md](src/components/common/types/AGENTS.md) — Ingredient enum and category management
 
 ## Rules
 
-- **Never modify `package-lock.json`** when adding detergent profiles. If it appears in your diff, stop and investigate.
+- **Never modify `package-lock.json`** when adding detergent or booster profiles. If it appears in your diff, stop and investigate.
 - **All PRs must be draft PRs.** Use `gh pr create --draft`.
 - **PR titles must start with a Conventional Commits prefix** (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `perf:`, `test:`, `build:`, `ci:`, `style:`, `revert:`), e.g. `fix: remove default lipase filter`. This is enforced by the PR Title Lint workflow ([.github/workflows/pr-title-lint.yml](.github/workflows/pr-title-lint.yml)) and is how release-please ([.github/workflows/release-please.yml](.github/workflows/release-please.yml)) determines the version bump and changelog section for the squashed commit — a missing or wrong prefix means the change is silently dropped from the next release.
 - Use `Closes #<issue_number>` in the PR body to auto-link the issue.

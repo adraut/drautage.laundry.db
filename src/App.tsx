@@ -7,6 +7,7 @@ import './App.css';
 const Detergents = lazy(() => import('./components/Detergent/Detergents'));
 const CompareView = lazy(() => import('./components/Detergent/CompareView'));
 const Boosters = lazy(() => import('./components/Booster/Boosters'));
+const CompareBoosters = lazy(() => import('./components/Booster/CompareBoosters'));
 const Pretreaters = lazy(() => import('./components/Pretreater/Pretreaters'));
 const Glossary = lazy(() => import('./components/Glossary/Glossary'));
 
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/detergents" element={<Detergents />} />
                 <Route path="/detergents/compare" element={<CompareView />} />
                 <Route path="/boosters" element={<Boosters />} />
+                <Route path="/boosters/compare" element={<CompareBoosters />} />
                 <Route path="/pretreaters" element={<Pretreaters />} />
                 <Route path="/glossary" element={<Glossary />} />
               </Routes>

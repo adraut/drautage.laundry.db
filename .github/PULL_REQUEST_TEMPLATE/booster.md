@@ -2,7 +2,7 @@
 
 Closes #[issue number]
 
-Add detergent product: **[Brand] [Product Name]**
+Add booster product: **[Brand] [Product Name]**
 
 ## Unknowns / Ambiguities
 
@@ -18,8 +18,8 @@ Add detergent product: **[Brand] [Product Name]**
 
 <!--
 Agent Instructions:
-- [ ] New profile file in `src/components/Detergent/data/profiles/`
-- [ ] Profile exported in `src/components/Detergent/data/profiles/index.ts`
+- [ ] New profile file in `src/components/Booster/data/profiles/`
+- [ ] Profile exported in `src/components/Booster/data/profiles/index.ts`
 - [ ] New ingredients added to `src/components/common/types/Ingredient.ts`
 - [ ] Ingredients categorized in appropriate sets
 -->

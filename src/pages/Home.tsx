@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <h1>Welcome to the Laundry Product Database</h1>
@@ -13,23 +15,20 @@ function Home() {
         <div className="product-card">
           <h3>Detergents</h3>
           <p>Explore laundry detergents to find the right formula for your fabrics and cleaning needs.</p>
-          <Link to="/detergents">
-            <button style={{ marginTop: '1rem' }}>View Detergents</button>
-          </Link>
-        </div>
-
-        {/* <div className="product-card">
-          <h3>Boosters</h3>
-          <p>
-            Discover laundry boosters that enhance your wash and provide extra cleaning 
-            power for tough stains.
-          </p>
-          <Link to="/boosters">
-            <button style={{ marginTop: '1rem' }}>View Boosters</button>
-          </Link>
+          <button style={{ marginTop: '1rem' }} onClick={() => navigate('/detergents')}>
+            View Detergents
+          </button>
         </div>
 
         <div className="product-card">
+          <h3>Boosters</h3>
+          <p>Discover laundry boosters that add extra cleaning power to your detergent for tough stains and odors.</p>
+          <button style={{ marginTop: '1rem' }} onClick={() => navigate('/boosters')}>
+            View Boosters
+          </button>
+        </div>
+
+        {/* <div className="product-card">
           <h3>Pretreaters</h3>
           <p>
             Find the best pretreaters for targeting stubborn stains before washing.
