@@ -1,3 +1,8 @@
+---
+description: Add an ingredient category set, column, and filter
+argument-hint: <CategoryName> "<Human Readable Title>"
+---
+
 # Add Ingredient Category
 
 Adds a new ingredient category set to the repository, wires it into `ProductProfile`,
@@ -83,7 +88,7 @@ Examples:
    ```
 
    c. Add an entry to the `displayCategories` array in
-   `src/components/Detergent/__tests__/IngredientCategoryMap.test.ts`:
+   `src/components/common/types/__tests__/IngredientCategoryMap.test.ts`:
 
    ```ts
    [<CategoryName>, '<Human Readable Title>'],

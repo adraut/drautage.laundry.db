@@ -1,15 +1,18 @@
 ---
-name: detergent-label-ocr
+name: product-label-ocr
 description: >
-  Transcribes a detergent ingredient list from packaging photos into a
-  clean, ordered ingredient list, with confidence-flagged uncertain reads
-  and the project's extraction rules (order preservation, "may contain"
-  handling, P&G "MADE WITH" functional-category unpacking, OR-alternatives,
-  colorant/alketh-vs-pareth conventions) already applied. Always use this
-  skill whenever transcribing, OCR'ing, or reading ingredients off a
-  detergent bottle/box photo for this repository — including from
-  /import-detergents and /create-detergent-issue — rather than re-deriving
-  the OCR prompt or the crop workflow inline.
+  Transcribes a laundry product's ingredient list (detergent, booster,
+  pretreater) from packaging photos into a clean, ordered ingredient list,
+  with confidence-flagged uncertain reads and the project's extraction rules
+  (order preservation, "may contain" handling, P&G "MADE WITH"
+  functional-category unpacking, OR-alternatives, colorant/alketh-vs-pareth
+  conventions) already applied. Also holds the product-type table
+  (references/product-types.md) that maps each category to its profile
+  class, paths, labels, and templates. Always use this skill whenever
+  transcribing, OCR'ing, or reading ingredients off a laundry product photo
+  for this repository — including from /import-products and
+  /create-product-issue — rather than re-deriving the OCR prompt or the crop
+  workflow inline.
 compatibility: >
   Bash (Git Bash on Windows is fine). The cropping step additionally uses
   one of Docker, Podman, local ImageMagick, or Python+Pillow, auto-detected
@@ -18,13 +21,15 @@ compatibility: >
   re-read if none are present.
 ---
 
-# Detergent label OCR
+# Product label OCR
 
 Turns one or more ingredient-panel photos into a final, ordered ingredient
-list ready to compare against an existing `DetergentProfile` or drop into a
-new issue. Both `/import-detergents` and `/create-detergent-issue` call into
-this skill for that step — the OCR prompt, cropping approach, and extraction
-rules live here once so the two commands can't drift out of sync.
+list ready to compare against an existing product profile or drop into a
+new issue. `/import-products` and `/create-product-issue` call into this
+skill for that step — the OCR prompt, cropping approach, and extraction
+rules live here once so the commands can't drift out of sync. The rules
+apply to every product type; category-specific paths and quirks are in
+[references/product-types.md](references/product-types.md).
 
 ## 1. Full-image OCR (always do this first)
 
@@ -134,8 +139,8 @@ the position where they're printed. Note each one in the issue Notes as
 conditional, e.g. `"may contain: propylene glycol — included as
 conditional"`.
 
-**P&G "MADE WITH:" functional-category format** (Gain liquids, Tide Simply,
-and similar): ingredients are grouped by function —
+**P&G "MADE WITH:" functional-category format** (mostly detergents — Gain
+liquids, Tide Simply, and similar): ingredients are grouped by function —
 `"Cleaning Agents: (A; B). Stabilizers: (C). Enzymes: (D). ... Colorants.
 Fragrances. Water."`
 
@@ -206,9 +211,30 @@ each uncertain item (marked `[?]`) so it's otherwise complete and can be
 approved with minimal edits once the open items are resolved. Never silently
 accept a best-guess reading without recording it as uncertain somewhere.
 
+## 5a. Invalid data (the `invalid` label)
+
+Some sources can't support a usable profile. The issue is still created —
+it records that the product was looked at — but it also gets the GitHub
+`invalid` label (lowercase) so `/add-product` won't build a profile from it.
+Mark a product invalid when **either** applies:
+
+1. **Bad OCR** — after cropping and re-reading (section 2), the ingredient
+   list is still too unreadable to transcribe: large `[unreadable]` spans,
+   or so many `[?]` items that the list can't be trusted. A few flagged
+   items that a reviewer can resolve are a Needs Review case, not invalid.
+2. **Generic list with no SDS** — the packaging only names ingredients by
+   function (`surfactants`, `enzymes`, `preservative`, `fragrance`,
+   `stabilizers`, …) rather than specific chemical/INCI names, **and** no
+   Safety Data Sheet gives the specific ingredients. If an SDS exists, use it
+   as the source (`Data source: SDS`) and the issue is not invalid.
+
+Add a line to the issue's Notes giving the reason, e.g.
+`**Invalid:** generic ingredient list ("surfactants, enzymes, fragrance"); no SDS available.`
+
 ## 6. Comparing against an existing profile
 
-If a `DetergentProfile` file already exists for this product, map each
+If a profile file (the type's profile class, e.g. `DetergentProfile` or
+`BoosterProfile`) already exists for this product, map each
 `Ingredient.EnumName` in it to its plain-text equivalent and compare against
 the freshly extracted list, **including order**:
 
