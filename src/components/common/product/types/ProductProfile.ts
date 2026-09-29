@@ -172,7 +172,9 @@ export class ProductProfile {
     // Compute all derived properties once during construction.
     this.hasAmylase = hasCategory(ingredients, Amylases, 'Enzyme', exclusions);
     this.hasCellulase = hasCategory(ingredients, Cellulases, 'Enzyme', exclusions);
-    this.hasDNase = ingredients.includes(Ingredient.DNase) && !exclusions[Ingredient.DNase]?.includes('Enzyme');
+    this.hasDNase =
+      ingredients.includes(Ingredient.Deoxyribonuclease) &&
+      !exclusions[Ingredient.Deoxyribonuclease]?.includes('Enzyme');
     this.hasLipase = ingredients.includes(Ingredient.Lipase) && !exclusions[Ingredient.Lipase]?.includes('Enzyme');
     this.hasMannanase =
       ingredients.includes(Ingredient.Mannanase) && !exclusions[Ingredient.Mannanase]?.includes('Enzyme');

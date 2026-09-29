@@ -6,7 +6,7 @@ Enzymes.add(Ingredient.AlphaAmylase);
 Enzymes.add(Ingredient.AlphaCellulase);
 Enzymes.add(Ingredient.Amylase);
 Enzymes.add(Ingredient.Cellulase);
-Enzymes.add(Ingredient.DNase);
+Enzymes.add(Ingredient.Deoxyribonuclease);
 Enzymes.add(Ingredient.Lipase);
 Enzymes.add(Ingredient.Mannanase);
 Enzymes.add(Ingredient.PectateLyase);

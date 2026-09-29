@@ -60,7 +60,7 @@ describe('ProductProfile', () => {
           'Brand',
           ProductType.Liquid,
           DataSource.Package,
-          [Ingredient.DNase],
+          [Ingredient.Deoxyribonuclease],
           new Date(),
         );
         expect(profile.hasDNase).toBe(true);

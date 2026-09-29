@@ -14,10 +14,6 @@ interface ProductDetailCardProps {
   onClose: () => void;
 }
 
-function formatIngredient(name: string): string {
-  return name.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2');
-}
-
 export function ProductDetailCard({ product, onClose }: ProductDetailCardProps) {
   const [copied, setCopied] = useState(false);
   const countryNames = product?.countriesAvailable?.map((code) => getName(code, 'en') ?? code).join(', ') ?? '—';
@@ -69,7 +65,7 @@ export function ProductDetailCard({ product, onClose }: ProductDetailCardProps) 
                   const categories = [...new Set([...base, ...added])].filter((cat) => !excluded.includes(cat));
                   return (
                     <tr key={ingredient}>
-                      <td>{formatIngredient(ingredient)}</td>
+                      <td>{ingredient}</td>
                       <td>{categories.length > 0 ? categories.join(', ') : '—'}</td>
                     </tr>
                   );

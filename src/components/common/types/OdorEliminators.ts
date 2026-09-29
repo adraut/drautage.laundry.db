@@ -4,6 +4,7 @@ const OdorEliminators: Set<Ingredient> = new Set();
 
 OdorEliminators.add(Ingredient.HydroxypropylCyclodextrin);
 OdorEliminators.add(Ingredient.SodiumBicarbonate);
+OdorEliminators.add(Ingredient.SodiumZincPolyitaconate);
 OdorEliminators.add(Ingredient.TeaTreeOil);
 OdorEliminators.add(Ingredient.ZincRicinoleate);
 

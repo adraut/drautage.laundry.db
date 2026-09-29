@@ -279,6 +279,12 @@ export enum Ingredient {
   DecylGlucoside = 'Decyl Glucoside',
   DenatoniumBenzoate = 'Denatonium Benzoate',
   /**
+   * Deoxyribonuclease is an enzyme that breaks down DNA in extracellular biofilm on fabrics, releasing
+   * trapped soils and odors.
+   * Synonyms: DNase
+   */
+  Deoxyribonuclease = 'DNase',
+  /**
    * Diethylene Glycol is a solvent and humectant used in laundry detergents to help dissolve
    * other ingredients, improve product stability, and regulate viscosity.
    */
@@ -307,7 +313,6 @@ export enum Ingredient {
    * that is stable on storage and designed to avoid bleach spots.
    */
   DistyrylbiphenolSulfonate = 'Distyrylbiphenol Sulfonate',
-  DNase = 'DNase',
   /**
    * Dodecylbenzene Sulfonic Acid (DBSA) is an anionic surfactant and a specific form of
    * Linear Alkylbenzene Sulfonic Acid (LABSA) with a C12 alkyl chain, used as a primary
@@ -1090,6 +1095,11 @@ export enum Ingredient {
    * antioxidant, helping to prevent oxidation of active ingredients and extend shelf life.
    */
   SodiumSulfite = 'Sodium Sulfite',
+  /**
+   * Sodium Zinc Polyitaconate is a bio-based polymeric zinc compound used as an odor neutralizer;
+   * the zinc binds volatile odor molecules and neutralizes them rather than masking them.
+   */
+  SodiumZincPolyitaconate = 'Sodium Zinc Polyitaconate',
   /**
    * Soft Water is water that has been treated to remove hardness minerals (calcium and magnesium
    * ions), used as the base solvent in liquid laundry detergents. Listed as "Soft Water" on some

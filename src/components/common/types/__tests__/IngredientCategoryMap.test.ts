@@ -45,7 +45,7 @@ describe('getIngredientCategories', () => {
   });
 
   it('returns "Enzyme" for an enzyme ingredient not in any subtype set', () => {
-    expect(getIngredientCategories(Ingredient.DNase)).toEqual(['Enzyme']);
+    expect(getIngredientCategories(Ingredient.Deoxyribonuclease)).toEqual(['Enzyme']);
   });
 
   it('returns empty array for an uncategorized ingredient', () => {

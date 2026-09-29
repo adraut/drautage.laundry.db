@@ -1,3 +1,1 @@
-// Booster profiles are exported here in alphabetical order, e.g.
-// export { default as BizStainFighterPowder } from './biz-stain-fighter-powder';
-export {};
+export { default as FebuEnzymeOxygenLaundryBoosterFragranceFree } from './febu-enzyme-oxygen-laundry-booster-fragrance-free';
