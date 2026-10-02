@@ -23,8 +23,8 @@
     "checks": "npm run lint && npm run format && npm run type-check && npm run test"
   },
   "dependencies": {
-    "ag-grid-community": "^36.1.0",
-    "ag-grid-react": "^36.1.0",
+    "ag-grid-community": "^36.2.0",
+    "ag-grid-react": "^36.2.0",
     "i18n-iso-countries": "^7.14.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
