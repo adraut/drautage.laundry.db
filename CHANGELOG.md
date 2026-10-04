@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2.0](https://github.com/adraut/drautage.laundry.db/compare/v2.1.0...v2.2.0) (2026-10-04)
+
+
+### Features
+
+* add isothiazolinones filter to detergents and boosters ([#750](https://github.com/adraut/drautage.laundry.db/issues/750)) ([d88a2e6](https://github.com/adraut/drautage.laundry.db/commit/d88a2e6fe2592cadddfe969acc760d2a82118d02))
+
+
+### Bug Fixes
+
+* **deps:** bump the prod-dependencies-minor group across 1 directory with 2 updates ([#746](https://github.com/adraut/drautage.laundry.db/issues/746)) ([784bae6](https://github.com/adraut/drautage.laundry.db/commit/784bae622f25c6cdc2822d6301259b4295a1a102))
+
 ## [2.1.0](https://github.com/adraut/drautage.laundry.db/compare/v2.0.0...v2.1.0) (2026-09-29)
 
 
