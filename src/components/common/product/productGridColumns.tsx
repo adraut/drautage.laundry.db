@@ -15,6 +15,7 @@ export const PRODUCT_FILTER_FIELDS: FilterField[] = [
     options: Object.values(ProductType),
   },
   { field: 'hasScents', title: 'Fragrance', type: 'boolean' },
+  { field: 'hasIsothiazolinones', title: 'Isothiazolinones', type: 'boolean' },
   { field: 'hasOxygenBleach', title: 'Oxygen Bleach', type: 'boolean' },
   { field: 'hasOxygenBleachBoosters', title: 'Oxygen Bleach Boosters', type: 'boolean' },
   { field: 'hasOpticalBrighteners', title: 'Optical Brighteners', type: 'boolean' },

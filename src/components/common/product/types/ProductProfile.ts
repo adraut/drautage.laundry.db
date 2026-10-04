@@ -12,6 +12,7 @@ import { NonBiodegradable } from '../../types/NonBiodegradable';
 import { AmphotericSurfactants } from '../../types/AmphotericSurfactants';
 import { Builders } from '../../types/Builders';
 import { FabricAntioxidants } from '../../types/FabricAntioxidants';
+import { Isothiazolinones } from '../../types/Isothiazolinones';
 import { FabricConditioners } from '../../types/FabricConditioners';
 import { Fillers } from '../../types/Fillers';
 import { NonionicSurfactants } from '../../types/NonionicSurfactants';
@@ -87,6 +88,7 @@ export class ProductProfile {
   readonly hasAmphotericSurfactants: boolean;
   readonly hasBuilders: boolean;
   readonly hasFabricAntioxidants: boolean;
+  readonly hasIsothiazolinones: boolean;
   readonly hasFabricConditioners: boolean;
   readonly hasFillers: boolean;
   readonly hasAnionicSurfactants: boolean;
@@ -193,6 +195,7 @@ export class ProductProfile {
     );
     this.hasBuilders = hasCategory(ingredients, Builders, 'Builder', exclusions);
     this.hasFabricAntioxidants = hasCategory(ingredients, FabricAntioxidants, 'Fabric Antioxidant', exclusions);
+    this.hasIsothiazolinones = hasCategory(ingredients, Isothiazolinones, 'Preservative', exclusions);
     this.hasFabricConditioners = hasCategory(ingredients, FabricConditioners, 'Fabric Conditioner', exclusions);
     this.hasFillers = hasCategory(ingredients, Fillers, 'Filler', exclusions);
     this.hasAnionicSurfactants = hasCategory(ingredients, AnionicSurfactants, 'Anionic Surfactant', exclusions);

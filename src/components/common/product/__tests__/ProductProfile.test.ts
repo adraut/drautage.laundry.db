@@ -2,6 +2,8 @@ import { ProductProfile } from '../types/ProductProfile';
 import { ProductType } from '../types/ProductType';
 import { DataSource } from '../types/DataSource';
 import { Ingredient } from '../../types/Ingredient';
+import { Isothiazolinones } from '../../types/Isothiazolinones';
+import { Preservatives } from '../../types/Preservatives';
 
 describe('ProductProfile', () => {
   describe('readonly properties', () => {
@@ -224,6 +226,36 @@ describe('ProductProfile', () => {
     });
 
     describe('additive detection properties', () => {
+      it('should detect hasIsothiazolinones when an isothiazolinone is present', () => {
+        const profile = new ProductProfile(
+          'Test',
+          'Brand',
+          ProductType.Liquid,
+          DataSource.Package,
+          [Ingredient.Benzisothiazolinone],
+          new Date(),
+        );
+        expect(profile.hasIsothiazolinones).toBe(true);
+      });
+
+      it('should not detect hasIsothiazolinones for non-isothiazolinone preservatives', () => {
+        const profile = new ProductProfile(
+          'Test',
+          'Brand',
+          ProductType.Liquid,
+          DataSource.Package,
+          [Ingredient.Water, Ingredient.PotassiumSorbate],
+          new Date(),
+        );
+        expect(profile.hasIsothiazolinones).toBe(false);
+      });
+
+      it('should keep Isothiazolinones a subset of Preservatives', () => {
+        for (const ingredient of Isothiazolinones) {
+          expect(Preservatives.has(ingredient)).toBe(true);
+        }
+      });
+
       it('should detect hasOpticalBrighteners when optical brightener is present', () => {
         const profile = new ProductProfile(
           'Test',
