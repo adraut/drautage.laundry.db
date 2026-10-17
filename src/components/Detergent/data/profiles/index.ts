@@ -10,7 +10,7 @@ export { default as AllFreeClearMightyPacsTheOriginal } from './all-free-clear-m
 export { default as AllFreeClearOdorRelief } from './all-free-clear-odor-relief';
 export { default as AllSensitiveFreshMightyPacsSpringBreeze } from './all-sensitive-fresh-mighty-pacs-spring-breeze';
 export { default as AllSensitiveFreshSpringBreeze } from './all-sensitive-fresh-spring-breeze';
-export { default as ArielOriginal } from './ariel-original';
+export { default as Ariel2xPowerOriginal } from './ariel-2x-power-original';
 export { default as ArielTouchOfDownyPowder } from './ariel-touch-of-downy-powder';
 export { default as ArmAndHammerBaby } from './arm-and-hammer-baby';
 export { default as ArmAndHammerDeepCleanFreeAndClear } from './arm-and-hammer-deep-clean-free-and-clear';

@@ -22,14 +22,14 @@ const ingredients: Ingredient[] = [
   Ingredient.Lipase,
 ];
 
-const ArielOriginal: DetergentProfile = new DetergentProfile(
-  'Original',
+const Ariel2xPowerOriginal: DetergentProfile = new DetergentProfile(
+  '2x Power Original',
   'Ariel',
   ProductType.Powder,
   DataSource.Package,
   ingredients,
   new Date('2026-03-14'),
 );
-ArielOriginal.countriesAvailable = ['USA', 'MEX'];
+Ariel2xPowerOriginal.countriesAvailable = ['USA', 'MEX'];
 
-export default ArielOriginal;
+export default Ariel2xPowerOriginal;
