@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/adraut/drautage.laundry.db/compare/v2.2.0...v2.2.1) (2026-10-17)
+
+
+### Bug Fixes
+
+* rename Ariel Original detergent profile to 2x Power Original ([#759](https://github.com/adraut/drautage.laundry.db/issues/759)) ([7608913](https://github.com/adraut/drautage.laundry.db/commit/76089134702affb33cd5897e2b7f9aaa7ddf0e2c))
+
 ## [2.2.0](https://github.com/adraut/drautage.laundry.db/compare/v2.1.0...v2.2.0) (2026-10-04)
 
 
