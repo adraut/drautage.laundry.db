@@ -32,12 +32,21 @@ subagent for exactly one case: a red required check (step 5).
 
 ```bash
 gh pr list --author "app/dependabot" --state open --limit 50 \
-  --json number,title,createdAt,mergeStateStatus,mergeable,reviewDecision,autoMergeRequest,statusCheckRollup,commits
+  --json number,title,createdAt,mergeStateStatus,mergeable,reviewDecision,autoMergeRequest
 ```
 
-`commits` carries each PR's last-commit date (`commits[-1].committedDate`), needed for the
-30-day staleness check below — fetched here too so `--dry-run` can classify `BEHIND` PRs
-correctly without a second per-PR call.
+Keep this list query to scalar fields. `statusCheckRollup` and `commits` are nested lists, and
+requesting them across `--limit 50` PRs exceeds GitHub's GraphQL node cap (500,000) — the query
+fails outright with `This query requests up to 510,100 possible nodes`. Both are fetched per PR
+instead (step 2, or the next paragraph).
+
+The 30-day staleness check needs each `BEHIND` PR's last-commit date. For every PR in the
+inventory whose `mergeStateStatus` is `BEHIND`, fetch it with one small call so `--dry-run` can
+classify it correctly:
+
+```bash
+gh pr view <N> --json commits -q '.commits[-1].committedDate'
+```
 
 Sort **newest → oldest**; newer grouped PRs frequently supersede older ones. Seed
 `TodoWrite` with one item per PR.
@@ -102,7 +111,7 @@ Within the `BEHIND` rows, the 30-day exception comes first because it changes wh
 to send: per `references/repo-context.md`, Dependabot stops auto-rebasing PRs untouched for
 30 days, so a plain `BEHIND` PR that old would never respond to `@dependabot rebase` — it
 needs `@dependabot recreate` instead, same as a real conflict. Measure staleness from the
-last **commit** (`commits[-1].committedDate` from the fetch above), not the PR's
+last **commit** (`commits[-1].committedDate` from the per-PR fetch), not the PR's
 `updatedAt` — posting our own nudge comment bumps `updatedAt` without Dependabot touching
 the branch, which would make an old PR look fresh again on the next `/loop` pass and
 misroute it back to `rebase`.
