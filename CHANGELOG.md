@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/adraut/drautage.laundry.db/compare/v2.2.1...v2.3.0) (2026-10-24)
+
+
+### Features
+
+* add Tide Fresh & Gentle liquids and PEG propylene glycol terephthalic acid polymer ([#768](https://github.com/adraut/drautage.laundry.db/issues/768)) ([47ed87a](https://github.com/adraut/drautage.laundry.db/commit/47ed87a76c02baf62c0248a9f3835c04f3e7ef66))
+
 ## [2.2.1](https://github.com/adraut/drautage.laundry.db/compare/v2.2.0...v2.2.1) (2026-10-17)
 
 
