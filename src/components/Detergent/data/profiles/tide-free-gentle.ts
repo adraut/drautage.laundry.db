@@ -15,7 +15,7 @@ const ingredients: Ingredient[] = [
   Ingredient.C10_16AlkyldimethylamineOxide,
   Ingredient.Alcohol,
   Ingredient.SodiumCumenesulfonate,
-  Ingredient.PEGTerephthalatePolymer,
+  Ingredient.PEGPropyleneGlycolTerephthalicAcidPolymer,
   Ingredient.TetrasodiumGlutamateDiacetate,
   Ingredient.CalciumFormate,
   Ingredient.Subtilisin,

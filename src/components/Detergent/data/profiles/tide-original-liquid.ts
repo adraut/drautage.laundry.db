@@ -31,7 +31,7 @@ const ingredients: Ingredient[] = [
   Ingredient.Benzisothiazolinone,
   Ingredient.Colorants,
   Ingredient.Fragrance,
-  Ingredient.PEGTerephthalatePolymer, // may contain
+  Ingredient.PEGPropyleneGlycolTerephthalicAcidPolymer, // may contain
   Ingredient.SodiumCumenesulfonate, // may contain
 ];
 

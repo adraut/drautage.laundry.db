@@ -112,6 +112,8 @@ export { default as TideEvoOriginalScent } from './tide-evo-original-scent';
 export { default as TideEvoSpringBlastScent } from './tide-evo-spring-blast-scent';
 export { default as TideFreeGentleOdorRefresh } from './tide-free-and-gentle-odor-refresh';
 export { default as TideFreeGentle } from './tide-free-gentle';
+export { default as TideFreshGentleCoastalOasis } from './tide-fresh-gentle-coastal-oasis';
+export { default as TideFreshGentleWhiteLavender } from './tide-fresh-gentle-white-lavender';
 export { default as TideOriginalLiquid } from './tide-original-liquid';
 export { default as TideOriginalPowder } from './tide-original-powder';
 export { default as TidePlusBleachAlternativeOriginalLiquid } from './tide-plus-bleach-alternative-original-liquid';
