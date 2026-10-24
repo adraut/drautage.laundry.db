@@ -758,9 +758,18 @@ export enum Ingredient {
    */
   PEG_10 = 'PEG-10',
   /**
+   * PEG Propylene Glycol Terephthalic Acid Polymer is a polyester-based soil-release polymer
+   * built from terephthalic acid, propylene glycol, and PEG units. It deposits onto synthetic
+   * fibers such as polyester so oily soils rinse away more easily in later washes. Listed as a
+   * more specific name than PEG Terephthalate Polymer.
+   */
+  PEGPropyleneGlycolTerephthalicAcidPolymer = 'PEG Propylene Glycol Terephthalic Acid Polymer',
+  /**
    * PEG Terephthalate Polymer is a polyester-based polymer used in laundry detergents
    * as a soil release agent and fabric protective ingredient, helping to prevent stains
-   * from adhering to fabric fibers.
+   * from adhering to fabric fibers. Use only when the label prints this exact name (e.g.
+   * Woolite); labels printing "PEG propylene glycol terephthalic acid polymer" (e.g. Tide)
+   * map to PEGPropyleneGlycolTerephthalicAcidPolymer.
    */
   PEGTerephthalatePolymer = 'PEG Terephthalate Polymer',
   /**

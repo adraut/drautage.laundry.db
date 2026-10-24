@@ -17,6 +17,7 @@ const SoilRelease: Set<Ingredient> = new Set();
 SoilRelease.add(Ingredient.AnionicModifiedPolyester);
 SoilRelease.add(Ingredient.ModifiedStarchPolymer);
 SoilRelease.add(Ingredient.NonionicPolyester);
+SoilRelease.add(Ingredient.PEGPropyleneGlycolTerephthalicAcidPolymer);
 SoilRelease.add(Ingredient.PEGTerephthalatePolymer);
 SoilRelease.add(Ingredient.PolypropyleneTerephthalate);
 

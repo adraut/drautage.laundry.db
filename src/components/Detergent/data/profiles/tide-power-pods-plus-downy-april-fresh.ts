@@ -29,7 +29,7 @@ const ingredients: Ingredient[] = [
   Ingredient.PolyvinylAlcoholPolymer,
   Ingredient.Colorants,
   Ingredient.Fragrance,
-  Ingredient.PEGTerephthalatePolymer, // may contain
+  Ingredient.PEGPropyleneGlycolTerephthalicAcidPolymer, // may contain
   Ingredient.Zeolite, // may contain
 ];
 
