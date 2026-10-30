@@ -31,7 +31,7 @@
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.2.13",
+    "@rsbuild/core": "^2.2.14",
     "@rsbuild/plugin-react": "^2.1.1",
     "@swc/core": "^1.16.18",
     "@swc/jest": "^0.2.39",
@@ -49,8 +49,8 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
-    "oxfmt": "^0.73.0",
-    "oxlint": "^1.88.0",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
     "style-loader": "^4.0.0",
     "typescript": "^7.0.2"
   },
