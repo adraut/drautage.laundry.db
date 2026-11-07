@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/adraut/drautage.laundry.db/compare/v2.3.0...v2.3.1) (2026-11-07)
+
+
+### Bug Fixes
+
+* **deps:** bump the prod-dependencies-minor group across 1 directory with 3 updates ([#776](https://github.com/adraut/drautage.laundry.db/issues/776)) ([c748986](https://github.com/adraut/drautage.laundry.db/commit/c748986dc3c262d8c2b9d2b924088f74ab5de42a))
+
 ## [2.3.0](https://github.com/adraut/drautage.laundry.db/compare/v2.2.1...v2.3.0) (2026-10-24)
 
 
